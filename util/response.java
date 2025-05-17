@@ -14,7 +14,7 @@ public class response{
         }
 
     }
-    public boolean respondNo(String response){
+    public static boolean respondNo(String response){
         response = response.toLowerCase();
 
         if (response.contains("No") || response.contains("Na") || response.contains("no") || response.contains("na"))
@@ -33,7 +33,7 @@ public class response{
         }
         else return false;
     }
-    public boolean Shop(String response){
+    public static boolean Shop(String response){
         response = response.toLowerCase();
         if(response.contains("Shop")  || response.contains("shop")){
             return true;
@@ -47,7 +47,7 @@ public class response{
         }
         else return false;
     }
-    public boolean Dungeon(String response){
+    public static boolean Dungeon(String response){
         response = response.toLowerCase();
         if(response.contains("dungeon")  || response.contains("Dungeon")){
             return true;

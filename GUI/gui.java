@@ -1,6 +1,9 @@
+package GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+
 import javax.swing.*;
 
 public class gui {
@@ -8,6 +11,7 @@ public class gui {
     public static JFrame frame;
     public static JPanel invPanel;
     public static JPanel txtPanel;
+    public static JTextField textField;
     
 
     public static void runGui(){
@@ -32,20 +36,27 @@ public class gui {
         txtPanel.setMinimumSize(minSizeTxt);
         txtPanel.setBackground(Color.white);
 
-        //create a split container to hold the side by side panels
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, invPanel, txtPanel);
-        splitPane.setDividerLocation(400); //Set divider location
-        
+        //create a gridlayout container to hold the side by side panels
+        JPanel gridLayoutPanel = new JPanel(new GridLayout(1,2,10,10));
+        gridLayoutPanel.add(invPanel);
+        gridLayoutPanel.add(txtPanel);
 
         //Create the text input panel
         JPanel inputPanel = new JPanel();
+        JButton enterButton = new JButton("Enter");
+        enterButton.setFocusable(false);
+        enterButtonListener buttonListener = new enterButtonListener();
+        enterButton.addActionListener(buttonListener);
+
         JTextField textField = new JTextField(45);
         inputPanel.add(textField);
+        inputPanel.add(enterButton);
+
 
         //Create a main panel to hold the split pane and the input panel
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(splitPane, BorderLayout.CENTER);
+        mainPanel.add(gridLayoutPanel, BorderLayout.CENTER);
         mainPanel.add(inputPanel, BorderLayout.SOUTH);
 
         //add the main panel to the frame

@@ -6,24 +6,23 @@ import monsters.*;
 import playerFiles.*;
 import util.*;
 
-public class world { 
-    response resp = new response();
-    Scanner input = new Scanner(System.in);
+
+public abstract class world { 
+
+    static Scanner input = new Scanner(System.in);
     public static int AREANUM = 0;
-    private String areas[] = {"Village", "Grassland", "Cave", "Hell", "A second Cave?", "A THIRD CAVE??", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?"}; 
+    private static String areas[] = {"Village", "Grassland", "Cave", "Hell", "A second Cave?", "A THIRD CAVE??", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?"}; 
     public static int stageNum = 0;
 
-    public world(){
-    }
-    public String getArea(){
+    public world(){}
+    public static String getArea(){
         return areas[AREANUM];
     }
-    public int getStage(){
+    public static int getStage(){
         return stageNum;
     }
 
-    public void menu(){
-        Scanner input = new Scanner(System.in);
+    public static void menu(){
         if(stageNum % 5 == 0){
             System.out.println("You have some options of what to do: \n");
             System.out.println("Shop \nDungeon \nItems \nQuit \nSave \n");
@@ -31,10 +30,10 @@ public class world {
             if (response.quit(Ans)){System.exit(0);}
 
             //OPEN SHOP!!!
-            if(resp.Shop(Ans)){
+            if(response.Shop(Ans)){
                 openShop();
             }
-            if(resp.Dungeon(Ans)){
+            if(response.Dungeon(Ans)){
                 openDungeon();
             }
             if(response.Items(Ans)){
@@ -42,13 +41,14 @@ public class world {
             }
             if(response.Save(Ans)){
                 //// SAVE
+                saveFiles.save(AREANUM, stageNum);
             }
         }
         else{
             openDungeon();
         }
     }
-    private void openShop(){
+    private static void openShop(){
         shopitems.printShop();
         System.out.println("Would you like to purchase one of these items?");
         String userInput = input.nextLine();
@@ -90,12 +90,12 @@ public class world {
             }            
         }
             //no dont buy shit recurse back to display menu()
-            if(resp.respondNo(userInput)){
+            if(response.respondNo(userInput)){
                 menu();
             }
     }
 
-    private void openDungeon(){
+    private static void openDungeon(){
         if(stageNum % 5 == 0 && AREANUM < areas.length - 1){
             AREANUM++;
             monsterArrayList.updateMonsterArrayListOnAreaUpdate();
@@ -122,7 +122,6 @@ public class world {
     }
 
     public static void monsterMenu(monster m){
-        Scanner input = new Scanner(System.in);
         while(m.getHealth() > 0){
             System.out.println();
             System.out.println("What would you like to do?");
@@ -153,7 +152,6 @@ public class world {
     }
     public static void itemMenu(){
         player.printPlayerItems();
-        Scanner input = new Scanner(System.in);
                 System.out.println("Would you like to use an item?");
                 String h = input.nextLine();
                 try{

@@ -1,16 +1,15 @@
 package monsters;
 
 import java.util.ArrayList;
-
 import util.TrekkerMath;
 import world.world;
 
-public class monsterArrayList {
+public abstract class monsterArrayList {
 
     public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<Class<? extends monster>>();
     public static ArrayList<Class<? extends boss>> bossSubclasses = new ArrayList<Class<? extends boss>>();
     
-    public monsterArrayList(){
+    public static void createMonsterList(){
         //Add the classes to the ArrayList on Creation
         monsterSubclasses.add(skeleton.class);
         monsterSubclasses.add(slime.class);

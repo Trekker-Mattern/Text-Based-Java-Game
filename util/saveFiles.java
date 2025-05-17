@@ -1,3 +1,4 @@
+package util;
 import items.*;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,19 +8,20 @@ import java.util.Scanner;
 import playerFiles.*;
 import world.shopitems;
 
-public class saveFiles {
-    File saveFile = new File("saveFile.txt");
-    private boolean newSave = false;
+public abstract class saveFiles {
+    
+    private static File saveFile = new File("saveFile.txt");
+    private static boolean newSave = false;
 
 
-    public boolean isNewFile(){
+    public static boolean isNewFile(){
         return newSave;
     }
-    public File getFile(){
+    public static File getFile(){
         return saveFile;
     }
 
-    public void readSave(){
+    public static void readSave(){
         try{
             if(saveFile.createNewFile()){
                 newSave = true;
@@ -34,7 +36,7 @@ public class saveFiles {
         }
     }
 
-    public void save(player p, int AreaNum, int StageNum){
+    public static void save(int AreaNum, int StageNum){
         try{
             //delete old save
             saveFile.delete();
@@ -71,68 +73,65 @@ public class saveFiles {
         reader.nextLine();
         reader.next();
     }
-    public static player readPlayerSave(File file){
+    public static void readPlayerSave(File file){
         int chealth, maxhealth, str, ag, inte, xptlu, xp;
             String nameS, invListString;
-            player p1;
             try{
-            Scanner myReader = new Scanner(file);
-            nameS = myReader.nextLine();
-            myReader.next();
-            chealth = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            maxhealth = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            str = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            ag = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            inte = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            xptlu = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            xp = myReader.nextInt();
-            saveFiles.goToNextReadableText(myReader);
-            invListString = myReader.nextLine();
-            p1 = new player(nameS);
-            p1.allocateSkillPoints(str,ag,inte);
-            player.setMaxHealth(maxhealth);
-            player.setHealth(chealth);
-            player.setXP(xp);
-            player.setXpToLevelUp(xptlu);
+                Scanner myReader = new Scanner(file);
+                nameS = myReader.nextLine();
+                myReader.next();
+                chealth = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                maxhealth = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                str = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                ag = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                inte = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                xptlu = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                xp = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
+                invListString = myReader.nextLine();
+                
+                player.setName(nameS);
+                player.allocateSkillPoints(str,ag,inte);
+                player.setMaxHealth(maxhealth);
+                player.setHealth(chealth);
+                player.setXP(xp);
+                player.setXpToLevelUp(xptlu);
 
-            invListString = invListString.substring(1);
-            while (!invListString.equals("")) {
-                for (Class<? extends item> e : shopitems.allItemsList) {
-                    int indexOfFirstSpace = invListString.indexOf(" ");
-                    if(indexOfFirstSpace != -1){
-                        if(getItemToAddToInv(e).getItemName().equals(invListString.substring(0,indexOfFirstSpace))){
-                            player.addItemToPlayer(getItemToAddToInv(e));
-                            invListString = invListString.substring(indexOfFirstSpace+1);
+                invListString = invListString.substring(1);
+                while (!invListString.equals("")) {
+                    for (Class<? extends item> e : shopitems.allItemsList) {
+                        int indexOfFirstSpace = invListString.indexOf(" ");
+                        if(indexOfFirstSpace != -1){
+                            if(getItemToAddToInv(e).getItemName().equals(invListString.substring(0,indexOfFirstSpace))){
+                                player.addItemToPlayer(getItemToAddToInv(e));
+                                invListString = invListString.substring(indexOfFirstSpace+1);
 
+                            }
                         }
                     }
                 }
-            }
-
-
-
-            myReader.close();
-            return p1;
+                myReader.close();
+                return;
             }
             catch(IOException e){
                 System.out.println("Uh oh");
-                p1 = new player("Empty Player");
-                return p1;
+
+                return;
             }
     }
     public static item getItemToAddToInv(Class<? extends item> e){
 
         try{
-        Constructor<? extends item> ctor = e.getDeclaredConstructor();
-        item a = ctor.newInstance();
-        
-        return a;
+            Constructor<? extends item> ctor = e.getDeclaredConstructor();
+            item a = ctor.newInstance();
+            
+            return a;
         }
         catch(Exception exception){
             return new bread();

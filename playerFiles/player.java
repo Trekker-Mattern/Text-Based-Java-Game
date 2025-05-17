@@ -7,7 +7,11 @@ import items.*;
 import monsters.*;
 import util.*;
 
-public class player {
+
+public abstract class player {
+
+    private static Scanner input = new Scanner(System.in);
+
     //Overall inventory
     public static ArrayList<item> inventory = new ArrayList<item>();
     //Consumables
@@ -28,34 +32,27 @@ public class player {
     private static int maxHealth;
     public static int health;
     private static int xpToLevelUp = 100;
-    private static int xp;
+    private static int xp = 0;
     public static boolean isBuff = false;
     public static String buffType;
     public static int buffLength;
     public static int currentBuffDuration;
 
-    int totalMaxStartingSkills = 10;
+    private static int totalMaxStartingSkills = 10;
 
 
-    //Constructor
-    public player(String pName){
-        name = pName;
-        //race = pRace;
-        playerLevel = 10;
-        xp = 0;
-    }
     public static void update(){
         if(isBuff == true){
             updateBuffs();
         }
     }
     //Allocating Skill Points
-    public void allocateSkillPoints(int pStrength, int pAgility, int pIntelligence){
+    public static void allocateSkillPoints(int pStrength, int pAgility, int pIntelligence){
         strength = pStrength;
         agility = pAgility;
         intelligence = pIntelligence;
     }
-    public void allocateSkillPoints(){
+    public static void allocateSkillPoints(){
         strength = (int)(Math.random() * totalMaxStartingSkills);
         maxHealth = (int)((double)(strength + 1) * luck * 2.0) +1;
         health = maxHealth;
@@ -137,6 +134,9 @@ public class player {
     public int getBankBalance(){
         return BankBalance;
     }
+    public static void setName(String name) {
+        player.name = name;
+    }
     public static String getName(){
         return name;
     }
@@ -209,9 +209,8 @@ public class player {
         }
     }
     //Long ass function for asking and allocating skill points
-    public void playerPointAllocation(){
-        Scanner userInput = new Scanner(System.in);
-        response R = new response();
+    public static void playerPointAllocation(){
+
         int stpts = 0;
         int aglpts = 0;
         int intpts = 0;
@@ -226,7 +225,7 @@ public class player {
             System.out.println("How many points would you like to allocate to strength?");
             System.out.println("You have " + (10-totalpts) + " left to spend");
                 
-            int temp = userInput.nextInt();
+            int temp = input.nextInt();
             if(temp <= (10-totalpts)){
                 stpts += temp;
                 totalpts += temp;
@@ -238,7 +237,7 @@ public class player {
 
             System.out.println("How many points would you like to allocate to agility?");
             System.out.println("You have " + (10-totalpts) + " left to spend");
-            temp = userInput.nextInt();
+            temp = input.nextInt();
             if(temp <= (10 - totalpts)){
                 aglpts += temp;
                 totalpts += temp;
@@ -249,7 +248,7 @@ public class player {
             }
             System.out.println("How many points would you like to allocate to intelligence?");
             System.out.println("You have " + (10-totalpts) + " left to spend");
-            temp = userInput.nextInt();
+            temp = input.nextInt();
             if(temp <= (10 - totalpts)){
                 intpts += temp;
                 totalpts += temp;
@@ -262,30 +261,30 @@ public class player {
             if(totalpts < 10){
                 int r = 0;
                 //System.out.println("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                String userResponse = userInput.nextLine();
+                String userResponse = input.nextLine();
                 while(r == 0){
                     System.out.println("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                    userResponse = userInput.nextLine();
+                    userResponse = input.nextLine();
                     if(response.respondYes(userResponse)){
                         r = 1;
                         break;
                         
 
                     }
-                    else if(R.respondNo(userResponse)){
+                    else if(response.respondNo(userResponse)){
                         r = 2;
                         break;
                     }
                     
                 }
-            if(r == 2){
-                break;
-            }
+                if(r == 2){
+                    break;
+                }
             }
 
         }
         
-        this.allocateSkillPoints(stpts, aglpts, intpts);
+        allocateSkillPoints(stpts, aglpts, intpts);
  
     }
 
@@ -300,18 +299,7 @@ public class player {
         }
     }
 
-    //adding items to inventory through adding item id
-    /* 
-    public boolean addItemToPlayer(int itemID){
-        
-        if(!playerItemIDs.contains(itemID)){
-            playerItemIDs.add(itemID);
-            return true;
-        }
-        return false;
-    }
 
-    */
     public static void printPlayerItems(){
         int printingNum = 1;
         for(item e : inventory){
@@ -327,6 +315,8 @@ public class player {
         
 
     }
+
+
     ///////////////////////////////////////////////////
     // Fighting things
     ///////////////////////////////////////////////////
@@ -341,9 +331,6 @@ public class player {
     }
 
     public static void fightMonster(monster m){
-        
-        
-
         
         //did the player miss
 
@@ -377,7 +364,7 @@ public class player {
         if(xp > xpToLevelUp){
             System.out.println("Which stat would you like to level up?");
             System.out.println("Your options are, strength, agility, intelligence, or health");
-            Scanner input = new Scanner(System.in);
+            
             String temp = input.nextLine();
             try {
                 int num = Integer.parseInt(temp) - 1;

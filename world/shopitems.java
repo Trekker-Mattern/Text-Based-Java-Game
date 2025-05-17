@@ -7,7 +7,7 @@ import items.*;
 import playerFiles.player;
 import util.TrekkerMath;
 
-public class shopitems {
+public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // precondition: all shops are 4 items
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ public class shopitems {
     
     private static item[] itemsInShop = new item[4];
 
-    public shopitems(){
+    public static void createShopItemsArr(){
         consumableShopItems.add(fish.class);
         equipableShopItems.add(sword.class);
         equipableShopItems.add(dagger.class);
