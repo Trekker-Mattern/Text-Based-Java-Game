@@ -2,7 +2,7 @@ package playerFiles;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import GUI.gui;
 import items.*;
 import monsters.*;
 import util.*;
@@ -63,7 +63,7 @@ public abstract class player {
     
     //Print your stats
     public static void printStats(){
-        System.out.println("Health: "+ health +"/"+maxHealth + "\nStrength: " + strength + "\nAgility: " + agility + "\nIntelligence: " + intelligence);
+        gui.printOnGameSide("Health: "+ health +"/"+maxHealth + "\nStrength: " + strength + "\nAgility: " + agility + "\nIntelligence: " + intelligence);
     }
 
 
@@ -151,10 +151,10 @@ public abstract class player {
     }
     public static void updateBuffs(){
         if(name.equals("debug")){
-            System.out.println(buffType);
-            System.out.println(buffLength);
-            System.out.println(currentBuffDuration);
-            System.out.println(isBuff);
+            gui.printOnGameSide(buffType);
+            gui.printOnGameSide(Integer.toString(buffLength));
+            gui.printOnGameSide(Integer.toString(currentBuffDuration));
+            gui.printOnGameSide(Boolean.toString(isBuff));
         }
         currentBuffDuration++;
         if(currentBuffDuration >= buffLength){
@@ -205,7 +205,7 @@ public abstract class player {
             isBuff = true;
         }
         else{
-            System.out.println("Your prayers have failed, another god favors you already!");
+            gui.printOnGameSide("Your prayers have failed, another god favors you already!");
         }
     }
     //Long ass function for asking and allocating skill points
@@ -222,48 +222,48 @@ public abstract class player {
         int totalpts = 0; //points spent
         while(totalpts < 10){
             
-            System.out.println("How many points would you like to allocate to strength?");
-            System.out.println("You have " + (10-totalpts) + " left to spend");
+            gui.printOnGameSide("How many points would you like to allocate to strength?");
+            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
                 
             int temp = input.nextInt();
             if(temp <= (10-totalpts)){
                 stpts += temp;
                 totalpts += temp;
-                System.out.println("You allocate " + stpts + " to strength!");
+                gui.printOnGameSide("You allocate " + stpts + " to strength!");
             }
             else{
-                System.out.println("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
             }
 
-            System.out.println("How many points would you like to allocate to agility?");
-            System.out.println("You have " + (10-totalpts) + " left to spend");
+            gui.printOnGameSide("How many points would you like to allocate to agility?");
+            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
             temp = input.nextInt();
             if(temp <= (10 - totalpts)){
                 aglpts += temp;
                 totalpts += temp;
-                System.out.println("You allocate " + aglpts + " to agility!");
+                gui.printOnGameSide("You allocate " + aglpts + " to agility!");
             }
             else{
-                System.out.println("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
             }
-            System.out.println("How many points would you like to allocate to intelligence?");
-            System.out.println("You have " + (10-totalpts) + " left to spend");
+            gui.printOnGameSide("How many points would you like to allocate to intelligence?");
+            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
             temp = input.nextInt();
             if(temp <= (10 - totalpts)){
                 intpts += temp;
                 totalpts += temp;
-                System.out.println("You allocate " + intpts + " to intelligence!");
+                gui.printOnGameSide("You allocate " + intpts + " to intelligence!");
             }
             else{
-                System.out.println("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
             }
 
             if(totalpts < 10){
                 int r = 0;
-                //System.out.println("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
+                //gui.printOnGameSide("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
                 String userResponse = input.nextLine();
                 while(r == 0){
-                    System.out.println("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
+                    gui.printOnGameSide("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
                     userResponse = input.nextLine();
                     if(response.respondYes(userResponse)){
                         r = 1;
@@ -305,10 +305,10 @@ public abstract class player {
         for(item e : inventory){
             System.out.print(printingNum + ": " + e);
             if(e.getQuality() != null){
-                System.out.println(" - " + e.getQuality());
+                gui.printOnGameSide(" - " + e.getQuality());
             }
             else{
-                System.out.println();
+                gui.newlOnGameSide();
             }
             printingNum++;
         }
@@ -342,28 +342,28 @@ public abstract class player {
             int damageDoneToMonster = damageDone(m);
             health -= damageTaken(m);
             m.subtractHealth(damageDoneToMonster);
-            System.out.println("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
+            gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
                 
         }
         else{
             int damageDoneToMonster = damageDone(m);
             m.subtractHealth(damageDoneToMonster);
-            System.out.println("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
+            gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
             if(m.getHealth() > 0) {
                 health -= damageTaken(m);
             }
         }
         if(m.getHealth() > 0)
-            {System.out.println(m.getName() + " has " + m.getHealth() + " health left");}
-        System.out.println("You have " + health + " health left");
-        System.out.println();
+            {gui.printOnGameSide(m.getName() + " has " + m.getHealth() + " health left");}
+        gui.printOnGameSide("You have " + health + " health left");
+        gui.newlOnGameSide();
         
     }
 
     private static void levelPrompt(){
         if(xp > xpToLevelUp){
-            System.out.println("Which stat would you like to level up?");
-            System.out.println("Your options are, strength, agility, intelligence, or health");
+            gui.printOnGameSide("Which stat would you like to level up?");
+            gui.printOnGameSide("Your options are, strength, agility, intelligence, or health");
             
             String temp = input.nextLine();
             try {
@@ -390,8 +390,8 @@ public abstract class player {
             }
             xp -= xpToLevelUp;
             xpToLevelUp *= 1.375;
-            System.out.println("You level up " + temp);
-            System.out.println("Your stats are now ");
+            gui.printOnGameSide("You level up " + temp);
+            gui.printOnGameSide("Your stats are now ");
             printStats();
             levelPrompt();
         }
@@ -411,19 +411,19 @@ public abstract class player {
         }
         if(monsterMiss == true){
             monsterMultiplyer = 0;
-            System.out.println("The monster missed and you take 0 damage!");
+            gui.printOnGameSide("The monster missed and you take 0 damage!");
             return 0;
         }
 
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
         if(monsterDamage < armour){
-            System.out.println("The " + m.getName() + " tries to " + m.attackString() + " but your strong armour repels their attack");
+            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString() + " but your strong armour repels their attack");
             return 0;
         }
         if(monsterDamage >= health){
             death(m, monsterDamage);
         }
-        System.out.println(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - armour));
+        gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - armour));
         m.attackEffects(monsterDamage - armour);
         return monsterDamage - armour;
     }
@@ -450,10 +450,10 @@ public abstract class player {
         }
         if(playerMiss == true){
             if(multiplyer != 0){
-                System.out.println("You swing and only graze the monster but it still does damage.");
+                gui.printOnGameSide("You swing and only graze the monster but it still does damage.");
             }
             if(multiplyer == 0){
-                System.out.println("You completely miss on your attack hitting nothing but air.");
+                gui.printOnGameSide("You completely miss on your attack hitting nothing but air.");
             }
         }
         boolean hasIntWeapon = false;
@@ -483,8 +483,8 @@ public abstract class player {
 
     public static void death(monster m, int monsterDamage){
         health = 0;
-        System.out.println("You have been killed by " + m.getName() + " after it " + m.attackString() + " for " + monsterDamage);
-        System.out.println("Here are your final stats");
+        gui.printOnGameSide("You have been killed by " + m.getName() + " after it " + m.attackString() + " for " + monsterDamage);
+        gui.printOnGameSide("Here are your final stats");
         printPlayerItems();
         printStats();
         System.exit(0);

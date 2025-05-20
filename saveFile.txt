@@ -1,9 +1,9 @@
-Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: debug
-Player-Current-Health: 20
-Player-Maximum-Health: 20
-Player-Strength: 7
-Player-Agility: 3
-Player-Intelligence: 2
+Player-Name: Trekker
+Player-Current-Health: 4
+Player-Maximum-Health: 4
+Player-Strength: 4
+Player-Agility: 6
+Player-Intelligence: 4
 Player-XP-to-Level-Up: 100
 Player-XP: 0
 Player-Inventory: 

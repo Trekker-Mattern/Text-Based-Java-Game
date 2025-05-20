@@ -4,19 +4,11 @@ import java.awt.event.ActionListener;
 
 public class enterButtonListener implements ActionListener {
     @Override
-    public void actionPerformed(ActionEvent e){
-        notify();
+    public void actionPerformed(ActionEvent e) {
+        String input = gui.textField.getText();
+        gui.textField.setText("");
+        gui.setInput(input); // Send input to backend
     }
 
-    public String getInput(){
-        try{
-            wait();
-            return gui.textField.getText();
-        }
-        catch(Exception e){
-            System.out.println("Something went wrong with input");
-            return "";
-        }
-        
-    }
+
 }

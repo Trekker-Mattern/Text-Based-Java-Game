@@ -27,6 +27,11 @@ public abstract class saveFiles {
                 newSave = true;
             }
             else{
+                Scanner s = new Scanner(saveFile);
+                if(s.nextLine()== null){
+                    newSave = true;
+                }
+                s.close();
                 //File already Exists
             }
         }
