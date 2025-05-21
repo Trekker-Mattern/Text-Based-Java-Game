@@ -21,6 +21,7 @@ public abstract class saveFiles {
         return saveFile;
     }
 
+    
     public static void readSave(){
         try{
             if(saveFile.createNewFile()){
@@ -28,11 +29,17 @@ public abstract class saveFiles {
             }
             else{
                 Scanner s = new Scanner(saveFile);
-                if(s.nextLine()== null){
-                    newSave = true;
+                try{
+                    s.nextLine();
+                    s.close();
                 }
-                s.close();
-                //File already Exists
+                catch(java.util.NoSuchElementException e){
+                    System.out.println("fileEmpty");
+                    newSave = true;
+                    return;
+                }
+                
+                readPlayerSave(saveFile);
             }
         }
         catch(IOException e){

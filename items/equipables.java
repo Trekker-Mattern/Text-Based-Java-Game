@@ -1,6 +1,7 @@
 package items;
 
 import playerFiles.player;
+import GUI.gui;
 
 public abstract class equipables extends item {
     private boolean equipped = false;
@@ -25,10 +26,10 @@ public abstract class equipables extends item {
         if(!equipped){
             player.equipedItems.add(this);
             onEquip();
-            System.out.println("You equipped " + this.getItemName());
+            gui.printOnGameSide("You equipped " + this.getItemName());
             equipped = true;
         }
-        else{onUnequip();System.out.println("You unequipped " + this.getItemName());player.equipedItems.remove(this); equipped = false;}
+        else{onUnequip();gui.printOnGameSide("You unequipped " + this.getItemName());player.equipedItems.remove(this); equipped = false;}
 
     }
     public String getQuality(){

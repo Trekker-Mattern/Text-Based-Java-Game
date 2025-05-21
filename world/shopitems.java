@@ -3,6 +3,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import GUI.gui;
 import items.*;
 import playerFiles.player;
 import util.TrekkerMath;
@@ -43,18 +44,17 @@ public abstract class shopitems {
     }
 
     public static void printShopItems(){
-        itemsInShop = createShop();
+        
         int index = 1;
         for(item e:itemsInShop){
             
-            System.out.print(index + ": " + e.getItemName());
-            System.out.println("   | costs " + e.getPrice() + " gold");
+            gui.printOnGameSide(index + ": " + e.getItemName() + "   | costs " + e.getPrice() + " gold");
             index++;
         }
 
     }
 
-    public static item[] createShop(){
+    public static void createShop(){
         item[] randomItems = new item[4];
 
 
@@ -106,15 +106,15 @@ public abstract class shopitems {
                     e.printStackTrace();
                 }
             }
-        return randomItems;
+        itemsInShop = randomItems;
     }
 
  
 
     public static void printShop(){
-        System.out.println("You have " + player.BankBalance + " shmeckles!");
+        gui.printOnGameSide("You have " + player.BankBalance + " shmeckles!");
 
-        System.out.println("Heres whats in the shop!");
+        gui.printOnGameSide("Heres whats in the shop!");
         printShopItems();
 
     }

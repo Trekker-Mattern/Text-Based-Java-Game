@@ -1,4 +1,5 @@
 package items;
+import GUI.gui;
 import playerFiles.*;
 public class threeCourseMeal extends consumables {
     int healthIncrease =  (int)(player.getMaxHealth() * .75);
@@ -8,7 +9,7 @@ public class threeCourseMeal extends consumables {
     }
     public void Use(){
         removeFromInv();
-        System.out.println("You heal for " + healthIncrease);
+        gui.printOnGameSide("You heal for " + healthIncrease);
         player.addHealth(healthIncrease);
     }
 }

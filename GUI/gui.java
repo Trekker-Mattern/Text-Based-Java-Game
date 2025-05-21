@@ -67,6 +67,7 @@ public class gui {
 
         //add the main panel to the frame
         frame.add(mainPanel);
+        frame.getRootPane().setDefaultButton(enterButton);
 
         //make the frame visible
         frame.setVisible(true);
@@ -103,7 +104,7 @@ public class gui {
     }
     public static void newlOnGameSide(){
         JLabel text = new JLabel();
-        text.setText("");
+        text.setText(" ");
         txtPanel.add(text);
         txtPanel.revalidate();
 

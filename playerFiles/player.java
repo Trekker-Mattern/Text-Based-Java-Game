@@ -63,7 +63,10 @@ public abstract class player {
     
     //Print your stats
     public static void printStats(){
-        gui.printOnGameSide("Health: "+ health +"/"+maxHealth + "\nStrength: " + strength + "\nAgility: " + agility + "\nIntelligence: " + intelligence);
+        gui.printOnGameSide("Health: "+ health + "/"+maxHealth); 
+        gui.printOnGameSide("Strength: " + strength); 
+        gui.printOnGameSide("Agility: " + agility); 
+        gui.printOnGameSide("Intelligence: " + intelligence);
     }
 
 
@@ -303,9 +306,9 @@ public abstract class player {
     public static void printPlayerItems(){
         int printingNum = 1;
         for(item e : inventory){
-            System.out.print(printingNum + ": " + e);
+            String s = printingNum + ": " + e;
             if(e.getQuality() != null){
-                gui.printOnGameSide(" - " + e.getQuality());
+                gui.printOnGameSide(s + " - " + e.getQuality());
             }
             else{
                 gui.newlOnGameSide();
@@ -365,7 +368,7 @@ public abstract class player {
             gui.printOnGameSide("Which stat would you like to level up?");
             gui.printOnGameSide("Your options are, strength, agility, intelligence, or health");
             
-            String temp = input.nextLine();
+            String temp = gui.getInput();
             try {
                 int num = Integer.parseInt(temp) - 1;
                 if(num == 1){temp = "strength";}

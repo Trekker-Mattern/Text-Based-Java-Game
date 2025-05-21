@@ -1,5 +1,3 @@
-
-
 import GUI.gui;
 import monsters.*;
 import playerFiles.*;
@@ -56,6 +54,7 @@ public class runTime
         player.printStats();
         while(true){
             saveFiles.save(world.AREANUM, world.stageNum); 
+            shopitems.createShop();
             world.menu();
             player.update();
         }
