@@ -19,11 +19,7 @@ public class club extends holdables {
     public int getStatIncrease(){
         return increase;
     }
-    public void onEquip(){
-    }
-    
-    public void onUnequip(){
-    }
+
     public String getAttackString() {
         return "bonk";
     }

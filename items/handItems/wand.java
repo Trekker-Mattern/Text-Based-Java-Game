@@ -18,11 +18,7 @@ public class wand extends holdables {
     public int getStatIncrease(){
         return wandIncrease;
     }
-    public void onEquip(){
-    }
-    
-    public void onUnequip(){
-    }
+
     public String getAttackString() {
         return "cast a spell on";
     }

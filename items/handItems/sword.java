@@ -18,11 +18,7 @@ public class sword extends holdables {
     public int getStatIncrease(){
         return swordIncrease;
     }
-    public void onEquip(){
-    }
-    
-    public void onUnequip(){
-    }
+
     public String getAttackString() {
         return "slice";
     }

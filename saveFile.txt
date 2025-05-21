@@ -1,11 +1,11 @@
-Player-Name: Trekker
-Player-Current-Health: 0
-Player-Maximum-Health: 0
-Player-Strength: 3
-Player-Agility: 4
-Player-Intelligence: 3
+Player-Name: Trek
+Player-Current-Health: 4
+Player-Maximum-Health: 4
+Player-Strength: 0
+Player-Agility: 10
+Player-Intelligence: 2
 Player-XP-to-Level-Up: 100
 Player-XP: 0
-Player-Inventory: 
+Player-Inventory: Club Sword Club 
 World-StageNum: 0
 World-AreaNum: 0

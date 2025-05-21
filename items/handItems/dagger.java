@@ -20,11 +20,14 @@ public class dagger extends holdables{
         return damageToAdd;
     }
 
+    @Override
     public void onEquip(){
+        equipToHand();
         player.addAgility(agilityToAdd);
 
     }
 
+    @Override
     public void onUnequip(){
         player.addAgility(agilityToAdd * -1);
     }

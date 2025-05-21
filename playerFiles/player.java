@@ -492,14 +492,18 @@ public abstract class player {
         return retDamage;
     }
 
-    public static holdables askWhichHandToEquipTo(holdables LHand, holdables RHand){
+    public static void askWhichHandToEquipTo(holdables LHand, holdables RHand){
         
         gui.printOnGameSide("Which hand would you like to switch?");
         String handToPick = gui.getInput();
         if(response.Left(handToPick)){
-            return LHand;
+            LHand.onUnequip();
+            LHand = null;
         }
-        return RHand;
+        else{
+            RHand.onUnequip();
+            RHand = null;
+        }
 
     }
 

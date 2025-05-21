@@ -12,14 +12,15 @@ public abstract class holdables extends equipables{
     }
 
     protected void equipToHand(){
+        if(player.RHand != null && player.LHand != null){
+        player.askWhichHandToEquipTo(player.LHand, player.RHand);
+        }
         if(player.RHand == null){
             player.RHand = this;
         }
         else if(player.LHand == null){
             player.LHand = this;
         }
-        else{
-            holdables hand = player.askWhichHandToEquipTo(player.LHand, player.RHand);
-        }
+
     }
 }
