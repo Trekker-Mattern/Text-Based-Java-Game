@@ -1,15 +1,16 @@
-package items;
+package items.chestArmorItems;
+import items.genericItems.chestArmor;
 import playerFiles.*;
 
-public class helmet extends equipables{
+public class chestplate extends chestArmor{
     int armourAdd;
     int quality;
-    public helmet(){
+    public chestplate(){
         quality = (int)((Math.random() * 6) +1);
         setQuality(quality);
-        armourAdd = (int)(quality * 1.3);
-        setPrice(20);
-        setName("helmet");
+        armourAdd = quality * 2;
+        setPrice(45);
+        setName("Chestplate");
 
     }
     public void onEquip(){

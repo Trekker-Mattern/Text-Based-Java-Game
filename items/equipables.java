@@ -4,11 +4,14 @@ import playerFiles.player;
 import GUI.gui;
 
 public abstract class equipables extends item {
-    private boolean equipped = false;
-    private String qualityString;
+    protected boolean equipped = false;
+    protected String qualityString;
+    protected int quality;
     //private int quality;
     public equipables(){
         setIsConsumable(false);
+        quality = (int)((Math.random() * 6) +1);
+        setQuality(quality);
     }
     public void setQuality(int x){
         //quality = x;

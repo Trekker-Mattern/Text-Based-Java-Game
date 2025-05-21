@@ -1,18 +1,17 @@
-package items;
+package items.handItems;
 
+import items.genericItems.holdables;
 
-public class club extends equipables {
+public class sword extends holdables {
     private int quality;
     private int swordIncrease;
     
 
-    public club(){
+    public sword(){
         setIsAttackingItem(true);
-        quality = (int)((Math.random() * 6) +1);
-        setQuality(quality);
-        swordIncrease = (int)(1.7*quality);
+        swordIncrease = 2*quality;
         setPrice(30);
-        setName("Club");
+        setName("Sword");
         setType("Strength");
         
     }
@@ -25,6 +24,6 @@ public class club extends equipables {
     public void onUnequip(){
     }
     public String getAttackString() {
-        return "bonk";
+        return "slice";
     }
 }

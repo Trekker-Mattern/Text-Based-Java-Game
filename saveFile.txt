@@ -1,11 +1,11 @@
 Player-Name: Trekker
-Player-Current-Health: 6
-Player-Maximum-Health: 6
-Player-Strength: 5
-Player-Agility: 5
+Player-Current-Health: 0
+Player-Maximum-Health: 0
+Player-Strength: 3
+Player-Agility: 4
 Player-Intelligence: 3
 Player-XP-to-Level-Up: 100
 Player-XP: 0
-Player-Inventory: Fish helmet 
+Player-Inventory: 
 World-StageNum: 0
 World-AreaNum: 0

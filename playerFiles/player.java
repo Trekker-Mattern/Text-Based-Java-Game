@@ -1,16 +1,15 @@
 package playerFiles;
 import java.lang.Math;
 import java.util.ArrayList;
-import java.util.Scanner;
 import GUI.gui;
 import items.*;
+import items.genericItems.*;
 import monsters.*;
 import util.*;
 
 
 public abstract class player {
 
-    private static Scanner input = new Scanner(System.in);
 
     //Overall inventory
     public static ArrayList<item> inventory = new ArrayList<item>();
@@ -19,6 +18,15 @@ public abstract class player {
     //equipped and unequipped inventory
     public static ArrayList<item> equipableItems = new ArrayList<item>(); 
     public static ArrayList<item> equipedItems = new ArrayList<item>();
+
+    public static holdables LHand;
+    public static holdables RHand;
+    public static headArmour helm;
+    public static chestArmor chestplate;
+    public static legsArmor pants;
+    public static boots shoes;
+
+
 
     public static String name;
     public static int BankBalance = 100;
@@ -228,7 +236,7 @@ public abstract class player {
             gui.printOnGameSide("How many points would you like to allocate to strength?");
             gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
                 
-            int temp = input.nextInt();
+            int temp = Integer.parseInt(gui.getInput());
             if(temp <= (10-totalpts)){
                 stpts += temp;
                 totalpts += temp;
@@ -240,7 +248,7 @@ public abstract class player {
 
             gui.printOnGameSide("How many points would you like to allocate to agility?");
             gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
-            temp = input.nextInt();
+            temp = Integer.parseInt(gui.getInput());
             if(temp <= (10 - totalpts)){
                 aglpts += temp;
                 totalpts += temp;
@@ -251,7 +259,7 @@ public abstract class player {
             }
             gui.printOnGameSide("How many points would you like to allocate to intelligence?");
             gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
-            temp = input.nextInt();
+            temp = Integer.parseInt(gui.getInput());
             if(temp <= (10 - totalpts)){
                 intpts += temp;
                 totalpts += temp;
@@ -264,10 +272,10 @@ public abstract class player {
             if(totalpts < 10){
                 int r = 0;
                 //gui.printOnGameSide("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                String userResponse = input.nextLine();
+                String userResponse = gui.getInput();
                 while(r == 0){
                     gui.printOnGameSide("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                    userResponse = input.nextLine();
+                    userResponse = gui.getInput();
                     if(response.respondYes(userResponse)){
                         r = 1;
                         break;
@@ -482,6 +490,17 @@ public abstract class player {
         retDamage *= multiplyer;
         if (retDamage == 0){retDamage =1;}
         return retDamage;
+    }
+
+    public static holdables askWhichHandToEquipTo(holdables LHand, holdables RHand){
+        
+        gui.printOnGameSide("Which hand would you like to switch?");
+        String handToPick = gui.getInput();
+        if(response.Left(handToPick)){
+            return LHand;
+        }
+        return RHand;
+
     }
 
     public static void death(monster m, int monsterDamage){

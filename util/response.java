@@ -68,5 +68,10 @@ public class response{
         }
         return false;
     }
+    public static boolean Left(String response){
+        response = response.toLowerCase();
+        if(response.contains("left")){return true;}
+        return false;
+    }
 }
 

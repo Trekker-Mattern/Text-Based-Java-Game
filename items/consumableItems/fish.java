@@ -1,5 +1,6 @@
-package items;
+package items.consumableItems;
 import GUI.gui;
+import items.consumables;
 import playerFiles.*;
 public class fish extends consumables {
     int healthIncrease =  player.getMaxHealth()  / 5;

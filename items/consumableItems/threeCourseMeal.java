@@ -1,5 +1,6 @@
-package items;
+package items.consumableItems;
 import GUI.gui;
+import items.consumables;
 import playerFiles.*;
 public class threeCourseMeal extends consumables {
     int healthIncrease =  (int)(player.getMaxHealth() * .75);

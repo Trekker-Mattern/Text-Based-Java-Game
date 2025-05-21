@@ -74,7 +74,8 @@ public abstract class world {
                 gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
             }
             else{
-                gui.printOnGameSide("You dont have enough money to buy that! /n You only have " + player.BankBalance + " shmeckles.");
+                gui.printOnGameSide("You dont have enough money to buy that!");
+                gui.printOnGameSide("You only have " + player.BankBalance + " shmeckles.");
                 menu();
             }
         }

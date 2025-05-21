@@ -5,6 +5,15 @@ import java.util.ArrayList;
 
 import GUI.gui;
 import items.*;
+import items.chestArmorItems.chestplate;
+import items.consumableItems.bread;
+import items.consumableItems.fish;
+import items.consumableItems.threeCourseMeal;
+import items.handItems.club;
+import items.handItems.dagger;
+import items.handItems.sword;
+import items.handItems.wand;
+import items.headArmorItems.helmet;
 import playerFiles.player;
 import util.TrekkerMath;
 

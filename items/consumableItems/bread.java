@@ -1,5 +1,6 @@
-package items;
+package items.consumableItems;
 import GUI.gui;
+import items.consumables;
 import playerFiles.*;
 public class bread extends consumables{
     int healthIncrease =  player.getMaxHealth()  / 3;

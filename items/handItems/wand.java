@@ -1,17 +1,18 @@
-package items;
+package items.handItems;
 
-public class wand extends equipables {
+import items.genericItems.holdables;
+
+public class wand extends holdables {
     private int quality;
     private int wandIncrease;
     
 
     public wand(){
-        quality = (int)((Math.random() * 6) +1);
+        setIsAttackingItem(true);
         wandIncrease = 2*quality;
         setPrice(10);
         setName("Wand");
         setType("Intelligence");
-        setIsAttackingItem(true);
         
     }
     public int getStatIncrease(){
