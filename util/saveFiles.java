@@ -54,7 +54,9 @@ public abstract class saveFiles {
         try{
             //delete old save
             saveFile.delete();
-            saveFile.createNewFile();
+            File f = new File("saveFile.txt");
+            saveFile = null;
+            saveFile = f;
 
             FileWriter fWriter = new FileWriter(saveFile);
 
@@ -77,9 +79,8 @@ public abstract class saveFiles {
             fWriter.write("World-AreaNum: " + AreaNum);
             fWriter.close();
             
-
         }
-        catch(IOException e){
+        catch(Exception e){
             System.out.println("fasldfkj");
         }
     }
@@ -92,7 +93,9 @@ public abstract class saveFiles {
             String nameS, invListString;
             try{
                 Scanner myReader = new Scanner(file);
+                myReader.next();
                 nameS = myReader.nextLine();
+                nameS = nameS.substring(1);
                 myReader.next();
                 chealth = myReader.nextInt();
                 saveFiles.goToNextReadableText(myReader);
@@ -117,19 +120,16 @@ public abstract class saveFiles {
                 player.setXP(xp);
                 player.setXpToLevelUp(xptlu);
 
-                invListString = invListString.substring(1);
-                while (!invListString.equals("")) {
-                    for (Class<? extends item> e : shopitems.allItemsList) {
-                        int indexOfFirstSpace = invListString.indexOf(" ");
-                        if(indexOfFirstSpace != -1){
-                            if(getItemToAddToInv(e).getItemName().equals(invListString.substring(0,indexOfFirstSpace))){
-                                player.addItemToPlayer(getItemToAddToInv(e));
-                                invListString = invListString.substring(indexOfFirstSpace+1);
 
-                            }
-                        }
-                    }
+                //DO INVENTORY
+                invListString = invListString.substring(1);
+                String[] itemList = invListString.split(" ");
+                for(String s: itemList){
+                    Class<? extends item> e = shopitems.allItemsList.get(s);
+                    player.addItemToPlayer(getItemToAddToInv(e));
                 }
+                                
+
                 myReader.close();
                 return;
             }

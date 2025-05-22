@@ -1,11 +1,11 @@
-Player-Name: Trek
-Player-Current-Health: 4
-Player-Maximum-Health: 4
-Player-Strength: 0
-Player-Agility: 10
-Player-Intelligence: 2
+Player-Name: Trekker
+Player-Current-Health: 1
+Player-Maximum-Health: 1
+Player-Strength: 8
+Player-Agility: 2
+Player-Intelligence: 1
 Player-XP-to-Level-Up: 100
 Player-XP: 0
-Player-Inventory: Club Sword Club 
+Player-Inventory: Chestplate Dagger Fish 
 World-StageNum: 0
 World-AreaNum: 0

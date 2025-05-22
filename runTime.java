@@ -41,12 +41,7 @@ public class runTime
 
             }
         }
-        else{//WERE READING FILES NOW????
 
-            saveFiles.readPlayerSave(saveFiles.getFile());
-            
-
-        }
 
         //Play Loop
         
@@ -55,6 +50,7 @@ public class runTime
         while(true){
             saveFiles.save(world.AREANUM, world.stageNum); 
             shopitems.createShop();
+            gui.updatePlayerSide();
             world.menu();
             player.update();
         }
@@ -62,8 +58,8 @@ public class runTime
     }
 
     static void startup(){
-        saveFiles.readSave();
         shopitems.createShopItemsArr();
+        saveFiles.readSave();
         monsterArrayList.createMonsterList();
         gui.runGui();
     }

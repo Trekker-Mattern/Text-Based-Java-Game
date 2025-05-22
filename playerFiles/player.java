@@ -95,6 +95,7 @@ public abstract class player {
         if(health + x < maxHealth)
             {health += x;}
         else{health = maxHealth;}
+        gui.updatePlayerSide();
     }
     //Strength Getter
     public static int getStrength(){
@@ -296,6 +297,7 @@ public abstract class player {
         }
         
         allocateSkillPoints(stpts, aglpts, intpts);
+        gui.updatePlayerSide();
  
     }
 
@@ -314,12 +316,12 @@ public abstract class player {
     public static void printPlayerItems(){
         int printingNum = 1;
         for(item e : inventory){
-            String s = printingNum + ": " + e;
+            String s = printingNum + ": " + e.toString();
             if(e.getQuality() != null){
                 gui.printOnGameSide(s + " - " + e.getQuality());
             }
             else{
-                gui.newlOnGameSide();
+                gui.printOnGameSide(s);
             }
             printingNum++;
         }

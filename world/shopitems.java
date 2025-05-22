@@ -2,6 +2,7 @@ package world;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import GUI.gui;
 import items.*;
@@ -21,7 +22,7 @@ public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // precondition: all shops are 4 items
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    public static ArrayList<Class<? extends item>> allItemsList = new ArrayList<Class<? extends item>>();
+    public static HashMap<String,Class<? extends item>> allItemsList = new HashMap<String,Class<? extends item>>();
 
     public static ArrayList<Class<? extends consumables>> consumableShopItems = new ArrayList<Class<? extends consumables>>();
     public static ArrayList<Class<? extends equipables>> equipableShopItems = new ArrayList<Class<? extends equipables>>();
@@ -41,15 +42,15 @@ public abstract class shopitems {
         consumableShopItems.add(bread.class);
         equipableShopItems.add(club.class);
 
-        allItemsList.add(fish.class);
-        allItemsList.add(sword.class);
-        allItemsList.add(dagger.class);
-        allItemsList.add(chestplate.class);
-        allItemsList.add(threeCourseMeal.class);
-        allItemsList.add(wand.class);
-        allItemsList.add(helmet.class);
-        allItemsList.add(bread.class);
-        allItemsList.add(club.class);
+        allItemsList.put("Fish",fish.class);
+        allItemsList.put("Sword", sword.class);
+        allItemsList.put("Dagger",dagger.class);
+        allItemsList.put("Chestplate",chestplate.class);
+        allItemsList.put("Three-Course-Meal",threeCourseMeal.class);
+        allItemsList.put("Wand", wand.class);
+        allItemsList.put("Helmet", helmet.class);
+        allItemsList.put("Bread" ,bread.class);
+        allItemsList.put("Club", club.class);
     }
 
     public static void printShopItems(){
