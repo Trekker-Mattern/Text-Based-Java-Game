@@ -14,6 +14,7 @@ public class dagger extends holdables{
         setPrice(15);
         setName("Dagger");
         setType("Strength");
+        itemType = "Sharp";
     }
 
     public int getStatIncrease(){
@@ -22,7 +23,6 @@ public class dagger extends holdables{
 
     @Override
     public void onEquip(){
-        equipToHand();
         player.addAgility(agilityToAdd);
 
     }

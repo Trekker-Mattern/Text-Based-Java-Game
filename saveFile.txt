@@ -1,11 +1,11 @@
-Player-Name: Trekker
-Player-Current-Health: 1
-Player-Maximum-Health: 1
-Player-Strength: 8
-Player-Agility: 2
-Player-Intelligence: 1
-Player-XP-to-Level-Up: 100
-Player-XP: 0
-Player-Inventory: Chestplate Dagger Fish 
+Player-Name: lizzy
+Player-Current-Health: 26
+Player-Maximum-Health: 30
+Player-Strength: 10
+Player-Agility: 6
+Player-Intelligence: 100
+Player-XP-to-Level-Up: 188
+Player-XP: 48
+Player-Inventory: Chestplate 
 World-StageNum: 0
 World-AreaNum: 0

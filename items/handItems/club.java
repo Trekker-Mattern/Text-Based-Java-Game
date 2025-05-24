@@ -14,6 +14,7 @@ public class club extends holdables {
         setPrice(30);
         setName("Club");
         setType("Strength");
+        itemType = "Blunt";
         
     }
     public int getStatIncrease(){

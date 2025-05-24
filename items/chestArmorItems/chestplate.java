@@ -1,6 +1,6 @@
 package items.chestArmorItems;
 import items.genericItems.chestArmor;
-import playerFiles.*;
+
 
 public class chestplate extends chestArmor{
     int armourAdd;
@@ -15,9 +15,8 @@ public class chestplate extends chestArmor{
     }
     public void onEquip(){
         
-        player.addArmour(armourAdd);
     }
     public void onUnequip(){
-        player.addArmour(armourAdd*-1);
+
     }
 }

@@ -1,9 +1,7 @@
 package world;
 
-import items.*;
-import java.util.Scanner;
-
 import GUI.gui;
+import items.*;
 import monsters.*;
 import playerFiles.*;
 import util.*;
@@ -11,9 +9,8 @@ import util.*;
 
 public abstract class world { 
 
-    static Scanner input = new Scanner(System.in);
     public static int AREANUM = 0;
-    private static String areas[] = {"Village", "Grassland", "Cave", "Hell", "A second Cave?", "A THIRD CAVE??", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?"}; 
+    private static final String areas[] = {"Village", "Grassland", "Cave", "Hell", "A second Cave?", "A THIRD CAVE??", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?"}; 
     public static int stageNum = 0;
 
     public world(){}

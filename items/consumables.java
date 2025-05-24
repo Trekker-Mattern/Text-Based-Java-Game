@@ -1,6 +1,6 @@
 package items;
 import playerFiles.*;
-import GUI.gui;
+
 public abstract class consumables extends item {
     public consumables(){
         setIsConsumable(true);

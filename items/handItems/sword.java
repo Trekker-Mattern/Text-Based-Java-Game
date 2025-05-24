@@ -13,6 +13,7 @@ public class sword extends holdables {
         setPrice(30);
         setName("Sword");
         setType("Strength");
+        itemType = "Sharp";
         
     }
     public int getStatIncrease(){

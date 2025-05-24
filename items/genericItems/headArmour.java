@@ -6,12 +6,18 @@ public abstract class headArmour extends equipables {
     protected int armourAdd;
     protected int quality;
 
-    public void onEquip(){
+    
+    protected void equipToSlot() {
         player.helm = this;
+    }
+    protected void unequipFromSlot() {
+        player.helm = null;
+    }
+
+    public void onEquip(){
         player.addArmour(armourAdd);
     }
     public void onUnequip(){
-        player.helm = null;
         player.addArmour(armourAdd*-1);
     }
 }

@@ -1,9 +1,8 @@
 package playerFiles;
-import java.lang.Math;
-import java.util.ArrayList;
 import GUI.gui;
 import items.*;
 import items.genericItems.*;
+import java.util.ArrayList;
 import monsters.*;
 import util.*;
 
@@ -12,13 +11,17 @@ public abstract class player {
 
 
     //Overall inventory
-    public static ArrayList<item> inventory = new ArrayList<item>();
+    public static ArrayList<item> inventory = new ArrayList<>();
     //Consumables
-    public static ArrayList<item> consumableInv = new ArrayList<item>();
+    public static ArrayList<item> consumableInv = new ArrayList<>();
     //equipped and unequipped inventory
-    public static ArrayList<item> equipableItems = new ArrayList<item>(); 
-    public static ArrayList<item> equipedItems = new ArrayList<item>();
+    public static ArrayList<item> equipableItems = new ArrayList<>(); 
 
+
+
+    ///////////////////////
+    /// Player inventory
+    /// ///////////////////
     public static holdables LHand;
     public static holdables RHand;
     public static headArmour helm;
@@ -46,7 +49,7 @@ public abstract class player {
     public static int buffLength;
     public static int currentBuffDuration;
 
-    private static int totalMaxStartingSkills = 10;
+    private static final int totalMaxStartingSkills = 10;
 
 
     public static void update(){
@@ -71,6 +74,7 @@ public abstract class player {
     
     //Print your stats
     public static void printStats(){
+        gui.updatePlayerSide();
         gui.printOnGameSide("Health: "+ health + "/"+maxHealth); 
         gui.printOnGameSide("Strength: " + strength); 
         gui.printOnGameSide("Agility: " + agility); 
@@ -334,11 +338,11 @@ public abstract class player {
     // Fighting things
     ///////////////////////////////////////////////////
     public static String getPlayerAttackString(){
-        for (item item : equipedItems) {
-            if(item.attackingItem()){
-                if(!item.getAttackString().equals(""))
-                return item.getAttackString();
-            }
+        if (RHand != null){
+            return RHand.getAttackString();
+        }
+        else if(LHand != null){
+            return LHand.getAttackString();
         }
         return "slap";
     }
@@ -387,13 +391,13 @@ public abstract class player {
                 else if(num == 4){temp = "health";}
                 else{temp = "health";}
             } catch (NumberFormatException ex) {}
-            if(temp.equals("strength")){
+            if(temp.toLowerCase().equals("strength")){
                 strength += 1;
             }
-            else if(temp.equals("agility")){
+            else if(temp.toLowerCase().equals("agility")){
                 agility += 1;
             }
-            else if(temp.equals("intelligence")){
+            else if(temp.toLowerCase().equals("intelligence")){
                 intelligence += 1;
             }
             else {
@@ -438,6 +442,7 @@ public abstract class player {
         }
         gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - armour));
         m.attackEffects(monsterDamage - armour);
+        gui.updatePlayerSide();
         return monsterDamage - armour;
     }
 
@@ -470,6 +475,15 @@ public abstract class player {
             }
         }
         boolean hasIntWeapon = false;
+
+
+        ////////////////////////////////////
+        /// TODO:
+        /// FIX THIS SHIT ITS AWFUL
+        /// For each hand do a dmg calc.
+        /// Sum up? 
+        /// ////////////////////////
+        /* 
         for (item e : equipedItems) {
             if(e.attackingItem()){
                 attackType = e.getType();
@@ -482,6 +496,10 @@ public abstract class player {
                 }
             }
         }
+        */
+
+
+
         if(hasIntWeapon){
             if(baseDamageI > baseDamageS){ retDamage = baseDamageI;}
             else retDamage = baseDamageS;

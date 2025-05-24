@@ -6,12 +6,19 @@ public abstract class boots extends equipables {
     protected int armourAdd;
     protected int quality;
     
-    public void onEquip(){
+    @Override
+    protected void equipToSlot() {
         player.shoes = this;
+    }
+    @Override
+    protected void unequipFromSlot() {
+        player.shoes = null;
+    }
+
+    public void onEquip(){
         player.addArmour(armourAdd);
     }
     public void onUnequip(){
-        player.shoes = null;
         player.addArmour(armourAdd*-1);
     }
 }

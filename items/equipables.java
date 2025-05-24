@@ -1,6 +1,6 @@
 package items;
 
-import playerFiles.player;
+
 import GUI.gui;
 
 public abstract class equipables extends item {
@@ -27,18 +27,25 @@ public abstract class equipables extends item {
     
     public void Use(){
         if(!equipped){
-            player.equipedItems.add(this);
+            equipToSlot();
             onEquip();
             gui.printOnGameSide("You equipped " + this.getItemName());
             equipped = true;
         }
-        else{onUnequip();gui.printOnGameSide("You unequipped " + this.getItemName());player.equipedItems.remove(this); equipped = false;}
+        else{
+            unequipFromSlot();
+            onUnequip();
+            gui.printOnGameSide("You unequipped " + this.getItemName());
+            equipped = false;
+        }
+        gui.updatePlayerSide();
 
     }
     public String getQuality(){
         return qualityString;
     }
-    
+    protected void equipToSlot(){}
+    protected void unequipFromSlot(){}
     public void onEquip(){}
     public void onUnequip(){}
 }

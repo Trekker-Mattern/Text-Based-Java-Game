@@ -6,12 +6,19 @@ public abstract class chestArmor extends equipables {
     protected int armourAdd;
     protected int quality;
     
-    public void onEquip(){
+    @Override
+    protected void equipToSlot() {
         player.chestplate = this;
+    }
+    @Override
+    protected void unequipFromSlot() {
+        player.chestplate = null;
+    }
+
+    public void onEquip(){
         player.addArmour(armourAdd);
     }
     public void onUnequip(){
-        player.chestplate = null;
         player.addArmour(armourAdd*-1);
     }
 }

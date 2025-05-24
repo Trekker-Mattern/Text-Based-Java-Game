@@ -1,5 +1,4 @@
 package monsters;
-import items.*;
 import playerFiles.*;
 import world.world;
 import util.TrekkerMath;
@@ -11,14 +10,28 @@ public class hydra extends boss {
         setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (player.playerLevel + world.AREANUM + 4)));
     }
     public void attackEffects(int damageDoneToPlayer){
-        for(item e : player.equipedItems){
-            String s = e.getItemName();
-            if(s.equals("Sword") || s.equals("Dagger")){
+
+        ///////////////////////
+        /// FIX HYDRA BASED ON HAND --- Fixed
+        /// /////////////////
+            String s;
+            if(player.LHand == null && player.RHand == null){
+                s = "Blunt";
+            }
+            else if(player.RHand != null && player.RHand.getItemType() == "Sharp"){
+                s = "Sharp";
+            }
+            else if(player.LHand != null || player.LHand.getItemType() == "Sharp"){
+                s = "Sharp";
+            }
+            else{
+                s = "Blunt";
+            }
+            if(s.equals("Sharp")){
                 System.out.println("You chop off a head but it grows 2 more");
                 setHealth(getHealth()*2);
-                setStrength(getStrength()*2);
+                setStrength(getStrength()*2); 
             }
-        }
     }
     @Override
     public String attackString() {

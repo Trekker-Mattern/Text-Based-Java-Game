@@ -4,14 +4,13 @@ import items.equipables;
 
 public abstract class holdables extends equipables{
     
-
+    protected String itemType;
 
     @Override
-    public void onEquip() {
-        equipToHand();
-    }
+    public void onEquip() {}
 
-    protected void equipToHand(){
+    @Override
+    protected void equipToSlot() {
         if(player.RHand != null && player.LHand != null){
         player.askWhichHandToEquipTo(player.LHand, player.RHand);
         }
@@ -21,6 +20,14 @@ public abstract class holdables extends equipables{
         else if(player.LHand == null){
             player.LHand = this;
         }
-
     }
+
+
+    protected void setItemType(String s){
+        itemType = s;
+    }
+    public String getItemType(){
+        return itemType;
+    }
+    
 }
