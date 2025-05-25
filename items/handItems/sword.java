@@ -12,7 +12,7 @@ public class sword extends holdables {
         swordIncrease = 2*quality;
         setPrice(30);
         setName("Sword");
-        setType("Strength");
+        setDMGType("Strength");
         itemType = "Sharp";
         
     }

@@ -1,11 +1,11 @@
 Player-Name: lizzy
-Player-Current-Health: 26
-Player-Maximum-Health: 30
+Player-Current-Health: 61
+Player-Maximum-Health: 80
 Player-Strength: 10
 Player-Agility: 6
 Player-Intelligence: 100
-Player-XP-to-Level-Up: 188
-Player-XP: 48
-Player-Inventory: Chestplate 
+Player-XP-to-Level-Up: 918
+Player-XP: 20
+Player-Inventory: Sword,Sword,Dagger,
 World-StageNum: 0
 World-AreaNum: 0

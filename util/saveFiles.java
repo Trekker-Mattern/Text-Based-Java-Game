@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.Scanner;
 import playerFiles.*;
-import world.shopitems;
+import world.*;
 
 public abstract class saveFiles {
     
@@ -63,15 +63,15 @@ public abstract class saveFiles {
             // get string version of inventory 
             String s = "";
             for(item e: player.inventory){
-                s += e.getItemName() + " ";
+                s += e.getItemName() + ",";
             }
             
             fWriter.write("Player-Name: " + player.getName() + "\n");
             fWriter.write("Player-Current-Health: " + player.getHealth() + "\n");
             fWriter.write("Player-Maximum-Health: " + player.getMaxHealth() + "\n");
-            fWriter.write("Player-Strength: " + player.getStrength() + "\n");
-            fWriter.write("Player-Agility: " + player.getAgility() + "\n");
-            fWriter.write("Player-Intelligence: " + player.getIntelligence() + "\n");
+            fWriter.write("Player-Strength: " + player.strength + "\n");
+            fWriter.write("Player-Agility: " + player.agility + "\n");
+            fWriter.write("Player-Intelligence: " + player.intelligence + "\n");
             fWriter.write("Player-XP-to-Level-Up: " + player.getXpToLevelUp() + "\n");
             fWriter.write("Player-XP: " + player.getXP() + "\n");
             fWriter.write("Player-Inventory: " + s + "\n");
@@ -89,7 +89,7 @@ public abstract class saveFiles {
         reader.next();
     }
     public static void readPlayerSave(File file){
-        int chealth, maxhealth, str, ag, inte, xptlu, xp;
+        int chealth, maxhealth, str, ag, inte, xptlu, xp, stgNum, areaNum;
             String nameS, invListString;
             try{
                 Scanner myReader = new Scanner(file);
@@ -123,12 +123,20 @@ public abstract class saveFiles {
 
                 //DO INVENTORY
                 invListString = invListString.substring(1);
-                String[] itemList = invListString.split(" ");
+                String[] itemList = invListString.split(",");
                 for(String s: itemList){
+                    s = s.trim();
                     Class<? extends item> e = shopitems.allItemsList.get(s);
                     player.addItemToPlayer(getItemToAddToInv(e));
                 }
                                 
+                goToNextReadableText(myReader);
+                stgNum = myReader.nextInt();
+                goToNextReadableText(myReader);
+                areaNum = myReader.nextInt();
+
+                world.AREANUM = areaNum;
+                world.stageNum = stgNum;
 
                 myReader.close();
                 return;

@@ -1,6 +1,6 @@
 package items.handItems;
 import items.genericItems.holdables;
-import playerFiles.player;
+
 
 public class dagger extends holdables{
     int quality;
@@ -13,7 +13,7 @@ public class dagger extends holdables{
         agilityToAdd = quality * 2;
         setPrice(15);
         setName("Dagger");
-        setType("Strength");
+        setDMGType("Strength");
         itemType = "Sharp";
     }
 
@@ -21,17 +21,6 @@ public class dagger extends holdables{
         return damageToAdd;
     }
 
-    @Override
-    public void onEquip(){
-        player.addAgility(agilityToAdd);
-
-    }
-
-    @Override
-    public void onUnequip(){
-        player.addAgility(agilityToAdd * -1);
-    }
-    
     public String getAttackString() {
         return "stab";
     }

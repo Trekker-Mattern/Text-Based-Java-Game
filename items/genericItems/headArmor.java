@@ -2,22 +2,22 @@ package items.genericItems;
 import items.equipables;
 import playerFiles.*;
 
-public abstract class headArmour extends equipables {
-    protected int armourAdd;
+public abstract class headArmor extends equipables {
+    protected int armorAdd;
     protected int quality;
 
     
     protected void equipToSlot() {
+        if(player.helm != null){
+            player.helm.Use();
+        }
         player.helm = this;
     }
     protected void unequipFromSlot() {
         player.helm = null;
     }
 
-    public void onEquip(){
-        player.addArmour(armourAdd);
-    }
-    public void onUnequip(){
-        player.addArmour(armourAdd*-1);
+    public int getArmorVal(){
+        return armorAdd;
     }
 }

@@ -16,7 +16,7 @@ public abstract class player {
     public static ArrayList<item> consumableInv = new ArrayList<>();
     //equipped and unequipped inventory
     public static ArrayList<item> equipableItems = new ArrayList<>(); 
-
+    public static ArrayList<equipables> equippedItems = new ArrayList<>();
 
 
     ///////////////////////
@@ -24,7 +24,7 @@ public abstract class player {
     /// ///////////////////
     public static holdables LHand;
     public static holdables RHand;
-    public static headArmour helm;
+    public static headArmor helm;
     public static chestArmor chestplate;
     public static legsArmor pants;
     public static boots shoes;
@@ -37,7 +37,7 @@ public abstract class player {
     public static int strength;
     public static int agility;
     public static int intelligence;
-    public static int armour = 0;
+    public static int armor = 0;
     public static double luck = Math.random() * 4;
     public static int playerLevel;
     private static int maxHealth;
@@ -50,6 +50,9 @@ public abstract class player {
     public static int currentBuffDuration;
 
     private static final int totalMaxStartingSkills = 10;
+
+
+
 
 
     public static void update(){
@@ -101,36 +104,68 @@ public abstract class player {
         else{health = maxHealth;}
         gui.updatePlayerSide();
     }
+
+
+
     //Strength Getter
     public static int getStrength(){
-        return strength;
-    }
-    public static void setStrength(int x){
-        strength = x;
-    }
-    //Agility Getter
-    public static int getAgility(){
-        return agility;
-    }
-    public static void setAgility(int x){
-        agility = x;
-    }
-    //Intelligence Getter
-    public static int getIntelligence(){
-        return intelligence;
-    }
-    public static void setIntelligence(int x){
-        intelligence = x;
+        int val = strength;
+        if(isBuff && buffType == "Strength"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Strength"){
+                val += e.buffValue;
+            }
+        }
+        return val;
     }
 
-    //Armour increase
-    public static void addArmour(int x){
-        armour += x;
+    //Agility Getter
+    public static int getAgility(){
+        int val = agility;
+        if(isBuff && buffType == "Agility"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Agility"){
+                val += e.buffValue;
+            }
+        }
+        return val;
     }
-    //Agility increase
-    public static void addAgility(int x){
-        agility += x;
+
+    //Intelligence Getter
+    public static int getIntelligence(){
+        int val = intelligence;
+        if(isBuff && buffType == "Intelligence"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Intelligence"){
+                val += e.buffValue;
+            }
+        }
+        return val;
     }
+
+    public static int getArmor(){
+        int val = armor;
+        if(isBuff && buffType == "Intelligence"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(!(e instanceof holdables)){
+                val += e.getArmorVal();
+            }
+        }
+        return val;
+    }
+
 
     //FOR FILE READING -- Finding Xp levels
     public static int getXpToLevelUp(){
@@ -183,41 +218,14 @@ public abstract class player {
     }
     public static void deapplyBuff(String bType){
         isBuff = false;
-        switch(bType){
-            case "Strength":
-            strength -= 2;
-            break;
-            case "Intelligence":
-            intelligence -=2;
-            break;
-            case "Agility":
-            agility -=2;
-            break;
-            case "Armour":
-            armour -=2;
-            break;
-        }
+        buffType = null;
     }
+
     public static void applyBuff(String bType, int bLength){
         buffLength = bLength;
-        
         buffType = bType;
         currentBuffDuration = 0;
         if(isBuff == false){
-            switch(bType){
-                case "Strength":
-                strength += 2;
-                break;
-                case "Intelligence":
-                intelligence +=2;
-                break;
-                case "Agility":
-                agility +=2;
-                break;
-                case "Armour":
-                armour +=2;
-                break;
-            }
             isBuff = true;
         }
         else{
@@ -433,28 +441,24 @@ public abstract class player {
         }
 
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
-        if(monsterDamage < armour){
-            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString() + " but your strong armour repels their attack");
+        if(monsterDamage < getArmor()){
+            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString() + " but your strong armor repels their attack");
             return 0;
         }
         if(monsterDamage >= health){
             death(m, monsterDamage);
         }
-        gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - armour));
-        m.attackEffects(monsterDamage - armour);
+        gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - getArmor()));
+        m.attackEffects(monsterDamage - getArmor());
         gui.updatePlayerSide();
-        return monsterDamage - armour;
+        return monsterDamage - getArmor();
     }
 
     public static int damageDone(monster m){
-        int baseDamageS = strength;
-        int baseDamageI = intelligence;
-        String attackType;
         double multiplyer;
         boolean playerMiss = false;
-        int retDamage;
 
-        if(TrekkerMath.randomInt(100, (intelligence * 3)) > 40){
+        if(TrekkerMath.randomInt(100, (getIntelligence() * 3)) > 40){
             multiplyer = TrekkerMath.randomDouble(2, 0);
             if(multiplyer < .5){
                 playerMiss = true;
@@ -474,56 +478,73 @@ public abstract class player {
                 gui.printOnGameSide("You completely miss on your attack hitting nothing but air.");
             }
         }
-        boolean hasIntWeapon = false;
 
 
-        ////////////////////////////////////
-        /// TODO:
-        /// FIX THIS SHIT ITS AWFUL
-        /// For each hand do a dmg calc.
-        /// Sum up? 
-        /// ////////////////////////
-        /* 
-        for (item e : equipedItems) {
-            if(e.attackingItem()){
-                attackType = e.getType();
-                if(attackType.equals("Strength")){
-                    baseDamageS += e.getStatIncrease();
-                }
-                else if(attackType.equals("Intelligence")){
-                    baseDamageI += e.getStatIncrease();
-                    hasIntWeapon = true;
-                }
-            }
-        }
-        */
+        String LHandType;
+        String RHandType;
+        
+        int LHandDMG;
+        int RHandDMG;
 
 
-
-        if(hasIntWeapon){
-            if(baseDamageI > baseDamageS){ retDamage = baseDamageI;}
-            else retDamage = baseDamageS;
+        if(LHand == null){
+            LHandType = "Blunt";
+            LHandDMG = 0;
         }
         else{
-            retDamage = baseDamageS;
+            LHandType = RHand.getItemType();
+            LHandDMG = getDMGCalcForWeapon(LHand);
         }
-        retDamage *= multiplyer;
-        if (retDamage == 0){retDamage =1;}
-        return retDamage;
+        if(RHand == null){
+            RHandType = "Blunt";
+            RHandDMG = 0;
+        }
+        else{
+            RHandDMG = getDMGCalcForWeapon(RHand);
+            RHandType = RHand.getItemType();
+        }
+
+        if(LHand == null && RHand == null){
+            return (int)(getStrength() * multiplyer);
+        }
+
+
+        if(LHandType == RHandType){
+            int dmg = LHandDMG + RHandDMG;
+            dmg *= 1.35;
+            dmg *= multiplyer;
+            return dmg;
+        }
+        int dmg = LHandDMG + RHandDMG;
+        dmg *= multiplyer;
+        return dmg;
     }
 
-    public static void askWhichHandToEquipTo(holdables LHand, holdables RHand){
+    private static int getDMGCalcForWeapon(holdables h){
+        if(h.getDMGType() == "Intelligence"){
+            return h.getStatIncrease() + getStrength();
+        }
+        else if(h.getDMGType() == "Strength"){
+            return h.getStatIncrease() + getStrength();
+        }
+        else{
+            return getStrength();
+        }
+    }
+
+    public static void askWhichHandToEquipTo(holdables itemToSwap){
         
         gui.printOnGameSide("Which hand would you like to switch?");
         String handToPick = gui.getInput();
         if(response.Left(handToPick)){
-            LHand.onUnequip();
-            LHand = null;
+            LHand.Use();
+            LHand = itemToSwap;
         }
         else{
-            RHand.onUnequip();
-            RHand = null;
+            RHand.Use();
+            RHand = itemToSwap;
         }
+        gui.updatePlayerSide();
 
     }
 

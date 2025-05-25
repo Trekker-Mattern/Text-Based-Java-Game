@@ -2,12 +2,15 @@ package items;
 
 
 import GUI.gui;
+import playerFiles.player;
 
 public abstract class equipables extends item {
     protected boolean equipped = false;
     protected String qualityString;
     protected int quality;
-    //private int quality;
+    public String buffType;
+    public int buffValue;
+
     public equipables(){
         setIsConsumable(false);
         quality = (int)((Math.random() * 6) +1);
@@ -27,12 +30,14 @@ public abstract class equipables extends item {
     
     public void Use(){
         if(!equipped){
+            player.equippedItems.add(this);
             equipToSlot();
             onEquip();
             gui.printOnGameSide("You equipped " + this.getItemName());
             equipped = true;
         }
         else{
+            player.equippedItems.remove(this);
             unequipFromSlot();
             onUnequip();
             gui.printOnGameSide("You unequipped " + this.getItemName());
@@ -48,4 +53,5 @@ public abstract class equipables extends item {
     protected void unequipFromSlot(){}
     public void onEquip(){}
     public void onUnequip(){}
+    public int getArmorVal(){return 0;}
 }

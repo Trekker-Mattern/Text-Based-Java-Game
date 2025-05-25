@@ -4,7 +4,7 @@ public abstract class item {
     private int itemPrice;
     private String name;
     private boolean isConsumable;
-    private String type;
+    
     private boolean isAttackingItem;
 
     public void setName(String name){
@@ -32,10 +32,7 @@ public abstract class item {
     public void Use(){
         
     }
-    public void setType(String x){
-        type =x;
-    }
-    public String getType(){return type;}
+    
     public int getStatIncrease(){return 0;}
     public void setIsAttackingItem(boolean x){
         isAttackingItem = x;

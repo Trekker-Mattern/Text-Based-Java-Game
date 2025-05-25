@@ -12,7 +12,7 @@ public class wand extends holdables {
         wandIncrease = 2*quality;
         setPrice(10);
         setName("Wand");
-        setType("Intelligence");
+        setDMGType("Intelligence");
         itemType = "Magic";
     }
     public int getStatIncrease(){

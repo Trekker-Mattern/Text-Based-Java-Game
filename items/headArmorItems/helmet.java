@@ -1,14 +1,13 @@
 package items.headArmorItems;
-import items.genericItems.headArmour;
+import items.genericItems.headArmor;
 
 
-public class helmet extends headArmour{
+public class helmet extends headArmor{
 
     
     public helmet(){
-        quality = (int)((Math.random() * 6) +1);
-        setQuality(quality);
-        armourAdd = (int)(quality * 1.3);
+
+        armorAdd = (int)(quality * 1.3);
         setPrice(20);
         setName("Helmet");
 

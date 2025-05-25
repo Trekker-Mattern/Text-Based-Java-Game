@@ -3,7 +3,7 @@ import playerFiles.*;
 import items.equipables;
 
 public abstract class holdables extends equipables{
-    
+    protected String DMGtype;
     protected String itemType;
 
     @Override
@@ -12,7 +12,8 @@ public abstract class holdables extends equipables{
     @Override
     protected void equipToSlot() {
         if(player.RHand != null && player.LHand != null){
-        player.askWhichHandToEquipTo(player.LHand, player.RHand);
+        player.askWhichHandToEquipTo(this);
+
         }
         if(player.RHand == null){
             player.RHand = this;
@@ -22,6 +23,12 @@ public abstract class holdables extends equipables{
         }
     }
 
+    public void setDMGType(String x){
+        DMGtype =x;
+    }
+    public String getDMGType(){
+        return DMGtype;
+    }
 
     protected void setItemType(String s){
         itemType = s;

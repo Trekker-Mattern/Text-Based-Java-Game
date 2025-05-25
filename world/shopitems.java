@@ -1,15 +1,13 @@
 package world;
 import GUI.gui;
 import items.*;
-import items.chestArmorItems.chestplate;
-import items.consumableItems.bread;
-import items.consumableItems.fish;
-import items.consumableItems.threeCourseMeal;
-import items.handItems.club;
-import items.handItems.dagger;
-import items.handItems.sword;
-import items.handItems.wand;
-import items.headArmorItems.helmet;
+import items.chestArmorItems.*;
+import items.consumableItems.*;
+import items.handItems.*;
+import items.headArmorItems.*;
+import items.footArmorItems.*;
+import items.legsArmorItems.*;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,18 +35,25 @@ public abstract class shopitems {
         consumableShopItems.add(threeCourseMeal.class);
         equipableShopItems.add(wand.class);
         equipableShopItems.add(helmet.class);
+        equipableShopItems.add(spartanHelmet.class);
         consumableShopItems.add(bread.class);
         equipableShopItems.add(club.class);
+        equipableShopItems.add(leatherPants.class);
+        equipableShopItems.add(clogs.class);
+
 
         allItemsList.put("Fish",fish.class);
         allItemsList.put("Sword", sword.class);
         allItemsList.put("Dagger",dagger.class);
         allItemsList.put("Chestplate",chestplate.class);
-        allItemsList.put("Three-Course-Meal",threeCourseMeal.class);
+        allItemsList.put("Three Course Meal",threeCourseMeal.class);
         allItemsList.put("Wand", wand.class);
         allItemsList.put("Helmet", helmet.class);
+        allItemsList.put("Spartan Helmet", spartanHelmet.class);
         allItemsList.put("Bread" ,bread.class);
         allItemsList.put("Club", club.class);
+        allItemsList.put("Leather Pants",leatherPants.class);
+        allItemsList.put("Clogs",clogs.class);
     }
 
     public static void printShopItems(){

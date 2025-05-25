@@ -3,11 +3,14 @@ import playerFiles.*;
 import items.equipables;
 
 public abstract class chestArmor extends equipables {
-    protected int armourAdd;
+    protected int armorAdd;
     protected int quality;
     
     @Override
     protected void equipToSlot() {
+        if(player.chestplate != null){
+            player.chestplate.Use();
+        }
         player.chestplate = this;
     }
     @Override
@@ -15,10 +18,7 @@ public abstract class chestArmor extends equipables {
         player.chestplate = null;
     }
 
-    public void onEquip(){
-        player.addArmour(armourAdd);
-    }
-    public void onUnequip(){
-        player.addArmour(armourAdd*-1);
+    public int getArmorVal(){
+        return armorAdd;
     }
 }

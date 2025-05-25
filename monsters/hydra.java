@@ -1,5 +1,6 @@
 package monsters;
 import playerFiles.*;
+import GUI.gui;
 import world.world;
 import util.TrekkerMath;
 
@@ -28,7 +29,7 @@ public class hydra extends boss {
                 s = "Blunt";
             }
             if(s.equals("Sharp")){
-                System.out.println("You chop off a head but it grows 2 more");
+                gui.printOnGameSide("You chop off a head but it grows 2 more");
                 setHealth(getHealth()*2);
                 setStrength(getStrength()*2); 
             }

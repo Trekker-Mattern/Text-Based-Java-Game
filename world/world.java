@@ -117,7 +117,6 @@ public abstract class world {
         }
         else{
             int randNum = TrekkerMath.randomInt(5, 0);
-            gui.printOnGameSide(Integer.toString(randNum));
             if(randNum == 3){
                 rooms.getRandomRoom();
             }

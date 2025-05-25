@@ -13,7 +13,7 @@ public class club extends holdables {
         increase = (int)(1.7*quality);
         setPrice(30);
         setName("Club");
-        setType("Strength");
+        setDMGType("Strength");
         itemType = "Blunt";
         
     }
