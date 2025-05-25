@@ -22,17 +22,8 @@ public class monsterCreater {
             Constructor<? extends monster> ctor = mType.getDeclaredConstructor();
             monster m = ctor.newInstance();
             return m;
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             // Handle the case where the default constructor is not found
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            // Handle the instantiation exception
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // Handle illegal access exception
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            // Handle invocation target exception
             e.printStackTrace();
         }
 
@@ -50,19 +41,10 @@ public class monsterCreater {
             Constructor<? extends boss> ctor = mType.getDeclaredConstructor();
             boss b = ctor.newInstance();
             return b;
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             // Handle the case where the default constructor is not found
             e.printStackTrace();
-        } catch (InstantiationException e) {
-            // Handle the instantiation exception
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // Handle illegal access exception
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            // Handle invocation target exception
-            e.printStackTrace();
-        }
+        } 
 
         return null;
     }

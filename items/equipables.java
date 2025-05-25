@@ -1,13 +1,20 @@
 package items;
 
+
+import GUI.gui;
 import playerFiles.player;
 
 public abstract class equipables extends item {
-    private boolean equipped = false;
-    private String qualityString;
-    //private int quality;
+    protected boolean equipped = false;
+    protected String qualityString;
+    protected int quality;
+    public String buffType;
+    public int buffValue;
+
     public equipables(){
         setIsConsumable(false);
+        quality = (int)((Math.random() * 6) +1);
+        setQuality(quality);
     }
     public void setQuality(int x){
         //quality = x;
@@ -23,18 +30,28 @@ public abstract class equipables extends item {
     
     public void Use(){
         if(!equipped){
-            player.equipedItems.add(this);
+            player.equippedItems.add(this);
+            equipToSlot();
             onEquip();
-            System.out.println("You equipped " + this.getItemName());
+            gui.printOnGameSide("You equipped " + this.getItemName());
             equipped = true;
         }
-        else{onUnequip();System.out.println("You unequipped " + this.getItemName());player.equipedItems.remove(this); equipped = false;}
+        else{
+            player.equippedItems.remove(this);
+            unequipFromSlot();
+            onUnequip();
+            gui.printOnGameSide("You unequipped " + this.getItemName());
+            equipped = false;
+        }
+        gui.updatePlayerSide();
 
     }
     public String getQuality(){
         return qualityString;
     }
-    
+    protected void equipToSlot(){}
+    protected void unequipFromSlot(){}
     public void onEquip(){}
     public void onUnequip(){}
+    public int getArmorVal(){return 0;}
 }

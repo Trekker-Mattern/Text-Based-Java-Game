@@ -1,6 +1,3 @@
-
-import java.util.Scanner;
-
 import GUI.gui;
 import monsters.*;
 import playerFiles.*;
@@ -18,24 +15,24 @@ public class runTime
         
         startup();
 
-        Scanner userInput = new Scanner(System.in);
+
         if(saveFiles.isNewFile()){
              //Startup
-            System.out.println("What is your name young one?");
-            String Name = userInput.nextLine();
+            gui.printOnGameSide("What is your name young one?");
+            String Name = gui.getInput();
 
-            System.out.println("Ah, yes, Good day " + Name + " its so good to see you.");
+            gui.printOnGameSide("Ah, yes, Good day " + Name + " its so good to see you.");
             
             //Create Player
             player.setName(Name);
 
             //Allocate poins
-            System.out.println("Its time to allocate some skill points!");
-            System.out.println("Would You like to allocate your own points? ");
-            String Response = userInput.nextLine();
+            gui.printOnGameSide("Its time to allocate some skill points!");
+            gui.printOnGameSide("Would You like to allocate your own points? ");
+            String Response = gui.getInput();
             if(response.respondYes(Response))
             {
-                System.out.println("You have 10 points to spend on 4 different attributes! Choose wisely.");
+                gui.printOnGameSide("You have 10 points to spend on 4 different attributes! Choose wisely.");
                 player.playerPointAllocation();
 
             }
@@ -44,29 +41,25 @@ public class runTime
 
             }
         }
-        else{//WERE READING FILES NOW????
 
-            saveFiles.readPlayerSave(saveFiles.getFile());
-            
-
-        }
 
         //Play Loop
         
-        System.out.println("These are your final stats!");
+        gui.printOnGameSide("These are your final stats!");
         player.printStats();
         while(true){
             saveFiles.save(world.AREANUM, world.stageNum); 
+            shopitems.createShop();
+            gui.updatePlayerSide();
             world.menu();
             player.update();
-            userInput.close();
         }
         
     }
 
     static void startup(){
-        saveFiles.readSave();
         shopitems.createShopItemsArr();
+        saveFiles.readSave();
         monsterArrayList.createMonsterList();
         gui.runGui();
     }

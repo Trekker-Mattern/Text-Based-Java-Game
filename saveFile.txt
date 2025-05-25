@@ -1,11 +1,11 @@
-Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: Player-Name: debug
-Player-Current-Health: 20
-Player-Maximum-Health: 20
-Player-Strength: 7
-Player-Agility: 3
-Player-Intelligence: 2
-Player-XP-to-Level-Up: 100
-Player-XP: 0
-Player-Inventory: 
+Player-Name: lizzy
+Player-Current-Health: 61
+Player-Maximum-Health: 80
+Player-Strength: 10
+Player-Agility: 6
+Player-Intelligence: 100
+Player-XP-to-Level-Up: 918
+Player-XP: 20
+Player-Inventory: Sword,Sword,Dagger,
 World-StageNum: 0
 World-AreaNum: 0

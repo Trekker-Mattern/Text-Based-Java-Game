@@ -1,24 +1,35 @@
 package playerFiles;
-import java.lang.Math;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import GUI.gui;
 import items.*;
+import items.genericItems.*;
+import java.util.ArrayList;
 import monsters.*;
 import util.*;
 
 
 public abstract class player {
 
-    private static Scanner input = new Scanner(System.in);
 
     //Overall inventory
-    public static ArrayList<item> inventory = new ArrayList<item>();
+    public static ArrayList<item> inventory = new ArrayList<>();
     //Consumables
-    public static ArrayList<item> consumableInv = new ArrayList<item>();
+    public static ArrayList<item> consumableInv = new ArrayList<>();
     //equipped and unequipped inventory
-    public static ArrayList<item> equipableItems = new ArrayList<item>(); 
-    public static ArrayList<item> equipedItems = new ArrayList<item>();
+    public static ArrayList<item> equipableItems = new ArrayList<>(); 
+    public static ArrayList<equipables> equippedItems = new ArrayList<>();
+
+
+    ///////////////////////
+    /// Player inventory
+    /// ///////////////////
+    public static holdables LHand;
+    public static holdables RHand;
+    public static headArmor helm;
+    public static chestArmor chestplate;
+    public static legsArmor pants;
+    public static boots shoes;
+
+
 
     public static String name;
     public static int BankBalance = 100;
@@ -26,7 +37,7 @@ public abstract class player {
     public static int strength;
     public static int agility;
     public static int intelligence;
-    public static int armour = 0;
+    public static int armor = 0;
     public static double luck = Math.random() * 4;
     public static int playerLevel;
     private static int maxHealth;
@@ -38,7 +49,10 @@ public abstract class player {
     public static int buffLength;
     public static int currentBuffDuration;
 
-    private static int totalMaxStartingSkills = 10;
+    private static final int totalMaxStartingSkills = 10;
+
+
+
 
 
     public static void update(){
@@ -63,7 +77,11 @@ public abstract class player {
     
     //Print your stats
     public static void printStats(){
-        System.out.println("Health: "+ health +"/"+maxHealth + "\nStrength: " + strength + "\nAgility: " + agility + "\nIntelligence: " + intelligence);
+        gui.updatePlayerSide();
+        gui.printOnGameSide("Health: "+ health + "/"+maxHealth); 
+        gui.printOnGameSide("Strength: " + strength); 
+        gui.printOnGameSide("Agility: " + agility); 
+        gui.printOnGameSide("Intelligence: " + intelligence);
     }
 
 
@@ -84,37 +102,70 @@ public abstract class player {
         if(health + x < maxHealth)
             {health += x;}
         else{health = maxHealth;}
-    }
-    //Strength Getter
-    public static int getStrength(){
-        return strength;
-    }
-    public static void setStrength(int x){
-        strength = x;
-    }
-    //Agility Getter
-    public static int getAgility(){
-        return agility;
-    }
-    public static void setAgility(int x){
-        agility = x;
-    }
-    //Intelligence Getter
-    public static int getIntelligence(){
-        return intelligence;
-    }
-    public static void setIntelligence(int x){
-        intelligence = x;
+        gui.updatePlayerSide();
     }
 
-    //Armour increase
-    public static void addArmour(int x){
-        armour += x;
+
+
+    //Strength Getter
+    public static int getStrength(){
+        int val = strength;
+        if(isBuff && buffType == "Strength"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Strength"){
+                val += e.buffValue;
+            }
+        }
+        return val;
     }
-    //Agility increase
-    public static void addAgility(int x){
-        agility += x;
+
+    //Agility Getter
+    public static int getAgility(){
+        int val = agility;
+        if(isBuff && buffType == "Agility"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Agility"){
+                val += e.buffValue;
+            }
+        }
+        return val;
     }
+
+    //Intelligence Getter
+    public static int getIntelligence(){
+        int val = intelligence;
+        if(isBuff && buffType == "Intelligence"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Intelligence"){
+                val += e.buffValue;
+            }
+        }
+        return val;
+    }
+
+    public static int getArmor(){
+        int val = armor;
+        if(isBuff && buffType == "Intelligence"){
+            val += 2;
+        }
+
+        for(equipables e : equippedItems){
+            if(!(e instanceof holdables)){
+                val += e.getArmorVal();
+            }
+        }
+        return val;
+    }
+
 
     //FOR FILE READING -- Finding Xp levels
     public static int getXpToLevelUp(){
@@ -151,10 +202,10 @@ public abstract class player {
     }
     public static void updateBuffs(){
         if(name.equals("debug")){
-            System.out.println(buffType);
-            System.out.println(buffLength);
-            System.out.println(currentBuffDuration);
-            System.out.println(isBuff);
+            gui.printOnGameSide(buffType);
+            gui.printOnGameSide(Integer.toString(buffLength));
+            gui.printOnGameSide(Integer.toString(currentBuffDuration));
+            gui.printOnGameSide(Boolean.toString(isBuff));
         }
         currentBuffDuration++;
         if(currentBuffDuration >= buffLength){
@@ -167,45 +218,18 @@ public abstract class player {
     }
     public static void deapplyBuff(String bType){
         isBuff = false;
-        switch(bType){
-            case "Strength":
-            strength -= 2;
-            break;
-            case "Intelligence":
-            intelligence -=2;
-            break;
-            case "Agility":
-            agility -=2;
-            break;
-            case "Armour":
-            armour -=2;
-            break;
-        }
+        buffType = null;
     }
+
     public static void applyBuff(String bType, int bLength){
         buffLength = bLength;
-        
         buffType = bType;
         currentBuffDuration = 0;
         if(isBuff == false){
-            switch(bType){
-                case "Strength":
-                strength += 2;
-                break;
-                case "Intelligence":
-                intelligence +=2;
-                break;
-                case "Agility":
-                agility +=2;
-                break;
-                case "Armour":
-                armour +=2;
-                break;
-            }
             isBuff = true;
         }
         else{
-            System.out.println("Your prayers have failed, another god favors you already!");
+            gui.printOnGameSide("Your prayers have failed, another god favors you already!");
         }
     }
     //Long ass function for asking and allocating skill points
@@ -222,49 +246,49 @@ public abstract class player {
         int totalpts = 0; //points spent
         while(totalpts < 10){
             
-            System.out.println("How many points would you like to allocate to strength?");
-            System.out.println("You have " + (10-totalpts) + " left to spend");
+            gui.printOnGameSide("How many points would you like to allocate to strength?");
+            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
                 
-            int temp = input.nextInt();
+            int temp = Integer.parseInt(gui.getInput());
             if(temp <= (10-totalpts)){
                 stpts += temp;
                 totalpts += temp;
-                System.out.println("You allocate " + stpts + " to strength!");
+                gui.printOnGameSide("You allocate " + stpts + " to strength!");
             }
             else{
-                System.out.println("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
             }
 
-            System.out.println("How many points would you like to allocate to agility?");
-            System.out.println("You have " + (10-totalpts) + " left to spend");
-            temp = input.nextInt();
+            gui.printOnGameSide("How many points would you like to allocate to agility?");
+            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
+            temp = Integer.parseInt(gui.getInput());
             if(temp <= (10 - totalpts)){
                 aglpts += temp;
                 totalpts += temp;
-                System.out.println("You allocate " + aglpts + " to agility!");
+                gui.printOnGameSide("You allocate " + aglpts + " to agility!");
             }
             else{
-                System.out.println("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
             }
-            System.out.println("How many points would you like to allocate to intelligence?");
-            System.out.println("You have " + (10-totalpts) + " left to spend");
-            temp = input.nextInt();
+            gui.printOnGameSide("How many points would you like to allocate to intelligence?");
+            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
+            temp = Integer.parseInt(gui.getInput());
             if(temp <= (10 - totalpts)){
                 intpts += temp;
                 totalpts += temp;
-                System.out.println("You allocate " + intpts + " to intelligence!");
+                gui.printOnGameSide("You allocate " + intpts + " to intelligence!");
             }
             else{
-                System.out.println("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
             }
 
             if(totalpts < 10){
                 int r = 0;
-                //System.out.println("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                String userResponse = input.nextLine();
+                //gui.printOnGameSide("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
+                String userResponse = gui.getInput();
                 while(r == 0){
-                    System.out.println("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                    userResponse = input.nextLine();
+                    gui.printOnGameSide("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
+                    userResponse = gui.getInput();
                     if(response.respondYes(userResponse)){
                         r = 1;
                         break;
@@ -285,6 +309,7 @@ public abstract class player {
         }
         
         allocateSkillPoints(stpts, aglpts, intpts);
+        gui.updatePlayerSide();
  
     }
 
@@ -303,12 +328,12 @@ public abstract class player {
     public static void printPlayerItems(){
         int printingNum = 1;
         for(item e : inventory){
-            System.out.print(printingNum + ": " + e);
+            String s = printingNum + ": " + e.toString();
             if(e.getQuality() != null){
-                System.out.println(" - " + e.getQuality());
+                gui.printOnGameSide(s + " - " + e.getQuality());
             }
             else{
-                System.out.println();
+                gui.printOnGameSide(s);
             }
             printingNum++;
         }
@@ -321,11 +346,11 @@ public abstract class player {
     // Fighting things
     ///////////////////////////////////////////////////
     public static String getPlayerAttackString(){
-        for (item item : equipedItems) {
-            if(item.attackingItem()){
-                if(!item.getAttackString().equals(""))
-                return item.getAttackString();
-            }
+        if (RHand != null){
+            return RHand.getAttackString();
+        }
+        else if(LHand != null){
+            return LHand.getAttackString();
         }
         return "slap";
     }
@@ -342,30 +367,30 @@ public abstract class player {
             int damageDoneToMonster = damageDone(m);
             health -= damageTaken(m);
             m.subtractHealth(damageDoneToMonster);
-            System.out.println("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
+            gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
                 
         }
         else{
             int damageDoneToMonster = damageDone(m);
             m.subtractHealth(damageDoneToMonster);
-            System.out.println("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
+            gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
             if(m.getHealth() > 0) {
                 health -= damageTaken(m);
             }
         }
         if(m.getHealth() > 0)
-            {System.out.println(m.getName() + " has " + m.getHealth() + " health left");}
-        System.out.println("You have " + health + " health left");
-        System.out.println();
+            {gui.printOnGameSide(m.getName() + " has " + m.getHealth() + " health left");}
+        gui.printOnGameSide("You have " + health + " health left");
+        gui.newlOnGameSide();
         
     }
 
     private static void levelPrompt(){
         if(xp > xpToLevelUp){
-            System.out.println("Which stat would you like to level up?");
-            System.out.println("Your options are, strength, agility, intelligence, or health");
+            gui.printOnGameSide("Which stat would you like to level up?");
+            gui.printOnGameSide("Your options are, strength, agility, intelligence, or health");
             
-            String temp = input.nextLine();
+            String temp = gui.getInput();
             try {
                 int num = Integer.parseInt(temp) - 1;
                 if(num == 1){temp = "strength";}
@@ -374,13 +399,13 @@ public abstract class player {
                 else if(num == 4){temp = "health";}
                 else{temp = "health";}
             } catch (NumberFormatException ex) {}
-            if(temp.equals("strength")){
+            if(temp.toLowerCase().equals("strength")){
                 strength += 1;
             }
-            else if(temp.equals("agility")){
+            else if(temp.toLowerCase().equals("agility")){
                 agility += 1;
             }
-            else if(temp.equals("intelligence")){
+            else if(temp.toLowerCase().equals("intelligence")){
                 intelligence += 1;
             }
             else {
@@ -390,8 +415,8 @@ public abstract class player {
             }
             xp -= xpToLevelUp;
             xpToLevelUp *= 1.375;
-            System.out.println("You level up " + temp);
-            System.out.println("Your stats are now ");
+            gui.printOnGameSide("You level up " + temp);
+            gui.printOnGameSide("Your stats are now ");
             printStats();
             levelPrompt();
         }
@@ -411,32 +436,29 @@ public abstract class player {
         }
         if(monsterMiss == true){
             monsterMultiplyer = 0;
-            System.out.println("The monster missed and you take 0 damage!");
+            gui.printOnGameSide("The monster missed and you take 0 damage!");
             return 0;
         }
 
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
-        if(monsterDamage < armour){
-            System.out.println("The " + m.getName() + " tries to " + m.attackString() + " but your strong armour repels their attack");
+        if(monsterDamage < getArmor()){
+            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString() + " but your strong armor repels their attack");
             return 0;
         }
         if(monsterDamage >= health){
             death(m, monsterDamage);
         }
-        System.out.println(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - armour));
-        m.attackEffects(monsterDamage - armour);
-        return monsterDamage - armour;
+        gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - getArmor()));
+        m.attackEffects(monsterDamage - getArmor());
+        gui.updatePlayerSide();
+        return monsterDamage - getArmor();
     }
 
     public static int damageDone(monster m){
-        int baseDamageS = strength;
-        int baseDamageI = intelligence;
-        String attackType;
         double multiplyer;
         boolean playerMiss = false;
-        int retDamage;
 
-        if(TrekkerMath.randomInt(100, (intelligence * 3)) > 40){
+        if(TrekkerMath.randomInt(100, (getIntelligence() * 3)) > 40){
             multiplyer = TrekkerMath.randomDouble(2, 0);
             if(multiplyer < .5){
                 playerMiss = true;
@@ -450,41 +472,86 @@ public abstract class player {
         }
         if(playerMiss == true){
             if(multiplyer != 0){
-                System.out.println("You swing and only graze the monster but it still does damage.");
+                gui.printOnGameSide("You swing and only graze the monster but it still does damage.");
             }
             if(multiplyer == 0){
-                System.out.println("You completely miss on your attack hitting nothing but air.");
+                gui.printOnGameSide("You completely miss on your attack hitting nothing but air.");
             }
         }
-        boolean hasIntWeapon = false;
-        for (item e : equipedItems) {
-            if(e.attackingItem()){
-                attackType = e.getType();
-                if(attackType.equals("Strength")){
-                    baseDamageS += e.getStatIncrease();
-                }
-                else if(attackType.equals("Intelligence")){
-                    baseDamageI += e.getStatIncrease();
-                    hasIntWeapon = true;
-                }
-            }
-        }
-        if(hasIntWeapon){
-            if(baseDamageI > baseDamageS){ retDamage = baseDamageI;}
-            else retDamage = baseDamageS;
+
+
+        String LHandType;
+        String RHandType;
+        
+        int LHandDMG;
+        int RHandDMG;
+
+
+        if(LHand == null){
+            LHandType = "Blunt";
+            LHandDMG = 0;
         }
         else{
-            retDamage = baseDamageS;
+            LHandType = RHand.getItemType();
+            LHandDMG = getDMGCalcForWeapon(LHand);
         }
-        retDamage *= multiplyer;
-        if (retDamage == 0){retDamage =1;}
-        return retDamage;
+        if(RHand == null){
+            RHandType = "Blunt";
+            RHandDMG = 0;
+        }
+        else{
+            RHandDMG = getDMGCalcForWeapon(RHand);
+            RHandType = RHand.getItemType();
+        }
+
+        if(LHand == null && RHand == null){
+            return (int)(getStrength() * multiplyer);
+        }
+
+
+        if(LHandType == RHandType){
+            int dmg = LHandDMG + RHandDMG;
+            dmg *= 1.35;
+            dmg *= multiplyer;
+            return dmg;
+        }
+        int dmg = LHandDMG + RHandDMG;
+        dmg *= multiplyer;
+        return dmg;
+    }
+
+    private static int getDMGCalcForWeapon(holdables h){
+        if(h.getDMGType() == "Intelligence"){
+            return h.getStatIncrease() + getStrength();
+        }
+        else if(h.getDMGType() == "Strength"){
+            return h.getStatIncrease() + getStrength();
+        }
+        else{
+            return getStrength();
+        }
+    }
+
+    public static void askWhichHandToEquipTo(holdables itemToSwap){
+        
+        gui.printOnGameSide("Which hand would you like to switch?");
+        String handToPick = gui.getInput();
+        if(response.Left(handToPick)){
+            LHand.Use();
+            LHand = itemToSwap;
+        }
+        else{
+            RHand.Use();
+            RHand = itemToSwap;
+        }
+        gui.updatePlayerSide();
+
     }
 
     public static void death(monster m, int monsterDamage){
         health = 0;
-        System.out.println("You have been killed by " + m.getName() + " after it " + m.attackString() + " for " + monsterDamage);
-        System.out.println("Here are your final stats");
+        gui.printOnGameSide("You have been killed by " + m.getName() + " after it " + m.attackString() + " for " + monsterDamage);
+        gui.printOnGameSide("Here are your final stats");
         printPlayerItems();
         printStats();
         System.exit(0);

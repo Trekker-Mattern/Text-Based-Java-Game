@@ -1,4 +1,5 @@
 package monsters;
+import GUI.gui;
 import playerFiles.player;
 
 public class monster {
@@ -119,14 +120,14 @@ public class monster {
 
 
     public void printMonster(){
-        System.out.println(mName + " level " + mLevel + " has " + mHealth + " HP.");
+        gui.printOnGameSide(mName + " level " + mLevel + " has " + mHealth + " HP.");
         if(player.getName().equals("debug")){
-            System.out.println(mName);
-            System.out.println("Stren" + mStrength);
-            System.out.println("Speed"+ mSpeed);
-            System.out.println("Armour"+ mArmour);
-            System.out.println("Health"+ mHealth);
-            System.out.println("Level"+ mLevel);
+            gui.printOnGameSide(mName);
+            gui.printOnGameSide("Stren" + mStrength);
+            gui.printOnGameSide("Speed"+ mSpeed);
+            gui.printOnGameSide("Armour"+ mArmour);
+            gui.printOnGameSide("Health"+ mHealth);
+            gui.printOnGameSide("Level"+ mLevel);
         }
     }
 

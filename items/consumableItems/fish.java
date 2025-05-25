@@ -1,4 +1,6 @@
-package items;
+package items.consumableItems;
+import GUI.gui;
+import items.consumables;
 import playerFiles.*;
 public class fish extends consumables {
     int healthIncrease =  player.getMaxHealth()  / 5;
@@ -11,7 +13,7 @@ public class fish extends consumables {
     }
     public void Use(){
         removeFromInv();
-        System.out.println("You heal for " + healthIncrease);
+        gui.printOnGameSide("You heal for " + healthIncrease);
         player.addHealth(healthIncrease);
     }
 }

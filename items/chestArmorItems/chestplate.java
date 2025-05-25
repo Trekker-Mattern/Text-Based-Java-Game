@@ -1,7 +1,8 @@
-package items;
-import playerFiles.*;
+package items.chestArmorItems;
+import items.genericItems.chestArmor;
 
-public class chestplate extends equipables{
+
+public class chestplate extends chestArmor{
     int armourAdd;
     int quality;
     public chestplate(){
@@ -14,9 +15,8 @@ public class chestplate extends equipables{
     }
     public void onEquip(){
         
-        player.addArmour(armourAdd);
     }
     public void onUnequip(){
-        player.addArmour(armourAdd*-1);
+
     }
 }

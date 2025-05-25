@@ -1,9 +1,16 @@
 package world;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-
+import GUI.gui;
 import items.*;
+import items.chestArmorItems.*;
+import items.consumableItems.*;
+import items.handItems.*;
+import items.headArmorItems.*;
+import items.footArmorItems.*;
+import items.legsArmorItems.*;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.HashMap;
 import playerFiles.player;
 import util.TrekkerMath;
 
@@ -11,10 +18,10 @@ public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // precondition: all shops are 4 items
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    public static ArrayList<Class<? extends item>> allItemsList = new ArrayList<Class<? extends item>>();
+    public static HashMap<String,Class<? extends item>> allItemsList = new HashMap<>();
 
-    public static ArrayList<Class<? extends consumables>> consumableShopItems = new ArrayList<Class<? extends consumables>>();
-    public static ArrayList<Class<? extends equipables>> equipableShopItems = new ArrayList<Class<? extends equipables>>();
+    public static ArrayList<Class<? extends consumables>> consumableShopItems = new ArrayList<>();
+    public static ArrayList<Class<? extends equipables>> equipableShopItems = new ArrayList<>();
     
     public static int[] itemPrice = {5, 1, 25, 30, 10, 3, 30};
     
@@ -28,38 +35,40 @@ public abstract class shopitems {
         consumableShopItems.add(threeCourseMeal.class);
         equipableShopItems.add(wand.class);
         equipableShopItems.add(helmet.class);
+        equipableShopItems.add(spartanHelmet.class);
         consumableShopItems.add(bread.class);
         equipableShopItems.add(club.class);
+        equipableShopItems.add(leatherPants.class);
+        equipableShopItems.add(clogs.class);
 
-        allItemsList.add(fish.class);
-        allItemsList.add(sword.class);
-        allItemsList.add(dagger.class);
-        allItemsList.add(chestplate.class);
-        allItemsList.add(threeCourseMeal.class);
-        allItemsList.add(wand.class);
-        allItemsList.add(helmet.class);
-        allItemsList.add(bread.class);
-        allItemsList.add(club.class);
+
+        allItemsList.put("Fish",fish.class);
+        allItemsList.put("Sword", sword.class);
+        allItemsList.put("Dagger",dagger.class);
+        allItemsList.put("Chestplate",chestplate.class);
+        allItemsList.put("Three Course Meal",threeCourseMeal.class);
+        allItemsList.put("Wand", wand.class);
+        allItemsList.put("Helmet", helmet.class);
+        allItemsList.put("Spartan Helmet", spartanHelmet.class);
+        allItemsList.put("Bread" ,bread.class);
+        allItemsList.put("Club", club.class);
+        allItemsList.put("Leather Pants",leatherPants.class);
+        allItemsList.put("Clogs",clogs.class);
     }
 
     public static void printShopItems(){
-        itemsInShop = createShop();
+        
         int index = 1;
         for(item e:itemsInShop){
             
-            System.out.print(index + ": " + e.getItemName());
-            System.out.println("   | costs " + e.getPrice() + " gold");
+            gui.printOnGameSide(index + ": " + e.getItemName() + "   | costs " + e.getPrice() + " gold");
             index++;
         }
 
     }
 
-    public static item[] createShop(){
+    public static void createShop(){
         item[] randomItems = new item[4];
-
-
-
-
 
         for(int i = 0; i < randomItems.length-2; i++){
             Class<? extends consumables> itemType = consumableShopItems.get((int)(Math.random() * consumableShopItems.size()));
@@ -69,20 +78,10 @@ public abstract class shopitems {
                 randomItems[i] = a;
                 
                 
-            } catch (NoSuchMethodException e) {
+            } catch (Exception e) {
                 // Handle the case where the default constructor is not found
                 e.printStackTrace();
-            } catch (InstantiationException e) {
-                // Handle the instantiation exception
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                // Handle illegal access exception
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                // Handle invocation target exception
-                e.printStackTrace();
             }
-
         }
         for(int i =2; i < randomItems.length; i++){
             Class<? extends equipables> itemType = equipableShopItems.get((int)(Math.random() * equipableShopItems.size()));
@@ -92,29 +91,20 @@ public abstract class shopitems {
                     randomItems[i] = a;
 
 
-                } catch (NoSuchMethodException e) {
+                } catch (Exception e) {
                     // Handle the case where the default constructor is not found
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // Handle the instantiation exception
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // Handle illegal access exception
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // Handle invocation target exception
                     e.printStackTrace();
                 }
             }
-        return randomItems;
+        itemsInShop = randomItems;
     }
 
  
 
     public static void printShop(){
-        System.out.println("You have " + player.BankBalance + " shmeckles!");
+        gui.printOnGameSide("You have " + player.BankBalance + " shmeckles!");
 
-        System.out.println("Heres whats in the shop!");
+        gui.printOnGameSide("Heres whats in the shop!");
         printShopItems();
 
     }
@@ -140,19 +130,10 @@ public abstract class shopitems {
                     return a;
 
 
-                } catch (NoSuchMethodException e) {
+                } catch (Exception e) {
                     // Handle the case where the default constructor is not found
                     e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // Handle the instantiation exception
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // Handle illegal access exception
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // Handle invocation target exception
-                    e.printStackTrace();
-                }
+                } 
         }
         else{
             Class<? extends consumables> itemType = consumableShopItems.get((int)(Math.random() * consumableShopItems.size()));
@@ -162,19 +143,10 @@ public abstract class shopitems {
                     return a;
 
 
-                } catch (NoSuchMethodException e) {
+                } catch (Exception e) {
                     // Handle the case where the default constructor is not found
                     e.printStackTrace();
-                } catch (InstantiationException e) {
-                    // Handle the instantiation exception
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    // Handle illegal access exception
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // Handle invocation target exception
-                    e.printStackTrace();
-                }
+                } 
         }
         return null;
     }

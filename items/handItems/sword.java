@@ -1,29 +1,25 @@
-package items;
+package items.handItems;
 
+import items.genericItems.holdables;
 
-public class sword extends equipables {
+public class sword extends holdables {
     private int quality;
     private int swordIncrease;
     
 
     public sword(){
         setIsAttackingItem(true);
-        quality = (int)((Math.random() * 6) +1);
-        setQuality(quality);
         swordIncrease = 2*quality;
         setPrice(30);
         setName("Sword");
-        setType("Strength");
+        setDMGType("Strength");
+        itemType = "Sharp";
         
     }
     public int getStatIncrease(){
         return swordIncrease;
     }
-    public void onEquip(){
-    }
-    
-    public void onUnequip(){
-    }
+
     public String getAttackString() {
         return "slice";
     }

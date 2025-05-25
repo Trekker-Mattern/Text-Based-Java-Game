@@ -1,5 +1,6 @@
 package items;
 import playerFiles.*;
+
 public abstract class consumables extends item {
     public consumables(){
         setIsConsumable(true);
