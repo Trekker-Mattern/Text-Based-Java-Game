@@ -134,8 +134,9 @@ public class gui {
     public static void updatePlayerSide(){
         topofInvPanel.removeAll();
 
-        topofInvPanel.add(new JLabel(player.getName() + "                     "));
-        topofInvPanel.add(new JLabel(Integer.toString(player.BankBalance)));
+        topofInvPanel.add(new JLabel("Name: " + player.getName() + "                     "));
+        topofInvPanel.add(new JLabel("Shmeckles: " + Integer.toString(player.BankBalance) + "                     "));
+        topofInvPanel.add(new JLabel("XP: " + player.getXP() + "/" + player.getXpToLevelUp()));
 
 
         invPanel.removeAll();

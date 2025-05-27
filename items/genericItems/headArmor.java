@@ -4,7 +4,6 @@ import playerFiles.*;
 
 public abstract class headArmor extends equipables {
     protected int armorAdd;
-    protected int quality;
 
     
     protected void equipToSlot() {

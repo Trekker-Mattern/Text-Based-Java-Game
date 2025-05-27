@@ -4,7 +4,6 @@ import playerFiles.*;
 
 public abstract class boots extends equipables {
     protected int armorAdd;
-    protected int quality;
     
     @Override
     protected void equipToSlot() {

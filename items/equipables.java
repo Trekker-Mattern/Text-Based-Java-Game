@@ -16,8 +16,9 @@ public abstract class equipables extends item {
         quality = (int)((Math.random() * 6) +1);
         setQuality(quality);
     }
+
     public void setQuality(int x){
-        //quality = x;
+        quality = x;
         //1.bad 2.mediocre 3.fine 4.good 5.excelent 6.perfect
         if(x ==1){qualityString = "Bad";}
         else if (x ==2){ qualityString = "Mediocre";}
@@ -48,6 +49,9 @@ public abstract class equipables extends item {
     }
     public String getQuality(){
         return qualityString;
+    }
+    public int getQualityInt(){
+        return quality;
     }
     protected void equipToSlot(){}
     protected void unequipFromSlot(){}

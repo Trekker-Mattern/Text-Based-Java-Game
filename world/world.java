@@ -134,8 +134,9 @@ public abstract class world {
             gui.printOnGameSide("What would you like to do?");
             String h = gui.getInput(); 
             if(response.quit(h)){System.exit(0);}
+
             if(response.respondFight(h)){
-                    player.fightMonster(m);
+                player.fightMonster(m);
                 if(m.getHealth() <= 0){
                     gui.printOnGameSide("You defeated " + m.getName() + "!");
                     int coinGain = (int)((player.luck * m.getLevel()) + 4);

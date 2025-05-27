@@ -4,7 +4,6 @@ import items.equipables;
 
 public abstract class chestArmor extends equipables {
     protected int armorAdd;
-    protected int quality;
     
     @Override
     protected void equipToSlot() {

@@ -6,6 +6,6 @@ Player-Agility: 6
 Player-Intelligence: 100
 Player-XP-to-Level-Up: 918
 Player-XP: 20
-Player-Inventory: Sword,Sword,Dagger,
-World-StageNum: 0
-World-AreaNum: 0
+Player-Inventory: Sword-6,Dagger-2,
+World-StageNum: 5
+World-AreaNum: 2

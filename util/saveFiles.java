@@ -63,7 +63,12 @@ public abstract class saveFiles {
             // get string version of inventory 
             String s = "";
             for(item e: player.inventory){
-                s += e.getItemName() + ",";
+                s += e.getItemName();
+                if (e instanceof equipables){
+                    s += "-";
+                    s += ((equipables)e).getQualityInt();
+                }
+                s += ",";
             }
             
             fWriter.write("Player-Name: " + player.getName() + "\n");
@@ -76,7 +81,7 @@ public abstract class saveFiles {
             fWriter.write("Player-XP: " + player.getXP() + "\n");
             fWriter.write("Player-Inventory: " + s + "\n");
             fWriter.write("World-StageNum: " + StageNum + "\n");
-            fWriter.write("World-AreaNum: " + AreaNum);
+            fWriter.write("World-AreaNum: " + AreaNum + "\n");
             fWriter.close();
             
         }
@@ -126,14 +131,23 @@ public abstract class saveFiles {
                 String[] itemList = invListString.split(",");
                 for(String s: itemList){
                     s = s.trim();
-                    Class<? extends item> e = shopitems.allItemsList.get(s);
-                    player.addItemToPlayer(getItemToAddToInv(e));
+                    if(s.contains("-")){
+                        String[] sArr = s.split("-");
+                        Class<? extends item> e = shopitems.allItemsList.get(sArr[0]);
+                        player.addItemToPlayer(getItemToAddToInv(e, Integer.parseInt(sArr[1])));
+                    }
+                    else{
+                        Class<? extends item> e = shopitems.allItemsList.get(s);
+                        player.addItemToPlayer(getItemToAddToInv(e));
+                    }
                 }
                                 
-                goToNextReadableText(myReader);
+                myReader.next();
                 stgNum = myReader.nextInt();
-                goToNextReadableText(myReader);
+                myReader.nextLine();
+                myReader.next();
                 areaNum = myReader.nextInt();
+
 
                 world.AREANUM = areaNum;
                 world.stageNum = stgNum;
@@ -156,6 +170,23 @@ public abstract class saveFiles {
             return a;
         }
         catch(Exception exception){
+            return new bread();
+        }
+    }
+    private static item getItemToAddToInv(Class<? extends item> e, int quality){
+        try{
+            try{
+                Constructor<? extends item> ctor = e.getDeclaredConstructor(int.class);
+                return ctor.newInstance(quality);
+            }
+            catch(Exception wrongConstructor){
+                System.out.println("Falling back to no-arg constructor for " + e.getName());
+                Constructor<? extends item> ctor = e.getDeclaredConstructor();
+                return ctor.newInstance();
+            }
+        }
+        catch(Exception somethingWentReallyWrong){
+            System.out.println("Something went Really Wrong" + somethingWentReallyWrong);
             return new bread();
         }
     }
