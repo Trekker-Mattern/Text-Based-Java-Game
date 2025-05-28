@@ -15,24 +15,15 @@ public class hydra extends boss {
         ///////////////////////
         /// FIX HYDRA BASED ON HAND --- Fixed
         /// /////////////////
-            String s;
             if(player.LHand == null && player.RHand == null){
-                s = "Blunt";
+                
             }
-            else if(player.RHand != null && player.RHand.getItemType() == "Sharp"){
-                s = "Sharp";
-            }
-            else if(player.LHand != null || player.LHand.getItemType() == "Sharp"){
-                s = "Sharp";
-            }
-            else{
-                s = "Blunt";
-            }
-            if(s.equals("Sharp")){
+            else if((player.RHand != null && player.RHand.tagsContains("Sharp")) ||  (player.LHand != null || player.LHand.tagsContains("Sharp"))){
                 gui.printOnGameSide("You chop off a head but it grows 2 more");
                 setHealth(getHealth()*2);
                 setStrength(getStrength()*2); 
             }
+
     }
     @Override
     public String attackString() {

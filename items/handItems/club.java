@@ -1,10 +1,12 @@
 package items.handItems;
-
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 import items.genericItems.holdables;
 
 public class club extends holdables {
     private int increase;
-    
+    private static final Set<String> tags = new HashSet<>(Arrays.asList("Strength", "Blunt", "Club", "Wood"));
 
     public club(){
         setIsAttackingItem(true);
@@ -30,5 +32,9 @@ public class club extends holdables {
 
     public String getAttackString() {
         return "bonk";
+    }
+    protected Set<String> getTagsSet() {
+
+        return tags;
     }
 }

@@ -1,6 +1,8 @@
 package items;
 
 
+import java.util.Set;
+
 import GUI.gui;
 import playerFiles.player;
 
@@ -10,6 +12,7 @@ public abstract class equipables extends item {
     protected int quality;
     public String buffType;
     public int buffValue;
+
 
     public equipables(){
         setIsConsumable(false);
@@ -58,4 +61,9 @@ public abstract class equipables extends item {
     public void onEquip(){}
     public void onUnequip(){}
     public int getArmorVal(){return 0;}
+    public boolean tagsContains(String tag){
+        if(getTagsSet().contains(tag)) {return true;}
+        return false;
+    }
+    protected abstract Set<String> getTagsSet();
 }

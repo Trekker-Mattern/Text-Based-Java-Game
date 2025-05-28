@@ -1,16 +1,21 @@
 package items.handItems;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+
 import items.genericItems.holdables;
 
 
 public class dagger extends holdables{
 
     int damageToAdd;
-    int agilityToAdd;
+    private static final Set<String> tags = new HashSet<>(Arrays.asList("Dagger", "Strength", "Agility", "Sharp", "Slicing", "Stabbing"));
 
     public dagger(){
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        agilityToAdd = quality * 2;
+        buffType = "Agility";
+        buffValue = quality *2;
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");
@@ -20,7 +25,8 @@ public class dagger extends holdables{
         setQuality(quality);
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        agilityToAdd = quality * 2;
+        buffType = "Agility";
+        buffValue = quality *2;
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");
@@ -33,5 +39,9 @@ public class dagger extends holdables{
 
     public String getAttackString() {
         return "stab";
+    }
+    protected Set<String> getTagsSet() {
+
+        return tags;
     }
 }
