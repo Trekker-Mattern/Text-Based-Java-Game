@@ -17,8 +17,8 @@ public class club extends holdables {
         itemType = "Blunt";
         
     }
-    public club(int quality){
-        setQuality(quality);
+    public club(int qual){
+        setQuality(qual);
         setIsAttackingItem(true);
         increase = (int)(1.7*quality);
         setPrice(30);

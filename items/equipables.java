@@ -50,17 +50,21 @@ public abstract class equipables extends item {
         gui.updatePlayerSide();
 
     }
+    public void setEquipped(boolean setEq){
+        equipped = setEq;
+    }
     public String getQuality(){
         return qualityString;
     }
     public int getQualityInt(){
         return quality;
     }
-    protected void equipToSlot(){}
+    public abstract void equipToSlot();
     protected void unequipFromSlot(){}
     public void onEquip(){}
     public void onUnequip(){}
     public int getArmorVal(){return 0;}
+    public boolean isEquipped(){return equipped;}
     public boolean tagsContains(String tag){
         if(getTagsSet().contains(tag)) {return true;}
         return false;

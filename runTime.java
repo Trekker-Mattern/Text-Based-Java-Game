@@ -48,7 +48,7 @@ public class runTime
         gui.printOnGameSide("These are your final stats!");
         player.printStats();
         while(true){
-            saveFiles.save(world.AREANUM, world.stageNum); 
+            saveFiles.save(); 
             shopitems.createShop();
             gui.updatePlayerSide();
             world.menu();

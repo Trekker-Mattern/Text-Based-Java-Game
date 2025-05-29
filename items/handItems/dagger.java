@@ -21,8 +21,8 @@ public class dagger extends holdables{
         setDMGType("Strength");
         itemType = "Sharp";
     }
-    public dagger(int quality){
-        setQuality(quality);
+    public dagger(int qual){
+        setQuality(qual);
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
         buffType = "Agility";

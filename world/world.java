@@ -34,7 +34,7 @@ public abstract class world {
             gui.newlOnGameSide();
 
             String Ans = gui.getInput();
-            if (response.quit(Ans)){System.exit(0);}
+            if (response.quit(Ans)){gui.quit();}
 
             //OPEN SHOP!!!
             if(response.Shop(Ans)){
@@ -48,7 +48,7 @@ public abstract class world {
             }
             if(response.Save(Ans)){
                 //// SAVE
-                saveFiles.save(AREANUM, stageNum);
+                saveFiles.save();
             }
         }
         else{
@@ -133,7 +133,7 @@ public abstract class world {
             gui.newlOnGameSide();;
             gui.printOnGameSide("What would you like to do?");
             String h = gui.getInput(); 
-            if(response.quit(h)){System.exit(0);}
+            if(response.quit(h)){gui.quit();}
 
             if(response.respondFight(h)){
                 player.fightMonster(m);

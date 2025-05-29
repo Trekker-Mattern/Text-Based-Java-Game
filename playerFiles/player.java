@@ -200,6 +200,18 @@ public abstract class player {
             equipableItems.add(i);
         }
     }
+    public static void addItemToPlayer(equipables i, boolean equipped){
+        inventory.add(i);
+        equipableItems.add(i);
+        if(equipped){
+            equippedItems.add(i);
+            i.equipToSlot();
+            i.onEquip();
+            i.setEquipped(true);
+        }
+    }
+
+
     public static void updateBuffs(){
         if(name.equals("debug")){
             gui.printOnGameSide(buffType);

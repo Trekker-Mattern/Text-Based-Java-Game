@@ -15,6 +15,13 @@ public class leatherPants extends legsArmor {
         setName("Leather Pants");
 
     }
+    public leatherPants(int qual){
+        setQuality(qual);
+        armorAdd = (int)(quality * 1.275);
+        setPrice(13);
+        setName("Leather Pants");
+
+    }
     protected Set<String> getTagsSet() {
 
         return tags;

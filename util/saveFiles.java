@@ -50,7 +50,7 @@ public abstract class saveFiles {
         }
     }
 
-    public static void save(int AreaNum, int StageNum){
+    public static void save(){
         try{
             //delete old save
             saveFile.delete();
@@ -67,6 +67,9 @@ public abstract class saveFiles {
                 if (e instanceof equipables){
                     s += "-";
                     s += ((equipables)e).getQualityInt();
+                    if(((equipables)e).isEquipped()){
+                        s += "-true";
+                    }
                 }
                 s += ",";
             }
@@ -80,8 +83,9 @@ public abstract class saveFiles {
             fWriter.write("Player-XP-to-Level-Up: " + player.getXpToLevelUp() + "\n");
             fWriter.write("Player-XP: " + player.getXP() + "\n");
             fWriter.write("Player-Inventory: " + s + "\n");
-            fWriter.write("World-StageNum: " + StageNum + "\n");
-            fWriter.write("World-AreaNum: " + AreaNum + "\n");
+            fWriter.write("World-StageNum: " + world.stageNum + "\n");
+            fWriter.write("World-AreaNum: " + world.AREANUM + "\n");
+            fWriter.write("PlayerCoins: " + player.BankBalance + "\n");
             fWriter.close();
             
         }
@@ -127,18 +131,35 @@ public abstract class saveFiles {
 
 
                 //DO INVENTORY
-                invListString = invListString.substring(1);
-                String[] itemList = invListString.split(",");
-                for(String s: itemList){
-                    s = s.trim();
-                    if(s.contains("-")){
-                        String[] sArr = s.split("-");
-                        Class<? extends item> e = shopitems.allItemsList.get(sArr[0]);
-                        player.addItemToPlayer(getItemToAddToInv(e, Integer.parseInt(sArr[1])));
-                    }
-                    else{
-                        Class<? extends item> e = shopitems.allItemsList.get(s);
-                        player.addItemToPlayer(getItemToAddToInv(e));
+
+                /////////////////
+                /// 
+                /// WE SPLIT THIS SHIT INTO THREE POSSIBLE SEGMENTS 0- ITEM/CLASS KEY FOR LOOKUP IN HASHMAP   1- QUALITY AS AN INTEGER   2- IS EQUIPPED?  
+                /// 
+                /////////////////
+                invListString = invListString.trim();
+                if(invListString != ""){
+                    String[] itemList = invListString.split(",");
+                    for(String s: itemList){
+                        s = s.trim();
+                        if(s.contains("-")){
+
+                            String[] sArr = s.split("-");
+                            Class<? extends item> e = shopitems.allItemsList.get(sArr[0]);
+
+                            if(sArr.length > 2){
+                                boolean equipped = Boolean.parseBoolean(sArr[2]);
+                                player.addItemToPlayer((equipables)getItemToAddToInv(e, Integer.parseInt(sArr[1])), equipped);
+                            }
+                            else{
+                                player.addItemToPlayer(getItemToAddToInv(e, Integer.parseInt(sArr[1])));
+                            }
+                            
+                        }
+                        else{
+                            Class<? extends item> e = shopitems.allItemsList.get(s);
+                            player.addItemToPlayer(getItemToAddToInv(e));
+                        }
                     }
                 }
                                 
@@ -147,6 +168,9 @@ public abstract class saveFiles {
                 myReader.nextLine();
                 myReader.next();
                 areaNum = myReader.nextInt();
+                myReader.nextLine();
+                myReader.next();
+                player.BankBalance = myReader.nextInt();
 
 
                 world.AREANUM = areaNum;

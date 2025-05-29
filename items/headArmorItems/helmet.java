@@ -16,6 +16,13 @@ public class helmet extends headArmor{
         setName("Helmet");
 
     }
+    public helmet(int qual){
+        setQuality(qual);
+        armorAdd = (int)(quality * 1.3);
+        setPrice(20);
+        setName("Helmet");
+
+    }
     
     protected Set<String> getTagsSet() {
 

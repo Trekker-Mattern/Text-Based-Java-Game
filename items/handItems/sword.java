@@ -20,8 +20,8 @@ public class sword extends holdables {
         itemType = "Sharp";
         
     }
-    public sword(int quality){
-        setQuality(quality);
+    public sword(int qual){
+        setQuality(qual);
         setIsAttackingItem(true);
         swordIncrease = 2*quality;
         setPrice(30);

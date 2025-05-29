@@ -15,10 +15,7 @@ public class hydra extends boss {
         ///////////////////////
         /// FIX HYDRA BASED ON HAND --- Fixed
         /// /////////////////
-            if(player.LHand == null && player.RHand == null){
-                
-            }
-            else if((player.RHand != null && player.RHand.tagsContains("Sharp")) ||  (player.LHand != null || player.LHand.tagsContains("Sharp"))){
+            if((player.RHand != null && player.RHand.tagsContains("Sharp")) ||  (player.LHand != null || player.LHand.tagsContains("Sharp"))){
                 gui.printOnGameSide("You chop off a head but it grows 2 more");
                 setHealth(getHealth()*2);
                 setStrength(getStrength()*2); 
@@ -27,7 +24,6 @@ public class hydra extends boss {
     }
     @Override
     public String attackString() {
-
         return "bites you with one of its many heads";
     }
 }

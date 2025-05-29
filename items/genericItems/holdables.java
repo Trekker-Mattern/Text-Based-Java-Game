@@ -10,7 +10,7 @@ public abstract class holdables extends equipables{
     public void onEquip() {}
 
     @Override
-    protected void equipToSlot() {
+    public void equipToSlot() {
         if(player.RHand != null && player.LHand != null){
         player.askWhichHandToEquipTo(this);
 

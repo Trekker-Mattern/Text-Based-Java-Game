@@ -13,7 +13,15 @@ public class spartanHelmet extends headArmor {
         setName("Spartan Helmet");
         buffType = "Strength";
         buffValue = 3;
-    }    
+    }
+    public spartanHelmet(int qual){
+        setQuality(qual);
+        armorAdd = (int)(quality * 1.8);
+        setPrice(40);
+        setName("Spartan Helmet");
+        buffType = "Strength";
+        buffValue = 3;
+    } 
     protected Set<String> getTagsSet() {
 
         return tags;

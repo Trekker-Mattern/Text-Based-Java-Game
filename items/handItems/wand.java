@@ -18,8 +18,8 @@ public class wand extends holdables {
         setDMGType("Intelligence");
         itemType = "Magic";
     }
-    public wand(int quality){
-        setQuality(quality);
+    public wand(int qual){
+        setQuality(qual);
         setIsAttackingItem(true);
         wandIncrease = 2*quality;
         setPrice(10);

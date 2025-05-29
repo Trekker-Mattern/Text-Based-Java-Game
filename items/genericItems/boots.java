@@ -6,7 +6,7 @@ public abstract class boots extends equipables {
     protected int armorAdd;
     
     @Override
-    protected void equipToSlot() {
+    public void equipToSlot() {
         if(player.shoes != null){
             player.shoes.Use();
         }

@@ -15,6 +15,13 @@ public class clogs extends boots {
         setName("Clogs");
 
     }
+    public clogs(int qual){
+        setQuality(qual);
+        armorAdd = (int)(this.quality * .75);
+        setPrice(5);
+        setName("Clogs");
+
+    }
     protected Set<String> getTagsSet() {
 
         return tags;

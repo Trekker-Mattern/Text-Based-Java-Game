@@ -6,7 +6,7 @@ public abstract class headArmor extends equipables {
     protected int armorAdd;
 
     
-    protected void equipToSlot() {
+    public void equipToSlot() {
         if(player.helm != null){
             player.helm.Use();
         }

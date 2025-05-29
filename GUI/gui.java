@@ -7,7 +7,9 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 
+import items.equipables;
 import playerFiles.player;
+import util.saveFiles;
 
 public class gui {
 
@@ -152,42 +154,12 @@ public class gui {
         JLabel LeftHand; 
         JLabel RightHand; 
 
-        if(player.helm != null){
-            helmet = new JLabel("Helmet: " + player.helm.toString());
-        }
-        else{
-            helmet = new JLabel("Helmet: ");
-        }
-        if(player.chestplate != null){
-            chestplate = new JLabel("Chestplate: " + player.chestplate.toString());
-        }
-        else{
-            chestplate = new JLabel("Chestplate: ");
-        }
-        if(player.pants != null){
-            pants = new JLabel("Pants: " + player.pants.toString());
-        }
-        else{
-            pants = new JLabel("Pants: ");
-        }
-        if(player.shoes != null){
-            boots = new JLabel("Boots: " + player.shoes.toString());
-        }
-        else{
-            boots = new JLabel("Boots: ");
-        }
-        if(player.LHand != null){
-            LeftHand = new JLabel("Left Hand: " + player.LHand.toString());
-        }
-        else{
-            LeftHand = new JLabel("Left Hand: ");
-        }
-        if(player.RHand != null){
-            RightHand = new JLabel("Right Hand: " + player.RHand.toString());
-        }
-        else{
-            RightHand = new JLabel("Right Hand: ");
-        }
+        helmet = createInventoryLabel("Helmet", player.helm); 
+        chestplate = createInventoryLabel("Chestplate", player.chestplate);
+        pants = createInventoryLabel("Pants", player.pants);
+        boots = createInventoryLabel("Boots", player.shoes);
+        LeftHand = createInventoryLabel("Left Hand", player.LHand);
+        RightHand = createInventoryLabel("Right Hand", player.RHand);
 
         invPanel.add(health);
         invPanel.add(strength);
@@ -204,7 +176,19 @@ public class gui {
         giveLabelsColorAndShape(invPanel, 18, Color.WHITE);
 
         invPanel.revalidate();
+        invPanel.repaint();
         topofInvPanel.revalidate();
+        topofInvPanel.repaint();
+
+    }
+
+    private static JLabel createInventoryLabel(String s, equipables equip){
+        if(equip != null){
+            return new JLabel(s + ": " + equip.toString());
+        }
+        else{
+            return new JLabel(s + ": ");
+        }
 
     }
 
@@ -217,5 +201,10 @@ public class gui {
                 l.setForeground(color);
             }
         }
+    }
+
+    public static void quit(){
+        saveFiles.save();
+        System.exit(0);
     }
 }

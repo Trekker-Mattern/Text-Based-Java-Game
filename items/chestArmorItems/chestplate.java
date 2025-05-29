@@ -13,8 +13,8 @@ public class chestplate extends chestArmor{
         setName("Chestplate");
 
     }
-    public chestplate(int quality){
-        setQuality(quality);
+    public chestplate(int qual){
+        setQuality(qual);
         armourAdd = quality * 2;
         setPrice(45);
         setName("Chestplate");
