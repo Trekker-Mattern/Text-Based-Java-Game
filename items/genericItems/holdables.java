@@ -23,6 +23,17 @@ public abstract class holdables extends equipables{
         }
     }
 
+    public void unequipFromSlot(){
+        if(player.RHand == this){
+            player.RHand = null;
+        }
+        else if(player.LHand == this){
+            player.LHand = null;
+        }
+        player.equippedItems.remove(this);
+        
+    }
+
     public void setDMGType(String x){
         DMGtype =x;
     }

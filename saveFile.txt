@@ -1,12 +1,12 @@
-Player-Name: T
-Player-Current-Health: 5
-Player-Maximum-Health: 26
-Player-Strength: 7
-Player-Agility: 3
-Player-Intelligence: 0
-Player-XP-to-Level-Up: 100
-Player-XP: 53
-Player-Inventory: Clogs-4-true,Sword-6-true,
-World-StageNum: 5
-World-AreaNum: 1
-PlayerCoins: 117
+Player-Name: debug
+Player-Current-Health: 38
+Player-Maximum-Health: 40
+Player-Strength: 9
+Player-Agility: 6
+Player-Intelligence: 2
+Player-XP-to-Level-Up: 486
+Player-XP: 296
+Player-Inventory: Helmet-1,Chestplate-2-true,Sword-6-true,Clogs-5-true,Dagger-2-true,Spartan Helmet-2-true,
+World-StageNum: 10
+World-AreaNum: 2
+PlayerCoins: 304

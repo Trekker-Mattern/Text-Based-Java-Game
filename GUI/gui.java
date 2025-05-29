@@ -153,6 +153,7 @@ public class gui {
         JLabel boots; 
         JLabel LeftHand; 
         JLabel RightHand; 
+        JLabel Armor = new JLabel("Total Armor Value: " + player.getArmor());
 
         helmet = createInventoryLabel("Helmet", player.helm); 
         chestplate = createInventoryLabel("Chestplate", player.chestplate);
@@ -160,6 +161,7 @@ public class gui {
         boots = createInventoryLabel("Boots", player.shoes);
         LeftHand = createInventoryLabel("Left Hand", player.LHand);
         RightHand = createInventoryLabel("Right Hand", player.RHand);
+
 
         invPanel.add(health);
         invPanel.add(strength);
@@ -172,6 +174,8 @@ public class gui {
         invPanel.add(boots);
         invPanel.add(LeftHand);
         invPanel.add(RightHand);
+        invPanel.add(new JLabel(" "));
+        invPanel.add(Armor);
 
         giveLabelsColorAndShape(invPanel, 18, Color.WHITE);
 

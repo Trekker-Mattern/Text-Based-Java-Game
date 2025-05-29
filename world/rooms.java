@@ -9,7 +9,7 @@ public class rooms {
 
 
     public static void getRandomRoom(){
-    int roomNum = TrekkerMath.randomInt(2, 0);
+    int roomNum = TrekkerMath.randomInt(3, 0);
     switch (roomNum){
         case 0:{
             
@@ -32,7 +32,7 @@ public class rooms {
                         else{
                             player.equipableItems.add(a);
                         } 
-                        world.stageNum++;
+                        
                     break;
                     case 1:
                         gui.printOnGameSide("You start to open the chest but a tongue wraps around your hand, its a mimic!");
@@ -41,25 +41,25 @@ public class rooms {
                         int extraMoney = (int)(TrekkerMath.randomInt(100,0) * player.luck);
                         gui.printOnGameSide("From the mimic's corpse you manage to scavange an extra " + extraMoney + " shmeckles!");
                         player.BankBalance += extraMoney;
-                        world.stageNum++;
+                        
                     break;
                     case 2:
                         gui.printOnGameSide("You open the chest and there is money inside!");
                         extraMoney = (int)(TrekkerMath.randomInt(300,0) * player.luck);
                         player.BankBalance += extraMoney;
                         gui.printOnGameSide("You gain " + extraMoney + " shmeckles!");
-                        world.stageNum++;
+                        
                     break;
                     case 3:
                         gui.printOnGameSide("The chest is locked");
                         gui.printOnGameSide("You try and try but cant open it");
-                        world.stageNum++;
+                        
                     break;
                     case 4:
                         gui.printOnGameSide("You trip and fall on your way over to the chest and break your foot");
                         int damage = TrekkerMath.randomInt(player.health / 4, 0);
                         gui.printOnGameSide("You take " + damage + " damage from falling");
-                        world.stageNum++;
+                        
                     break; 
                 }
             
@@ -85,7 +85,7 @@ public class rooms {
                 gui.printOnGameSide("The statue seems to depict a gazelle that is mid jump");
                 break;
                 case 3:
-                buffType = "Armour";
+                buffType = "Armor";
                 gui.printOnGameSide("The statue seems to depict an armadillo that is curled up into a little ball");
                 break;
             }
@@ -95,7 +95,7 @@ public class rooms {
                 player.applyBuff(buffType, 5);
                 gui.printOnGameSide("You feel blessed! The animal has improved you!");
             }
-            world.stageNum++;
+            
             break;
         }
         case 2:
@@ -145,10 +145,64 @@ public class rooms {
                 break;
             }
         }
-        world.stageNum++;
+        
         break;
         }
-            
+        case 3:{    
+            //////////////////////
+            /// 
+            /// PORTAL WOOOOOSH
+            /// 
+            /// /////////////////
+
+            int i = TrekkerMath.randomInt(0, 1);
+            if(i == 0){
+                gui.printOnGameSide("A portal sits in a mostly empty room, It shines with a green hue.");
+                gui.printOnGameSide("Enter?");
+
+                if(response.respondYes(gui.getInput())){
+                    gui.printOnGameSide("You enter the floating spiral, slowly glancing around at the room that now surrounds you.");
+
+                    i = TrekkerMath.randomInt(3, -3);
+                    world.stageNum+=i;
+                    if(i > 0){
+                        gui.printOnGameSide("The room seems unfamilair but you get the sense that you've made progress.");
+                    }
+                    else if(i < 0){
+                        gui.printOnGameSide("This room feels brutally familiar, reminding you of recent battles faught.");
+                        gui.printOnGameSide( "You sigh knowing you have a longer way to go to progress now.");
+                    }
+                    else{
+                        gui.printOnGameSide("The room looks exactly like the room you just left. You raise an eyebrow and continue on.");
+                    }
+                }
+
+            }
+            else{
+                gui.printOnGameSide("A portal sits in a mostly empty room, It shines with a blue hue.");
+                gui.printOnGameSide("Enter?");
+
+                if(response.respondYes(gui.getInput())){
+                    gui.printOnGameSide("You enter the floating spiral, slowly glancing around at the room that now surrounds you.");
+                    
+
+                    i = TrekkerMath.randomInt(3, -3);
+                    world.AREANUM+=i;
+                    if(i > 0){
+                        gui.printOnGameSide("The scenery has changed considerably;");
+                        gui.printOnGameSide("The light around you is significantly dimmer.");
+                        gui.printOnGameSide( "You believe that this portal has helped make major progress in your journey.");
+                    }
+                    else if(i < 0){
+                        gui.printOnGameSide("The scenery has changed considerably;");
+                        gui.printOnGameSide("The flooring and walls look too familiar, closely resembling areas from the past.");
+                        gui.printOnGameSide("The sickening sensation of lost progress sets in");
+                    }
+                    else{
+                        gui.printOnGameSide("Nothing major changed. Actually nothing changed at all. You shrug and continue on.");
+                    }
+                }
+            }
 
 
 
@@ -157,9 +211,9 @@ public class rooms {
 
 
 
-
-
-
+            break;
         }
+        }
+        world.stageNum++;
     }
 }

@@ -6,16 +6,15 @@ import java.util.Arrays;
 
 public class chestplate extends chestArmor{
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Chestplate", "Metal", "Heavy Armor", "Heavy"));
-    int armourAdd;
     public chestplate(){
-        armourAdd = quality * 2;
+        armorAdd = quality * 2;
         setPrice(45);
         setName("Chestplate");
 
     }
     public chestplate(int qual){
         setQuality(qual);
-        armourAdd = quality * 2;
+        armorAdd = quality * 2;
         setPrice(45);
         setName("Chestplate");
 

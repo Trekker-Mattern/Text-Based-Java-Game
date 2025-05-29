@@ -154,7 +154,7 @@ public abstract class player {
 
     public static int getArmor(){
         int val = armor;
-        if(isBuff && buffType == "Intelligence"){
+        if(isBuff && buffType == "Armor"){
             val += 2;
         }
 
@@ -369,31 +369,26 @@ public abstract class player {
 
     public static void fightMonster(monster m){
         
-        //did the player miss
-
-
-        //Did the player Crit? or Did the player Miss?
-        
-
         if(m.getSpeed() > agility){
-            int damageDoneToMonster = damageDone(m);
+            int damageDoneToMonster = damageDone();
             health -= damageTaken(m);
             m.subtractHealth(damageDoneToMonster);
             gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
                 
         }
         else{
-            int damageDoneToMonster = damageDone(m);
+            int damageDoneToMonster = damageDone();
             m.subtractHealth(damageDoneToMonster);
             gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
             if(m.getHealth() > 0) {
                 health -= damageTaken(m);
             }
         }
-        if(m.getHealth() > 0)
-            {gui.printOnGameSide(m.getName() + " has " + m.getHealth() + " health left");}
-        gui.printOnGameSide("You have " + health + " health left");
+        if(m.getHealth() > 0){
+            gui.printOnGameSide(m.getName() + " has " + m.getHealth() + " health left");
+        }
         gui.newlOnGameSide();
+        gui.updatePlayerSide();
         
     }
 
@@ -411,13 +406,13 @@ public abstract class player {
                 else if(num == 4){temp = "health";}
                 else{temp = "health";}
             } catch (NumberFormatException ex) {}
-            if(temp.toLowerCase().equals("strength")){
+            if(temp.toLowerCase().contains("strength")){
                 strength += 1;
             }
-            else if(temp.toLowerCase().equals("agility")){
+            else if(temp.toLowerCase().contains("agility")){
                 agility += 1;
             }
-            else if(temp.toLowerCase().equals("intelligence")){
+            else if(temp.toLowerCase().contains("intelligence")){
                 intelligence += 1;
             }
             else {
@@ -466,7 +461,7 @@ public abstract class player {
         return monsterDamage - getArmor();
     }
 
-    public static int damageDone(monster m){
+    public static int damageDone(){
         double multiplyer;
         boolean playerMiss = false;
 
@@ -566,6 +561,6 @@ public abstract class player {
         gui.printOnGameSide("Here are your final stats");
         printPlayerItems();
         printStats();
-        System.exit(0);
+        saveFiles.save();
     }
 }

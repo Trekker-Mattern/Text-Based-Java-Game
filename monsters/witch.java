@@ -6,7 +6,7 @@ public class witch extends monster{
     public witch(){
         super.setName("Witch");
         super.setStrength(TrekkerMath.randomInt(5, 1));
-        super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.AREANUM + 10)));
+        super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.stageNum + 10)));
     }
     @Override
     public String attackString(){

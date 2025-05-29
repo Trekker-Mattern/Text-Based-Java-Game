@@ -7,7 +7,7 @@ public  class goblin extends monster {
     public goblin(){
         super.setName("Goblin");
         super.setStrength(TrekkerMath.randomInt(7, 1));
-        super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.AREANUM + 10)));
+        super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.stageNum + 10)));
         super.setSpeed(monsterCreater.fastMonsterSpeed());
     }
     @Override

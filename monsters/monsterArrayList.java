@@ -2,27 +2,15 @@ package monsters;
 
 import java.util.ArrayList;
 import util.TrekkerMath;
+import java.util.Arrays;
 import world.world;
 
 public abstract class monsterArrayList {
 
-    public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<Class<? extends monster>>();
-    public static ArrayList<Class<? extends boss>> bossSubclasses = new ArrayList<Class<? extends boss>>();
+    public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<Class<? extends monster>>(Arrays.asList(skeleton.class, slime.class, witch.class, goblin.class, snake.class, mimic.class, giant.class));
+    public static ArrayList<Class<? extends boss>> bossSubclasses = new ArrayList<Class<? extends boss>>(Arrays.asList(cthulhu.class, hydra.class));
     
     public static void createMonsterList(){
-        //Add the classes to the ArrayList on Creation
-        monsterSubclasses.add(skeleton.class);
-        monsterSubclasses.add(slime.class);
-        monsterSubclasses.add(witch.class);
-        monsterSubclasses.add(goblin.class);
-        monsterSubclasses.add(snake.class);
-        monsterSubclasses.add(mimic.class);
-        
-
-
-        //Add boss Classes
-        bossSubclasses.add(cthulhu.class);
-        bossSubclasses.add(hydra.class);
     }
 
 

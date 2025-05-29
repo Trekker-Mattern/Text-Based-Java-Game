@@ -7,8 +7,8 @@ import util.TrekkerMath;
 public class cthulhu extends boss {
     public cthulhu(){
         setName("Cthulhu");
-        setStrength(TrekkerMath.randomInt(20, 7));
-        setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (player.playerLevel + world.AREANUM + 4)));
+        setStrength(TrekkerMath.randomInt(20, 7) + world.stageNum / 2);
+        setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (world.stageNum + player.playerLevel)));
     }
     public void attackEffects(int damageDoneToPlayer){
         this.setHealth(this.getHealth() + damageDoneToPlayer/3);

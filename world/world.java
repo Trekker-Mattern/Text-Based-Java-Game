@@ -105,10 +105,12 @@ public abstract class world {
 
     private static void openDungeon(){
         if(stageNum % 5 == 0 && AREANUM < areas.length - 1){
-            AREANUM++;
-            monsterArrayList.updateMonsterArrayListOnAreaUpdate();
+            changeArea();
         }
+
+
         gui.printOnGameSide("You arrive in " + areas[AREANUM] + " on stage "  + stageNum);
+
         //create monster
         if(stageNum % 10 == 9){
             boss b = monsterCreater.createBoss();
@@ -130,14 +132,16 @@ public abstract class world {
 
     public static void monsterMenu(monster m){
         while(m.getHealth() > 0){
-            gui.newlOnGameSide();;
+            gui.newlOnGameSide();
             gui.printOnGameSide("What would you like to do?");
+            gui.printOnGameSide("You can - Fight, Use an item, or Quit");
             String h = gui.getInput(); 
             if(response.quit(h)){gui.quit();}
 
             if(response.respondFight(h)){
                 player.fightMonster(m);
                 if(m.getHealth() <= 0){
+                    gui.newlOnGameSide();
                     gui.printOnGameSide("You defeated " + m.getName() + "!");
                     int coinGain = (int)((player.luck * m.getLevel()) + 4);
                     int xpGain = (int)((player.luck * m.getLevel())*4);
@@ -184,4 +188,10 @@ public abstract class world {
             }
         }
     }
+
+    private static void changeArea(){
+        AREANUM++;
+        monsterArrayList.updateMonsterArrayListOnAreaUpdate();
+    }
+
 }
