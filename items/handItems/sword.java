@@ -17,7 +17,6 @@ public class sword extends holdables {
         setPrice(30);
         setName("Sword");
         setDMGType("Strength");
-        itemType = "Sharp";
         
     }
     public sword(int qual){
@@ -27,7 +26,6 @@ public class sword extends holdables {
         setPrice(30);
         setName("Sword");
         setDMGType("Strength");
-        itemType = "Sharp";
 
     }
     public int getStatIncrease(){

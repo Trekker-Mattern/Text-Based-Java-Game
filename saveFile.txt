@@ -1,12 +1,12 @@
-Player-Name: debug
-Player-Current-Health: 38
-Player-Maximum-Health: 40
-Player-Strength: 9
-Player-Agility: 6
-Player-Intelligence: 2
-Player-XP-to-Level-Up: 486
-Player-XP: 296
-Player-Inventory: Helmet-1,Chestplate-2-true,Sword-6-true,Clogs-5-true,Dagger-2-true,Spartan Helmet-2-true,
-World-StageNum: 10
-World-AreaNum: 2
-PlayerCoins: 304
+Player-Name: fhsdf
+Player-Current-Health: 14
+Player-Maximum-Health: 14
+Player-Strength: 1
+Player-Agility: 9
+Player-Intelligence: 8
+Player-XP-to-Level-Up: 100
+Player-XP: 0
+Player-Inventory: Leather Pants-5-true,Wand-1-true,Clogs-6,Spartan Helmet-1,
+World-StageNum: 0
+World-AreaNum: 0
+PlayerCoins: 32

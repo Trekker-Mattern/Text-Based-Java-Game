@@ -54,6 +54,7 @@ public abstract class shopitems {
         allItemsList.put("Club", club.class);
         allItemsList.put("Leather Pants",leatherPants.class);
         allItemsList.put("Clogs",clogs.class);
+        allItemsList.put("Hydra Head",hydraHead.class);
     }
 
     public static void printShopItems(){
@@ -117,10 +118,12 @@ public abstract class shopitems {
 
         player.BankBalance -= toAdd.getPrice();
     }
+    
     public static item[] getShopArray(){
         return itemsInShop;
     }
-        public static item getRandomItem(){
+
+    public static item getRandomItem(){
         int h = TrekkerMath.randomInt(0,1);
         if(h == 0){
             Class<? extends equipables> itemType = equipableShopItems.get((int)(Math.random() * equipableShopItems.size()));

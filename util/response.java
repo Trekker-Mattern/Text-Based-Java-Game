@@ -73,5 +73,11 @@ public class response{
         if(response.contains("left")){return true;}
         return false;
     }
+
+    public static boolean respondSell(String response){
+        response = response.toLowerCase();
+        if(response.contains("sell")){return true;}
+        return false;
+    }
 }
 

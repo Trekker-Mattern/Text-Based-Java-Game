@@ -101,7 +101,8 @@ public class rooms {
         case 2:
         {
         //healing fountain?
-        gui.printOnGameSide("You walk into a room with a fountain in the center. The room is too dark to see what color the water is");
+        gui.printOnGameSide("You walk into a room with a fountain in the center.");
+        gui.printOnGameSide("The room is too dark to see what color the water is");
 
         gui.printOnGameSide("Take a drink?");
         String userResp = gui.getInput();
@@ -163,7 +164,8 @@ public class rooms {
                 if(response.respondYes(gui.getInput())){
                     gui.printOnGameSide("You enter the floating spiral, slowly glancing around at the room that now surrounds you.");
 
-                    i = TrekkerMath.randomInt(3, -3);
+                    i = TrekkerMath.randomInt(6, 0);
+                    i = i - 3;
                     world.stageNum+=i;
                     if(i > 0){
                         gui.printOnGameSide("The room seems unfamilair but you get the sense that you've made progress.");

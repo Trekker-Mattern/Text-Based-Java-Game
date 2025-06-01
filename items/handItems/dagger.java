@@ -19,7 +19,6 @@ public class dagger extends holdables{
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");
-        itemType = "Sharp";
     }
     public dagger(int qual){
         setQuality(qual);
@@ -30,7 +29,6 @@ public class dagger extends holdables{
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");
-        itemType = "Sharp";
     }
 
     public int getStatIncrease(){

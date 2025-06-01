@@ -4,7 +4,7 @@ import items.equipables;
 
 public abstract class holdables extends equipables{
     protected String DMGtype;
-    protected String itemType;
+
 
     @Override
     public void onEquip() {}
@@ -41,11 +41,5 @@ public abstract class holdables extends equipables{
         return DMGtype;
     }
 
-    protected void setItemType(String s){
-        itemType = s;
-    }
-    public String getItemType(){
-        return itemType;
-    }
-    
+
 }

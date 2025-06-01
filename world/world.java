@@ -67,7 +67,7 @@ public abstract class world {
             
             if(player.BankBalance >= shopitems.getShopArray()[UserResp-1].getPrice()){
                 shopitems.buyItem(UserResp);
-                gui.newlOnGameSide();;
+                gui.newlOnGameSide();
                 gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
             }
             else{
@@ -89,7 +89,7 @@ public abstract class world {
 
             if(player.BankBalance >= shop[numUserIsBuying - 1].getPrice()){
                 shopitems.buyItem(numUserIsBuying);
-                gui.newlOnGameSide();;
+                gui.newlOnGameSide();
                 gui.printOnGameSide("You successfully bought " + shop[numUserIsBuying - 1] + " for " + shop[numUserIsBuying - 1].getPrice() + " shmeckles.");
             }
             else{
@@ -97,10 +97,20 @@ public abstract class world {
                 menu();
             }            
         }
-            //no dont buy shit recurse back to display menu()
-            if(response.respondNo(userInput)){
-                menu();
+
+        //Selling menu
+        if(response.respondSell(userInput)){
+            player.printPlayerItems();
+            gui.printOnGameSide("Which item would you like to sell?");
+            int itemSell = Integer.parseInt(gui.getInput());
+            if(player.inventory.get(itemSell) instanceof equipables && ((equipables)player.inventory.get(itemSell)).isEquipped()){
+
             }
+        }
+        //no dont buy shit recurse back to display menu()
+        if(response.respondNo(userInput)){
+            menu();
+        }
     }
 
     private static void openDungeon(){
@@ -134,7 +144,7 @@ public abstract class world {
         while(m.getHealth() > 0){
             gui.newlOnGameSide();
             gui.printOnGameSide("What would you like to do?");
-            gui.printOnGameSide("You can - Fight, Use an item, or Quit");
+            gui.printOnGameSide("Fight, Use an item, or Quit");
             String h = gui.getInput(); 
             if(response.quit(h)){gui.quit();}
 
@@ -148,6 +158,7 @@ public abstract class world {
                     gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
                     player.BankBalance += coinGain;
                     player.gainXP(xpGain);
+                    m.onMonsterDeath();
                     stageNum++;
                 }
                 else{

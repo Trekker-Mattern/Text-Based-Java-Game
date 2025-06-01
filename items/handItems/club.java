@@ -14,7 +14,6 @@ public class club extends holdables {
         setPrice(30);
         setName("Club");
         setDMGType("Strength");
-        itemType = "Blunt";
         
     }
     public club(int qual){
@@ -24,7 +23,7 @@ public class club extends holdables {
         setPrice(30);
         setName("Club");
         setDMGType("Strength");
-        itemType = "Blunt";
+
     }
     public int getStatIncrease(){
         return increase;

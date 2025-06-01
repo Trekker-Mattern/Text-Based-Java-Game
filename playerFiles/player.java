@@ -449,7 +449,8 @@ public abstract class player {
 
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
         if(monsterDamage < getArmor()){
-            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString() + " but your strong armor repels their attack");
+            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString());
+            gui.printOnGameSide(" but your strong armor repels their attack");
             return 0;
         }
         if(monsterDamage >= health){
@@ -485,30 +486,35 @@ public abstract class player {
                 gui.printOnGameSide("You completely miss on your attack hitting nothing but air.");
             }
         }
-
-
-        String LHandType;
-        String RHandType;
         
+
+        ///////////////////////
+        /// 
+        /// New System for this this currently kind of sucks
+        /// 
+        /// ////////////////
+
         int LHandDMG;
         int RHandDMG;
 
+        String LHandDMGType;
+        String RHandDMGType;
 
         if(LHand == null){
-            LHandType = "Blunt";
+            LHandDMGType = "Blunt";
             LHandDMG = 0;
         }
         else{
-            LHandType = RHand.getItemType();
+            LHandDMGType = RHand.getDMGType();
             LHandDMG = getDMGCalcForWeapon(LHand);
         }
         if(RHand == null){
-            RHandType = "Blunt";
+            RHandDMGType = "Blunt";
             RHandDMG = 0;
         }
         else{
             RHandDMG = getDMGCalcForWeapon(RHand);
-            RHandType = RHand.getItemType();
+            RHandDMGType = RHand.getDMGType();
         }
 
         if(LHand == null && RHand == null){
@@ -516,7 +522,7 @@ public abstract class player {
         }
 
 
-        if(LHandType == RHandType){
+        if(LHandDMGType == RHandDMGType){
             int dmg = LHandDMG + RHandDMG;
             dmg *= 1.35;
             dmg *= multiplyer;

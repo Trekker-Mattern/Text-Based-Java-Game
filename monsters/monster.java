@@ -76,7 +76,7 @@ public class monster {
         return "slashes you for";
     }
     public void attackEffects(int x){}
-
+    public void onMonsterDeath(){}
 
     public void printMonster(){
         gui.printOnGameSide(mName + " level " + mLevel + " has " + mHealth + " HP.");

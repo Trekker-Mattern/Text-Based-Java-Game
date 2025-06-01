@@ -16,7 +16,6 @@ public class wand extends holdables {
         setPrice(10);
         setName("Wand");
         setDMGType("Intelligence");
-        itemType = "Magic";
     }
     public wand(int qual){
         setQuality(qual);
@@ -25,7 +24,7 @@ public class wand extends holdables {
         setPrice(10);
         setName("Wand");
         setDMGType("Intelligence");
-        itemType = "Magic";
+
 
          
     }
