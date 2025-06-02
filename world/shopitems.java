@@ -118,6 +118,13 @@ public abstract class shopitems {
 
         player.BankBalance -= toAdd.getPrice();
     }
+    public static void buyItem(item i){
+    
+        player.addItemToPlayer(i);
+        
+
+        player.BankBalance -= i.getPrice();
+    }
     
     public static item[] getShopArray(){
         return itemsInShop;

@@ -10,6 +10,7 @@ public class rooms {
 
     public static void getRandomRoom(){
     int roomNum = TrekkerMath.randomInt(3, 0);
+    System.out.println(roomNum);
     switch (roomNum){
         case 0:{
             
@@ -107,7 +108,7 @@ public class rooms {
         gui.printOnGameSide("Take a drink?");
         String userResp = gui.getInput();
         if(response.respondYes(userResp)){
-            int i = TrekkerMath.randomInt(roomNum, 0);
+            int i = TrekkerMath.randomInt(2, 0);
             switch(i){
                 case 0:
                 gui.printOnGameSide("The water was crystal clear! You feel your wounds healing! Must've been a magic fountian!");
@@ -156,7 +157,8 @@ public class rooms {
             /// 
             /// /////////////////
 
-            int i = TrekkerMath.randomInt(0, 1);
+            int i = TrekkerMath.randomInt(1, 0);
+            System.out.println(i);
             if(i == 0){
                 gui.printOnGameSide("A portal sits in a mostly empty room, It shines with a green hue.");
                 gui.printOnGameSide("Enter?");
@@ -186,9 +188,12 @@ public class rooms {
 
                 if(response.respondYes(gui.getInput())){
                     gui.printOnGameSide("You enter the floating spiral, slowly glancing around at the room that now surrounds you.");
-                    
+                    int maxAreaDecrease;
+                    if(world.AREANUM < 3) {maxAreaDecrease = world.AREANUM;}
+                    else{maxAreaDecrease = 3;}
+                    i = TrekkerMath.randomInt(2*maxAreaDecrease, 0);
+                    i -= maxAreaDecrease;
 
-                    i = TrekkerMath.randomInt(3, -3);
                     world.AREANUM+=i;
                     if(i > 0){
                         gui.printOnGameSide("The scenery has changed considerably;");

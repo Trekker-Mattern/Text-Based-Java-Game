@@ -52,7 +52,6 @@ public class runTime
             shopitems.createShop();
             gui.updatePlayerSide();
             world.menu();
-            player.update();
         }
         
     }

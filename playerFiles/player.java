@@ -32,24 +32,24 @@ public abstract class player {
 
 
     public static String name;
-    public static int BankBalance = 100;
     //private static String race;
     public static int strength;
     public static int agility;
     public static int intelligence;
     public static int armor = 0;
     public static double luck = Math.random() * 4;
+    public static int BankBalance = (int)(5 * luck);
     public static int playerLevel;
     private static int maxHealth;
     public static int health;
-    private static int xpToLevelUp = 100;
+    private static int xpToLevelUp = 10;
     private static int xp = 0;
     public static boolean isBuff = false;
     public static String buffType;
     public static int buffLength;
     public static int currentBuffDuration;
 
-    private static final int totalMaxStartingSkills = 10;
+    private static final int totalMaxStartingSkills = 5;
 
 
 
@@ -65,10 +65,12 @@ public abstract class player {
         strength = pStrength;
         agility = pAgility;
         intelligence = pIntelligence;
+        maxHealth = (int)((double)(strength + 1) * (luck+1)) + 10;
+        health = maxHealth;
     }
     public static void allocateSkillPoints(){
         strength = (int)(Math.random() * totalMaxStartingSkills);
-        maxHealth = (int)((double)(strength + 1) * luck * 2.0) +1;
+        maxHealth = (int)((double)(strength + 1) * (luck+1)) + 10;
         health = maxHealth;
         intelligence = (int)(Math.random() * (totalMaxStartingSkills - strength));
         agility = (totalMaxStartingSkills - (strength + agility));

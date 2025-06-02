@@ -86,6 +86,7 @@ public abstract class saveFiles {
             fWriter.write("World-StageNum: " + world.stageNum + "\n");
             fWriter.write("World-AreaNum: " + world.AREANUM + "\n");
             fWriter.write("PlayerCoins: " + player.BankBalance + "\n");
+            fWriter.write("PlayerLuck: " + player.luck + "\n");
             fWriter.close();
             
         }
@@ -165,13 +166,12 @@ public abstract class saveFiles {
                                 
                 myReader.next();
                 stgNum = myReader.nextInt();
-                myReader.nextLine();
-                myReader.next();
+                goToNextReadableText(myReader);
                 areaNum = myReader.nextInt();
-                myReader.nextLine();
-                myReader.next();
+                goToNextReadableText(myReader);
                 player.BankBalance = myReader.nextInt();
-
+                goToNextReadableText(myReader);
+                player.luck = myReader.nextDouble();
 
                 world.AREANUM = areaNum;
                 world.stageNum = stgNum;

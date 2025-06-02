@@ -59,6 +59,7 @@ public abstract class world {
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
         String userInput = gui.getInput();
+        boolean itemPurchased = false;
                 
         try{
             int UserResp = Integer.parseInt(userInput);
@@ -69,11 +70,11 @@ public abstract class world {
                 shopitems.buyItem(UserResp);
                 gui.newlOnGameSide();
                 gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
+                itemPurchased = true;
             }
             else{
                 gui.printOnGameSide("You dont have enough money to buy that!");
                 gui.printOnGameSide("You only have " + player.BankBalance + " shmeckles.");
-                menu();
             }
         }
         catch(NumberFormatException ex){
@@ -84,17 +85,34 @@ public abstract class world {
             item[] shop = shopitems.getShopArray();
             gui.printOnGameSide("What Item Would you like to buy?");
             gui.printOnGameSide("Number ___");
-            int numUserIsBuying = Integer.parseInt(gui.getInput());
-            
+            try{
+                int numUserIsBuying = Integer.parseInt(gui.getInput());
+                
 
-            if(player.BankBalance >= shop[numUserIsBuying - 1].getPrice()){
-                shopitems.buyItem(numUserIsBuying);
-                gui.newlOnGameSide();
-                gui.printOnGameSide("You successfully bought " + shop[numUserIsBuying - 1] + " for " + shop[numUserIsBuying - 1].getPrice() + " shmeckles.");
+                if(player.BankBalance >= shop[numUserIsBuying - 1].getPrice()){
+                    shopitems.buyItem(numUserIsBuying);
+                    gui.newlOnGameSide();
+                    gui.printOnGameSide("You successfully bought " + shop[numUserIsBuying - 1] + " for " + shop[numUserIsBuying - 1].getPrice() + " shmeckles.");
+                    itemPurchased = true;
+                }
+                else{
+                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
+                }
             }
-            else{
-                gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
-                menu();
+            catch(NumberFormatException e){
+                for(item i : shopitems.getShopArray()){
+                    if(i.getItemName().toLowerCase() == userInput.toLowerCase()){
+                        if(player.BankBalance >= i.getPrice()){
+                            shopitems.buyItem(i);
+                            gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
+                            itemPurchased = true;
+                            break;
+                        }
+                        else{
+                            gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
+                        }
+                    }
+                }
             }            
         }
 
@@ -104,22 +122,43 @@ public abstract class world {
             gui.printOnGameSide("Which item would you like to sell?");
             int itemSell = Integer.parseInt(gui.getInput());
             if(player.inventory.get(itemSell) instanceof equipables && ((equipables)player.inventory.get(itemSell)).isEquipped()){
+                player.inventory.get(itemSell).Use();
+                
+            }
+            int sellPrice = (int)(player.inventory.get(itemSell).getPrice() * .75);
+            player.BankBalance += sellPrice;
+            gui.printOnGameSide("You sell " + player.inventory.get(itemSell).getItemName() + " for " + sellPrice + " shmeckles");
+            player.inventory.remove(player.inventory.get(itemSell));
+        }
 
+        ///////////
+        /// Check to see if user put name of item and buy accordingly
+        /// /////
+        for(item i : shopitems.getShopArray()){
+            if(i.getItemName().toLowerCase() == userInput.toLowerCase()){
+                if(player.BankBalance >= i.getPrice()){
+                    shopitems.buyItem(i);
+                    gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
+                    itemPurchased = true;
+                    break;
+                }
+                else{
+                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
+                }
             }
         }
         //no dont buy shit recurse back to display menu()
-        if(response.respondNo(userInput)){
-            menu();
+        if(response.respondNo(userInput)){}
+        if(itemPurchased){
+            shopitems.createShop();
         }
+
     }
 
     private static void openDungeon(){
         if(stageNum % 5 == 0 && AREANUM < areas.length - 1){
             changeArea();
         }
-
-
-        gui.printOnGameSide("You arrive in " + areas[AREANUM] + " on stage "  + stageNum);
 
         //create monster
         if(stageNum % 10 == 9){
@@ -128,8 +167,8 @@ public abstract class world {
             monsterMenu(b);
         }
         else{
-            int randNum = TrekkerMath.randomInt(5, 0);
-            if(randNum == 3){
+            int randNum = TrekkerMath.randomInt(2, 0);
+            if(randNum == 2){
                 rooms.getRandomRoom();
             }
             else{
@@ -138,6 +177,7 @@ public abstract class world {
                 monsterMenu(m);
             }
         }
+        player.update();
     }
 
     public static void monsterMenu(monster m){
@@ -203,6 +243,7 @@ public abstract class world {
     private static void changeArea(){
         AREANUM++;
         monsterArrayList.updateMonsterArrayListOnAreaUpdate();
+        gui.printOnGameSide("You notice the scenery changing. You step down into " + getArea());
     }
 
 }

@@ -10,6 +10,7 @@ import javax.swing.*;
 import items.equipables;
 import playerFiles.player;
 import util.saveFiles;
+import world.world;
 
 public class gui {
 
@@ -137,6 +138,7 @@ public class gui {
         topofInvPanel.removeAll();
 
         topofInvPanel.add(new JLabel("Name: " + player.getName() + "                     "));
+        topofInvPanel.add(new JLabel("Level: " + player.getPlayerLevel() + "                     "));
         topofInvPanel.add(new JLabel("Shmeckles: " + Integer.toString(player.BankBalance) + "                     "));
         topofInvPanel.add(new JLabel("XP: " + player.getXP() + "/" + player.getXpToLevelUp()));
 
@@ -154,6 +156,8 @@ public class gui {
         JLabel LeftHand; 
         JLabel RightHand; 
         JLabel Armor = new JLabel("Total Armor Value: " + player.getArmor());
+        JLabel WorldName = new JLabel("Area: " + world.getArea());
+        JLabel StageNum = new JLabel("Room Number: " + world.stageNum);
 
         helmet = createInventoryLabel("Helmet", player.helm); 
         chestplate = createInventoryLabel("Chestplate", player.chestplate);
@@ -176,6 +180,9 @@ public class gui {
         invPanel.add(RightHand);
         invPanel.add(new JLabel(" "));
         invPanel.add(Armor);
+        invPanel.add(new JLabel(" "));
+        invPanel.add(WorldName);
+        invPanel.add(StageNum);
 
         giveLabelsColorAndShape(invPanel, 18, Color.WHITE);
 
