@@ -39,15 +39,13 @@ public abstract class player {
     public static int armor = 0;
     public static double luck = Math.random() * 4;
     public static int BankBalance = (int)(5 * luck);
-    public static int playerLevel;
+    public static int playerLevel = 5;
     private static int maxHealth;
     public static int health;
     private static int xpToLevelUp = 10;
     private static int xp = 0;
     public static boolean isBuff = false;
-    public static String buffType;
-    public static int buffLength;
-    public static int currentBuffDuration;
+    public static ArrayList<triple<String, Integer, Integer>> buffs = new ArrayList<>();
 
     private static final int totalMaxStartingSkills = 5;
 
@@ -60,6 +58,8 @@ public abstract class player {
             updateBuffs();
         }
     }
+
+
     //Allocating Skill Points
     public static void allocateSkillPoints(int pStrength, int pAgility, int pIntelligence){
         strength = pStrength;
@@ -87,7 +87,92 @@ public abstract class player {
     }
 
 
-    //Health Getter
+    
+    
+
+
+    //Strength Getter
+    public static int getStrength(){
+        int val = strength;
+        for(triple<String, Integer, Integer> b : buffs){
+            if(b.first == "Strength"){
+                val += b.third;
+            }
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Strength"){
+                val += e.buffValue;
+            }
+        }
+        
+        if(checkForArmorSet() && helm.getSetBuff().first == "Strength"){
+            val += helm.getSetBuff().second;
+        }
+        return val;
+    }
+
+    //Agility Getter
+    public static int getAgility(){
+        int val = agility;
+        for(triple<String, Integer, Integer> b : buffs){
+            if(b.first == "Agility"){
+                val += b.third;
+            }
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Agility"){
+                val += e.buffValue;
+            }
+        }
+        if(checkForArmorSet() && helm.getSetBuff().first == "Agility"){
+            val += helm.getSetBuff().second;
+        }
+        return val;
+    }
+
+    //Intelligence Getter
+    public static int getIntelligence(){
+        int val = intelligence;
+        for(triple<String, Integer, Integer> b : buffs){
+            if(b.first == "Intelligence"){
+                val += b.third;
+            }
+        }
+
+        for(equipables e : equippedItems){
+            if(e.buffType == "Intelligence"){
+                val += e.buffValue;
+            }
+        }
+        if(checkForArmorSet() && helm.getSetBuff().first == "Intelligence"){
+            val += helm.getSetBuff().second;
+        }
+        return val;
+    }
+
+    public static int getArmor(){
+        int val = armor;
+        for(triple<String, Integer, Integer> b : buffs){
+            if(b.first == "Armor"){
+                val += b.third;
+            }
+        }
+
+        for(equipables e : equippedItems){
+            if(!(e instanceof holdables)){
+                val += e.getArmorVal();
+            }
+        }
+        if(checkForArmorSet() && helm.getSetBuff().first == "Armor"){
+            val += helm.getSetBuff().second;
+        }
+        return val;
+    }
+
+
+    //Getters and Setters!!
     public static int getMaxHealth(){
         return maxHealth;
     }
@@ -106,70 +191,6 @@ public abstract class player {
         else{health = maxHealth;}
         gui.updatePlayerSide();
     }
-
-
-
-    //Strength Getter
-    public static int getStrength(){
-        int val = strength;
-        if(isBuff && buffType == "Strength"){
-            val += 2;
-        }
-
-        for(equipables e : equippedItems){
-            if(e.buffType == "Strength"){
-                val += e.buffValue;
-            }
-        }
-        return val;
-    }
-
-    //Agility Getter
-    public static int getAgility(){
-        int val = agility;
-        if(isBuff && buffType == "Agility"){
-            val += 2;
-        }
-
-        for(equipables e : equippedItems){
-            if(e.buffType == "Agility"){
-                val += e.buffValue;
-            }
-        }
-        return val;
-    }
-
-    //Intelligence Getter
-    public static int getIntelligence(){
-        int val = intelligence;
-        if(isBuff && buffType == "Intelligence"){
-            val += 2;
-        }
-
-        for(equipables e : equippedItems){
-            if(e.buffType == "Intelligence"){
-                val += e.buffValue;
-            }
-        }
-        return val;
-    }
-
-    public static int getArmor(){
-        int val = armor;
-        if(isBuff && buffType == "Armor"){
-            val += 2;
-        }
-
-        for(equipables e : equippedItems){
-            if(!(e instanceof holdables)){
-                val += e.getArmorVal();
-            }
-        }
-        return val;
-    }
-
-
-    //FOR FILE READING -- Finding Xp levels
     public static int getXpToLevelUp(){
         return xpToLevelUp;
     }
@@ -182,8 +203,6 @@ public abstract class player {
     public static void setXP(int x){
         xp = x;
     }
-
-    //Bank Balance
     public int getBankBalance(){
         return BankBalance;
     }
@@ -193,6 +212,16 @@ public abstract class player {
     public static String getName(){
         return name;
     }
+
+
+
+
+
+    ///////////////////////////
+    /// 
+    /// ADD Items To Player!!
+    /// 
+    /// ////////////////
     public static void addItemToPlayer(item i){
         inventory.add(i);
         if(i.isConsumable()){
@@ -213,131 +242,21 @@ public abstract class player {
         }
     }
 
-
-    public static void updateBuffs(){
-        if(name.equals("debug")){
-            gui.printOnGameSide(buffType);
-            gui.printOnGameSide(Integer.toString(buffLength));
-            gui.printOnGameSide(Integer.toString(currentBuffDuration));
-            gui.printOnGameSide(Boolean.toString(isBuff));
-        }
-        currentBuffDuration++;
-        if(currentBuffDuration >= buffLength){
-            deapplyBuff(buffType);
-            buffType = null;
-            buffLength = 0;
-            currentBuffDuration = 0;
-            isBuff = false;
-        }
-    }
-    public static void deapplyBuff(String bType){
-        isBuff = false;
-        buffType = null;
-    }
-
-    public static void applyBuff(String bType, int bLength){
-        buffLength = bLength;
-        buffType = bType;
-        currentBuffDuration = 0;
-        if(isBuff == false){
-            isBuff = true;
+    public static void askWhichHandToEquipTo(holdables itemToSwap){
+        
+        gui.printOnGameSide("Which hand would you like to switch?");
+        String handToPick = gui.getInput();
+        if(response.Left(handToPick)){
+            LHand.Use();
+            LHand = itemToSwap;
         }
         else{
-            gui.printOnGameSide("Your prayers have failed, another god favors you already!");
+            RHand.Use();
+            RHand = itemToSwap;
         }
-    }
-    //Long ass function for asking and allocating skill points
-    public static void playerPointAllocation(){
-
-        int stpts = 0;
-        int aglpts = 0;
-        int intpts = 0;
-        //boolean firstRunthrough;
-
-
-
-
-        int totalpts = 0; //points spent
-        while(totalpts < 10){
-            
-            gui.printOnGameSide("How many points would you like to allocate to strength?");
-            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
-                
-            int temp = Integer.parseInt(gui.getInput());
-            if(temp <= (10-totalpts)){
-                stpts += temp;
-                totalpts += temp;
-                gui.printOnGameSide("You allocate " + stpts + " to strength!");
-            }
-            else{
-                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
-            }
-
-            gui.printOnGameSide("How many points would you like to allocate to agility?");
-            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
-            temp = Integer.parseInt(gui.getInput());
-            if(temp <= (10 - totalpts)){
-                aglpts += temp;
-                totalpts += temp;
-                gui.printOnGameSide("You allocate " + aglpts + " to agility!");
-            }
-            else{
-                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
-            }
-            gui.printOnGameSide("How many points would you like to allocate to intelligence?");
-            gui.printOnGameSide("You have " + (10-totalpts) + " left to spend");
-            temp = Integer.parseInt(gui.getInput());
-            if(temp <= (10 - totalpts)){
-                intpts += temp;
-                totalpts += temp;
-                gui.printOnGameSide("You allocate " + intpts + " to intelligence!");
-            }
-            else{
-                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
-            }
-
-            if(totalpts < 10){
-                int r = 0;
-                //gui.printOnGameSide("\n You have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                String userResponse = gui.getInput();
-                while(r == 0){
-                    gui.printOnGameSide("\nYou have " + (10-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                    userResponse = gui.getInput();
-                    if(response.respondYes(userResponse)){
-                        r = 1;
-                        break;
-                        
-
-                    }
-                    else if(response.respondNo(userResponse)){
-                        r = 2;
-                        break;
-                    }
-                    
-                }
-                if(r == 2){
-                    break;
-                }
-            }
-
-        }
-        
-        allocateSkillPoints(stpts, aglpts, intpts);
         gui.updatePlayerSide();
- 
-    }
 
-    public static int getPlayerLevel(){
-        return playerLevel;
     }
-    public static void gainXP(int exp){
-        xp += exp;
-        if(xp > xpToLevelUp){
-            playerLevel++;
-            levelPrompt();
-        }
-    }
-
 
     public static void printPlayerItems(){
         int printingNum = 1;
@@ -351,9 +270,128 @@ public abstract class player {
             }
             printingNum++;
         }
-        
-
     }
+
+    private static boolean checkForArmorSet(){
+        String setName = helm.getEquipmentSetName();
+        for(equipables e : equippedItems){
+            if(!(e instanceof holdables)){
+                if(setName != e.getEquipmentSetName()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //////////////////////////
+    /// 
+    /// Buffs
+    /// 
+    //////////////////////////
+
+    public static void updateBuffs(){
+
+        for(int i = 0; i < buffs.size(); i++){
+            buffs.get(i).second--;
+            if(buffs.get(i).second == 0){
+                buffs.remove(i);
+                i--;
+            }
+        }
+        if(buffs.isEmpty()){
+            isBuff = false;
+        }
+    }
+    public static void applyBuff(String bType, int bLength, int bAmount){
+
+        buffs.add(new triple<String,Integer,Integer>(bType, bLength, bAmount));
+
+        if(isBuff == false){
+            isBuff = true;
+        }
+    }
+
+
+    ///////////////////////////////////////////////////////////
+    //Long ass function for asking and allocating skill points
+    ///////////////////////////////////////////////////////////
+
+    public static void playerPointAllocation(){
+
+        int stpts = 0;
+        int aglpts = 0;
+        int intpts = 0;
+
+        int totalpts = 0; //points spent
+        while(totalpts < totalMaxStartingSkills){
+            
+            gui.printOnGameSide("How many points would you like to allocate to strength?");
+            gui.printOnGameSide("You have " + (totalMaxStartingSkills-totalpts) + " left to spend");
+                
+            int temp = Integer.parseInt(gui.getInput());
+            if(temp <= (totalMaxStartingSkills-totalpts)){
+                stpts += temp;
+                totalpts += temp;
+                gui.printOnGameSide("You allocate " + stpts + " to strength!");
+            }
+            else{
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (totalMaxStartingSkills - totalpts));
+            }
+
+            gui.printOnGameSide("How many points would you like to allocate to agility?");
+            gui.printOnGameSide("You have " + (totalMaxStartingSkills-totalpts) + " left to spend");
+            temp = Integer.parseInt(gui.getInput());
+            if(temp <= (totalMaxStartingSkills - totalpts)){
+                aglpts += temp;
+                totalpts += temp;
+                gui.printOnGameSide("You allocate " + aglpts + " to agility!");
+            }
+            else{
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (totalMaxStartingSkills - totalpts));
+            }
+            gui.printOnGameSide("How many points would you like to allocate to intelligence?");
+            gui.printOnGameSide("You have " + (totalMaxStartingSkills-totalpts) + " left to spend");
+            temp = Integer.parseInt(gui.getInput());
+            if(temp <= (totalMaxStartingSkills - totalpts)){
+                intpts += temp;
+                totalpts += temp;
+                gui.printOnGameSide("You allocate " + intpts + " to intelligence!");
+            }
+            else{
+                gui.printOnGameSide("You silly goose you don't have " + temp + " points to spend you only have " + (10 - totalpts));
+            }
+
+            if(totalpts < totalMaxStartingSkills){
+                int r = 0;
+                String userResponse = gui.getInput();
+                while(r == 0){
+                    gui.printOnGameSide("\nYou have " + (totalMaxStartingSkills-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
+                    userResponse = gui.getInput();
+                    if(response.respondYes(userResponse)){
+                        r = 1;
+                        break;
+                    }
+                    else if(response.respondNo(userResponse)){
+                        r = 2;
+                        break;
+                    }
+                }
+                if(r == 2){
+                    break;
+                }
+            }
+
+        }
+        
+        allocateSkillPoints(stpts, aglpts, intpts);
+        gui.updatePlayerSide();
+    }
+
+
+
+
+    
 
 
     ///////////////////////////////////////////////////
@@ -394,43 +432,9 @@ public abstract class player {
         
     }
 
-    private static void levelPrompt(){
-        if(xp > xpToLevelUp){
-            gui.printOnGameSide("Which stat would you like to level up?");
-            gui.printOnGameSide("Your options are, strength, agility, intelligence, or health");
-            
-            String temp = gui.getInput();
-            try {
-                int num = Integer.parseInt(temp) - 1;
-                if(num == 1){temp = "strength";}
-                else if(num == 2){temp = "agility";}
-                else if(num == 3){temp = "intelligence";}
-                else if(num == 4){temp = "health";}
-                else{temp = "health";}
-            } catch (NumberFormatException ex) {}
-            if(temp.toLowerCase().contains("strength")){
-                strength += 1;
-            }
-            else if(temp.toLowerCase().contains("agility")){
-                agility += 1;
-            }
-            else if(temp.toLowerCase().contains("intelligence")){
-                intelligence += 1;
-            }
-            else {
-                maxHealth += 10;
-                health += (int)(((double)health/maxHealth)*10);
-                temp = "health";
-            }
-            xp -= xpToLevelUp;
-            xpToLevelUp *= 1.375;
-            gui.printOnGameSide("You level up " + temp);
-            gui.printOnGameSide("Your stats are now ");
-            printStats();
-            levelPrompt();
-        }
-    }
-
+    /////////////////////////////
+    ///  Damage!
+    /// ////////////////////////
 
     private static int damageTaken(monster m){
         int monsterDamage;
@@ -547,21 +551,56 @@ public abstract class player {
         }
     }
 
-    public static void askWhichHandToEquipTo(holdables itemToSwap){
-        
-        gui.printOnGameSide("Which hand would you like to switch?");
-        String handToPick = gui.getInput();
-        if(response.Left(handToPick)){
-            LHand.Use();
-            LHand = itemToSwap;
-        }
-        else{
-            RHand.Use();
-            RHand = itemToSwap;
-        }
-        gui.updatePlayerSide();
 
+    //////////////////////
+    /// Levels
+    /// //////////////////
+    private static void levelPrompt(){
+        if(xp > xpToLevelUp){
+            gui.printOnGameSide("Which stat would you like to level up?");
+            gui.printOnGameSide("Your options are, strength, agility, intelligence, or health");
+            
+            String temp = gui.getInput();
+            try {
+                int num = Integer.parseInt(temp) - 1;
+                if(num == 1){temp = "strength";}
+                else if(num == 2){temp = "agility";}
+                else if(num == 3){temp = "intelligence";}
+                else if(num == 4){temp = "health";}
+                else{temp = "health";}
+            } catch (NumberFormatException ex) {}
+            if(temp.toLowerCase().contains("strength")){
+                strength += 1;
+            }
+            else if(temp.toLowerCase().contains("agility")){
+                agility += 1;
+            }
+            else if(temp.toLowerCase().contains("intelligence")){
+                intelligence += 1;
+            }
+            else {
+                maxHealth += 10;
+                health += (int)(((double)health/maxHealth)*10);
+                temp = "health";
+            }
+            xp -= xpToLevelUp;
+            xpToLevelUp *= 1.375;
+            gui.printOnGameSide("You level up " + temp);
+            gui.printOnGameSide("Your stats are now ");
+            printStats();
+        }
     }
+    public static int getPlayerLevel(){
+        return playerLevel;
+    }
+    public static void gainXP(int exp){
+        xp += exp;
+        while(xp >= xpToLevelUp){
+            playerLevel++;
+            levelPrompt();
+        }
+    }
+
 
     public static void death(monster m, int monsterDamage){
         health = 0;

@@ -4,20 +4,22 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import items.genericItems.headArmor;
+import util.pair;
 
 public class spartanHelmet extends headArmor {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Heavy Armor", "Helmet", "Head Armor", "Bronze", "Strength", "Metal"));
     public spartanHelmet(){
         armorAdd = (int)(quality * 1.8);
-        setPrice(40);
+        setPrice(25);
         setName("Spartan Helmet");
+        equipmentSetName = "Spartan Set";
         buffType = "Strength";
-        buffValue = 3;
+        buffValue = 1;
     }
     public spartanHelmet(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 1.8);
-        setPrice(40);
+        setPrice(25);
         setName("Spartan Helmet");
         buffType = "Strength";
         buffValue = 3;
@@ -25,6 +27,9 @@ public class spartanHelmet extends headArmor {
     protected Set<String> getTagsSet() {
 
         return tags;
+    }
+    public pair<String, Integer> getSetBuff() {
+        return new pair<String,Integer>("Strength", 5);
     }
     
 }

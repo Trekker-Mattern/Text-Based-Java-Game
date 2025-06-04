@@ -35,11 +35,18 @@ public abstract class shopitems {
         consumableShopItems.add(threeCourseMeal.class);
         equipableShopItems.add(wand.class);
         equipableShopItems.add(helmet.class);
-        equipableShopItems.add(spartanHelmet.class);
         consumableShopItems.add(bread.class);
         equipableShopItems.add(club.class);
         equipableShopItems.add(leatherPants.class);
         equipableShopItems.add(clogs.class);
+        consumableShopItems.add(intelligencePot.class);
+        consumableShopItems.add(strengthPot.class);
+        consumableShopItems.add(agilityPot.class);
+        equipableShopItems.add(spartanHelmet.class);
+        equipableShopItems.add(spartanBoots.class);
+        equipableShopItems.add(spartanSkirt.class);
+        equipableShopItems.add(spartanBreastplate.class);
+
 
 
         allItemsList.put("Fish",fish.class);
@@ -54,7 +61,14 @@ public abstract class shopitems {
         allItemsList.put("Club", club.class);
         allItemsList.put("Leather Pants",leatherPants.class);
         allItemsList.put("Clogs",clogs.class);
+        allItemsList.put("Agility Potion", agilityPot.class);
+        allItemsList.put("Strength Potion", strengthPot.class);
+        allItemsList.put("Intelligence Potion", intelligencePot.class);
         allItemsList.put("Hydra Head",hydraHead.class);
+        allItemsList.put("Sandals",spartanBoots.class);
+        allItemsList.put("Spartan ",spartanSkirt.class);
+        allItemsList.put("Spartan Breastplate",spartanBreastplate.class);
+
     }
 
     public static void printShopItems(){

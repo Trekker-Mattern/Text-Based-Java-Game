@@ -1,14 +1,14 @@
 package monsters;
 import GUI.gui;
 import playerFiles.*;
-import world.world;
 import util.TrekkerMath;
 
 public class cthulhu extends boss {
     public cthulhu(){
         setName("Cthulhu");
-        setStrength(TrekkerMath.randomInt(20, 7) + world.stageNum / 2);
-        setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (world.stageNum + player.playerLevel)));
+        setStrength(TrekkerMath.randomInt(20, 7));
+        setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (player.playerLevel)));
+        setArmour((int)(TrekkerMath.randomDouble(3, 2.5)));
     }
     public void attackEffects(int damageDoneToPlayer){
         this.setHealth(this.getHealth() + damageDoneToPlayer/3);

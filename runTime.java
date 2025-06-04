@@ -32,7 +32,7 @@ public class runTime
             String Response = gui.getInput();
             if(response.respondYes(Response))
             {
-                gui.printOnGameSide("You have 10 points to spend on 4 different attributes! Choose wisely.");
+                gui.printOnGameSide("You have 5 points to spend on 3 different attributes! Choose wisely.");
                 player.playerPointAllocation();
 
             }

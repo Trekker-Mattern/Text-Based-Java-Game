@@ -75,6 +75,7 @@ public abstract class saveFiles {
             }
             
             fWriter.write("Player-Name: " + player.getName() + "\n");
+            fWriter.write("Player-Level: " + player.playerLevel + "\n");
             fWriter.write("Player-Current-Health: " + player.getHealth() + "\n");
             fWriter.write("Player-Maximum-Health: " + player.getMaxHealth() + "\n");
             fWriter.write("Player-Strength: " + player.strength + "\n");
@@ -99,7 +100,7 @@ public abstract class saveFiles {
         reader.next();
     }
     public static void readPlayerSave(File file){
-        int chealth, maxhealth, str, ag, inte, xptlu, xp, stgNum, areaNum;
+        int pLvl, chealth, maxhealth, str, ag, inte, xptlu, xp, stgNum, areaNum;
             String nameS, invListString;
             try{
                 Scanner myReader = new Scanner(file);
@@ -107,6 +108,8 @@ public abstract class saveFiles {
                 nameS = myReader.nextLine();
                 nameS = nameS.substring(1);
                 myReader.next();
+                pLvl = myReader.nextInt();
+                saveFiles.goToNextReadableText(myReader);
                 chealth = myReader.nextInt();
                 saveFiles.goToNextReadableText(myReader);
                 maxhealth = myReader.nextInt();
@@ -175,6 +178,7 @@ public abstract class saveFiles {
 
                 world.AREANUM = areaNum;
                 world.stageNum = stgNum;
+                player.playerLevel = pLvl;
 
                 myReader.close();
                 return;

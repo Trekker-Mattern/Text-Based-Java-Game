@@ -5,6 +5,7 @@ import java.util.Set;
 
 import GUI.gui;
 import playerFiles.player;
+import util.pair;
 
 public abstract class equipables extends item {
     protected boolean equipped = false;
@@ -12,13 +13,17 @@ public abstract class equipables extends item {
     protected int quality;
     public String buffType;
     public int buffValue;
+    protected String equipmentSetName;
 
-
+    
+    
     public equipables(){
         setIsConsumable(false);
         quality = (int)((Math.random() * 6) +1);
         setQuality(quality);
     }
+    
+    public pair<String,Integer> getSetBuff(){return new pair<String,Integer>(null, null);}
 
     public void setQuality(int x){
         quality = x;
@@ -59,6 +64,7 @@ public abstract class equipables extends item {
     public int getQualityInt(){
         return quality;
     }
+    public String getEquipmentSetName(){return equipmentSetName;}
     public abstract void equipToSlot();
     protected void unequipFromSlot(){}
     public void onEquip(){}

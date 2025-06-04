@@ -20,8 +20,8 @@ public class hydra extends boss {
         /// /////////////////
             if((player.RHand != null && player.RHand.tagsContains("Sharp")) ||  (player.LHand != null || player.LHand.tagsContains("Sharp"))){
                 gui.printOnGameSide("You chop off a head but it grows 2 more");
-                setHealth(getHealth()*2);
-                setStrength(getStrength()*2); 
+                mHealth *= 2;
+                mStrength *= 2;
             }
 
     }

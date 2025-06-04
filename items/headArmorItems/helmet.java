@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import items.genericItems.headArmor;
+import util.pair;
 
 
 public class helmet extends headArmor{
@@ -27,5 +28,9 @@ public class helmet extends headArmor{
     protected Set<String> getTagsSet() {
 
         return tags;
+    }
+
+    public pair<String, Integer> getSetBuff() {
+        return new pair<String,Integer>(null, null);
     }
 }

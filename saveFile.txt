@@ -1,13 +1,14 @@
 Player-Name: t
-Player-Current-Health: 82
-Player-Maximum-Health: 82
-Player-Strength: 8
-Player-Agility: 1
-Player-Intelligence: 0
-Player-XP-to-Level-Up: 202
-Player-XP: 177
-Player-Inventory: Sword-1-true,Chestplate-1-true,Leather Pants-4-true,Club-2-true,Fish,Bread,Three Course Meal,
-World-StageNum: 15
+Player-Level: 10
+Player-Current-Health: 34
+Player-Maximum-Health: 103
+Player-Strength: 0
+Player-Agility: 0
+Player-Intelligence: 14
+Player-XP-to-Level-Up: 522
+Player-XP: 11
+Player-Inventory: Hydra Head-6-true,Hydra Head-6-true,Three Course Meal,Helmet-1-true,
+World-StageNum: 16
 World-AreaNum: 3
-PlayerCoins: 53
-PlayerLuck: 1.5040493026602606
+PlayerCoins: 299
+PlayerLuck: 2.8676207451245257

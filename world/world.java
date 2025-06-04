@@ -55,6 +55,8 @@ public abstract class world {
             openDungeon();
         }
     }
+
+    
     private static void openShop(){
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
@@ -131,9 +133,9 @@ public abstract class world {
             player.inventory.remove(player.inventory.get(itemSell));
         }
 
-        ///////////
+        //////////////////////////////////////////////////////////////
         /// Check to see if user put name of item and buy accordingly
-        /// /////
+        //////////////////////////////////////////////////////////////
         for(item i : shopitems.getShopArray()){
             if(i.getItemName().toLowerCase() == userInput.toLowerCase()){
                 if(player.BankBalance >= i.getPrice()){
@@ -147,7 +149,7 @@ public abstract class world {
                 }
             }
         }
-        //no dont buy shit recurse back to display menu()
+        //no dont buy shit recurse back to display
         if(response.respondNo(userInput)){}
         if(itemPurchased){
             shopitems.createShop();
@@ -169,7 +171,7 @@ public abstract class world {
         else{
             int randNum = TrekkerMath.randomInt(2, 0);
             if(randNum == 2){
-                rooms.getRandomRoom();
+                roomFactory.getRandomRoom().openRoom();
             }
             else{
                 monster m = monsterCreater.createMonster();
@@ -213,6 +215,9 @@ public abstract class world {
             }
         }
     }
+
+
+
     public static void itemMenu(){
         player.printPlayerItems();
         gui.printOnGameSide("Would you like to use an item?");

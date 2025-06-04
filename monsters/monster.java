@@ -9,12 +9,12 @@ public class monster {
     
 
     
-    private String mName;
-    private int mHealth;
-    private int mStrength;
-    private int mSpeed;
-    private int mArmour;
-    private int mLevel;
+    protected String mName;
+    protected int mHealth;
+    protected int mStrength;
+    protected int mSpeed;
+    protected int mArmour;
+    protected int mLevel;
 
     /* 
     private static String[] fastMonsters = {"Goblin", "Snake", "Witch", "Vampire", "Banshee", "Kelpie", "Chupacabra", "Jersey Devil", "Kitsune", "Selkie", "Jackalope", "Qilin"};
@@ -55,7 +55,7 @@ public class monster {
         mArmour = armour;
     }
     public void setStrength(int strength){
-        mStrength = strength;
+        mStrength = strength + player.playerLevel;
     }
     public int getStrength(){
         return mStrength;
