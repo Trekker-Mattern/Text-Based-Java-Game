@@ -14,7 +14,7 @@ public  class snake extends monster {
         super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.AREANUM + 4)));
 
         //Fast
-        super.setSpeed((int)(monsterCreater.fastMonsterSpeed() * 1.5));
+        super.setSpeed((int)(monsterCreator.fastMonsterSpeed() * 1.5));
     }
     public String attackString(){
         return "bites you really hard";

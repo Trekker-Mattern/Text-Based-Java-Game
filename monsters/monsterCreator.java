@@ -7,9 +7,9 @@ import java.lang.reflect.*;
 
 import playerFiles.*;
 
-public class monsterCreater {
+public class monsterCreator {
     
-    public monsterCreater(world world, player Player){
+    public monsterCreator(world world, player Player){
     }
 
     public static monster createMonster(){

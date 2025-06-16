@@ -273,6 +273,9 @@ public abstract class player {
     }
 
     private static boolean checkForArmorSet(){
+        
+        if(helm == null) return false;
+
         String setName = helm.getEquipmentSetName();
         for(equipables e : equippedItems){
             if(!(e instanceof holdables)){

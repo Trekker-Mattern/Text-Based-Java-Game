@@ -123,14 +123,20 @@ public abstract class world {
             player.printPlayerItems();
             gui.printOnGameSide("Which item would you like to sell?");
             int itemSell = Integer.parseInt(gui.getInput());
-            if(player.inventory.get(itemSell) instanceof equipables && ((equipables)player.inventory.get(itemSell)).isEquipped()){
-                player.inventory.get(itemSell).Use();
-                
+            itemSell--; //adjust for 0 index
+            try{
+                if(player.inventory.get(itemSell) instanceof equipables && ((equipables)player.inventory.get(itemSell)).isEquipped()){
+                    player.inventory.get(itemSell).Use();
+                }
+                int sellPrice = (int)(player.inventory.get(itemSell).getPrice() * .75);
+                player.BankBalance += sellPrice;
+                gui.printOnGameSide("You sell " + player.inventory.get(itemSell).getItemName() + " for " + sellPrice + " shmeckles");
+                player.inventory.remove(player.inventory.get(itemSell));
             }
-            int sellPrice = (int)(player.inventory.get(itemSell).getPrice() * .75);
-            player.BankBalance += sellPrice;
-            gui.printOnGameSide("You sell " + player.inventory.get(itemSell).getItemName() + " for " + sellPrice + " shmeckles");
-            player.inventory.remove(player.inventory.get(itemSell));
+            catch(IndexOutOfBoundsException e){
+                gui.printOnGameSide("You dont have that many items you goof!");
+            }
+            
         }
 
         //////////////////////////////////////////////////////////////
@@ -164,7 +170,7 @@ public abstract class world {
 
         //create monster
         if(stageNum % 10 == 9){
-            boss b = monsterCreater.createBoss();
+            boss b = monsterCreator.createBoss();
             b.printMonster();
             monsterMenu(b);
         }
@@ -174,7 +180,7 @@ public abstract class world {
                 roomFactory.getRandomRoom().openRoom();
             }
             else{
-                monster m = monsterCreater.createMonster();
+                monster m = monsterCreator.createMonster();
                 m.printMonster();
                 monsterMenu(m);
             }

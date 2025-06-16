@@ -1,14 +1,14 @@
 Player-Name: t
-Player-Level: 10
-Player-Current-Health: 34
-Player-Maximum-Health: 103
+Player-Level: 5
+Player-Current-Health: 14
+Player-Maximum-Health: 14
 Player-Strength: 0
-Player-Agility: 0
-Player-Intelligence: 14
-Player-XP-to-Level-Up: 522
-Player-XP: 11
-Player-Inventory: Hydra Head-6-true,Hydra Head-6-true,Three Course Meal,Helmet-1-true,
-World-StageNum: 16
-World-AreaNum: 3
-PlayerCoins: 299
-PlayerLuck: 2.8676207451245257
+Player-Agility: 5
+Player-Intelligence: 4
+Player-XP-to-Level-Up: 10
+Player-XP: 0
+Player-Inventory: Bread,
+World-StageNum: 0
+World-AreaNum: 0
+PlayerCoins: 9
+PlayerLuck: 3.2208670842800022
