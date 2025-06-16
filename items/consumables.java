@@ -2,6 +2,7 @@ package items;
 import playerFiles.*;
 
 public abstract class consumables extends item {
+    protected boolean isAttackingConsumable = false;
     public consumables(){
         setIsConsumable(true);
     }

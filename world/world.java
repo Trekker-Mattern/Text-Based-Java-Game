@@ -2,6 +2,7 @@ package world;
 
 import GUI.gui;
 import items.*;
+import items.genericItems.attackingConsumable;
 import monsters.*;
 import playerFiles.*;
 import util.*;
@@ -217,7 +218,41 @@ public abstract class world {
             //Use an item during a fight
             /////////////////////////////////////////
             else if(response.Items(h)){
-                itemMenu();
+
+                player.printPlayerItems();
+                gui.printOnGameSide("Which item would you like to use?");
+                String newInput = gui.getInput();
+                try{
+                    int number = Integer.parseInt(newInput);
+                    try {
+                        if(player.inventory.get(number-1) instanceof attackingConsumable){
+                            gui.printOnGameSide(player.inventory.get(number-1).getAttackString());
+                            gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(number-1)).getDamageInt()) + " to " + m.getName());
+                            m.subtractHealth(((attackingConsumable)player.inventory.get(number-1)).getDamageInt());
+                        }
+                        player.inventory.get(number-1).Use();
+                    } 
+                    catch (IndexOutOfBoundsException e) {
+                        gui.printOnGameSide("You dont have that many items you goof!");
+                    }
+                }
+                catch(NumberFormatException ex){
+                    //do nothing
+                }
+                if(response.respondYes(newInput)){
+                    gui.printOnGameSide("What is the number of the item you would like to use");
+                    int temp = Integer.parseInt(gui.getInput());
+                    try {
+                        if(player.inventory.get(temp-1) instanceof attackingConsumable){
+                            gui.printOnGameSide(player.inventory.get(temp-1).getAttackString());
+                            gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt()) + " to " + m.getName());
+                            m.subtractHealth(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt());
+                        }
+                        player.inventory.get(temp-1).Use();
+                    } catch (IndexOutOfBoundsException e) {
+                        gui.printOnGameSide("You dont have that many items you goof!");
+                    }
+                }
             }
         }
     }

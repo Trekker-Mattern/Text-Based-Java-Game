@@ -47,6 +47,7 @@ public abstract class shopitems {
         equipableShopItems.add(spartanBoots.class);
         equipableShopItems.add(spartanSkirt.class);
         equipableShopItems.add(spartanBreastplate.class);
+        consumableShopItems.add(throwingKnife.class);
 
 
 
@@ -69,6 +70,7 @@ public abstract class shopitems {
         allItemsList.put("Sandals",spartanBoots.class);
         allItemsList.put("Spartan ",spartanSkirt.class);
         allItemsList.put("Spartan Breastplate",spartanBreastplate.class);
+        allItemsList.put("Throwing Knife", throwingKnife.class);
 
     }
 
