@@ -1,12 +1,10 @@
 package items.genericItems;
 import items.equipables;
 import playerFiles.*;
-import util.pair;
 
 public abstract class headArmor extends equipables {
     protected int armorAdd;
 
-    public abstract pair<String, Integer> getSetBuff();
 
     public void equipToSlot() {
         if(player.helm != null){

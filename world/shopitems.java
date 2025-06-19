@@ -48,7 +48,9 @@ public abstract class shopitems {
         equipableShopItems.add(spartanSkirt.class);
         equipableShopItems.add(spartanBreastplate.class);
         consumableShopItems.add(throwingKnife.class);
-
+        equipableShopItems.add( wizardShoes.class);
+        equipableShopItems.add(wizardHat.class);
+        equipableShopItems.add( wizardCloak.class);
 
 
         allItemsList.put("Fish",fish.class);
@@ -71,6 +73,9 @@ public abstract class shopitems {
         allItemsList.put("Spartan ",spartanSkirt.class);
         allItemsList.put("Spartan Breastplate",spartanBreastplate.class);
         allItemsList.put("Throwing Knife", throwingKnife.class);
+        allItemsList.put("Wizard Shoes", wizardShoes.class);
+        allItemsList.put("Wizard Hat", wizardHat.class);
+        allItemsList.put("Wizard Cloak", wizardCloak.class);
 
     }
 

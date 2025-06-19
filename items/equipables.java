@@ -6,6 +6,7 @@ import java.util.Set;
 import GUI.gui;
 import playerFiles.player;
 import util.pair;
+import java.util.HashSet;
 
 public abstract class equipables extends item {
     protected boolean equipped = false;
@@ -23,7 +24,7 @@ public abstract class equipables extends item {
         setQuality(quality);
     }
     
-    public pair<String,Integer> getSetBuff(){return new pair<String,Integer>(null, null);}
+    public static pair<String,Integer> getSetBuff(){return new pair<String,Integer>(null, null);}
 
     public void setQuality(int x){
         quality = x;
@@ -76,4 +77,5 @@ public abstract class equipables extends item {
         return false;
     }
     protected abstract Set<String> getTagsSet();
+    public Set<Class<? extends equipables>> getSetItems(){return new HashSet<>();}
 }

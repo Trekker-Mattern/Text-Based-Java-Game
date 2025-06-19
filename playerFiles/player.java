@@ -5,6 +5,7 @@ import items.genericItems.*;
 import java.util.ArrayList;
 import monsters.*;
 import util.*;
+import java.util.Set;
 
 
 public abstract class player {
@@ -106,10 +107,18 @@ public abstract class player {
             }
         }
         
-        if(checkForArmorSet() && helm.getSetBuff().first == "Strength"){
-            val += helm.getSetBuff().second;
+        try{
+            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == "Strength"){
+                val += buffPair.second;
+            }
+            return val;
         }
-        return val;
+        catch(Exception e){
+            //If it fails to get the set buff then just return the armor value
+            return val;
+        }
     }
 
     //Agility Getter
@@ -126,10 +135,18 @@ public abstract class player {
                 val += e.buffValue;
             }
         }
-        if(checkForArmorSet() && helm.getSetBuff().first == "Agility"){
-            val += helm.getSetBuff().second;
+        try{
+            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == "Agility"){
+                val += buffPair.second;
+            }
+            return val;
         }
-        return val;
+        catch(Exception e){
+            //If it fails to get the set buff then just return the armor value
+            return val;
+        }
     }
 
     //Intelligence Getter
@@ -146,10 +163,18 @@ public abstract class player {
                 val += e.buffValue;
             }
         }
-        if(checkForArmorSet() && helm.getSetBuff().first == "Intelligence"){
-            val += helm.getSetBuff().second;
+        try{
+            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == "Intelligence"){
+                val += buffPair.second;
+            }
+            return val;
         }
-        return val;
+        catch(Exception e){
+            //If it fails to get the set buff then just return the armor value
+            return val;
+        }
     }
 
     public static int getArmor(){
@@ -165,10 +190,18 @@ public abstract class player {
                 val += e.getArmorVal();
             }
         }
-        if(checkForArmorSet() && helm.getSetBuff().first == "Armor"){
-            val += helm.getSetBuff().second;
+        try{
+            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == "Armor"){
+                val += buffPair.second;
+            }
+            return val;
         }
-        return val;
+        catch(Exception e){
+            //If it fails to get the set buff then just return the armor value
+            return val;
+        }
     }
 
 
@@ -272,20 +305,36 @@ public abstract class player {
         }
     }
 
-    private static boolean checkForArmorSet(){
-        
-        if(helm == null) return false;
 
-        String setName = helm.getEquipmentSetName();
+    /////////////////////////////
+    /// 
+    /// Dont ask me how this works it just does probably
+    /// 
+    /// /////////////////////////
+    private static Class<? extends equipables> checkForArmorSet(){
+
+        Class<? extends equipables> setClass = null;
         for(equipables e : equippedItems){
             if(!(e instanceof holdables)){
-                if(setName != e.getEquipmentSetName()){
-                    return false;
+                for(Class<? extends equipables> clss : e.getSetItems()){
+                    boolean found = false;
+                    for(equipables eq : equippedItems){
+                        if(eq.getClass() == clss){
+                            found = true;
+                            setClass = clss;
+                            break;
+                        }
+                    }
+                    if(found == false){
+                        setClass = null;
+                        break;
+                    }
                 }
             }
         }
-        return true;
+        return setClass;
     }
+
 
     //////////////////////////
     /// 

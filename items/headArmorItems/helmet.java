@@ -30,7 +30,7 @@ public class helmet extends headArmor{
         return tags;
     }
 
-    public pair<String, Integer> getSetBuff() {
+    public static pair<String, Integer> getSetBuff() {
         return new pair<String,Integer>(null, null);
     }
 }
