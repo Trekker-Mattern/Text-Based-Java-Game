@@ -7,7 +7,7 @@ import util.TrekkerMath;
 import world.rooms.*;
 
 public abstract class roomFactory {
-    private static ArrayList<Class<? extends roomFactory>> roomsList = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class, idolRoom.class, portalRoom.class));
+    private static ArrayList<Class<? extends roomFactory>> roomsList = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class, idolRoom.class, portalRoom.class, libraryRoom.class));
 
     public static roomFactory getRandomRoom(){
         int num = TrekkerMath.randomInt(roomsList.size()-1, 0);
