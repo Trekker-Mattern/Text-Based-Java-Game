@@ -11,7 +11,7 @@ import util.pair;
 
 public class spartanBoots extends boots {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Heavy Armor", "Boots", "Shoes" ,"Legs Armor", "Bronze", "Strength", "Metal"));
-    private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(clogs.class, spartanHelmet.class, spartanBreastplate.class));
+    private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(spartanBoots.class, spartanHelmet.class, spartanBreastplate.class));
     public spartanBoots(){
         armorAdd = (int)(quality * 1.2);
         setPrice(12);

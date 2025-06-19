@@ -5,13 +5,14 @@ import java.util.Arrays;
 
 import items.equipables;
 import items.chestArmorItems.spartanBreastplate;
-import items.footArmorItems.clogs;
+import items.legsArmorItems.spartanSkirt;
+import items.footArmorItems.spartanBoots;
 import items.genericItems.headArmor;
 import util.pair;
 
 public class spartanHelmet extends headArmor {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Heavy Armor", "Helmet", "Head Armor", "Bronze", "Strength", "Metal"));
-    private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(clogs.class, spartanHelmet.class, spartanBreastplate.class));
+    private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(spartanBoots.class, spartanHelmet.class, spartanBreastplate.class, spartanSkirt.class));
     public spartanHelmet(){
         armorAdd = (int)(quality * 1.8);
         setPrice(25);

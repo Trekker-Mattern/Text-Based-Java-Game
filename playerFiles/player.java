@@ -313,26 +313,21 @@ public abstract class player {
     /// /////////////////////////
     private static Class<? extends equipables> checkForArmorSet(){
 
-        Class<? extends equipables> setClass = null;
         for(equipables e : equippedItems){
-            if(!(e instanceof holdables)){
-                for(Class<? extends equipables> clss : e.getSetItems()){
-                    boolean found = false;
-                    for(equipables eq : equippedItems){
-                        if(eq.getClass() == clss){
-                            found = true;
-                            setClass = clss;
-                            break;
-                        }
-                    }
-                    if(found == false){
-                        setClass = null;
-                        break;
-                    }
-                }
+            if(e instanceof holdables){
+                continue;
+            }
+
+            Set<Class<? extends equipables>> setItems = e.getSetItems();
+            if(setItems.isEmpty()){
+                continue;
+            }
+
+            if(setItems.stream().allMatch(reqItem -> equippedItems.stream().anyMatch(eq -> eq.getClass() == reqItem))){
+                return e.getClass();
             }
         }
-        return setClass;
+        return null;
     }
 
 

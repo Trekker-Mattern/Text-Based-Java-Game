@@ -60,7 +60,6 @@ public abstract class shopitems {
         allItemsList.put("Three Course Meal",threeCourseMeal.class);
         allItemsList.put("Wand", wand.class);
         allItemsList.put("Helmet", helmet.class);
-        allItemsList.put("Spartan Helmet", spartanHelmet.class);
         allItemsList.put("Bread" ,bread.class);
         allItemsList.put("Club", club.class);
         allItemsList.put("Leather Pants",leatherPants.class);
@@ -69,8 +68,9 @@ public abstract class shopitems {
         allItemsList.put("Strength Potion", strengthPot.class);
         allItemsList.put("Intelligence Potion", intelligencePot.class);
         allItemsList.put("Hydra Head",hydraHead.class);
+        allItemsList.put("Spartan Helmet", spartanHelmet.class);
         allItemsList.put("Sandals",spartanBoots.class);
-        allItemsList.put("Spartan ",spartanSkirt.class);
+        allItemsList.put("Periskelis",spartanSkirt.class);
         allItemsList.put("Spartan Breastplate",spartanBreastplate.class);
         allItemsList.put("Throwing Knife", throwingKnife.class);
         allItemsList.put("Wizard Shoes", wizardShoes.class);
