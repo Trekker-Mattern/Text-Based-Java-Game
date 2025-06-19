@@ -229,6 +229,23 @@ public abstract class world {
                             gui.printOnGameSide(player.inventory.get(number-1).getAttackString());
                             gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(number-1)).getDamageInt()) + " to " + m.getName());
                             m.subtractHealth(((attackingConsumable)player.inventory.get(number-1)).getDamageInt());
+
+                            if(m.getHealth() <= 0){
+                                gui.newlOnGameSide();
+                                gui.printOnGameSide("You defeated " + m.getName() + "!");
+                                int coinGain = (int)((player.luck * m.getLevel()) + 4);
+                                int xpGain = (int)((player.luck * m.getLevel())*4);
+                                gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
+                                player.BankBalance += coinGain;
+                                player.gainXP(xpGain);
+                                m.onMonsterDeath();
+                                stageNum++;
+                            }
+                            else{
+                                m.printMonster();
+                                player.damageTaken(m);
+                            }
+
                         }
                         player.inventory.get(number-1).Use();
                     } 
@@ -247,6 +264,24 @@ public abstract class world {
                             gui.printOnGameSide(player.inventory.get(temp-1).getAttackString());
                             gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt()) + " to " + m.getName());
                             m.subtractHealth(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt());
+
+
+                            if(m.getHealth() <= 0){
+                                gui.newlOnGameSide();
+                                gui.printOnGameSide("You defeated " + m.getName() + "!");
+                                int coinGain = (int)((player.luck * m.getLevel()) + 4);
+                                int xpGain = (int)((player.luck * m.getLevel())*4);
+                                gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
+                                player.BankBalance += coinGain;
+                                player.gainXP(xpGain);
+                                m.onMonsterDeath();
+                                stageNum++;
+                            }
+                            else{
+                                m.printMonster();
+                                player.damageTaken(m);
+                            }
+
                         }
                         player.inventory.get(temp-1).Use();
                     } catch (IndexOutOfBoundsException e) {

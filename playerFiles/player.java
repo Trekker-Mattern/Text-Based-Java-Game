@@ -483,7 +483,7 @@ public abstract class player {
     ///  Damage!
     /// ////////////////////////
 
-    private static int damageTaken(monster m){
+    public static int damageTaken(monster m){
         int monsterDamage;
         boolean monsterMiss;
         double monsterMultiplyer = 1;
