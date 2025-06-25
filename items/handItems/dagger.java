@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import items.genericItems.holdables;
+import playerFiles.player.buffTypes;
 
 
 public class dagger extends holdables{
@@ -14,7 +15,7 @@ public class dagger extends holdables{
     public dagger(){
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        buffType = "Agility";
+        buffType = buffTypes.AGILITY;
         buffValue = quality *2;
         setPrice(15);
         setName("Dagger");
@@ -24,7 +25,7 @@ public class dagger extends holdables{
         setQuality(qual);
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        buffType = "Agility";
+        buffType = buffTypes.AGILITY;
         buffValue = quality *2;
         setPrice(15);
         setName("Dagger");

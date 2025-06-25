@@ -8,6 +8,7 @@ import items.equipables;
 import items.chestArmorItems.wizardCloak;
 import items.footArmorItems.wizardShoes;
 import items.genericItems.headArmor;
+import playerFiles.player.buffTypes;
 import util.pair;
 
 public class wizardHat extends headArmor {
@@ -19,7 +20,7 @@ public class wizardHat extends headArmor {
         setPrice(25);
         setName("Wizard Hat");
         equipmentSetName = "Wizard Set";
-        buffType = "Intelligence";
+        buffType = buffTypes.INTELLIGENCE;
         buffValue = 1;
     }
     public wizardHat(int qual){
@@ -28,14 +29,14 @@ public class wizardHat extends headArmor {
         equipmentSetName = "Wizard Set";
         setPrice(25);
         setName("Wizard Hat");
-        buffType = "Intelligence";
+        buffType = buffTypes.INTELLIGENCE;
         buffValue = 1;
     } 
     protected Set<String> getTagsSet() {
         return tags;
     }
-    public static pair<String, Integer> getSetBuff() {
-        return new pair<String,Integer>("Intelligence", 5);
+    public static pair<buffTypes, Integer> getSetBuff() {
+        return new pair<buffTypes,Integer>(buffTypes.INTELLIGENCE, 5);
     }
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;

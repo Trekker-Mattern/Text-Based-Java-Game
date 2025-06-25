@@ -9,6 +9,7 @@ import items.chestArmorItems.spartanBreastplate;
 import items.footArmorItems.spartanBoots;
 import items.genericItems.legsArmor;
 import items.headArmorItems.spartanHelmet;
+import playerFiles.player.buffTypes;
 
 public class spartanSkirt extends legsArmor {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Light Armor", "Skirt", "Legs Armor", "Bronze", "Strength", "Cloth"));
@@ -18,7 +19,7 @@ public class spartanSkirt extends legsArmor {
         setPrice(30);
         setName("Periskelis");
         equipmentSetName = "Spartan Set";
-        buffType = "Strength";
+        buffType = buffTypes.STRENGTH;
         buffValue = 1;
     }
     public spartanSkirt(int qual){
@@ -26,15 +27,15 @@ public class spartanSkirt extends legsArmor {
         armorAdd = (int)(quality * 1.4);
         setPrice(30);
         setName("Periskelis");
-        buffType = "Strength";
+        buffType = buffTypes.STRENGTH;
         buffValue = 1;
     } 
     protected Set<String> getTagsSet() {
 
         return tags;
     }
-    public static pair<String, Integer> getSetBuff() {
-        return new pair<String,Integer>("Strength", 5);
+    public static pair<buffTypes, Integer> getSetBuff() {
+        return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
     }
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;

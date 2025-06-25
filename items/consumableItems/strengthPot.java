@@ -1,6 +1,7 @@
 package items.consumableItems;
 import items.consumables;
 import playerFiles.player;
+import playerFiles.player.buffTypes;
 
 public class strengthPot extends consumables {
     public strengthPot(){
@@ -10,6 +11,6 @@ public class strengthPot extends consumables {
 
     public void Use(){
         removeFromInv();
-        player.applyBuff("Strength", 3, 4);
+        player.applyBuff(buffTypes.STRENGTH, 3, 4);
     }
 }

@@ -49,7 +49,6 @@ public class runTime
         player.printStats();
         while(true){
             saveFiles.save(); 
-            shopitems.createShop();
             gui.updatePlayerSide();
             world.menu();
         }
@@ -58,6 +57,7 @@ public class runTime
 
     static void startup(){
         shopitems.createShopItemsArr();
+        shopitems.createShop();
         saveFiles.readSave();
         monsterArrayList.createMonsterList();
         gui.runGui();

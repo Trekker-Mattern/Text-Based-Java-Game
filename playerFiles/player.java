@@ -8,6 +8,7 @@ import util.*;
 import java.util.Set;
 
 
+
 public abstract class player {
 
 
@@ -46,7 +47,7 @@ public abstract class player {
     private static int xpToLevelUp = 10;
     private static int xp = 0;
     public static boolean isBuff = false;
-    public static ArrayList<triple<String, Integer, Integer>> buffs = new ArrayList<>();
+    public static ArrayList<triple<buffTypes, Integer, Integer>> buffs = new ArrayList<>();
 
     private static final int totalMaxStartingSkills = 5;
 
@@ -87,30 +88,28 @@ public abstract class player {
         gui.printOnGameSide("Intelligence: " + intelligence);
     }
 
-
     
     
-
 
     //Strength Getter
     public static int getStrength(){
         int val = strength;
-        for(triple<String, Integer, Integer> b : buffs){
-            if(b.first == "Strength"){
+        for(triple<buffTypes, Integer, Integer> b : buffs){
+            if(b.first == buffTypes.STRENGTH){
                 val += b.third;
             }
         }
 
         for(equipables e : equippedItems){
-            if(e.buffType == "Strength"){
+            if(e.buffType == buffTypes.STRENGTH){
                 val += e.buffValue;
             }
         }
         
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
-            if(buffPair != null && buffPair.first != null && buffPair.first == "Strength"){
+            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.STRENGTH){
                 val += buffPair.second;
             }
             return val;
@@ -124,21 +123,21 @@ public abstract class player {
     //Agility Getter
     public static int getAgility(){
         int val = agility;
-        for(triple<String, Integer, Integer> b : buffs){
-            if(b.first == "Agility"){
+        for(triple<buffTypes, Integer, Integer> b : buffs){
+            if(b.first == buffTypes.AGILITY){
                 val += b.third;
             }
         }
 
         for(equipables e : equippedItems){
-            if(e.buffType == "Agility"){
+            if(e.buffType == buffTypes.AGILITY){
                 val += e.buffValue;
             }
         }
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
-            if(buffPair != null && buffPair.first != null && buffPair.first == "Agility"){
+            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.AGILITY){
                 val += buffPair.second;
             }
             return val;
@@ -152,21 +151,21 @@ public abstract class player {
     //Intelligence Getter
     public static int getIntelligence(){
         int val = intelligence;
-        for(triple<String, Integer, Integer> b : buffs){
-            if(b.first == "Intelligence"){
+        for(triple<buffTypes, Integer, Integer> b : buffs){
+            if(b.first == buffTypes.INTELLIGENCE){
                 val += b.third;
             }
         }
 
         for(equipables e : equippedItems){
-            if(e.buffType == "Intelligence"){
+            if(e.buffType == buffTypes.INTELLIGENCE){
                 val += e.buffValue;
             }
         }
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
-            if(buffPair != null && buffPair.first != null && buffPair.first == "Intelligence"){
+            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.INTELLIGENCE){
                 val += buffPair.second;
             }
             return val;
@@ -179,8 +178,8 @@ public abstract class player {
 
     public static int getArmor(){
         int val = armor;
-        for(triple<String, Integer, Integer> b : buffs){
-            if(b.first == "Armor"){
+        for(triple<buffTypes, Integer, Integer> b : buffs){
+            if(b.first == buffTypes.ARMOR){
                 val += b.third;
             }
         }
@@ -192,8 +191,8 @@ public abstract class player {
         }
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            pair<String, Integer> buffPair = (pair<String, Integer>) ambiguousPair;
-            if(buffPair != null && buffPair.first != null && buffPair.first == "Armor"){
+            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.ARMOR){
                 val += buffPair.second;
             }
             return val;
@@ -336,6 +335,8 @@ public abstract class player {
     /// Buffs
     /// 
     //////////////////////////
+    
+    public enum buffTypes {STRENGTH, AGILITY, INTELLIGENCE, ARMOR};
 
     public static void updateBuffs(){
 
@@ -350,9 +351,9 @@ public abstract class player {
             isBuff = false;
         }
     }
-    public static void applyBuff(String bType, int bLength, int bAmount){
+    public static void applyBuff(buffTypes bType, int bLength, int bAmount){
 
-        buffs.add(new triple<String,Integer,Integer>(bType, bLength, bAmount));
+        buffs.add(new triple<buffTypes,Integer,Integer>(bType, bLength, bAmount));
 
         if(isBuff == false){
             isBuff = true;

@@ -1,6 +1,7 @@
 package items.consumableItems;
 import items.consumables;
 import playerFiles.player;
+import playerFiles.player.buffTypes;
 public class intelligencePot extends consumables {
     public intelligencePot(){
         setPrice(20);
@@ -9,6 +10,6 @@ public class intelligencePot extends consumables {
 
     public void Use(){
         removeFromInv();
-        player.applyBuff("Intelligence", 3, 4);
+        player.applyBuff(buffTypes.INTELLIGENCE, 3, 4);
     }
 }

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import items.genericItems.headArmor;
+import playerFiles.player.buffTypes;
 import util.pair;
 
 
@@ -30,7 +31,7 @@ public class helmet extends headArmor{
         return tags;
     }
 
-    public static pair<String, Integer> getSetBuff() {
-        return new pair<String,Integer>(null, null);
+    public static pair<buffTypes, Integer> getSetBuff() {
+        return new pair<buffTypes,Integer>(null, null);
     }
 }

@@ -139,6 +139,8 @@ public abstract class shopitems {
         
 
         player.BankBalance -= toAdd.getPrice();
+
+        createShop();
     }
     public static void buyItem(item i){
     
@@ -146,6 +148,8 @@ public abstract class shopitems {
         
 
         player.BankBalance -= i.getPrice();
+
+        createShop();
     }
     
     public static item[] getShopArray(){

@@ -62,7 +62,6 @@ public abstract class world {
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
         String userInput = gui.getInput();
-        boolean itemPurchased = false;
                 
         try{
             int UserResp = Integer.parseInt(userInput);
@@ -73,7 +72,6 @@ public abstract class world {
                 shopitems.buyItem(UserResp);
                 gui.newlOnGameSide();
                 gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
-                itemPurchased = true;
             }
             else{
                 gui.printOnGameSide("You dont have enough money to buy that!");
@@ -96,7 +94,6 @@ public abstract class world {
                     shopitems.buyItem(numUserIsBuying);
                     gui.newlOnGameSide();
                     gui.printOnGameSide("You successfully bought " + shop[numUserIsBuying - 1] + " for " + shop[numUserIsBuying - 1].getPrice() + " shmeckles.");
-                    itemPurchased = true;
                 }
                 else{
                     gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
@@ -108,7 +105,6 @@ public abstract class world {
                         if(player.BankBalance >= i.getPrice()){
                             shopitems.buyItem(i);
                             gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
-                            itemPurchased = true;
                             break;
                         }
                         else{
@@ -148,7 +144,6 @@ public abstract class world {
                 if(player.BankBalance >= i.getPrice()){
                     shopitems.buyItem(i);
                     gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
-                    itemPurchased = true;
                     break;
                 }
                 else{
@@ -158,9 +153,6 @@ public abstract class world {
         }
         //no dont buy shit recurse back to display
         if(response.respondNo(userInput)){}
-        if(itemPurchased){
-            shopitems.createShop();
-        }
 
     }
 

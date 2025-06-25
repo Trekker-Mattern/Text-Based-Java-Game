@@ -5,6 +5,7 @@ import java.util.Set;
 
 import GUI.gui;
 import playerFiles.player;
+import playerFiles.player.buffTypes;
 import util.pair;
 import java.util.HashSet;
 
@@ -12,7 +13,7 @@ public abstract class equipables extends item {
     protected boolean equipped = false;
     protected String qualityString;
     protected int quality;
-    public String buffType;
+    public buffTypes buffType;
     public int buffValue;
     protected String equipmentSetName;
 
@@ -24,7 +25,7 @@ public abstract class equipables extends item {
         setQuality(quality);
     }
     
-    public static pair<String,Integer> getSetBuff(){return new pair<String,Integer>(null, null);}
+    public static pair<buffTypes,Integer> getSetBuff(){return new pair<buffTypes,Integer>(null, null);}
 
     public void setQuality(int x){
         quality = x;

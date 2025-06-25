@@ -6,6 +6,7 @@ import java.util.Arrays;
 import items.equipables;
 import items.chestArmorItems.spartanBreastplate;
 import items.legsArmorItems.spartanSkirt;
+import playerFiles.player.buffTypes;
 import items.footArmorItems.spartanBoots;
 import items.genericItems.headArmor;
 import util.pair;
@@ -18,7 +19,7 @@ public class spartanHelmet extends headArmor {
         setPrice(25);
         setName("Spartan Helmet");
         equipmentSetName = "Spartan Set";
-        buffType = "Strength";
+        buffType = buffTypes.STRENGTH;
         buffValue = 1;
     }
     public spartanHelmet(int qual){
@@ -27,15 +28,15 @@ public class spartanHelmet extends headArmor {
         equipmentSetName = "Spartan Set";
         setPrice(25);
         setName("Spartan Helmet");
-        buffType = "Strength";
+        buffType = buffTypes.STRENGTH;
         buffValue = 3;
     } 
     protected Set<String> getTagsSet() {
 
         return tags;
     }
-    public static pair<String, Integer> getSetBuff() {
-        return new pair<String,Integer>("Strength", 5);
+    public static pair<buffTypes, Integer> getSetBuff() {
+        return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
     }
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;

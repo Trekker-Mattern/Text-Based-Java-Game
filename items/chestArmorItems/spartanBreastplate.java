@@ -7,6 +7,7 @@ import items.equipables;
 import items.footArmorItems.spartanBoots;
 import items.genericItems.chestArmor;
 import items.headArmorItems.spartanHelmet;
+import playerFiles.player.buffTypes;
 import util.pair;
 
 public class spartanBreastplate extends chestArmor {
@@ -17,7 +18,7 @@ public class spartanBreastplate extends chestArmor {
         setPrice(52);
         setName("Spartan Breastplate");
         equipmentSetName = "Spartan Set";
-        buffType = "Strength";
+        buffType = buffTypes.STRENGTH;
         buffValue = 1;
     }
     public spartanBreastplate(int qual){
@@ -25,15 +26,15 @@ public class spartanBreastplate extends chestArmor {
         armorAdd = (int)(quality * 2.2);
         setPrice(52);
         setName("Spartan Breastplate");
-        buffType = "Strength";
+        buffType = buffTypes.STRENGTH;
         buffValue = 1;
     } 
     protected Set<String> getTagsSet() {
 
         return tags;
     }
-    public static pair<String, Integer> getSetBuff() {
-        return new pair<String,Integer>("Strength", 5);
+    public static pair<buffTypes, Integer> getSetBuff() {
+        return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
     }
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
