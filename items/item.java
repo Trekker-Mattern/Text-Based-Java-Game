@@ -46,4 +46,7 @@ public abstract class item {
     public String getQuality(){
         return null;
     }
+    public String getItemNameForSaveFiles(){
+        return getItemName();
+    }
 }

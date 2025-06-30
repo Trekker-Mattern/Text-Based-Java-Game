@@ -7,7 +7,7 @@ import world.world;
 
 public abstract class monsterArrayList {
 
-    public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<Class<? extends monster>>(Arrays.asList(skeleton.class, slime.class, witch.class, goblin.class, snake.class, mimic.class, giant.class));
+    public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<Class<? extends monster>>(Arrays.asList(skeleton.class, slime.class, witch.class, goblin.class, snake.class, mimic.class, giant.class, turtle.class, rat.class));
     public static ArrayList<Class<? extends boss>> bossSubclasses = new ArrayList<Class<? extends boss>>(Arrays.asList(cthulhu.class, hydra.class));
     
     public static void createMonsterList(){

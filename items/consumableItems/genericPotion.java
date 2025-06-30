@@ -33,4 +33,9 @@ public class genericPotion extends consumables {
         player.applyBuff(bType, bStr, bduration);
         
     }
+
+    @Override
+    public String getItemNameForSaveFiles(){
+        return "Generic Potion";
+    }
 }

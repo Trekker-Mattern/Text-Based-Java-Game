@@ -63,7 +63,7 @@ public abstract class saveFiles {
             // get string version of inventory 
             String s = "";
             for(item e: player.inventory){
-                s += e.getItemName();
+                s += e.getItemNameForSaveFiles();
                 if (e instanceof equipables){
                     s += "-";
                     s += ((equipables)e).getQualityInt();

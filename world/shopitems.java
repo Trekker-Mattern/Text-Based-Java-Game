@@ -76,6 +76,7 @@ public abstract class shopitems {
         allItemsList.put("Wizard Shoes", wizardShoes.class);
         allItemsList.put("Wizard Hat", wizardHat.class);
         allItemsList.put("Wizard Cloak", wizardCloak.class);
+        allItemsList.put("Generic Potion",genericPotion.class);
 
     }
 
