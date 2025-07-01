@@ -63,7 +63,7 @@ public abstract class saveFiles {
             // get string version of inventory 
             String s = "";
             for(item e: player.inventory){
-                s += e.getItemNameForSaveFiles();
+                s += e.getClass().getName();
                 if (e instanceof equipables){
                     s += "-";
                     s += ((equipables)e).getQualityInt();
@@ -99,6 +99,7 @@ public abstract class saveFiles {
         reader.nextLine();
         reader.next();
     }
+    @SuppressWarnings("unchecked")
     public static void readPlayerSave(File file){
         int pLvl, chealth, maxhealth, str, ag, inte, xptlu, xp, stgNum, areaNum;
             String nameS, invListString;
@@ -145,11 +146,19 @@ public abstract class saveFiles {
                 if(invListString != ""){
                     String[] itemList = invListString.split(",");
                     for(String s: itemList){
+                        Class<? extends item> e = bread.class;
                         s = s.trim();
                         if(s.contains("-")){
-
                             String[] sArr = s.split("-");
-                            Class<? extends item> e = shopitems.allItemsList.get(sArr[0]);
+                            try{
+                                Class<?> olde = Class.forName(sArr[0]);
+                                if(item.class.isAssignableFrom(olde)){
+                                    e = (Class<? extends item>)olde;
+                                }
+                            }
+                            catch(ClassNotFoundException error){
+                                e = bread.class;
+                            } 
 
                             if(sArr.length > 2){
                                 boolean equipped = Boolean.parseBoolean(sArr[2]);
@@ -161,8 +170,18 @@ public abstract class saveFiles {
                             
                         }
                         else{
-                            Class<? extends item> e = shopitems.allItemsList.get(s);
-                            player.addItemToPlayer(getItemToAddToInv(e));
+                            try{
+                                Class<?> olde = Class.forName(s);
+                                if(olde.isAssignableFrom(item.class)){
+                                    e = (Class<? extends item>)olde;
+                                }
+                                else e = bread.class;
+                                player.addItemToPlayer(getItemToAddToInv(e));
+                            }
+                            catch(ClassNotFoundException error){
+                                e = bread.class;
+                                player.addItemToPlayer(getItemToAddToInv(e));
+                            } 
                         }
                     }
                 }

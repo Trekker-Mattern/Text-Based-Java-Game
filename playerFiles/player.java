@@ -108,6 +108,7 @@ public abstract class player {
         
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            @SuppressWarnings("unchecked")
             pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.STRENGTH){
                 val += buffPair.second;
@@ -136,6 +137,7 @@ public abstract class player {
         }
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            @SuppressWarnings("unchecked")
             pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.AGILITY){
                 val += buffPair.second;
@@ -164,6 +166,7 @@ public abstract class player {
         }
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            @SuppressWarnings("unchecked")
             pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.INTELLIGENCE){
                 val += buffPair.second;
@@ -191,6 +194,7 @@ public abstract class player {
         }
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
+            @SuppressWarnings("unchecked")
             pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.ARMOR){
                 val += buffPair.second;

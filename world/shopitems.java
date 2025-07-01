@@ -11,7 +11,7 @@ import items.legsArmorItems.*;
 import java.lang.reflect.Constructor;
 import items.item;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import playerFiles.player;
 import util.TrekkerMath;
 
@@ -19,7 +19,7 @@ public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // precondition: all shops are 4 items
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    public static HashMap<String,Class<? extends item>> allItemsList = new HashMap<>();
+    public static HashSet<Class<? extends item>> allItemsList = new HashSet<>();
 
     public static ArrayList<Class<? extends consumables>> consumableShopItems = new ArrayList<>();
     public static ArrayList<Class<? extends equipables>> equipableShopItems = new ArrayList<>();
@@ -53,30 +53,30 @@ public abstract class shopitems {
         equipableShopItems.add( wizardCloak.class);
 
 
-        allItemsList.put("Fish",fish.class);
-        allItemsList.put("Sword", sword.class);
-        allItemsList.put("Dagger",dagger.class);
-        allItemsList.put("Chestplate",chestplate.class);
-        allItemsList.put("Three Course Meal",threeCourseMeal.class);
-        allItemsList.put("Wand", wand.class);
-        allItemsList.put("Helmet", helmet.class);
-        allItemsList.put("Bread" ,bread.class);
-        allItemsList.put("Club", club.class);
-        allItemsList.put("Leather Pants",leatherPants.class);
-        allItemsList.put("Clogs",clogs.class);
-        allItemsList.put("Agility Potion", agilityPot.class);
-        allItemsList.put("Strength Potion", strengthPot.class);
-        allItemsList.put("Intelligence Potion", intelligencePot.class);
-        allItemsList.put("Hydra Head",hydraHead.class);
-        allItemsList.put("Spartan Helmet", spartanHelmet.class);
-        allItemsList.put("Sandals",spartanBoots.class);
-        allItemsList.put("Periskelis",spartanSkirt.class);
-        allItemsList.put("Spartan Breastplate",spartanBreastplate.class);
-        allItemsList.put("Throwing Knife", throwingKnife.class);
-        allItemsList.put("Wizard Shoes", wizardShoes.class);
-        allItemsList.put("Wizard Hat", wizardHat.class);
-        allItemsList.put("Wizard Cloak", wizardCloak.class);
-        allItemsList.put("Generic Potion",genericPotion.class);
+        allItemsList.add(fish.class);
+        allItemsList.add(sword.class);
+        allItemsList.add(dagger.class);
+        allItemsList.add(chestplate.class);
+        allItemsList.add(threeCourseMeal.class);
+        allItemsList.add(wand.class);
+        allItemsList.add(helmet.class);
+        allItemsList.add(bread.class);
+        allItemsList.add(club.class);
+        allItemsList.add(leatherPants.class);
+        allItemsList.add(clogs.class);
+        allItemsList.add(agilityPot.class);
+        allItemsList.add(strengthPot.class);
+        allItemsList.add(intelligencePot.class);
+        allItemsList.add(hydraHead.class);
+        allItemsList.add(spartanHelmet.class);
+        allItemsList.add(spartanBoots.class);
+        allItemsList.add(spartanSkirt.class);
+        allItemsList.add(spartanBreastplate.class);
+        allItemsList.add(throwingKnife.class);
+        allItemsList.add(wizardShoes.class);
+        allItemsList.add(wizardHat.class);
+        allItemsList.add(wizardCloak.class);
+        allItemsList.add(genericPotion.class);
 
     }
 
