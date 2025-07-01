@@ -358,6 +358,7 @@ public abstract class player {
         if(isBuff == false){
             isBuff = true;
         }
+        gui.updatePlayerSide();
     }
 
 

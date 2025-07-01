@@ -16,10 +16,13 @@ public class witch extends monster{
     }
     @Override
     public void onMonsterDeath(){
+        gui.newlOnGameSide();
         gui.printOnGameSide("The witch drops to the ground dead and melts into the ground");
         gui.printOnGameSide("A small glass clink echoes through the chamber");
         gui.printOnGameSide("You sift through the robes and find a potion");
-        player.addItemToPlayer(new genericPotion());
+        genericPotion pot = new genericPotion();
+        player.addItemToPlayer(pot);
         gui.printOnGameSide("You scoop up the potion and put it in your pocket");
+        gui.printOnGameSide("You obtain " + pot.getItemName());
     }
 }
