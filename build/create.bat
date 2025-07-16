@@ -1,9 +1,23 @@
-del myprogram.jar
-cd %~dp0\..
+@echo off
+IF EXIST "myprogram.jar" ( del "myprogram.jar"
+) ELSE ( echo "No such jar exists")
+
+
+cd "%~dp0\.."
 set project_root="%cd%"
-rmdir output
-javac -source 1.8 -target 1.8  *.java -d output
+
+echo %project_root% 
+PAUSE 
+IF EXIST "output" ( del "output") ELSE (echo "No such file exist")
+
+
+FOR /r %%a IN (*.java) DO (
+    echo %%a
+    "%java_home%\javac" "%%a" -d output 2> errors.txt
+    
+)
 cd output
-jar cfe %project_root%/build/myprogram.jar runTime .
+"%java_home%\jar" cfe %project_root%/build/myprogram.jar runTime .
 cd %project_root%/build
-java -jar myprogram.jar 
+"%java_home%\java" -jar myprogram.jar 2> errors.txt
+

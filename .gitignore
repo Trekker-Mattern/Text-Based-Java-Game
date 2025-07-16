@@ -1,3 +1,4 @@
 /output
 saveFile.txt
+*.jar
 # Ignore the output directory and saveFile.txt
