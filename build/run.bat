@@ -1,1 +1,1 @@
-"C:\Program Files (x86)\Eclipse Adoptium\jdk-16.0.2.7-hotspot\bin\java.exe" -jar myprogram.jar 
+"%java_home%\java" -jar myprogram.jar 
