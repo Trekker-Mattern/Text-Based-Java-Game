@@ -9,9 +9,6 @@ set project_root="%cd%"
 echo %project_root% 
 IF EXIST "output" ( del "output") ELSE (echo "No such file exist")
 
-
-
-
 setlocal enabledelayedexpansion
 
 cd %project_root%\target\dependency
