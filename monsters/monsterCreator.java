@@ -9,13 +9,8 @@ import playerFiles.*;
 
 public class monsterCreator {
     
-    public monsterCreator(world world, player Player){
-    }
 
     public static monster createMonster(){
-
-        //Get monster type
-        //Class<?> monsterType = 
 
         Class<? extends monster> mType = monsterArrayList.getMonsterType();
         try {
@@ -27,7 +22,7 @@ public class monsterCreator {
             e.printStackTrace();
         }
 
-        return null;
+        return new monster();
     }
 
 
@@ -46,21 +41,24 @@ public class monsterCreator {
             e.printStackTrace();
         } 
 
-        return null;
+        return new boss();
     }
 
 
-    public static int fastMonsterSpeed(){
-        if(player.getPlayerLevel() > 10){
-            return (int)(TrekkerMath.randomDouble(2, .9) * (world.stageNum / 4));
-        }
-        return (int)(TrekkerMath.randomDouble(5, 1.1) * 1);
+    public static int fastMonsterSpeed(int monsterLevel){
+        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel);
     }
 
-    public static int slowMonsterSpeed(){
-        if(player.getPlayerLevel() > 10){
-            return (int)(TrekkerMath.randomDouble(1.2, .5) * (world.stageNum / 4));
-        }
-        return (int)(TrekkerMath.randomDouble(3, 1.1) * 1);
+    public static int slowMonsterSpeed(int monsterLevel){
+        return (int)(TrekkerMath.randomDouble(.5, .001) * monsterLevel);
+    }
+
+    public static int strongMonsterStr(int monsterLevel){
+        //TODO : FINISH THIS CALCULATION
+        
+        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel);
+    }
+    public static int weakMonsterStr(int monsterLevel){
+        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel);
     }
 }
