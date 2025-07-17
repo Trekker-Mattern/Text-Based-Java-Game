@@ -41,7 +41,7 @@ public class monsterCreator {
             e.printStackTrace();
         } 
 
-        return new boss();
+        return null;
     }
 
 

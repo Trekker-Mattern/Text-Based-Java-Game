@@ -8,7 +8,7 @@ public class rat extends monster{
         super.setName("Rat");
         super.setStrength(TrekkerMath.randomInt(3, 1));
         super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.2, 1) * (world.stageNum + world.AREANUM + 4)));
-        super.setSpeed(monsterCreator.fastMonsterSpeed());
+        super.setSpeed(monsterCreator.fastMonsterSpeed(mLevel));
     }
     @Override
     public String attackString(){

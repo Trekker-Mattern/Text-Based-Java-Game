@@ -7,7 +7,7 @@ public  class giant extends monster {
         super.setName("Giant");
         super.setStrength(TrekkerMath.randomInt(7, 3));
         super.setOrigionalHealth((int)(TrekkerMath.randomDouble(3.34, 2) * (world.stageNum + world.AREANUM + 4)));
-        super.setSpeed(monsterCreator.slowMonsterSpeed());
+        super.setSpeed(monsterCreator.slowMonsterSpeed(mLevel));
     }
     @Override
     public String attackString(){

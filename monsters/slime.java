@@ -9,7 +9,7 @@ public class slime extends monster{
         super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.AREANUM + 4)));
 
         //Fast
-        super.setSpeed((int)(monsterCreator.fastMonsterSpeed() * 0.9));
+        super.setSpeed((int)(monsterCreator.fastMonsterSpeed(mLevel) * 0.9));
     }
     
     @Override

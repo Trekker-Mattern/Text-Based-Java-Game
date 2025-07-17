@@ -2,4 +2,6 @@
 saveFile.txt
 *.txt
 *.jar
+/target
+/.vscode
 # Ignore the output directory and saveFile.txt
