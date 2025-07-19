@@ -27,8 +27,9 @@ FOR /r %%a IN (*.java) DO (
 )
 ECHO %fileList%
 
-"%java_home%\javac" -classpath %jarList% %fileList% -d output 2> javacError.txt
+"%java_home%\javac" -classpath %jarList% %fileList% --release 8 -d output 2> javacError.txt
 cd output
+
 "%java_home%\jar" cfe %project_root%/build/myprogram.jar runTime . 2> createJar.txt
 cd %project_root%/build
 "%java_home%\java" -jar myprogram.jar 2> runErrors.txt

@@ -2,7 +2,6 @@
 saveFile.txt
 *.txt
 /build/*.jar
-/target/classes
-/target/test-classes
+/target
 /.vscode
 # Ignore the output directory and saveFile.txt
