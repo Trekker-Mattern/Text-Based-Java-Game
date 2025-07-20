@@ -9,9 +9,6 @@ import com.textbasedgame.world.*;
 
 public class runTime
 {
-    
-    
-    
     public static void main(String[] args) {
         
         startup();
