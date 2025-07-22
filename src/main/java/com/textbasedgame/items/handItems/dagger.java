@@ -3,6 +3,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
 
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.holdables;
 import com.textbasedgame.playerFiles.player.buffTypes;
 
@@ -40,7 +41,10 @@ public class dagger extends holdables{
         return "stab";
     }
     protected Set<String> getTagsSet() {
-
         return tags;
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = dagger.class;
+    } 
 }

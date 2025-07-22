@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.textbasedgame.items.equipables;
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.chestArmorItems.wizardCloak;
 import com.textbasedgame.items.genericItems.boots;
 import com.textbasedgame.items.headArmorItems.wizardHat;
@@ -39,4 +40,8 @@ public class wizardShoes extends boots{
     public static pair<buffTypes, Integer> getSetBuff() {
         return new pair<buffTypes,Integer>(buffTypes.INTELLIGENCE, 5);
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = wizardShoes.class;
+    } 
 }

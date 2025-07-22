@@ -3,6 +3,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
 
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.headArmor;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
@@ -34,4 +35,8 @@ public class helmet extends headArmor{
     public static pair<buffTypes, Integer> getSetBuff() {
         return new pair<buffTypes,Integer>(null, null);
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = helmet.class;
+    } 
 }

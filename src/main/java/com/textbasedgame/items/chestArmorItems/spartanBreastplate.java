@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.textbasedgame.items.equipables;
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.footArmorItems.spartanBoots;
 import com.textbasedgame.items.genericItems.chestArmor;
 import com.textbasedgame.items.headArmorItems.spartanHelmet;
@@ -33,6 +34,10 @@ public class spartanBreastplate extends chestArmor {
 
         return tags;
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = spartanBreastplate.class;
+    } 
     public static pair<buffTypes, Integer> getSetBuff() {
         return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
     }

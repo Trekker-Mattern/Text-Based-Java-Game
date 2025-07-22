@@ -2,6 +2,7 @@ package com.textbasedgame.items.legsArmorItems;
 
 import java.util.Set;
 
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.legsArmor;
 
 import java.util.HashSet;
@@ -26,6 +27,10 @@ public class leatherPants extends legsArmor {
     protected Set<String> getTagsSet() {
 
         return tags;
+    }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = leatherPants.class;
     }
 
 }

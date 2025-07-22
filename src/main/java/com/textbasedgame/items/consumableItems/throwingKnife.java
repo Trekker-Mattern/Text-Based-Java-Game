@@ -1,4 +1,5 @@
 package com.textbasedgame.items.consumableItems;
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.attackingConsumable;
 import com.textbasedgame.playerFiles.player;
 
@@ -23,4 +24,8 @@ public class throwingKnife extends attackingConsumable {
     public String getAttackString(){
         return "You throw the small knife with considerable force";
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = throwingKnife.class;
+    } 
 }

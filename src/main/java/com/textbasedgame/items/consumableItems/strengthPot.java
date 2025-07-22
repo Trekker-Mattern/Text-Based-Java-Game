@@ -1,5 +1,6 @@
 package com.textbasedgame.items.consumableItems;
 import com.textbasedgame.items.consumables;
+import com.textbasedgame.items.item;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 
@@ -13,4 +14,8 @@ public class strengthPot extends consumables {
         removeFromInv();
         player.applyBuff(buffTypes.STRENGTH, 3, 4);
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = strengthPot.class;
+    } 
 }

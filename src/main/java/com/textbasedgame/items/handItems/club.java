@@ -1,6 +1,7 @@
 package com.textbasedgame.items.handItems;
 import java.util.Set;
 
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.holdables;
 
 import java.util.HashSet;
@@ -38,4 +39,8 @@ public class club extends holdables {
 
         return tags;
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = club.class;
+    } 
 }

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import com.textbasedgame.items.equipables;
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.chestArmorItems.wizardCloak;
 import com.textbasedgame.items.footArmorItems.wizardShoes;
 import com.textbasedgame.items.genericItems.headArmor;
@@ -40,5 +41,9 @@ public class wizardHat extends headArmor {
     }
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
+    }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = wizardHat.class;
     }
 }

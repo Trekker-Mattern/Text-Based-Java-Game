@@ -1,10 +1,17 @@
 package com.textbasedgame.util;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.Scanner;
+import org.apache.commons.io.FileUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.GsonBuildConfig;
+import com.google.gson.stream.JsonReader;
+import com.textbasedgame.runTime;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.consumableItems.bread;
 import com.textbasedgame.playerFiles.*;
@@ -12,9 +19,9 @@ import com.textbasedgame.world.*;
 
 public abstract class saveFiles {
     
-    private static File saveFile = new File("saveFile.txt");
+    private static File saveFile = new File(runTime.SAVE_FILE_ROOT + "\\saveFile.txt");
     private static boolean newSave = false;
-
+    private static Gson gson;
 
     public static boolean isNewFile(){
         return newSave;
@@ -51,28 +58,72 @@ public abstract class saveFiles {
     }
 
     public static void save(){
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+
+        FileWriter fWriter = null;
+        FileWriter JSONWriter = null;
         try{
             //delete old save
-            saveFile.delete();
-            File f = new File("saveFile.txt");
+            
+            File saveFolderToDelete = new File(runTime.SAVE_FILE_ROOT);
+
+            if (saveFolderToDelete.exists()) {
+                System.out.println("File exists: " + saveFolderToDelete.getAbsolutePath());
+                System.out.println("Can write: " + saveFolderToDelete.canWrite());
+                System.out.println("Can read: " + saveFolderToDelete.canRead());
+                System.out.println("Is directory: " + saveFolderToDelete.isDirectory());
+                FileUtils.deleteDirectory(saveFolderToDelete);
+            } else {
+                System.out.println("Directory does not exist: " + saveFolderToDelete.getAbsolutePath());
+            }
+
+            try{
+                if(saveFolderToDelete.exists()){
+                    FileUtils.deleteDirectory(saveFolderToDelete);
+                }
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+
+            if(!new File(runTime.SAVE_FILE_ROOT).exists()){
+                new File(runTime.SAVE_FILE_ROOT).mkdir();
+            }
+
+            File f = new File((runTime.SAVE_FILE_ROOT + "\\saveFile.txt"));
             saveFile = null;
             saveFile = f;
 
-            FileWriter fWriter = new FileWriter(saveFile);
-
+            fWriter = new FileWriter(saveFile);
+            JSONWriter = new FileWriter(new File(runTime.SAVE_FILE_ROOT + "\\stuff.JSON"));
             // get string version of inventory 
+
+
+
             String s = "";
-            for(item e: player.inventory){
-                s += e.getClass().getName();
-                if (e instanceof equipables){
-                    s += "-";
-                    s += ((equipables)e).getQualityInt();
-                    if(((equipables)e).isEquipped()){
-                        s += "-true";
-                    }
-                }
-                s += ",";
-            }
+
+            //gson.toJson(player.class, JSONWriter);
+
+            //for(item e: player.inventory){
+
+                gson.toJson(player.inventory, JSONWriter);
+
+
+                /* 
+                        s += e.getClass().getName();
+                        if (e instanceof equipables){
+                            s += "-";
+                            s += ((equipables)e).getQualityInt();
+                            if(((equipables)e).isEquipped()){
+                                s += "-true";
+                            }
+                        }
+                        s += ",";
+                */
+            //}
             
             fWriter.write("Player-Name: " + player.getName() + "\n");
             fWriter.write("Player-Level: " + player.playerLevel + "\n");
@@ -92,7 +143,24 @@ public abstract class saveFiles {
             
         }
         catch(Exception e){
-            System.out.println("fasldfkj");
+            System.out.println(e);
+        }
+        finally
+        {
+            if(JSONWriter != null){
+                try {
+                    JSONWriter.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+            if(fWriter != null){
+                try {
+                    fWriter.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
         }
     }
     private static void goToNextReadableText(Scanner reader){
@@ -142,6 +210,8 @@ public abstract class saveFiles {
                 /// WE SPLIT THIS SHIT INTO THREE POSSIBLE SEGMENTS 0- ITEM/CLASS KEY FOR LOOKUP IN HASHMAP   1- QUALITY AS AN INTEGER   2- IS EQUIPPED?  
                 /// 
                 /////////////////
+                /// 
+                /* 
                 invListString = invListString.trim();
                 if(invListString != ""){
                     String[] itemList = invListString.split(",");
@@ -186,7 +256,14 @@ public abstract class saveFiles {
                         }
                     }
                 }
-                                
+                */
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.setPrettyPrinting();
+                Gson jsonToInvGson = gsonBuilder.create();
+                
+
+                
+
                 myReader.next();
                 stgNum = myReader.nextInt();
                 goToNextReadableText(myReader);
@@ -205,7 +282,6 @@ public abstract class saveFiles {
             }
             catch(IOException e){
                 System.out.println("Uh oh");
-
                 return;
             }
     }

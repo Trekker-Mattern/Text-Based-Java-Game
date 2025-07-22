@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import com.textbasedgame.items.equipables;
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.chestArmorItems.spartanBreastplate;
 import com.textbasedgame.items.footArmorItems.spartanBoots;
 import com.textbasedgame.items.genericItems.legsArmor;
@@ -40,5 +41,8 @@ public class spartanSkirt extends legsArmor {
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }
-    
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = spartanSkirt.class;
+    }
 }

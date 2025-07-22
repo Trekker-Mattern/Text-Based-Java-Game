@@ -1,5 +1,6 @@
 package com.textbasedgame.items.consumableItems;
 import com.textbasedgame.items.consumables;
+import com.textbasedgame.items.item;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.TrekkerMath;
@@ -35,6 +36,10 @@ public class genericPotion extends consumables {
         setPrice(15);
         setName(name);
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = genericPotion.class;
+    } 
 
     public void Use(){
         removeFromInv();

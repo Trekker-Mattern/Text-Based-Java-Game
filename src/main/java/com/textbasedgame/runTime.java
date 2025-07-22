@@ -1,4 +1,6 @@
 package com.textbasedgame;
+import java.io.File;
+
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.monsters.*;
 import com.textbasedgame.playerFiles.*;
@@ -9,15 +11,15 @@ import com.textbasedgame.world.*;
 
 public class runTime
 {
-    
-    
+    public static String SAVE_FILE_ROOT;
+    private static boolean newSaveFolderBool;
     
     public static void main(String[] args) {
         
         startup();
 
 
-        if(saveFiles.isNewFile()){
+        if(!newSaveFolderBool){
              //Startup
             gui.printOnGameSide("What is your name young one?");
             String Name = gui.getInput();
@@ -56,10 +58,16 @@ public class runTime
         
     }
 
-    static void startup(){
+    private static void startup(){
+        SAVE_FILE_ROOT = System.getProperty("user.dir");
+        newSaveFolderBool = new File(SAVE_FILE_ROOT + "\\save_Files").mkdir();
+        SAVE_FILE_ROOT = SAVE_FILE_ROOT + "\\save_Files";
+
         shopitems.createShopItemsArr();
         shopitems.createShop();
-        saveFiles.readSave();
+        if(!newSaveFolderBool){
+            saveFiles.readSave();
+        }
         monsterArrayList.createMonsterList();
         gui.runGui();
     }

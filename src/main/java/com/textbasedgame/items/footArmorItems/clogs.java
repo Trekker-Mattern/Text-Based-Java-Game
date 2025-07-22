@@ -2,6 +2,7 @@ package com.textbasedgame.items.footArmorItems;
 
 import java.util.Set;
 
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.boots;
 
 import java.util.HashSet;
@@ -27,4 +28,8 @@ public class clogs extends boots {
 
         return tags;
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = clogs.class;
+    } 
 }

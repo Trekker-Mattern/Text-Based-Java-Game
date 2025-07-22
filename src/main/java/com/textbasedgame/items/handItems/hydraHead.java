@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.*;
 import com.textbasedgame.playerFiles.player.buffTypes;
 
@@ -33,4 +34,8 @@ public class hydraHead extends holdables {
     protected Set<String> getTagsSet() {
         return tags;
     }
+    @Override
+    protected void setClass(Class<? extends item> clazz){
+        classofItem = hydraHead.class;
+    } 
 }

@@ -1,6 +1,8 @@
 package com.textbasedgame.monsters;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.playerFiles.player;
+import com.textbasedgame.util.TrekkerMath;
+import com.textbasedgame.world.world;
 
 public class monster {
 
@@ -22,7 +24,9 @@ public class monster {
     private static String[] areaMonsterArray = {"Goblin", "Slime", "Agressive Walrus", "Dinosaur", "Snake", "Skeleton", "Orc", "Troll", "Witch", "Zombie", "Demon", "Dragon", "Vampire", "Werewolf", "Chimera", "Banshee", "Kelpie", "Dullahan", "Chupacabra", "Wendigo", "Jersey Devil", "Kitsune", "Nuckelavee", "Basilisk", "Fomorian", "Boggart", "Manticore", "Selkie", "Naga", "Bunyip", "Hodag", "Leshy", "Jackalope", "Qilin"};
     */
     
-    public monster(){}
+    public monster(){
+        mLevel = (int)((player.playerLevel + world.AREANUM) * TrekkerMath.randomDouble(3, .1));
+    }
     public void setName(String name){
         mName = name;
     }
@@ -31,7 +35,6 @@ public class monster {
     }
     public void setOrigionalHealth(int hVal){
         mHealth = hVal;
-        mLevel = (int)((mHealth / 5) + mStrength + mSpeed);
     }
     public int getHealth(){
         return mHealth;

@@ -8,6 +8,13 @@
             "type": "java",
             "name": "runTime",
             "request": "launch",
+            "mainClass": "com.textbasedgame.runTime",
+            "projectName": "Text-Based-Java-Game"
+        },
+        {
+            "type": "java",
+            "name": "runTime",
+            "request": "launch",
             "mainClass": "runTime",
             "projectName": "Text-Based-Java-Game_d89d1ade"
         },
