@@ -19,7 +19,7 @@ public class runTime
         startup();
 
 
-        if(!newSaveFolderBool){
+        if(newSaveFolderBool){
              //Startup
             gui.printOnGameSide("What is your name young one?");
             String Name = gui.getInput();

@@ -16,6 +16,6 @@ public class bread extends consumables{
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = bread.class;
+        classofItem = bread.class.getName();
     } 
 }

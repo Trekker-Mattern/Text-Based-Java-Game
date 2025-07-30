@@ -26,6 +26,6 @@ public class throwingKnife extends attackingConsumable {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = throwingKnife.class;
+        classofItem = throwingKnife.class.getName();
     } 
 }

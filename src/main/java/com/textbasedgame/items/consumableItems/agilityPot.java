@@ -16,6 +16,6 @@ public class agilityPot extends consumables{
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = agilityPot.class;
+        classofItem = agilityPot.class.getName();
     } 
 }

@@ -1,16 +1,18 @@
 package com.textbasedgame.util;
+import org.apache.commons.io.FileUtils;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
+import java.lang.reflect.Type;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.Scanner;
-import org.apache.commons.io.FileUtils;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.GsonBuildConfig;
-import com.google.gson.stream.JsonReader;
+
 import com.textbasedgame.runTime;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.consumableItems.bread;
@@ -21,7 +23,7 @@ public abstract class saveFiles {
     
     private static File saveFile = new File(runTime.SAVE_FILE_ROOT + "\\saveFile.txt");
     private static boolean newSave = false;
-    private static Gson gson;
+
 
     public static boolean isNewFile(){
         return newSave;
@@ -59,15 +61,12 @@ public abstract class saveFiles {
 
     public static void save(){
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setPrettyPrinting();
-        Gson gson = gsonBuilder.create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(item.class, new TJSONDeserializer()).setPrettyPrinting().create();
 
         FileWriter fWriter = null;
         FileWriter JSONWriter = null;
         try{
             //delete old save
-            
             File saveFolderToDelete = new File(runTime.SAVE_FILE_ROOT);
 
             if (saveFolderToDelete.exists()) {
@@ -99,18 +98,19 @@ public abstract class saveFiles {
 
             fWriter = new FileWriter(saveFile);
             JSONWriter = new FileWriter(new File(runTime.SAVE_FILE_ROOT + "\\stuff.JSON"));
+            
             // get string version of inventory 
+            //String s = "";
 
+            JSONWriter.write("[ \n");
+            for(int i = 0; i < player.inventory.size(); i++){
 
-
-            String s = "";
-
-            //gson.toJson(player.class, JSONWriter);
-
-            //for(item e: player.inventory){
-
-                gson.toJson(player.inventory, JSONWriter);
-
+                gson.toJson(player.inventory.get(i), item.class, JSONWriter);
+                if(i < player.inventory.size() - 1){
+                    JSONWriter.write(",\n");
+                }
+            }
+            JSONWriter.write("\n]");
 
                 /* 
                         s += e.getClass().getName();
@@ -134,13 +134,12 @@ public abstract class saveFiles {
             fWriter.write("Player-Intelligence: " + player.intelligence + "\n");
             fWriter.write("Player-XP-to-Level-Up: " + player.getXpToLevelUp() + "\n");
             fWriter.write("Player-XP: " + player.getXP() + "\n");
-            fWriter.write("Player-Inventory: " + s + "\n");
             fWriter.write("World-StageNum: " + world.stageNum + "\n");
             fWriter.write("World-AreaNum: " + world.AREANUM + "\n");
             fWriter.write("PlayerCoins: " + player.BankBalance + "\n");
             fWriter.write("PlayerLuck: " + player.luck + "\n");
             fWriter.close();
-            
+            JSONWriter.close();
         }
         catch(Exception e){
             System.out.println(e);
@@ -167,10 +166,12 @@ public abstract class saveFiles {
         reader.nextLine();
         reader.next();
     }
-    @SuppressWarnings("unchecked")
     public static void readPlayerSave(File file){
+
+        
+
         int pLvl, chealth, maxhealth, str, ag, inte, xptlu, xp, stgNum, areaNum;
-            String nameS, invListString;
+            String nameS;
             try{
                 Scanner myReader = new Scanner(file);
                 myReader.next();
@@ -193,7 +194,6 @@ public abstract class saveFiles {
                 saveFiles.goToNextReadableText(myReader);
                 xp = myReader.nextInt();
                 saveFiles.goToNextReadableText(myReader);
-                invListString = myReader.nextLine();
                 
                 player.setName(nameS);
                 player.allocateSkillPoints(str,ag,inte);
@@ -259,12 +259,27 @@ public abstract class saveFiles {
                 */
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 gsonBuilder.setPrettyPrinting();
+                gsonBuilder.registerTypeAdapter(item.class, new TJSONDeserializer());
                 Gson jsonToInvGson = gsonBuilder.create();
-                
+
+                Type listType = new TypeToken<List<item>>() {}.getType();
+                FileReader jsonFileReader = new FileReader(runTime.SAVE_FILE_ROOT + "\\stuff.JSON");
+                List<item> inv = jsonToInvGson.fromJson(jsonFileReader, listType);
+                if(inv != null){
+                    for(item invItem : inv){
+                        if(invItem instanceof equipables){
+                            equipables eqpItem = (equipables) invItem;
+                            player.addItemToPlayer(eqpItem, eqpItem.isEquipped());
+                        }
+                        else{
+                            player.addItemToPlayer(invItem);
+                        }
+                    }
+                }
+                jsonFileReader.close();
 
                 
 
-                myReader.next();
                 stgNum = myReader.nextInt();
                 goToNextReadableText(myReader);
                 areaNum = myReader.nextInt();
@@ -276,7 +291,6 @@ public abstract class saveFiles {
                 world.AREANUM = areaNum;
                 world.stageNum = stgNum;
                 player.playerLevel = pLvl;
-
                 myReader.close();
                 return;
             }
@@ -297,6 +311,7 @@ public abstract class saveFiles {
             return new bread();
         }
     }
+    @SuppressWarnings("unused")
     private static item getItemToAddToInv(Class<? extends item> e, int quality){
         try{
             try{

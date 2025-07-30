@@ -15,6 +15,6 @@ public class intelligencePot extends consumables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = intelligencePot.class;
+        classofItem = intelligencePot.class.getName();
     } 
 }

@@ -43,6 +43,6 @@ public class sword extends holdables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = sword.class;
+        classofItem = sword.class.getName();
     } 
 }

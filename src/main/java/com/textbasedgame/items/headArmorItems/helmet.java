@@ -37,6 +37,6 @@ public class helmet extends headArmor{
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = helmet.class;
+        classofItem = helmet.class.getName();
     } 
 }

@@ -41,6 +41,6 @@ public class club extends holdables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = club.class;
+        classofItem = club.class.getName();
     } 
 }

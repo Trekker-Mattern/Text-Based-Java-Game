@@ -24,7 +24,7 @@ public class chestplate extends chestArmor{
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = chestplate.class;
+        classofItem = chestplate.class.getName();
     } 
     public void onEquip(){
         

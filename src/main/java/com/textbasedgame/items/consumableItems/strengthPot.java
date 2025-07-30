@@ -16,6 +16,6 @@ public class strengthPot extends consumables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = strengthPot.class;
+        classofItem = strengthPot.class.getName();
     } 
 }

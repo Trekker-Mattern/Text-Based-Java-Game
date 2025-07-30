@@ -38,7 +38,7 @@ public class genericPotion extends consumables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = genericPotion.class;
+        classofItem = genericPotion.class.getName();
     } 
 
     public void Use(){

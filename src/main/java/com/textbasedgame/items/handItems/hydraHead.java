@@ -36,6 +36,6 @@ public class hydraHead extends holdables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = hydraHead.class;
+        classofItem = hydraHead.class.getName();
     } 
 }

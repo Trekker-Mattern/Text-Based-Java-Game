@@ -1,10 +1,7 @@
 package com.textbasedgame.monsters;
 
 import java.lang.reflect.*;
-
-import com.textbasedgame.playerFiles.*;
 import com.textbasedgame.util.*;
-import com.textbasedgame.world.*;
 
 public class monsterCreator {
     

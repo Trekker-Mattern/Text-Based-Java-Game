@@ -30,7 +30,7 @@ public class leatherPants extends legsArmor {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = leatherPants.class;
+        classofItem = leatherPants.class.getName();
     }
 
 }

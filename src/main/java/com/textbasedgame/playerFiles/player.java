@@ -528,12 +528,12 @@ public abstract class player {
     }
 
     public static int damageDone(){
-        double multiplyer;
+        double multiplier;
         boolean playerMiss = false;
 
         if(TrekkerMath.randomInt(100, (getIntelligence() * 3)) > 40){
-            multiplyer = TrekkerMath.randomDouble(2, 0);
-            if(multiplyer < .5){
+            multiplier = TrekkerMath.randomDouble(2, 0);
+            if(multiplier < .5){
                 playerMiss = true;
             }
             else{
@@ -541,13 +541,13 @@ public abstract class player {
             }
         }
         else {
-            multiplyer = 1;
+            multiplier = 1;
         }
         if(playerMiss == true){
-            if(multiplyer != 0){
+            if(multiplier != 0){
                 gui.printOnGameSide("You swing and only graze the monster but it still does damage.");
             }
-            if(multiplyer == 0){
+            if(multiplier == 0){
                 gui.printOnGameSide("You completely miss on your attack hitting nothing but air.");
             }
         }
@@ -583,18 +583,18 @@ public abstract class player {
         }
 
         if(LHand == null && RHand == null){
-            return (int)(getStrength() * multiplyer);
+            return (int)(getStrength() * multiplier);
         }
 
 
         if(LHandDMGType == RHandDMGType){
             int dmg = LHandDMG + RHandDMG;
             dmg *= 1.35;
-            dmg *= multiplyer;
+            dmg *= multiplier;
             return dmg;
         }
         int dmg = LHandDMG + RHandDMG;
-        dmg *= multiplyer;
+        dmg *= multiplier;
         return dmg;
     }
 

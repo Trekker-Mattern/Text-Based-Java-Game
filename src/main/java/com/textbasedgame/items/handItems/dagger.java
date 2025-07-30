@@ -45,6 +45,6 @@ public class dagger extends holdables{
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = dagger.class;
+        classofItem = dagger.class.getName();
     } 
 }

@@ -26,6 +26,6 @@ public class fish extends consumables {
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
-        classofItem = fish.class;
+        classofItem = fish.class.getName();
     } 
 }
