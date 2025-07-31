@@ -12,11 +12,11 @@ public class thor extends boss {
     public void attackEffects(int damageDoneToPlayer){
         if(player.equippedItems.stream().anyMatch( item -> item.tagsContains("Metal"))){
             gui.printOnGameSide("Thor's Lightning is attracted to your metal!");
-            gui.printOnGameSide("Its power is amplified!")
+            gui.printOnGameSide("Its power is amplified!");
         }
     }
     @Override
-    public void getStrength(){
+    public int getStrength(){
         if(player.equippedItems.stream().anyMatch( item -> item.tagsContains("Metal"))){
             return mStrength + (int)(mStrength/3);
         }
