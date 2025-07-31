@@ -14,6 +14,18 @@ public class response{
         }
 
     }
+
+    public static boolean respondRun(String response){
+        response = response.toLowerCase();
+        if (response.contains("run"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public static boolean respondNo(String response){
         response = response.toLowerCase();
 

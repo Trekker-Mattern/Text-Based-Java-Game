@@ -189,6 +189,8 @@ public abstract class world {
             String h = gui.getInput(); 
             if(response.quit(h)){gui.quit();}
 
+            if(response.respondRun(h)){run(); break;}
+
             if(response.respondFight(h)){
                 player.fightMonster(m);
                 if(m.getHealth() <= 0){
@@ -234,8 +236,11 @@ public abstract class world {
                                 stageNum++;
                             }
                             else{
-                                m.printMonster();
-                                player.damageTaken(m);
+                                if(player.getAgility() < m.getSpeed()){
+                                    m.printMonster();
+                                    gui.printOnGameSide("While you use your item the monster attacks");
+                                    player.damageTaken(m);
+                                }
                             }
 
                         }
@@ -312,11 +317,18 @@ public abstract class world {
             }
         }
     }
+    public static void run(){
+        stageNum -= stageNum % 5;
+        gui.printOnGameSide("You flee and return back to the last safe area that you remember");
+    }
 
     private static void changeArea(){
-        AREANUM++;
+        if(stageNum / 5 < areas.length - 1){
+            AREANUM = stageNum / 5;
+        }
         monsterArrayList.updateMonsterArrayListOnAreaUpdate();
         gui.printOnGameSide("You notice the scenery changing. You step down into " + getArea());
+        gui.updatePlayerSide();
     }
 
 }

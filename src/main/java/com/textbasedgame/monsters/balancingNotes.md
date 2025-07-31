@@ -23,3 +23,15 @@
 ## --- TODO AFTER ---
 
 **MONSTER WEAKNESSES** - THIS WOULD BE SO COOL TO DO -- or at least to set up
+
+----------------------------------------
+
+## Just Changed
+
+- Armor is now a divisor where the base armor value is increased by 10 then devided by 10 then multiplied by 1.25
+
+-----------------------------------------
+
+## Cool TODO:
+
+- Do a boss intro for each boss

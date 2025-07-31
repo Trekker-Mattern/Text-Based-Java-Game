@@ -513,18 +513,18 @@ public abstract class player {
         }
 
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
-        if(monsterDamage < getArmor()){
-            gui.printOnGameSide("The " + m.getName() + " tries to " + m.attackString());
-            gui.printOnGameSide(" but your strong armor repels their attack");
-            return 0;
-        }
+
+
+        monsterDamage =(int)(monsterDamage / ((((double)getArmor() + 10) / 10)  * 1.25));
+
+
         if(monsterDamage >= health){
             death(m, monsterDamage);
         }
-        gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + (m.getStrength()*monsterMultiplyer - getArmor()));
-        m.attackEffects(monsterDamage - getArmor());
+        gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + monsterDamage);
+        m.attackEffects(monsterDamage);
         gui.updatePlayerSide();
-        return monsterDamage - getArmor();
+        return monsterDamage;
     }
 
     public static int damageDone(){
