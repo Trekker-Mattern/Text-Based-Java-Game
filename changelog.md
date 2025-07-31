@@ -24,6 +24,8 @@
 - Recreate Buff things?
 - FIX THE SHOP PLEASE — Seems Fixed
 - Create run system that brings you back to last shop area
+- Some improved GUI with a new box that seperates new text from old text and it pushes the old text into the top scrolling section and new text is kept seperate.
+- Escalibur and new Sword in stone Room added.
 
 ---
 
@@ -36,9 +38,16 @@
 - Recreate same-type damage boost for weapons in a better way — For each tag in common between weapons, add damage boost (maybe a 0.2x multiplier)
 - Revamp Monster Creation System with HashMaps per floor; pass them into monster creation function via array of maps/sets
 - Add Monster Strengths & Weaknesses
+- Add Rogue set where it translates agility to strength and increases crit maybe. Should be cool and have a new set
+- Add comments on which set each item is from in inventories or shops
+- New Stuff on each types of rooms
+- New Category of Item, Key Items?? -- I could keep this as a consumable item but I think if we make it a new subcategory of item it will work better.
+- - This will allow for interesting interactions with chests or other rooms.
+- - Impliment jailer enemy for obtaining keys
+- - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
 
 ---
 
 ## Monster Balancing Calculation
 
-world.stageNum + player.playerLevel  // Too Much!!
+Currently Set to A random level based on player level and World Level and then individual stats based on that.

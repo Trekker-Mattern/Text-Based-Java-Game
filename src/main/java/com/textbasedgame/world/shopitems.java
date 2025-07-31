@@ -29,24 +29,25 @@ public abstract class shopitems {
 
     public static void createShopItemsArr(){
         consumableShopItems.add(fish.class);
-        equipableShopItems.add(sword.class);
-        equipableShopItems.add(dagger.class);
-        equipableShopItems.add(chestplate.class);
         consumableShopItems.add(threeCourseMeal.class);
-        equipableShopItems.add(wand.class);
-        equipableShopItems.add(helmet.class);
         consumableShopItems.add(bread.class);
-        equipableShopItems.add(club.class);
-        equipableShopItems.add(leatherPants.class);
-        equipableShopItems.add(clogs.class);
+        consumableShopItems.add(beefsteak.class);
         consumableShopItems.add(intelligencePot.class);
         consumableShopItems.add(strengthPot.class);
         consumableShopItems.add(agilityPot.class);
+        consumableShopItems.add(throwingKnife.class);
+        equipableShopItems.add(sword.class);
+        equipableShopItems.add(club.class);
+        equipableShopItems.add(dagger.class);
+        equipableShopItems.add(wand.class);
+        equipableShopItems.add(helmet.class);
+        equipableShopItems.add(chestplate.class);
+        equipableShopItems.add(leatherPants.class);
+        equipableShopItems.add(clogs.class);
         equipableShopItems.add(spartanHelmet.class);
         equipableShopItems.add(spartanBoots.class);
         equipableShopItems.add(spartanSkirt.class);
         equipableShopItems.add(spartanBreastplate.class);
-        consumableShopItems.add(throwingKnife.class);
         equipableShopItems.add( wizardShoes.class);
         equipableShopItems.add(wizardHat.class);
         equipableShopItems.add( wizardCloak.class);
@@ -76,6 +77,8 @@ public abstract class shopitems {
         allItemsList.add(wizardHat.class);
         allItemsList.add(wizardCloak.class);
         allItemsList.add(genericPotion.class);
+        allItemsList.add(beefsteak.class);
+        allItemsList.add(escalibur.class);
 
     }
 
