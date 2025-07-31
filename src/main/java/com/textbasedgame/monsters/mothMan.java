@@ -1,13 +1,13 @@
 package com.textbasedgame.monsters;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.playerFiles.*;
-import com.textbasedgame.util.TrekkerMath;
 public class mothMan extends boss {
 
     public mothMan(){
         setName("Mothmann God of Moths");
-        setStrength(TrekkerMath.randomInt(10, 4));
-        setOrigionalHealth((int)(TrekkerMath.randomDouble(2, 1.3) * (player.playerLevel)));
+        setStrength(monsterCreator.medMonsterStr(mLevel) + player.getAgility());
+        setOrigionalHealth(monsterCreator.medMonsterHealth(mLevel) + player.playerLevel);
+        setSpeed(monsterCreator.fastMonsterSpeed(mLevel) + player.getAgility());
         setArmour((int)(0));
     }
     public void attackEffects(int damageDoneToPlayer){

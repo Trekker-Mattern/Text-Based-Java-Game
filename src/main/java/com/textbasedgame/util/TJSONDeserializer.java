@@ -30,7 +30,6 @@ public class TJSONDeserializer implements JsonDeserializer<item>, JsonSerializer
 
     @Override
     public JsonElement serialize(item src, Type typeOfSrc, JsonSerializationContext context) {
-        System.out.println("Serializing: " + src.getClassofItem());
         JsonObject jsonObject = context.serialize(src).getAsJsonObject();
         return jsonObject; // Serialize the class name as a string
     }

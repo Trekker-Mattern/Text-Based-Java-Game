@@ -11,7 +11,7 @@ import com.textbasedgame.util.*;
 public abstract class world { 
 
     public static int AREANUM = 0;
-    private static final String areas[] = {"Village", "Grassland", "Cave", "Hell", "A second Cave?", "A THIRD CAVE??", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?"}; 
+    private static final String areas[] = {"Village", "Outer Gates", "Grassland", "Graveyard", "Tunnels!", "Cave", "A second Cave", "A THIRD CAVE??", "Hell", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?", "Get some sleep please", "Touch Grass?"}; 
     public static int stageNum = 0;
 
     public world(){}
@@ -35,6 +35,7 @@ public abstract class world {
             gui.newlOnGameSide();
 
             String Ans = gui.getInput();
+            gui.pushOldText();
             if (response.quit(Ans)){gui.quit();}
 
             //OPEN SHOP!!!
@@ -61,8 +62,11 @@ public abstract class world {
     private static void openShop(){
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
+        gui.printOnGameSide("You can also sell items by typing sell!");
         String userInput = gui.getInput();
-                
+
+        gui.pushOldText();
+        
         try{
             int UserResp = Integer.parseInt(userInput);
             //int numUserIsBuying = input.nextInt();
@@ -152,8 +156,7 @@ public abstract class world {
             }
         }
         //no dont buy shit recurse back to display
-        if(response.respondNo(userInput)){}
-
+        if(response.respondNo(userInput)){gui.pushOldText();}
     }
 
     private static void openDungeon(){
@@ -173,6 +176,7 @@ public abstract class world {
                 roomFactory.getRandomRoom().openRoom();
             }
             else{
+                gui.pushOldText();
                 monster m = monsterCreator.createMonster();
                 m.printMonster();
                 monsterMenu(m);
@@ -185,8 +189,9 @@ public abstract class world {
         while(m.getHealth() > 0){
             gui.newlOnGameSide();
             gui.printOnGameSide("What would you like to do?");
-            gui.printOnGameSide("Fight, Use an item, or Quit");
+            gui.printOnGameSide("Fight, Use an item, Run, or Quit");
             String h = gui.getInput(); 
+            gui.pushOldText();
             if(response.quit(h)){gui.quit();}
 
             if(response.respondRun(h)){run(); break;}
@@ -292,9 +297,11 @@ public abstract class world {
 
 
     public static void itemMenu(){
+        gui.pushOldText();
         player.printPlayerItems();
         gui.printOnGameSide("Would you like to use an item?");
         String h = gui.getInput();
+        gui.pushOldText();
         try{
             int number = Integer.parseInt(h);
             try {
@@ -310,12 +317,14 @@ public abstract class world {
         if(response.respondYes(h)){
             gui.printOnGameSide("What is the number of the item you would like to use");
             int temp = Integer.parseInt(gui.getInput());
+            gui.pushOldText();
             try {
                 player.inventory.get(temp-1).Use();
             } catch (IndexOutOfBoundsException e) {
                 gui.printOnGameSide("You dont have that many items you goof!");
             }
         }
+        
     }
     public static void run(){
         stageNum -= stageNum % 5;
@@ -329,6 +338,7 @@ public abstract class world {
         monsterArrayList.updateMonsterArrayListOnAreaUpdate();
         gui.printOnGameSide("You notice the scenery changing. You step down into " + getArea());
         gui.updatePlayerSide();
+        gui.pushOldText();
     }
 
 }

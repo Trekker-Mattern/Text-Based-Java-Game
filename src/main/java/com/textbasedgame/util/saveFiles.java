@@ -70,10 +70,6 @@ public abstract class saveFiles {
             File saveFolderToDelete = new File(runTime.SAVE_FILE_ROOT);
 
             if (saveFolderToDelete.exists()) {
-                System.out.println("File exists: " + saveFolderToDelete.getAbsolutePath());
-                System.out.println("Can write: " + saveFolderToDelete.canWrite());
-                System.out.println("Can read: " + saveFolderToDelete.canRead());
-                System.out.println("Is directory: " + saveFolderToDelete.isDirectory());
                 FileUtils.deleteDirectory(saveFolderToDelete);
             } else {
                 System.out.println("Directory does not exist: " + saveFolderToDelete.getAbsolutePath());
@@ -98,9 +94,6 @@ public abstract class saveFiles {
 
             fWriter = new FileWriter(saveFile);
             JSONWriter = new FileWriter(new File(runTime.SAVE_FILE_ROOT + "\\stuff.JSON"));
-            
-            // get string version of inventory 
-            //String s = "";
 
             JSONWriter.write("[ \n");
             for(int i = 0; i < player.inventory.size(); i++){
@@ -111,19 +104,6 @@ public abstract class saveFiles {
                 }
             }
             JSONWriter.write("\n]");
-
-                /* 
-                        s += e.getClass().getName();
-                        if (e instanceof equipables){
-                            s += "-";
-                            s += ((equipables)e).getQualityInt();
-                            if(((equipables)e).isEquipped()){
-                                s += "-true";
-                            }
-                        }
-                        s += ",";
-                */
-            //}
             
             fWriter.write("Player-Name: " + player.getName() + "\n");
             fWriter.write("Player-Level: " + player.playerLevel + "\n");
@@ -209,54 +189,7 @@ public abstract class saveFiles {
                 /// 
                 /// WE SPLIT THIS SHIT INTO THREE POSSIBLE SEGMENTS 0- ITEM/CLASS KEY FOR LOOKUP IN HASHMAP   1- QUALITY AS AN INTEGER   2- IS EQUIPPED?  
                 /// 
-                /////////////////
-                /// 
-                /* 
-                invListString = invListString.trim();
-                if(invListString != ""){
-                    String[] itemList = invListString.split(",");
-                    for(String s: itemList){
-                        Class<? extends item> e = bread.class;
-                        s = s.trim();
-                        if(s.contains("-")){
-                            String[] sArr = s.split("-");
-                            try{
-                                Class<?> olde = Class.forName(sArr[0]);
-                                if(item.class.isAssignableFrom(olde)){
-                                    e = (Class<? extends item>)olde;
-                                }
-                            }
-                            catch(ClassNotFoundException error){
-                                e = bread.class;
-                            } 
-
-                            if(sArr.length > 2){
-                                boolean equipped = Boolean.parseBoolean(sArr[2]);
-                                player.addItemToPlayer((equipables)getItemToAddToInv(e, Integer.parseInt(sArr[1])), equipped);
-                            }
-                            else{
-                                player.addItemToPlayer(getItemToAddToInv(e, Integer.parseInt(sArr[1])));
-                            }
-                            
-                        }
-                        else{
-                            try{
-                                Class<?> olde = Class.forName(s);
-                                if(item.class.isAssignableFrom(olde)){
-                                    e = (Class<? extends item>)olde;
-                                }
-                                else e = bread.class;
-                                player.addItemToPlayer(getItemToAddToInv(e));
-                            }
-                            catch(ClassNotFoundException error){
-                                e = bread.class;
-                                System.out.println("Class is wrong");
-                                player.addItemToPlayer(getItemToAddToInv(e));
-                            } 
-                        }
-                    }
-                }
-                */
+                /////////////////      
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 gsonBuilder.setPrettyPrinting();
                 gsonBuilder.registerTypeAdapter(item.class, new TJSONDeserializer());
@@ -311,6 +244,8 @@ public abstract class saveFiles {
             return new bread();
         }
     }
+    
+    
     @SuppressWarnings("unused")
     private static item getItemToAddToInv(Class<? extends item> e, int quality){
         try{

@@ -5,9 +5,10 @@ import com.textbasedgame.util.TrekkerMath;
 public class thor extends boss {
     public thor(){
         setName("Thor - God of Thunder");
-        setStrength(TrekkerMath.randomInt(20, 7));
-        setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (player.playerLevel)));
-        setArmour((int)(TrekkerMath.randomDouble(3, 2.5)));
+        setStrength(monsterCreator.strongMonsterHealth(mLevel) + player.getStrength());
+        setOrigionalHealth(monsterCreator.strongMonsterHealth(mLevel) + player.playerLevel);
+        setSpeed(monsterCreator.medMonsterSpeed(mLevel));
+        setArmour((int)(TrekkerMath.randomDouble(2, 1.5)));
     }
     public void attackEffects(int damageDoneToPlayer){
         if(player.equippedItems.stream().anyMatch( item -> item.tagsContains("Metal"))){

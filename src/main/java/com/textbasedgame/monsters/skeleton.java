@@ -1,13 +1,12 @@
 package com.textbasedgame.monsters;
-import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.TrekkerMath;
-import com.textbasedgame.world.world;
+
 
 public  class skeleton extends monster {
     public skeleton(){
         super.setName("Skeleton");
-        super.setStrength(TrekkerMath.randomInt(5, 1));
-        super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.74, 1) * (player.playerLevel + world.AREANUM  + 4)));
+        super.setStrength(monsterCreator.medMonsterStr(mLevel));
+        super.setOrigionalHealth(monsterCreator.weakMonsterHealth(mLevel));
+        super.setSpeed(monsterCreator.slowMonsterSpeed(mLevel));
     }
     @Override
     public String attackString(){

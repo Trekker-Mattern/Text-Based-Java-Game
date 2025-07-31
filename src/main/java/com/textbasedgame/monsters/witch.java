@@ -2,13 +2,12 @@ package com.textbasedgame.monsters;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumableItems.genericPotion;
 import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.TrekkerMath;
-import com.textbasedgame.world.world;
 public class witch extends monster{
     public witch(){
         super.setName("Witch");
-        super.setStrength(TrekkerMath.randomInt(5, 1));
-        super.setOrigionalHealth((int)(TrekkerMath.randomDouble(1.34, .7) * (player.playerLevel + world.stageNum + 10)));
+        super.setStrength(monsterCreator.medMonsterStr(mLevel));
+        super.setOrigionalHealth(monsterCreator.medMonsterStr(mLevel));
+        super.setSpeed(monsterCreator.medMonsterSpeed(mLevel));
     }
     @Override
     public String attackString(){

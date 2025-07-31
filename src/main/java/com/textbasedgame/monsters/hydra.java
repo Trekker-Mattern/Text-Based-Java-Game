@@ -3,15 +3,14 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.handItems.hydraHead;
 import com.textbasedgame.playerFiles.*;
-import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.world;
 
 public class hydra extends boss {
     public hydra(){
         setName("Hydra");
-        setStrength(TrekkerMath.randomInt(14, 7) + world.AREANUM);
-        setOrigionalHealth((int)(TrekkerMath.randomDouble(3, 2.5) * (player.playerLevel + world.AREANUM + 4)));
+        setStrength(monsterCreator.strongMonsterStr(mLevel) + player.getIntelligence());
+        setOrigionalHealth(monsterCreator.strongMonsterHealth(mLevel) + player.playerLevel);
+        setSpeed(monsterCreator.slowMonsterSpeed(mLevel));
     }
     public void attackEffects(int damageDoneToPlayer){
 

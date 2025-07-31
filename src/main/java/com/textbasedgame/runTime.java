@@ -33,6 +33,8 @@ public class runTime
             gui.printOnGameSide("Its time to allocate some skill points!");
             gui.printOnGameSide("Would You like to allocate your own points? ");
             String Response = gui.getInput();
+
+            gui.pushOldText();
             if(response.respondYes(Response))
             {
                 gui.printOnGameSide("You have 5 points to spend on 3 different attributes! Choose wisely.");

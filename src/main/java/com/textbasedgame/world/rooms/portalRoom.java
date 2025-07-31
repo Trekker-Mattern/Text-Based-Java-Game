@@ -13,6 +13,7 @@ public class portalRoom extends roomFactory{
                 gui.printOnGameSide("Enter?");
 
                 if(response.respondYes(gui.getInput())){
+                    gui.pushOldText();
                     gui.printOnGameSide("You enter the floating spiral, slowly glancing around at the room that now surrounds you.");
 
                     i = TrekkerMath.randomInt(6, 0);
@@ -36,6 +37,7 @@ public class portalRoom extends roomFactory{
                 gui.printOnGameSide("Enter?");
 
                 if(response.respondYes(gui.getInput())){
+                    gui.pushOldText();
                     gui.printOnGameSide("You enter the floating spiral, slowly glancing around at the room that now surrounds you.");
                     int maxAreaDecrease;
                     if(world.AREANUM < 3) {maxAreaDecrease = world.AREANUM;}

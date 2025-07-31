@@ -17,7 +17,7 @@ public class response{
 
     public static boolean respondRun(String response){
         response = response.toLowerCase();
-        if (response.contains("run"))
+        if (response.contains("run") || response.equals("r"))
         {
             return true;
         }
@@ -47,7 +47,7 @@ public class response{
     }
     public static boolean Shop(String response){
         response = response.toLowerCase();
-        if(response.contains("Shop")  || response.contains("shop")){
+        if(response.contains("Shop")  || response.contains("shop") || response.equals("s")){
             return true;
         }
         else return false;
@@ -61,21 +61,21 @@ public class response{
     }
     public static boolean Dungeon(String response){
         response = response.toLowerCase();
-        if(response.contains("dungeon")  || response.contains("Dungeon")){
+        if(response.contains("dungeon")  || response.contains("Dungeon") || response.equals("d")){
             return true;
         }
         else return false;
     }
     public static boolean Items(String response){
         response = response.toLowerCase();
-        if(response.contains("items")  || response.contains("Items") || response.contains("Item") || response.contains("item")){
+        if(response.contains("items")  || response.contains("Items") || response.contains("Item") || response.contains("item") || response.equals("i")){
             return true;
         }
         else return false;
     }
     public static boolean respondFight(String response){
         response = response.toLowerCase();
-        if(response.contains("fight")  || response.contains("attack") || response.contains("brawl") || response.contains("kill")){
+        if(response.contains("fight")  || response.contains("attack") || response.contains("brawl") || response.contains("kill") || response.equals("f")){
             return true;
         }
         return false;

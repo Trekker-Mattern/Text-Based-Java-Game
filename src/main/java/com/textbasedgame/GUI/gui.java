@@ -1,6 +1,7 @@
 package com.textbasedgame.GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -19,9 +20,11 @@ public class gui {
     private static JPanel outsideInvPanel;
     private static JPanel topofInvPanel;
     public static JPanel txtPanel;
+    public static JPanel recentTextPanel;
     public static JTextField textField;
     public static String latestInput;
     private static JScrollPane scrollPane;
+    private static JScrollPane secondScrollPane;
     
 
     public static void runGui(){
@@ -56,15 +59,29 @@ public class gui {
         txtPanel = new JPanel();
         txtPanel.setLayout(new BoxLayout(txtPanel, BoxLayout.Y_AXIS));
         txtPanel.setMinimumSize(minSizeTxt);
-        txtPanel.setBackground(Color.white);
+        txtPanel.setBackground(new Color(215, 215, 215));
         txtPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        //JPanel for New Important text before stuff gets pushed to the main box
+        recentTextPanel = new JPanel();
+        recentTextPanel.setLayout(new BoxLayout(recentTextPanel, BoxLayout.Y_AXIS));
+        recentTextPanel.setMinimumSize(minSizeTxt);
+        recentTextPanel.setBackground(Color.white);
+        recentTextPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
         scrollPane = new JScrollPane(txtPanel);
+        secondScrollPane = new JScrollPane(recentTextPanel);
+        //Split the text panel into a section for new important information and old news
+        JPanel txtPanelSplit = new JPanel(new GridLayout(2,1, 10, 10));
+        txtPanelSplit.add(scrollPane);
+        txtPanelSplit.add(secondScrollPane);
 
         //create a gridlayout container to hold the side by side panels
         JPanel gridLayoutPanel = new JPanel(new GridLayout(1,2,10,10));
         gridLayoutPanel.add(outsideInvPanel);
-        gridLayoutPanel.add(scrollPane);
+        gridLayoutPanel.add(txtPanelSplit);
+
+        
 
         //Create the text input panel
         JPanel inputPanel = new JPanel();
@@ -114,23 +131,34 @@ public class gui {
             return input;
         }
     }
+    public static void pushOldText(){
+        for(Component text: recentTextPanel.getComponents()){
+            txtPanel.add(text);
+        }
+        recentTextPanel.removeAll();
+        SwingUtilities.invokeLater(() -> {
+            txtPanel.scrollRectToVisible(txtPanel.getComponents()[txtPanel.getComponentCount()-1].getBounds());
+        });
+        recentTextPanel.revalidate();
+        recentTextPanel.repaint();
+        txtPanel.revalidate();
+        txtPanel.repaint();
+    }
 
     public static void printOnGameSide(String s){
         JLabel text = new JLabel();
         text.setText(s);
-        txtPanel.add(text);
-        txtPanel.revalidate();
-
+        recentTextPanel.add(text);
+        recentTextPanel.revalidate();
         SwingUtilities.invokeLater(() -> {
             text.scrollRectToVisible(text.getBounds());
         });
-        
     }
     public static void newlOnGameSide(){
         JLabel text = new JLabel();
         text.setText(" ");
-        txtPanel.add(text);
-        txtPanel.revalidate();
+        recentTextPanel.add(text);
+        recentTextPanel.revalidate();
 
     }
 

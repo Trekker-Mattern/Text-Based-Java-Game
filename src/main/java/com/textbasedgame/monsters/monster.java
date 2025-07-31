@@ -25,7 +25,7 @@ public class monster {
     */
     
     public monster(){
-        mLevel = (int)((player.playerLevel + world.AREANUM) * TrekkerMath.randomDouble(3, .1));
+        mLevel = (int)((player.playerLevel + world.AREANUM) * TrekkerMath.randomDouble(2, .1));
     }
     public void setName(String name){
         mName = name;
