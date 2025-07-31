@@ -21,8 +21,7 @@ public class wizardHat extends headArmor {
         setPrice(25);
         setName("Wizard Hat");
         equipmentSetName = "Wizard Set";
-        buffType = buffTypes.INTELLIGENCE;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     }
     public wizardHat(int qual){
         setQuality(qual);
@@ -30,8 +29,7 @@ public class wizardHat extends headArmor {
         equipmentSetName = "Wizard Set";
         setPrice(25);
         setName("Wizard Hat");
-        buffType = buffTypes.INTELLIGENCE;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     } 
     protected Set<String> getTagsSet() {
         return tags;

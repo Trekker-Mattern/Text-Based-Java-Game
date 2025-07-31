@@ -9,13 +9,13 @@ import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
 
 import java.util.HashSet;
+import java.util.ArrayList;
 
 public abstract class equipables extends item {
     protected boolean equipped = false;
     protected String qualityString;
     protected int quality;
-    public buffTypes buffType;
-    public int buffValue;
+    public ArrayList<pair<buffTypes, Integer>> buffs;
     protected String equipmentSetName;
 
     

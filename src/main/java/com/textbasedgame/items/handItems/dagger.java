@@ -6,6 +6,7 @@ import java.util.Arrays;
 import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.holdables;
 import com.textbasedgame.playerFiles.player.buffTypes;
+import com.textbasedgame.util.pair;
 
 
 public class dagger extends holdables{
@@ -16,8 +17,7 @@ public class dagger extends holdables{
     public dagger(){
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        buffType = buffTypes.AGILITY;
-        buffValue = quality *2;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 2*quality));
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");
@@ -26,8 +26,7 @@ public class dagger extends holdables{
         setQuality(qual);
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        buffType = buffTypes.AGILITY;
-        buffValue = quality *2;
+        buffs.add(new pair<>(buffTypes.AGILITY, 2*qual));
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");

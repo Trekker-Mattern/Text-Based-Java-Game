@@ -103,8 +103,10 @@ public abstract class player {
         }
 
         for(equipables e : equippedItems){
-            if(e.buffType == buffTypes.STRENGTH){
-                val += e.buffValue;
+            for(pair<buffTypes, Integer>buff : e.buffs){
+                if(buff.first == buffTypes.STRENGTH){
+                    val+= buff.second;
+                }
             }
         }
         
@@ -133,8 +135,11 @@ public abstract class player {
         }
 
         for(equipables e : equippedItems){
-            if(e.buffType == buffTypes.AGILITY){
-                val += e.buffValue;
+
+            for(pair<buffTypes, Integer>buff : e.buffs){
+                if(buff.first == buffTypes.AGILITY){
+                    val+= buff.second;
+                }
             }
         }
         try{
@@ -162,8 +167,11 @@ public abstract class player {
         }
 
         for(equipables e : equippedItems){
-            if(e.buffType == buffTypes.INTELLIGENCE){
-                val += e.buffValue;
+
+            for(pair<buffTypes, Integer>buff : e.buffs){
+                if(buff.first == buffTypes.INTELLIGENCE){
+                    val+= buff.second;
+                }
             }
         }
         try{
@@ -194,6 +202,15 @@ public abstract class player {
                 val += e.getArmorVal();
             }
         }
+        for(equipables e : equippedItems){
+
+            for(pair<buffTypes, Integer>buff : e.buffs){
+                if(buff.first == buffTypes.ARMOR){
+                    val+= buff.second;
+                }
+            }
+        }
+
         try{
             var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
             @SuppressWarnings("unchecked")

@@ -20,8 +20,7 @@ public class wizardCloak extends chestArmor {
         setPrice(15);
         setName("Wizard Cloak");
         equipmentSetName = "Wizard Set";
-        buffType = buffTypes.INTELLIGENCE;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     }
 
     public wizardCloak(int qual) {
@@ -30,8 +29,7 @@ public class wizardCloak extends chestArmor {
         equipmentSetName = "Wizard Set";
         setPrice(15);
         setName("Wizard Cloak");
-        buffType = buffTypes.INTELLIGENCE;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     }
 
     protected Set<String> getTagsSet() {

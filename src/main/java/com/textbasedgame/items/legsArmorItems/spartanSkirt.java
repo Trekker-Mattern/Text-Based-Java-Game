@@ -20,16 +20,14 @@ public class spartanSkirt extends legsArmor {
         setPrice(30);
         setName("Periskelis");
         equipmentSetName = "Spartan Set";
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     }
     public spartanSkirt(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 1.4);
         setPrice(30);
         setName("Periskelis");
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
     protected Set<String> getTagsSet() {
 

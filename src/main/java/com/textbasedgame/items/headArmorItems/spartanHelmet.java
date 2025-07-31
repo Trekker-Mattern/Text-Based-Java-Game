@@ -20,8 +20,7 @@ public class spartanHelmet extends headArmor {
         setPrice(25);
         setName("Spartan Helmet");
         equipmentSetName = "Spartan Set";
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     }
     public spartanHelmet(int qual){
         setQuality(qual);
@@ -29,8 +28,7 @@ public class spartanHelmet extends headArmor {
         equipmentSetName = "Spartan Set";
         setPrice(25);
         setName("Spartan Helmet");
-        buffType = buffTypes.STRENGTH;
-        buffValue = 3;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
     protected Set<String> getTagsSet() {
 

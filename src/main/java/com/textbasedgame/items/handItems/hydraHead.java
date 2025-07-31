@@ -6,6 +6,7 @@ import java.util.Set;
 import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.*;
 import com.textbasedgame.playerFiles.player.buffTypes;
+import com.textbasedgame.util.pair;
 
 public class hydraHead extends holdables {
     public static final Set<String> tags = new HashSet<>(Arrays.asList("Intelligence", "Boss Item", "Ranged", "Flame", "Impaling", "Magic"));
@@ -13,8 +14,7 @@ public class hydraHead extends holdables {
 
     public hydraHead(){
         setIsAttackingItem(true);
-        buffValue = 3;
-        buffType = buffTypes.INTELLIGENCE;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 3));
         setDMGType("Intelligence");
         setName("Hydra Head");
         setPrice(100);

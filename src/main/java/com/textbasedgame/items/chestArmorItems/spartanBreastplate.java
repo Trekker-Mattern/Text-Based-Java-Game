@@ -19,16 +19,14 @@ public class spartanBreastplate extends chestArmor {
         setPrice(52);
         setName("Spartan Breastplate");
         equipmentSetName = "Spartan Set";
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     }
     public spartanBreastplate(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 2.2);
         setPrice(52);
         setName("Spartan Breastplate");
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
     protected Set<String> getTagsSet() {
 

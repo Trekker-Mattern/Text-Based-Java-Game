@@ -19,16 +19,14 @@ public class spartanBoots extends boots {
         setPrice(12);
         setName("Sandals");
         equipmentSetName = "Spartan Set";
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     }
     public spartanBoots(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 1.2);
         setPrice(12);
         setName("Sandals");
-        buffType = buffTypes.STRENGTH;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
     protected Set<String> getTagsSet() {
         return tags;

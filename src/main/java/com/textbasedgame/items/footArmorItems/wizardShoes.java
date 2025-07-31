@@ -20,16 +20,14 @@ public class wizardShoes extends boots{
         setPrice(11);
         setName("Slippers");
         equipmentSetName = "Wizard Set";
-        buffType = buffTypes.INTELLIGENCE;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     }
     public wizardShoes(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 1.2);
         setPrice(11);
         setName("Slippers");
-        buffType = buffTypes.INTELLIGENCE;
-        buffValue = 1;
+        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     } 
     protected Set<String> getTagsSet() {
         return tags;
