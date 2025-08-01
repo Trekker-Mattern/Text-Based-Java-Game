@@ -1,12 +1,11 @@
 package com.textbasedgame.items.footArmorItems;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
-import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.boots;
-
-import java.util.HashSet;
-import java.util.Arrays;
+import com.textbasedgame.items.item;
 
 public class clogs extends boots {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Clogs", "Wood", "Shoes", "Boots", "Heavy", "Heavy Armor"));
@@ -24,8 +23,8 @@ public class clogs extends boots {
         setName("Clogs");
 
     }
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
     @Override

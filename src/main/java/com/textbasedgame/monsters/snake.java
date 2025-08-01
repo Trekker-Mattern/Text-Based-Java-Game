@@ -9,6 +9,7 @@ public  class snake extends monster {
         super.setOrigionalHealth(monsterCreator.weakMonsterHealth(mLevel));
         super.setSpeed(monsterCreator.fastMonsterSpeed(mLevel));
     }
+    @Override
     public String attackString(){
         return "bites you really hard";
     }

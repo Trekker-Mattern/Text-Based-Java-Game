@@ -28,6 +28,7 @@ public class spartanBreastplate extends chestArmor {
         setName("Spartan Breastplate");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
+    @Override
     protected Set<String> getTagsSet() {
 
         return tags;
@@ -36,9 +37,11 @@ public class spartanBreastplate extends chestArmor {
     protected void setClass(Class<? extends item> clazz){
         classofItem = spartanBreastplate.class.getName();
     } 
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
+    @Override
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(buffTypes.STRENGTH, 5);
     }
+    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }

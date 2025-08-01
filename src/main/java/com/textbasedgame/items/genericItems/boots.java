@@ -1,6 +1,6 @@
 package com.textbasedgame.items.genericItems;
 import com.textbasedgame.items.equipables;
-import com.textbasedgame.playerFiles.*;
+import com.textbasedgame.playerFiles.player;
 
 public abstract class boots extends equipables {
     protected int armorAdd;
@@ -16,7 +16,7 @@ public abstract class boots extends equipables {
     protected void unequipFromSlot() {
         player.shoes = null;
     }
-
+    @Override
     public int getArmorVal(){
         return armorAdd;
     }

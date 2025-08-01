@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.textbasedgame.items.equipables;
-import com.textbasedgame.items.item;
 import com.textbasedgame.items.chestArmorItems.wizardCloak;
+import com.textbasedgame.items.equipables;
 import com.textbasedgame.items.genericItems.boots;
 import com.textbasedgame.items.headArmorItems.wizardHat;
+import com.textbasedgame.items.item;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
 
@@ -29,14 +29,16 @@ public class wizardShoes extends boots{
         setName("Slippers");
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     } 
+    @Override
     protected Set<String> getTagsSet() {
         return tags;
     }
+    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(buffTypes.INTELLIGENCE, 5);
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(buffTypes.INTELLIGENCE, 5);
     }
     @Override
     protected void setClass(Class<? extends item> clazz){

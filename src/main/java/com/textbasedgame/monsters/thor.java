@@ -10,6 +10,7 @@ public class thor extends boss {
         setSpeed(monsterCreator.medMonsterSpeed(mLevel));
         setArmour((int)(TrekkerMath.randomDouble(2, 1.5)));
     }
+    @Override
     public void attackEffects(int damageDoneToPlayer){
         if(player.equippedItems.stream().anyMatch( item -> item.tagsContains("Metal"))){
             gui.printOnGameSide("Thor's Lightning is attracted to your metal!");

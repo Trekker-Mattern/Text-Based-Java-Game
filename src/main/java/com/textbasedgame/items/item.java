@@ -20,8 +20,8 @@ public abstract class item {
     public void setPrice(int x){
         itemPrice = x;
     }
+    @Override
     public String toString() {
-
         return name;
     }
     public boolean isConsumable(){
@@ -34,7 +34,7 @@ public abstract class item {
         
     }
     public item(){
-        setClass(null);
+        setClass(item.class);
     }
     protected abstract void setClass(Class<? extends item> clazz);
     public int getStatIncrease(){return 0;}

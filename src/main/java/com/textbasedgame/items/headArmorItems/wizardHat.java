@@ -31,12 +31,15 @@ public class wizardHat extends headArmor {
         setName("Wizard Hat");
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     } 
+    @Override
     protected Set<String> getTagsSet() {
         return tags;
     }
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(buffTypes.INTELLIGENCE, 5);
+    @Override
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(buffTypes.INTELLIGENCE, 5);
     }
+    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }

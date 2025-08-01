@@ -31,7 +31,7 @@ public class wizardCloak extends chestArmor {
         setName("Wizard Cloak");
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
     }
-
+    @Override
     protected Set<String> getTagsSet() {
         return tags;
     }
@@ -39,12 +39,13 @@ public class wizardCloak extends chestArmor {
     protected void setClass(Class<? extends item> clazz){
         classofItem = wizardCloak.class.getName();
     } 
-
+    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(buffTypes.INTELLIGENCE, 5);
+    @Override
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(buffTypes.INTELLIGENCE, 5);
     }
     
 }

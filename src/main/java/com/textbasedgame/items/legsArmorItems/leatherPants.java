@@ -24,8 +24,8 @@ public class leatherPants extends legsArmor {
         setName("Leather Pants");
 
     }
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
     @Override

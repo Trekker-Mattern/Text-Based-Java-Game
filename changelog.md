@@ -24,8 +24,10 @@
 - Recreate Buff things?
 - FIX THE SHOP PLEASE — Seems Fixed
 - Create run system that brings you back to last shop area
+- Fixed Library Room *DO NOT FORGET BREAKS IN SWITCH STATEMENT*
 - Some improved GUI with a new box that seperates new text from old text and it pushes the old text into the top scrolling section and new text is kept seperate.
 - Escalibur and new Sword in stone Room added.
+- Refactored the get armor set buff method so that it doesnt use weird bullshit and just pulls directly from the item. Im not sure why I had coded it that way origionally but it seems much better now.
 - Potion OOB error fix
 - Create arrayList during initialization in order to prevent nulls in buffs
 
@@ -45,6 +47,7 @@
 - Add comments on which set each item is from in inventories or shops
 - New Stuff on each types of rooms
 - New Category of Item, Key Items?? -- I could keep this as a consumable item but I think if we make it a new subcategory of item it will work better.
+- Enchantments that you can use on an Item to add buffs or special tags. *Be Careful When Overriding Tags its static right now*
 - - This will allow for interesting interactions with chests or other rooms.
 - - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably

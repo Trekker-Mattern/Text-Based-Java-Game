@@ -25,20 +25,18 @@ public class wand extends holdables {
         wandIncrease = 2*quality;
         setPrice(10);
         setName("Wand");
-        setDMGType("Intelligence");
-
-
-         
+        setDMGType("Intelligence");  
     }
+    @Override
     public int getStatIncrease(){
         return wandIncrease;
     }
-
+    @Override
     public String getAttackString() {
         return "cast a spell on";
     }
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
     @Override

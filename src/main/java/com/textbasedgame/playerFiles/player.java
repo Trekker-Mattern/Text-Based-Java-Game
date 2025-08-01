@@ -1,13 +1,21 @@
 package com.textbasedgame.playerFiles;
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.textbasedgame.GUI.gui;
-import com.textbasedgame.items.*;
-import com.textbasedgame.items.genericItems.*;
-import com.textbasedgame.monsters.*;
-import com.textbasedgame.util.*;
-
-import java.util.Set;
+import com.textbasedgame.items.equipables;
+import com.textbasedgame.items.genericItems.boots;
+import com.textbasedgame.items.genericItems.chestArmor;
+import com.textbasedgame.items.genericItems.headArmor;
+import com.textbasedgame.items.genericItems.holdables;
+import com.textbasedgame.items.genericItems.legsArmor;
+import com.textbasedgame.items.item;
+import com.textbasedgame.monsters.monster;
+import com.textbasedgame.util.TrekkerMath;
+import com.textbasedgame.util.pair;
+import com.textbasedgame.util.response;
+import com.textbasedgame.util.saveFiles;
+import com.textbasedgame.util.triple;
 
 
 
@@ -111,9 +119,7 @@ public abstract class player {
         }
         
         try{
-            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            @SuppressWarnings("unchecked")
-            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            pair<buffTypes, Integer> buffPair = getArmorSetBuff();
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.STRENGTH){
                 val += buffPair.second;
             }
@@ -143,9 +149,7 @@ public abstract class player {
             }
         }
         try{
-            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            @SuppressWarnings("unchecked")
-            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            pair<buffTypes, Integer> buffPair = getArmorSetBuff();
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.AGILITY){
                 val += buffPair.second;
             }
@@ -175,9 +179,7 @@ public abstract class player {
             }
         }
         try{
-            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            @SuppressWarnings("unchecked")
-            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            pair<buffTypes, Integer> buffPair = getArmorSetBuff();
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.INTELLIGENCE){
                 val += buffPair.second;
             }
@@ -198,7 +200,7 @@ public abstract class player {
         }
 
         for(equipables e : equippedItems){
-            if(!(e instanceof holdables)){
+            if(!(e instanceof holdables) && e != null){
                 val += e.getArmorVal();
             }
         }
@@ -212,9 +214,7 @@ public abstract class player {
         }
 
         try{
-            var ambiguousPair = checkForArmorSet().getMethod("getSetBuff").invoke(null);
-            @SuppressWarnings("unchecked")
-            pair<buffTypes, Integer> buffPair = (pair<buffTypes, Integer>) ambiguousPair;
+            pair<buffTypes, Integer> buffPair = getArmorSetBuff();
             if(buffPair != null && buffPair.first != null && buffPair.first == buffTypes.ARMOR){
                 val += buffPair.second;
             }
@@ -335,12 +335,13 @@ public abstract class player {
     /////////////////////////////
     /// 
     /// Dont ask me how this works it just does probably
-    /// 
+    /// Returns the pair with buffType and Integer if there is a buff; if not returns null;
     /// /////////////////////////
-    private static Class<? extends equipables> checkForArmorSet(){
+    private static pair<buffTypes, Integer> getArmorSetBuff(){
 
+        // For every item that is equipped, get the class names for the set, check all equipped items for the class (anyMatch) if all are there return the class?
         for(equipables e : equippedItems){
-            if(e instanceof holdables){
+            if(e instanceof holdables || e == null){
                 continue;
             }
 
@@ -350,7 +351,7 @@ public abstract class player {
             }
 
             if(setItems.stream().allMatch(reqItem -> equippedItems.stream().anyMatch(eq -> eq.getClass() == reqItem))){
-                return e.getClass();
+                return e.getSetBuff();
             }
         }
         return null;
@@ -380,7 +381,7 @@ public abstract class player {
     }
     public static void applyBuff(buffTypes bType, int bLength, int bAmount){
 
-        buffs.add(new triple<buffTypes,Integer,Integer>(bType, bLength, bAmount));
+        buffs.add(new triple<>(bType, bLength, bAmount));
 
         if(isBuff == false){
             isBuff = true;
@@ -440,10 +441,9 @@ public abstract class player {
 
             if(totalpts < totalMaxStartingSkills){
                 int r = 0;
-                String userResponse = gui.getInput();
                 while(r == 0){
                     gui.printOnGameSide("\nYou have " + (totalMaxStartingSkills-totalpts) + " left to spend. \nWould you like to go back and add points to the attributes?");
-                    userResponse = gui.getInput();
+                    String userResponse = gui.getInput();
                     if(response.respondYes(userResponse)){
                         r = 1;
                         break;
@@ -529,6 +529,8 @@ public abstract class player {
             return 0;
         }
 
+        //////
+        /// Umm trekker tf were you doing here?
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
 
 
