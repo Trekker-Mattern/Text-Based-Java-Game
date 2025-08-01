@@ -24,6 +24,7 @@ public abstract class equipables extends item {
         setIsConsumable(false);
         quality = (int)((Math.random() * 6) +1);
         setQuality(quality);
+        buffs = new ArrayList<>();
     }
     
     public static pair<buffTypes,Integer> getSetBuff(){return new pair<buffTypes,Integer>(null, null);}

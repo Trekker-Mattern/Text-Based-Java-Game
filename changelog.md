@@ -26,6 +26,8 @@
 - Create run system that brings you back to last shop area
 - Some improved GUI with a new box that seperates new text from old text and it pushes the old text into the top scrolling section and new text is kept seperate.
 - Escalibur and new Sword in stone Room added.
+- Potion OOB error fix
+- Create arrayList during initialization in order to prevent nulls in buffs
 
 ---
 
@@ -38,6 +40,7 @@
 - Recreate same-type damage boost for weapons in a better way — For each tag in common between weapons, add damage boost (maybe a 0.2x multiplier)
 - Revamp Monster Creation System with HashMaps per floor; pass them into monster creation function via array of maps/sets
 - Add Monster Strengths & Weaknesses
+- Spell fought (I spelt it faught **WRONG**)
 - Add Rogue set where it translates agility to strength and increases crit maybe. Should be cool and have a new set
 - Add comments on which set each item is from in inventories or shops
 - New Stuff on each types of rooms
@@ -51,3 +54,5 @@
 ## Monster Balancing Calculation
 
 Currently Set to A random level based on player level and World Level and then individual stats based on that.
+STR is too high they die in like 2 hits
+Boss armor is also too high
