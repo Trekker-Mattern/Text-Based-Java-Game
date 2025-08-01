@@ -10,6 +10,7 @@ public class mothMan extends boss {
         setSpeed(monsterCreator.fastMonsterSpeed(mLevel) + player.getAgility());
         setArmour((int)(0));
     }
+    @Override
     public void attackEffects(int damageDoneToPlayer){
         for(int i = 0; i < player.equippedItems.size(); i++){
             if(player.equippedItems.get(i).tagsContains("Cloth")){

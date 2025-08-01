@@ -30,15 +30,16 @@ public class sword extends holdables {
         setDMGType("Strength");
 
     }
+    @Override
     public int getStatIncrease(){
         return swordIncrease;
     }
-
+    @Override
     public String getAttackString() {
         return "slice";
     }
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
     @Override

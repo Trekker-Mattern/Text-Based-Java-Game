@@ -1,14 +1,13 @@
 package com.textbasedgame.items.handItems;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
-import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.holdables;
-
-import java.util.HashSet;
-import java.util.Arrays;
+import com.textbasedgame.items.item;
 
 public class club extends holdables {
-    private int increase;
+    private final int increase;
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Strength", "Blunt", "Club", "Wood"));
 
     public club(){
@@ -28,15 +27,16 @@ public class club extends holdables {
         setDMGType("Strength");
 
     }
+    @Override
     public int getStatIncrease(){
         return increase;
     }
-
+    @Override
     public String getAttackString() {
         return "bonk";
     }
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
     @Override

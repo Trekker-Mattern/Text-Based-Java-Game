@@ -3,11 +3,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.textbasedgame.items.equipables;
-import com.textbasedgame.items.item;
 import com.textbasedgame.items.chestArmorItems.spartanBreastplate;
+import com.textbasedgame.items.equipables;
 import com.textbasedgame.items.genericItems.boots;
 import com.textbasedgame.items.headArmorItems.spartanHelmet;
+import com.textbasedgame.items.item;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
 
@@ -28,12 +28,15 @@ public class spartanBoots extends boots {
         setName("Sandals");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
+    @Override
     protected Set<String> getTagsSet() {
         return tags;
     }
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
+    @Override
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(buffTypes.STRENGTH, 5);
     }
+    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }

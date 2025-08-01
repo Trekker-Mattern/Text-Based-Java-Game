@@ -29,13 +29,15 @@ public class spartanSkirt extends legsArmor {
         setName("Periskelis");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
     } 
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(buffTypes.STRENGTH, 5);
+    @Override
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(buffTypes.STRENGTH, 5);
     }
+    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }

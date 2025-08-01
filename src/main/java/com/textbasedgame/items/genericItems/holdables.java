@@ -1,6 +1,6 @@
 package com.textbasedgame.items.genericItems;
 import com.textbasedgame.items.equipables;
-import com.textbasedgame.playerFiles.*;
+import com.textbasedgame.playerFiles.player;
 
 public abstract class holdables extends equipables{
     protected String DMGtype;
@@ -22,7 +22,7 @@ public abstract class holdables extends equipables{
             player.LHand = this;
         }
     }
-
+    @Override
     public void unequipFromSlot(){
         if(player.RHand == this){
             player.RHand = null;

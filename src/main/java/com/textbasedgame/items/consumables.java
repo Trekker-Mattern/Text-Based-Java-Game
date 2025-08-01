@@ -1,11 +1,12 @@
 package com.textbasedgame.items;
-import com.textbasedgame.playerFiles.*;
+import com.textbasedgame.playerFiles.player;
 
 public abstract class consumables extends item {
     protected boolean isAttackingConsumable = false;
     public consumables(){
         setIsConsumable(true);
     }
+    @Override
     public void Use(){
         removeFromInv();
     }

@@ -26,14 +26,13 @@ public class helmet extends headArmor{
         setName("Helmet");
 
     }
-    
+    @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
-
-    public static pair<buffTypes, Integer> getSetBuff() {
-        return new pair<buffTypes,Integer>(null, null);
+    @Override
+    public pair<buffTypes, Integer> getSetBuff() {
+        return new pair<>(null, null);
     }
     @Override
     protected void setClass(Class<? extends item> clazz){

@@ -148,10 +148,8 @@ public abstract class saveFiles {
     }
     public static void readPlayerSave(File file){
 
-        
-
         int pLvl, chealth, maxhealth, str, ag, inte, xptlu, xp, stgNum, areaNum;
-            String nameS;
+        String nameS;
             try{
                 Scanner myReader = new Scanner(file);
                 myReader.next();
@@ -225,11 +223,9 @@ public abstract class saveFiles {
                 world.stageNum = stgNum;
                 player.playerLevel = pLvl;
                 myReader.close();
-                return;
             }
             catch(IOException e){
                 System.out.println("Uh oh");
-                return;
             }
     }
     public static item getItemToAddToInv(Class<? extends item> e){
