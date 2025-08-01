@@ -4,7 +4,7 @@ import java.lang.reflect.*;
 import com.textbasedgame.util.*;
 
 public class monsterCreator {
-    
+    private static final int monsterLevelDivider = 3;
 
     public static monster createMonster(){
 
@@ -42,34 +42,32 @@ public class monsterCreator {
 
 
     public static int fastMonsterSpeed(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel / monsterLevelDivider));
     }
     public static int medMonsterSpeed(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(1.5, .75) * (monsterLevel / monsterLevelDivider));
     }
 
     public static int slowMonsterSpeed(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(.5, .001) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(.5, .001) * monsterLevel / monsterLevelDivider);
     }
 
     public static int strongMonsterStr(int monsterLevel){
-        //TODO : FINISH THIS CALCULATION
-        
-        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel / monsterLevelDivider);
     }
     public static int weakMonsterStr(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel / monsterLevelDivider);
     }
     public static int medMonsterStr(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
     }
     public static int strongMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel / monsterLevelDivider);
     }
     public static int weakMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel / monsterLevelDivider);
     }
     public static int medMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel);
+        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
     }
 }
