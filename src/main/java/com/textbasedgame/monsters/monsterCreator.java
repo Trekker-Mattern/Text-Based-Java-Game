@@ -62,12 +62,27 @@ public class monsterCreator {
         return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
     }
     public static int strongMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel / monsterLevelDivider);
+        if (monsterLevel  < 5) {
+            return (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel) + 1); 
+        }
+        else{
+            return (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel / monsterLevelDivider) + 1);
+        }
     }
     public static int weakMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel / monsterLevelDivider);
+        if(monsterLevel < 5){
+            return (int)(TrekkerMath.randomDouble(1, .2) * (monsterLevel) + 1);
+        }
+        else{
+            return (int)(TrekkerMath.randomDouble(1, .2) * (monsterLevel / monsterLevelDivider) + 1);
+        }
     }
     public static int medMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
+        if(monsterLevel < 5){
+            return (int)(TrekkerMath.randomDouble(1.5, .75) * (monsterLevel) + 1);
+        }
+        else{
+            return (int)(TrekkerMath.randomDouble(1.5, .75) * (monsterLevel / monsterLevelDivider) + 1);
+        }
     }
 }

@@ -12,7 +12,7 @@ public class agilityPot extends consumables{
 
     public void Use(){
         removeFromInv();
-        player.applyBuff(buffTypes.AGILITY, 7, 4);
+        player.applyBuff(buffTypes.AGILITY, 4, 7);
     }
     @Override
     protected void setClass(Class<? extends item> clazz){

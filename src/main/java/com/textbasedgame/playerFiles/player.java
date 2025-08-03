@@ -100,13 +100,13 @@ public abstract class player {
 
     
     
-
+    // BUFFS ARE (BUFFTYPE, BUFF STRENGTH, BUFF DURATION)
     //Strength Getter
     public static int getStrength(){
         int val = strength;
         for(triple<buffTypes, Integer, Integer> b : buffs){
             if(b.first == buffTypes.STRENGTH){
-                val += b.third;
+                val += b.second;
             }
         }
 
@@ -136,7 +136,7 @@ public abstract class player {
         int val = agility;
         for(triple<buffTypes, Integer, Integer> b : buffs){
             if(b.first == buffTypes.AGILITY){
-                val += b.third;
+                val += b.second;
             }
         }
 
@@ -166,7 +166,7 @@ public abstract class player {
         int val = intelligence;
         for(triple<buffTypes, Integer, Integer> b : buffs){
             if(b.first == buffTypes.INTELLIGENCE){
-                val += b.third;
+                val += b.second;
             }
         }
 
@@ -195,7 +195,7 @@ public abstract class player {
         int val = armor;
         for(triple<buffTypes, Integer, Integer> b : buffs){
             if(b.first == buffTypes.ARMOR){
-                val += b.third;
+                val += b.second;
             }
         }
 
@@ -369,8 +369,9 @@ public abstract class player {
     public static void updateBuffs(){
 
         for(int i = 0; i < buffs.size(); i++){
-            buffs.get(i).second--;
-            if(buffs.get(i).second == 0){
+            buffs.get(i).third--;
+            if(buffs.get(i).third <= 0){
+                gui.printOnGameSide("Your " + buffs.get(i).first + " buff with strength " + buffs.get(i).second + " has run out");
                 buffs.remove(i);
                 i--;
             }
@@ -379,9 +380,9 @@ public abstract class player {
             isBuff = false;
         }
     }
-    public static void applyBuff(buffTypes bType, int bLength, int bAmount){
+    public static void applyBuff(buffTypes bType, int bAmount, int bLength){
 
-        buffs.add(new triple<>(bType, bLength, bAmount));
+        buffs.add(new triple<>(bType, bAmount, bLength));
 
         if(isBuff == false){
             isBuff = true;
@@ -666,6 +667,7 @@ public abstract class player {
             gui.printOnGameSide("You level up " + temp);
             gui.printOnGameSide("Your stats are now ");
             printStats();
+            gui.updatePlayerSide();
         }
     }
     public static int getPlayerLevel(){

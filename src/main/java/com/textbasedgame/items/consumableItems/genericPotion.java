@@ -18,7 +18,7 @@ public class genericPotion extends consumables {
         setPrice(TrekkerMath.randomInt(30, 3));
         String nameStr = nameStrArr[TrekkerMath.randomInt(nameStrArr.length-1, 0)] + " Potion of the " + nameArrPt2[TrekkerMath.randomInt(nameArrPt2.length-1, 0)]; 
         setName(nameStr);
-        buffTypes bType = buffTypes.values()[TrekkerMath.randomInt(buffTypes.values().length, 0)];
+        buffTypes bType = buffTypes.values()[TrekkerMath.randomInt(buffTypes.values().length-1, 0)];
         int bStr = (int)player.luck + TrekkerMath.randomInt(6, 1) - 6;
         int bduration = (int)player.luck + TrekkerMath.randomInt(13, 1);
         buffs.add(new triple<>(bType, bStr, bduration));
@@ -44,12 +44,13 @@ public class genericPotion extends consumables {
     public void addBuff(buffTypes bType, int bStr, int bduration){
         buffs.add(new triple<>(bType, bStr, bduration));
     }
-
+    @Override
     public void Use(){
         removeFromInv();
         for(triple<buffTypes, Integer, Integer> t : buffs){
             player.applyBuff(t.first, t.second, t.third);
             gui.printOnGameSide("You get " + t.second + " " + t.first.toString() + " for " + t.third + " turns");
+            gui.updatePlayerSide();
         }
     }
 }

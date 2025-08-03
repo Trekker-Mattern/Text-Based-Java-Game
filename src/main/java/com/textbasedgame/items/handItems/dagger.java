@@ -17,7 +17,7 @@ public class dagger extends holdables{
     public dagger(){
         setIsAttackingItem(true);
         damageToAdd = (int)(quality * 1.3);
-        buffs.add(new pair<>(buffTypes.INTELLIGENCE, 2*quality));
+        buffs.add(new pair<>(buffTypes.AGILITY, 2*quality));
         setPrice(15);
         setName("Dagger");
         setDMGType("Strength");

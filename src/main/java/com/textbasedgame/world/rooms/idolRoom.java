@@ -33,7 +33,7 @@ public class idolRoom extends roomFactory {
             gui.printOnGameSide("Would you like to pray to the idol?");
             String userResp = gui.getInput();
             if(response.respondYes(userResp)){
-                player.applyBuff(buffType, 5, 3);
+                player.applyBuff(buffType, 3, 5);
                 gui.printOnGameSide("You feel blessed! The animal has improved you!");
             }
     }

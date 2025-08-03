@@ -51,6 +51,16 @@
 - - This will allow for interesting interactions with chests or other rooms.
 - - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
+- Make bosses a little weaker or randomize them less
+- Announce when buffs wear off
+- Add clear function to GUI to fully clear top section
+
+## TO FIX URGENTLY
+
+- FIX CTHULU HES VERY BROKEN
+- - possible print statement bug?
+- - Honestly idk whats going on everything is awful
+- - java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 : Generic Potion.java:21
 
 ---
 

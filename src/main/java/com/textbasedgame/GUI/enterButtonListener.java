@@ -12,6 +12,10 @@ public class enterButtonListener implements ActionListener {
         if(response.quit(input)){
             gui.quit();
         }
+        else if(input.toLowerCase().contains("list buffs"))
+        {
+            gui.listBuffs();
+        }
 
         gui.textField.setText("");
         gui.setInput(input); // Send input to backend

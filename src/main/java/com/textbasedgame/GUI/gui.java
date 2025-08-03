@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.saveFiles;
+import com.textbasedgame.util.*;
 import com.textbasedgame.world.world;
 
 public class gui {
@@ -245,5 +245,16 @@ public class gui {
     public static void quit(){
         saveFiles.save();
         System.exit(0);
+    }
+    public static void listBuffs(){
+        pushOldText();
+        for(triple<player.buffTypes, Integer, Integer> buff : player.buffs){
+            printOnGameSide(buff.first.toString() + " buff of strength " + buff.second + " for " + buff.third + " encounters");
+        }
+    }
+    public static void showRawStats(){
+        gui.printOnGameSide(Integer.toString(player.strength));
+        gui.printOnGameSide(Integer.toString(player.agility));
+        gui.printOnGameSide(Integer.toString(player.intelligence));
     }
 }
