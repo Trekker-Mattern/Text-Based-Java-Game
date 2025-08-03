@@ -63,10 +63,10 @@ public class monsterCreator {
     }
     public static int strongMonsterHealth(int monsterLevel){
         if (monsterLevel  < 5) {
-            return (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel) + 1); 
+            return (int)(TrekkerMath.randomDouble(2, .8) * (monsterLevel) + 1); 
         }
         else{
-            return (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel / monsterLevelDivider) + 1);
+            return (int)(TrekkerMath.randomDouble(2, .8) * (monsterLevel) + 1);
         }
     }
     public static int weakMonsterHealth(int monsterLevel){
@@ -74,7 +74,7 @@ public class monsterCreator {
             return (int)(TrekkerMath.randomDouble(1, .2) * (monsterLevel) + 1);
         }
         else{
-            return (int)(TrekkerMath.randomDouble(1, .2) * (monsterLevel / monsterLevelDivider) + 1);
+            return (int)(TrekkerMath.randomDouble(1, .2) * (monsterLevel) + 1);
         }
     }
     public static int medMonsterHealth(int monsterLevel){

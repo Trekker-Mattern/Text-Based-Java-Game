@@ -9,27 +9,27 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 public class wand extends holdables {
-    private int wandIncrease;
+    private int damage;
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Intelligence", "Staff", "Ranged", "Magic"));
 
     public wand(){
         setIsAttackingItem(true);
-        wandIncrease = 2*quality;
+        damage = 2*quality;
         setPrice(10);
         setName("Wand");
-        setDMGType("Intelligence");
+        setDMGType(damageTypes.INTELLIGENCE);
     }
     public wand(int qual){
         setQuality(qual);
         setIsAttackingItem(true);
-        wandIncrease = 2*quality;
+        damage = 2*quality;
         setPrice(10);
         setName("Wand");
-        setDMGType("Intelligence");  
+        setDMGType(damageTypes.INTELLIGENCE);  
     }
     @Override
-    public int getStatIncrease(){
-        return wandIncrease;
+    public int getItemDamage(){
+        return damage;
     }
     @Override
     public String getAttackString() {

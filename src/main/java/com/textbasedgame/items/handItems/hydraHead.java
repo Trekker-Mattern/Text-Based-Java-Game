@@ -10,21 +10,21 @@ import com.textbasedgame.util.pair;
 
 public class hydraHead extends holdables {
     public static final Set<String> tags = new HashSet<>(Arrays.asList("Intelligence", "Boss Item", "Ranged", "Flame", "Impaling", "Magic"));
-    private int attkDMG;
+    private int damage;
 
     public hydraHead(){
         setIsAttackingItem(true);
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 3));
-        setDMGType("Intelligence");
+        setDMGType(damageTypes.INTELLIGENCE);
         setName("Hydra Head");
         setPrice(100);
         setQuality(6);
-        attkDMG = 2*quality;
+        damage = 2*quality;
     }
 
     
-    public int getStatIncrease() {
-        return attkDMG;
+    public int getItemDamage() {
+        return damage;
     }
 
     public String getAttackString(){

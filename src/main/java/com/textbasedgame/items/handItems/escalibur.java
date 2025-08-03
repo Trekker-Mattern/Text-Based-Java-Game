@@ -12,21 +12,21 @@ import java.util.Arrays;
 
 public class escalibur extends holdables {
 
-    private int swordIncrease;
+    private int damage;
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Sword", "Strength", "Sharp", "Slicing", "Holy", "Magical"));
 
     public escalibur(){
         setIsAttackingItem(true);
-        swordIncrease = (int)(2.2*7);
+        damage = (int)(2.2*7);
         setPrice(60);
         setName("Escalibur");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
         buffs.add(new pair<>(buffTypes.AGILITY, 2));
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
         
     }
-    public int getStatIncrease(){
-        return swordIncrease;
+    public int getItemDamage(){
+        return damage;
     }
 
     public String getAttackString() {

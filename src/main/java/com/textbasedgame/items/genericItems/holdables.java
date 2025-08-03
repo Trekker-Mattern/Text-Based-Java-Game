@@ -3,8 +3,8 @@ import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
 
 public abstract class holdables extends equipables{
-    protected String DMGtype;
-
+    protected damageTypes DMGtype;
+    public enum damageTypes  {INTELLIGENCE, STRENGTH, AGILITY};
 
     @Override
     public void onEquip() {}
@@ -34,10 +34,11 @@ public abstract class holdables extends equipables{
         
     }
 
-    public void setDMGType(String x){
+    public abstract int getItemDamage();
+    public void setDMGType(damageTypes x){
         DMGtype =x;
     }
-    public String getDMGType(){
+    public damageTypes getDMGType(){
         return DMGtype;
     }
 

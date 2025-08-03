@@ -9,6 +9,7 @@ import com.textbasedgame.items.genericItems.chestArmor;
 import com.textbasedgame.items.genericItems.headArmor;
 import com.textbasedgame.items.genericItems.holdables;
 import com.textbasedgame.items.genericItems.legsArmor;
+import com.textbasedgame.items.genericItems.holdables.damageTypes;
 import com.textbasedgame.items.item;
 import com.textbasedgame.monsters.monster;
 import com.textbasedgame.util.TrekkerMath;
@@ -21,6 +22,7 @@ import com.textbasedgame.util.triple;
 
 public abstract class player {
 
+    public enum buffTypes {STRENGTH, AGILITY, INTELLIGENCE, ARMOR};
 
     //Overall inventory
     public static ArrayList<item> inventory = new ArrayList<>();
@@ -364,7 +366,7 @@ public abstract class player {
     /// 
     //////////////////////////
     
-    public enum buffTypes {STRENGTH, AGILITY, INTELLIGENCE, ARMOR};
+    
 
     public static void updateBuffs(){
 
@@ -546,7 +548,7 @@ public abstract class player {
         gui.updatePlayerSide();
         return monsterDamage;
     }
-
+    ///// TODO: Change how crits work
     public static int damageDone(){
         double multiplier;
         boolean playerMiss = false;
@@ -582,19 +584,19 @@ public abstract class player {
         int LHandDMG;
         int RHandDMG;
 
-        String LHandDMGType;
-        String RHandDMGType;
+        damageTypes LHandDMGType;
+        damageTypes RHandDMGType;
 
         if(LHand == null){
-            LHandDMGType = "Blunt";
+            LHandDMGType = damageTypes.STRENGTH;
             LHandDMG = 0;
         }
         else{
-            LHandDMGType = RHand.getDMGType();
+            LHandDMGType = LHand.getDMGType();
             LHandDMG = getDMGCalcForWeapon(LHand);
         }
         if(RHand == null){
-            RHandDMGType = "Blunt";
+            RHandDMGType = damageTypes.STRENGTH;
             RHandDMG = 0;
         }
         else{
@@ -619,11 +621,15 @@ public abstract class player {
     }
 
     private static int getDMGCalcForWeapon(holdables h){
-        if(h.getDMGType() == "Intelligence"){
-            return h.getStatIncrease() + getStrength();
+        
+        if(h.getDMGType() == damageTypes.INTELLIGENCE){
+            return h.getItemDamage() + getIntelligence();
         }
-        else if(h.getDMGType() == "Strength"){
-            return h.getStatIncrease() + getStrength();
+        else if(h.getDMGType() == damageTypes.INTELLIGENCE){
+            return h.getItemDamage() + getStrength();
+        }
+        else if(h.getDMGType() == damageTypes.AGILITY){
+            return h.getItemDamage() + getAgility();
         }
         else{
             return getStrength();

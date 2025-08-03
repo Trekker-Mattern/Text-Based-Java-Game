@@ -11,29 +11,29 @@ import com.textbasedgame.util.pair;
 
 public class dagger extends holdables{
 
-    int damageToAdd;
+    private int damage;
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Dagger", "Strength", "Agility", "Sharp", "Slicing", "Stabbing"));
 
     public dagger(){
         setIsAttackingItem(true);
-        damageToAdd = (int)(quality * 1.3);
+        damage = (int)(quality * 1.3);
         buffs.add(new pair<>(buffTypes.AGILITY, 2*quality));
         setPrice(15);
         setName("Dagger");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
     }
     public dagger(int qual){
         setQuality(qual);
         setIsAttackingItem(true);
-        damageToAdd = (int)(quality * 1.3);
+        damage = (int)(quality * 1.3);
         buffs.add(new pair<>(buffTypes.AGILITY, 2*qual));
         setPrice(15);
         setName("Dagger");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
     }
 
-    public int getStatIncrease(){
-        return damageToAdd;
+    public int getItemDamage(){
+        return damage;
     }
 
     public String getAttackString() {
