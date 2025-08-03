@@ -7,29 +7,29 @@ import com.textbasedgame.items.genericItems.holdables;
 import com.textbasedgame.items.item;
 
 public class club extends holdables {
-    private final int increase;
+    private final int damage;
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Strength", "Blunt", "Club", "Wood"));
 
     public club(){
         setIsAttackingItem(true);
-        increase = (int)(1.7*quality);
+        damage = (int)(1.7*quality);
         setPrice(30);
         setName("Club");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
         
     }
     public club(int qual){
         setQuality(qual);
         setIsAttackingItem(true);
-        increase = (int)(1.7*quality);
+        damage = (int)(1.7*quality);
         setPrice(30);
         setName("Club");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
 
     }
     @Override
-    public int getStatIncrease(){
-        return increase;
+    public int getItemDamage() {
+        return damage;
     }
     @Override
     public String getAttackString() {

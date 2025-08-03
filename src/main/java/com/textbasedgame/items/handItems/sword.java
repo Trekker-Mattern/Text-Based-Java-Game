@@ -10,29 +10,29 @@ import java.util.Arrays;
 
 public class sword extends holdables {
 
-    private int swordIncrease;
+    private int damage;
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Sword", "Strength", "Sharp", "Slicing"));
 
     public sword(){
         setIsAttackingItem(true);
-        swordIncrease = 2*quality;
+        damage = 2*quality;
         setPrice(30);
         setName("Sword");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
         
     }
     public sword(int qual){
         setQuality(qual);
         setIsAttackingItem(true);
-        swordIncrease = 2*quality;
+        damage = 2*quality;
         setPrice(30);
         setName("Sword");
-        setDMGType("Strength");
+        setDMGType(damageTypes.STRENGTH);
 
     }
     @Override
-    public int getStatIncrease(){
-        return swordIncrease;
+    public int getItemDamage(){
+        return damage;
     }
     @Override
     public String getAttackString() {

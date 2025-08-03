@@ -62,12 +62,12 @@ public class monsterCreator {
         return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
     }
     public static int strongMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel / monsterLevelDivider);
+        return (int)(TrekkerMath.randomDouble(2, .8) * monsterLevel);
     }
     public static int weakMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel / monsterLevelDivider);
+        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel);
     }
     public static int medMonsterHealth(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
+        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel);
     }
 }
