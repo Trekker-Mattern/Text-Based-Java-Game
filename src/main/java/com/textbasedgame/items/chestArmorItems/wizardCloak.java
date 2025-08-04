@@ -47,5 +47,7 @@ public class wizardCloak extends chestArmor {
     public pair<buffTypes, Integer> getSetBuff() {
         return new pair<>(buffTypes.INTELLIGENCE, 5);
     }
+    @Override
+    public void printInfo() {}
     
 }

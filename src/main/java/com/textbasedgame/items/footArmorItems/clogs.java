@@ -31,4 +31,6 @@ public class clogs extends boots {
     protected void setClass(Class<? extends item> clazz){
         classofItem = clogs.class.getName();
     } 
+    @Override
+    public void printInfo() {}
 }

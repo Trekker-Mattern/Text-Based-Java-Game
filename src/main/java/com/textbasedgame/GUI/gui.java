@@ -251,10 +251,18 @@ public class gui {
         for(triple<player.buffTypes, Integer, Integer> buff : player.buffs){
             printOnGameSide(buff.first.toString() + " buff of strength " + buff.second + " for " + buff.third + " encounters");
         }
+        var aSB = player.getArmorSetBuff();
+        if(aSB != null){
+            printOnGameSide("-Armor Set Buff-");
+            printOnGameSide(aSB.first.toString() + " buff of " + aSB.second);
+        }
     }
     public static void showRawStats(){
         gui.printOnGameSide(Integer.toString(player.strength));
         gui.printOnGameSide(Integer.toString(player.agility));
         gui.printOnGameSide(Integer.toString(player.intelligence));
+    }
+    public static void clearTopTextBox(){
+        txtPanel.removeAll();
     }
 }

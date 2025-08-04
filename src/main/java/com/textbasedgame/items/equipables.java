@@ -79,6 +79,10 @@ public abstract class equipables extends item {
     public boolean tagsContains(String tag){
         return getTagsSet().contains(tag);
     }
+    public Set<String> getItemTags(){
+        return getTagsSet();
+    }
+    public ArrayList<pair<buffTypes, Integer>> getItemBuffs(){return buffs;}
     protected abstract Set<String> getTagsSet();
     public Set<Class<? extends equipables>> getSetItems(){return new HashSet<>();}
 }

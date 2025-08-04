@@ -43,4 +43,6 @@ public class club extends holdables {
     protected void setClass(Class<? extends item> clazz){
         classofItem = club.class.getName();
     } 
+    @Override
+    public void printInfo() {}
 }

@@ -339,7 +339,7 @@ public abstract class player {
     /// Dont ask me how this works it just does probably
     /// Returns the pair with buffType and Integer if there is a buff; if not returns null;
     /// /////////////////////////
-    private static pair<buffTypes, Integer> getArmorSetBuff(){
+    public static pair<buffTypes, Integer> getArmorSetBuff(){
 
         // For every item that is equipped, get the class names for the set, check all equipped items for the class (anyMatch) if all are there return the class?
         for(equipables e : equippedItems){
@@ -552,15 +552,15 @@ public abstract class player {
     public static int damageDone(){
         double multiplier;
         boolean playerMiss = false;
-
-        if(TrekkerMath.randomInt(100, (getIntelligence() * 3)) > 40){
-            multiplier = TrekkerMath.randomDouble(2, 0);
-            if(multiplier < .5){
-                playerMiss = true;
-            }
-            else{
-                playerMiss = false;
-            }
+        boolean playerCrit = false;
+        
+        if(TrekkerMath.randomDouble(playerLevel, getAgility()*2) < playerLevel/3){
+            playerMiss = true;
+            multiplier = TrekkerMath.randomDouble(.9, .2);
+        }
+        else if(TrekkerMath.randomInt(playerLevel, (playerLevel / getIntelligence())) > playerLevel*.8){
+            multiplier = TrekkerMath.randomDouble(2, 1);
+            playerCrit = true;
         }
         else {
             multiplier = 1;
@@ -572,6 +572,9 @@ public abstract class player {
             if(multiplier == 0){
                 gui.printOnGameSide("You completely miss on your attack hitting nothing but air.");
             }
+        }
+        else if(playerCrit == true){
+            gui.printOnGameSide("You hit the monster on the weak spot dealing " + multiplier + "times damage");
         }
         
 
@@ -595,6 +598,7 @@ public abstract class player {
             LHandDMGType = LHand.getDMGType();
             LHandDMG = getDMGCalcForWeapon(LHand);
         }
+
         if(RHand == null){
             RHandDMGType = damageTypes.STRENGTH;
             RHandDMG = 0;
@@ -625,7 +629,7 @@ public abstract class player {
         if(h.getDMGType() == damageTypes.INTELLIGENCE){
             return h.getItemDamage() + getIntelligence();
         }
-        else if(h.getDMGType() == damageTypes.INTELLIGENCE){
+        else if(h.getDMGType() == damageTypes.STRENGTH){
             return h.getItemDamage() + getStrength();
         }
         else if(h.getDMGType() == damageTypes.AGILITY){

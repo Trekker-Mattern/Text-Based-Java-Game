@@ -45,4 +45,6 @@ public class spartanBreastplate extends chestArmor {
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }
+    @Override
+    public void printInfo() {}
 }

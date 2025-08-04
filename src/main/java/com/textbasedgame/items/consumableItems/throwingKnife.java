@@ -1,4 +1,5 @@
 package com.textbasedgame.items.consumableItems;
+import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.item;
 import com.textbasedgame.items.genericItems.attackingConsumable;
 import com.textbasedgame.playerFiles.player;
@@ -28,4 +29,9 @@ public class throwingKnife extends attackingConsumable {
     protected void setClass(Class<? extends item> clazz){
         classofItem = throwingKnife.class.getName();
     } 
+    @Override
+    public void printInfo(){
+        gui.printOnGameSide("Throwing knives left: " + amountInSet);
+        gui.printOnGameSide("Damage: " + getDamageInt());
+    }
 }

@@ -53,4 +53,15 @@ public class genericPotion extends consumables {
             gui.updatePlayerSide();
         }
     }
+    @Override
+    public void printInfo(){
+        if(player.getIntelligence() > player.getPlayerLevel() / 3){
+            for(triple<buffTypes, Integer, Integer> b: buffs){
+                gui.printOnGameSide(b.second + " " + b.first.toString() + " for " + b.third + " turns");
+            }
+        }
+        else{
+            gui.printOnGameSide("You cant quite tell what this potion will do");
+        }
+    }
 }

@@ -43,5 +43,7 @@ public class wizardShoes extends boots{
     @Override
     protected void setClass(Class<? extends item> clazz){
         classofItem = wizardShoes.class.getName();
-    } 
+    }
+    @Override
+    public void printInfo() {} 
 }

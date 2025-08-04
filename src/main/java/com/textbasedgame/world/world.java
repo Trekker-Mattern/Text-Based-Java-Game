@@ -123,9 +123,9 @@ public abstract class world {
         if(response.respondSell(userInput)){
             player.printPlayerItems();
             gui.printOnGameSide("Which item would you like to sell?");
-            int itemSell = Integer.parseInt(gui.getInput());
-            itemSell--; //adjust for 0 index
             try{
+                int itemSell = Integer.parseInt(gui.getInput());
+                itemSell--; //adjust for 0 index
                 if(player.inventory.get(itemSell) instanceof equipables && ((equipables)player.inventory.get(itemSell)).isEquipped()){
                     player.inventory.get(itemSell).Use();
                 }
@@ -133,10 +133,13 @@ public abstract class world {
                 player.BankBalance += sellPrice;
                 gui.printOnGameSide("You sell " + player.inventory.get(itemSell).getItemName() + " for " + sellPrice + " shmeckles");
                 player.inventory.remove(player.inventory.get(itemSell));
+                return;
             }
             catch(IndexOutOfBoundsException e){
                 gui.printOnGameSide("You dont have that many items you goof!");
+                return;
             }
+            catch(NumberFormatException e){return;}
             
         }
 
@@ -290,6 +293,19 @@ public abstract class world {
                         gui.printOnGameSide("You dont have that many items you goof!");
                     }
                 }
+                else if(newInput.toLowerCase().contains("info") ||newInput.toLowerCase().contains("help")){
+                    player.printPlayerItems();
+                    gui.printOnGameSide("Which item would you like more information on?");
+                    try{
+
+                        int itemNum = Integer.parseInt(gui.getInput()) - 1;
+
+                        itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
+                    }
+                    catch(NumberFormatException| IndexOutOfBoundsException e){
+            
+                    }
+                }
             }
         }
     }
@@ -300,6 +316,7 @@ public abstract class world {
         gui.pushOldText();
         player.printPlayerItems();
         gui.printOnGameSide("Would you like to use an item?");
+        gui.printOnGameSide("You can also type info to get info on a specific item");
         String h = gui.getInput();
         gui.pushOldText();
         try{
@@ -322,6 +339,19 @@ public abstract class world {
                 player.inventory.get(temp-1).Use();
             } catch (IndexOutOfBoundsException e) {
                 gui.printOnGameSide("You dont have that many items you goof!");
+            }
+        }
+        else if(h.toLowerCase().contains("info") || h.toLowerCase().contains("help")){
+            player.printPlayerItems();
+            gui.printOnGameSide("Which item would you like more information on?");
+            try{
+
+                int itemNum = Integer.parseInt(gui.getInput()) - 1;
+
+                itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
+            }
+            catch(NumberFormatException| IndexOutOfBoundsException e){
+    
             }
         }
         

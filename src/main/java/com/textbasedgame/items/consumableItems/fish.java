@@ -28,4 +28,8 @@ public class fish extends consumables {
     protected void setClass(Class<? extends item> clazz){
         classofItem = fish.class.getName();
     } 
+    @Override
+    public void printInfo(){
+        gui.printOnGameSide("Heal Value: " + healthIncrease);
+    }
 }

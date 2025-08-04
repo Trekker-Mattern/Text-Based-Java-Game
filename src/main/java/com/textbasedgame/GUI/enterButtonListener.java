@@ -12,9 +12,15 @@ public class enterButtonListener implements ActionListener {
         if(response.quit(input)){
             gui.quit();
         }
-        else if(input.toLowerCase().contains("list buffs"))
+        else if(input.toLowerCase().contains("list buffs") || input.toLowerCase().equals("-lb"))
         {
             gui.listBuffs();
+        }
+        else if(input.toLowerCase().contains("show raw stats") || input.toLowerCase().equals("-srs")){
+            gui.showRawStats();
+        }
+        else if(input.toLowerCase().equals("clear") || input.toLowerCase().equals("-c")){
+            gui.clearTopTextBox();
         }
 
         gui.textField.setText("");

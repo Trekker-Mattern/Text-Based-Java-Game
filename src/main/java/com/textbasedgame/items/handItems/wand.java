@@ -43,4 +43,6 @@ public class wand extends holdables {
     protected void setClass(Class<? extends item> clazz){
         classofItem = wand.class.getName();
     } 
+    @Override
+    public void printInfo() {}
 }

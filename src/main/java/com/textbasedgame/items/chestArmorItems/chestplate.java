@@ -36,5 +36,7 @@ public class chestplate extends chestArmor{
 
         return tags;
     }
+    @Override
+    public void printInfo() {}
     
 }

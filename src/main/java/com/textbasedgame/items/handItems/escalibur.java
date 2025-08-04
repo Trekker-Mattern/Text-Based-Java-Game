@@ -40,4 +40,6 @@ public class escalibur extends holdables {
     protected void setClass(Class<? extends item> clazz){
         classofItem = sword.class.getName();
     } 
+    @Override
+    public void printInfo() {}
 }

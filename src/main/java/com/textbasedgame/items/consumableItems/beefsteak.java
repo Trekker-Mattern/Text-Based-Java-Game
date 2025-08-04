@@ -18,5 +18,9 @@ public class beefsteak extends consumables{
     protected void setClass(Class<? extends item> clazz){
         classofItem = bread.class.getName();
     } 
+    @Override
+    public void printInfo(){
+        gui.printOnGameSide("Heal Value: " + healthIncrease);
+    }
 }
 

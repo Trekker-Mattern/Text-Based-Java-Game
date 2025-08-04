@@ -38,4 +38,6 @@ public class hydraHead extends holdables {
     protected void setClass(Class<? extends item> clazz){
         classofItem = hydraHead.class.getName();
     } 
+    @Override
+    public void printInfo() {}
 }

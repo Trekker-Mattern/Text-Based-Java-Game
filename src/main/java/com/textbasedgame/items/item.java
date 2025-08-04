@@ -53,4 +53,5 @@ public abstract class item {
     public String getClassofItem(){
         return classofItem;
     }
+    public abstract void printInfo();
 }
