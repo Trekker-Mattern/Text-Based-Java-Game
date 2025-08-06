@@ -30,6 +30,7 @@
 - Refactored the get armor set buff method so that it doesnt use weird bullshit and just pulls directly from the item. Im not sure why I had coded it that way origionally but it seems much better now.
 - Potion OOB error fix
 - Create arrayList during initialization in order to prevent nulls in buffs
+- Announce when buffs wear off
 
 ---
 
@@ -52,7 +53,6 @@
 - - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
 - Make bosses a little weaker or randomize them less
-- Announce when buffs wear off
 - Add clear function to GUI to fully clear top section
 
 ## TO FIX URGENTLY

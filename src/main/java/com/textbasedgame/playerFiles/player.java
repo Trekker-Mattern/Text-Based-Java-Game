@@ -8,8 +8,8 @@ import com.textbasedgame.items.genericItems.boots;
 import com.textbasedgame.items.genericItems.chestArmor;
 import com.textbasedgame.items.genericItems.headArmor;
 import com.textbasedgame.items.genericItems.holdables;
-import com.textbasedgame.items.genericItems.legsArmor;
 import com.textbasedgame.items.genericItems.holdables.damageTypes;
+import com.textbasedgame.items.genericItems.legsArmor;
 import com.textbasedgame.items.item;
 import com.textbasedgame.monsters.monster;
 import com.textbasedgame.util.TrekkerMath;
@@ -658,13 +658,13 @@ public abstract class player {
                 else if(num == 4){temp = "health";}
                 else{temp = "health";}
             } catch (NumberFormatException ex) {}
-            if(temp.toLowerCase().contains("strength")){
+            if(temp.toLowerCase().contains("strength") || temp.toLowerCase().equals("s")){
                 strength += 1;
             }
-            else if(temp.toLowerCase().contains("agility")){
+            else if(temp.toLowerCase().contains("agility") || temp.toLowerCase().equals("a")){
                 agility += 1;
             }
-            else if(temp.toLowerCase().contains("intelligence")){
+            else if(temp.toLowerCase().contains("intelligence") || temp.toLowerCase().equals("i")){
                 intelligence += 1;
             }
             else {

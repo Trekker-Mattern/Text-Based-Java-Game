@@ -32,12 +32,12 @@ public abstract class equipables extends item {
         quality = x;
         //1.bad 2.mediocre 3.fine 4.good 5.excelent 6.perfect
         switch(x){
-            case 1 -> qualityString = "Bad";
-            case 2 -> qualityString = "Mediocre";
-            case 3 -> qualityString = "Fine";
-            case 4 -> qualityString = "Good";
-            case 5 -> qualityString = "Excelent";
-            case 6 -> qualityString = "Perfect";
+            case 1 : qualityString = "Bad"; break;
+            case 2 : qualityString = "Mediocre"; break;
+            case 3 : qualityString = "Fine"; break;
+            case 4 : qualityString = "Good"; break;
+            case 5 : qualityString = "Excelent"; break;
+            case 6 : qualityString = "Perfect"; break;
         }
     }
     @Override

@@ -1,11 +1,18 @@
 package com.textbasedgame.world;
 
 import com.textbasedgame.GUI.gui;
-import com.textbasedgame.items.*;
+import com.textbasedgame.items.equipables;
 import com.textbasedgame.items.genericItems.attackingConsumable;
-import com.textbasedgame.monsters.*;
-import com.textbasedgame.playerFiles.*;
-import com.textbasedgame.util.*;
+import com.textbasedgame.items.item;
+import com.textbasedgame.monsters.boss;
+import com.textbasedgame.monsters.monster;
+import com.textbasedgame.monsters.monsterArrayList;
+import com.textbasedgame.monsters.monsterCreator;
+import com.textbasedgame.playerFiles.player;
+import com.textbasedgame.util.TrekkerMath;
+import com.textbasedgame.util.itemInfoPrinter;
+import com.textbasedgame.util.response;
+import com.textbasedgame.util.saveFiles;
 
 
 public abstract class world { 
@@ -52,6 +59,9 @@ public abstract class world {
                 //// SAVE
                 saveFiles.save();
             }
+            if(Ans.equals("info")){
+
+            }
         }
         else{
             openDungeon();
@@ -59,6 +69,20 @@ public abstract class world {
     }
 
     
+    private static void infoMenu(){
+        player.printPlayerItems();
+        gui.printOnGameSide("Which item would you like more information on?");
+        try{
+
+            int itemNum = Integer.parseInt(gui.getInput()) - 1;
+
+            itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
+        }
+        catch(NumberFormatException| IndexOutOfBoundsException e){
+
+        }
+    }
+
     private static void openShop(){
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
@@ -198,6 +222,7 @@ public abstract class world {
             if(response.quit(h)){gui.quit();}
 
             if(response.respondRun(h)){run(); break;}
+            if(h.equals("info")){infoMenu(); break;}
 
             if(response.respondFight(h)){
                 player.fightMonster(m);
