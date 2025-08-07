@@ -129,7 +129,7 @@ public abstract class world {
             }
             catch(NumberFormatException e){
                 for(item i : shopitems.getShopArray()){
-                    if(i.getItemName().toLowerCase() == userInput.toLowerCase()){
+                    if(i.getItemName().toLowerCase().equals(userInput.toLowerCase())){
                         if(player.BankBalance >= i.getPrice()){
                             shopitems.buyItem(i);
                             gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
@@ -171,7 +171,7 @@ public abstract class world {
         /// Check to see if user put name of item and buy accordingly
         //////////////////////////////////////////////////////////////
         for(item i : shopitems.getShopArray()){
-            if(i.getItemName().toLowerCase() == userInput.toLowerCase()){
+            if(i.getItemName().toLowerCase().equals(userInput.toLowerCase())){
                 if(player.BankBalance >= i.getPrice()){
                     shopitems.buyItem(i);
                     gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");

@@ -28,7 +28,7 @@ public abstract class equipables extends item {
     
     public pair<buffTypes,Integer> getSetBuff(){return new pair<>(null, null);}
 
-    public void setQuality(int x){
+    public final void setQuality(int x){
         quality = x;
         //1.bad 2.mediocre 3.fine 4.good 5.excelent 6.perfect
         switch(x){
