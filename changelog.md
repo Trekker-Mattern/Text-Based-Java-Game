@@ -30,6 +30,12 @@
 - Refactored the get armor set buff method so that it doesnt use weird bullshit and just pulls directly from the item. Im not sure why I had coded it that way origionally but it seems much better now.
 - Potion OOB error fix
 - Create arrayList during initialization in order to prevent nulls in buffs
+- Fixed bug in fighting where buffTypes.INTELLIGENCE was twice instead of buffTypes.STRENGTH
+- NEW INFORMATION MENU for Items!
+- - Displays super well! Im super happy with how it turned out
+- Added clear function to GUI to fully clear top section
+- Add comments on which set each item is from in inventories or shops - Which Set Part is done!
+- - java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 : Generic Potion.java:21
 
 ---
 
@@ -44,7 +50,6 @@
 - Add Monster Strengths & Weaknesses
 - Spell fought (I spelt it faught **WRONG**)
 - Add Rogue set where it translates agility to strength and increases crit maybe. Should be cool and have a new set
-- Add comments on which set each item is from in inventories or shops
 - New Stuff on each types of rooms
 - New Category of Item, Key Items?? -- I could keep this as a consumable item but I think if we make it a new subcategory of item it will work better.
 - Enchantments that you can use on an Item to add buffs or special tags. *Be Careful When Overriding Tags its static right now*
@@ -53,14 +58,12 @@
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
 - Make bosses a little weaker or randomize them less
 - Announce when buffs wear off
-- Add clear function to GUI to fully clear top section
 
 ## TO FIX URGENTLY
 
 - FIX CTHULU HES VERY BROKEN
 - - possible print statement bug?
 - - Honestly idk whats going on everything is awful
-- - java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 : Generic Potion.java:21
 
 ---
 
