@@ -3,16 +3,16 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;
 import com.textbasedgame.items.item;
 import com.textbasedgame.playerFiles.*;
+//Heals the player for maxHealth / 2.15
 public class beefsteak extends consumables{
-    int healthIncrease =  (int)(player.getMaxHealth()  / 2.15);
     public beefsteak(){
         setPrice(7);
-        setName("BeefSteak Sandwitch");
+        setName("BeefSteak Sandwich");
     }
     public void Use(){
         removeFromInv();
-        gui.printOnGameSide("You heal for " + healthIncrease);
-        player.addHealth(healthIncrease);
+        gui.printOnGameSide("You heal for " + (int)(player.getMaxHealth()  / 2.15));
+        player.addHealth((int)(player.getMaxHealth()  / 2.15));
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
@@ -20,7 +20,7 @@ public class beefsteak extends consumables{
     } 
     @Override
     public void printInfo(){
-        gui.printOnGameSide("Heal Value: " + healthIncrease);
+        gui.printOnGameSide("Heal Value: " + (int)(player.getMaxHealth()  / 2.15));
     }
 }
 

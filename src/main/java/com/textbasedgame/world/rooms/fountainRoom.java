@@ -7,6 +7,7 @@ import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;
 
 public class fountainRoom extends roomFactory {
+    private final int roomID = 2;
     public void openRoom(){
         gui.printOnGameSide("You walk into a room with a fountain in the center.");
         gui.printOnGameSide("The room is too dark to see what color the water is");
@@ -18,7 +19,7 @@ public class fountainRoom extends roomFactory {
             int i = TrekkerMath.randomInt(2, 0);
             switch(i){
                 case 0:
-                    gui.printOnGameSide("The water was crystal clear! You feel your wounds healing! Must've been a magic fountian!");
+                    gui.printOnGameSide("The water was crystal clear! You feel your wounds healing! Must've been a magic fountain!");
                     player.addHealth(player.getMaxHealth() - player.getHealth());
                     break;
                 case 1:
@@ -54,5 +55,9 @@ public class fountainRoom extends roomFactory {
                     break;
             }
         }
+    }
+    @Override
+    public int getRoomID() {
+        return roomID;
     }
 }

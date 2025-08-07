@@ -37,6 +37,11 @@
 - Add comments on which set each item is from in inventories or shops - Which Set Part is done!
 - - java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 : Generic Potion.java:21
 - Announce when buffs wear off
+- Added Picture Support!! - Thank you Lizzy I love you <3
+- Fixed a bug with food items that made it possible that they heal for 0. 
+- Added a Action Listener for resizing the window to also resize my images. We will see how performance is effected.
+- Changed back to Java 1.8 for compilation in order for others to be able to run the program.
+- Spell fought (I spelt it faught **WRONG**)
 
 ---
 
@@ -49,7 +54,6 @@
 - Recreate same-type damage boost for weapons in a better way — For each tag in common between weapons, add damage boost (maybe a 0.2x multiplier)
 - Revamp Monster Creation System with HashMaps per floor; pass them into monster creation function via array of maps/sets
 - Add Monster Strengths & Weaknesses
-- Spell fought (I spelt it faught **WRONG**)
 - Add Rogue set where it translates agility to strength and increases crit maybe. Should be cool and have a new set
 - New Stuff on each types of rooms
 - New Category of Item, Key Items?? -- I could keep this as a consumable item but I think if we make it a new subcategory of item it will work better.
@@ -57,10 +61,10 @@
 - - This will allow for interesting interactions with chests or other rooms.
 - - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
-- Make bosses a little weaker or randomize them less
 
 ## TO FIX URGENTLY
 
+- Make bosses a little weaker or randomize them less
 - FIX CTHULU HES VERY BROKEN
 - - possible print statement bug?
 - - Honestly idk whats going on everything is awful

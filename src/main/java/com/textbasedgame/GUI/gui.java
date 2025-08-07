@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 
 import javax.swing.*;
 
@@ -18,7 +19,9 @@ public class gui {
     public static JFrame frame;
     public static JPanel invPanel;
     private static JPanel outsideInvPanel;
+    private static JPanel invPanelContainer;
     private static JPanel topofInvPanel;
+    public static JPanel imagePanel;
     public static JPanel txtPanel;
     public static JPanel recentTextPanel;
     public static JTextField textField;
@@ -26,6 +29,7 @@ public class gui {
     private static JScrollPane scrollPane;
     private static JScrollPane secondScrollPane;
     
+    private static pictureLoader pLoader = new pictureLoader();
 
     public static void runGui(){
         //set up the container
@@ -36,9 +40,16 @@ public class gui {
         frame.setLocationRelativeTo(null);
 
 
+        //////////////////////////////////////////////////////////////////
+        ///      INVENTORY PANEL
+        //////////////////////////////////////////////////////////////////
+
         //setup first JPanel
+        invPanelContainer = new JPanel(new GridLayout(2, 1, 10, 10));
         outsideInvPanel = new JPanel();
         outsideInvPanel.setLayout(new BorderLayout());
+
+        
 
         topofInvPanel = new JPanel();
 
@@ -52,8 +63,17 @@ public class gui {
         outsideInvPanel.add(invPanel, BorderLayout.CENTER);
         outsideInvPanel.add(topofInvPanel, BorderLayout.NORTH);
         
+        //Image Panel
+        imagePanel = new JPanel();
+
+        invPanelContainer.add(outsideInvPanel);
+        invPanelContainer.add(imagePanel);
 
         
+        ///////////////////////////////////////////////////////////////////////////
+        ///        TEXT PANEL
+        ///////////////////////////////////////////////////////////////////////////
+
         //setup second JPanel for text
         Dimension minSizeTxt = new Dimension(600,800);
         txtPanel = new JPanel();
@@ -78,9 +98,13 @@ public class gui {
 
         //create a gridlayout container to hold the side by side panels
         JPanel gridLayoutPanel = new JPanel(new GridLayout(1,2,10,10));
-        gridLayoutPanel.add(outsideInvPanel);
+        gridLayoutPanel.add(invPanelContainer);
         gridLayoutPanel.add(txtPanelSplit);
 
+
+        /////////////////////////////////////////////////////////////
+        ///        TEXT INPUT PANEL
+        ////////////////////////////////////////////////////////////
         
 
         //Create the text input panel
@@ -219,6 +243,10 @@ public class gui {
         topofInvPanel.revalidate();
         topofInvPanel.repaint();
 
+        frame.addComponentListener(new resizeActionListener());
+
+        updateImage(4);
+
     }
 
     private static JLabel createInventoryLabel(String s, equipables equip){
@@ -265,4 +293,19 @@ public class gui {
     public static void clearTopTextBox(){
         txtPanel.removeAll();
     }
+
+    public static void updateImage(int imageID){
+        
+        imagePanel.removeAll();
+
+        ImageIcon img = pLoader.getImage(imageID);
+        ImageIcon imgIcon = new ImageIcon(img.getImage().getScaledInstance(imagePanel.getWidth(), imagePanel.getHeight(), Image.SCALE_DEFAULT));
+
+        JLabel imageLabel = new JLabel();
+        imageLabel.setIcon(imgIcon);
+        imagePanel.add(imageLabel);
+        imagePanel.revalidate();
+        imagePanel.repaint();
+    }
+
 }

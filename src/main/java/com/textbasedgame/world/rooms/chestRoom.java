@@ -7,7 +7,9 @@ import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 import com.textbasedgame.world.*;
 public class chestRoom extends roomFactory {
+    private final int roomID = 1;
     public void openRoom(){
+
         gui.printOnGameSide("You walk into a room and theres a chest sitting on the floor");
             gui.printOnGameSide("Would you like to open it?");
             
@@ -33,7 +35,7 @@ public class chestRoom extends roomFactory {
                         mimic m = new mimic();
                         world.monsterMenu(m);
                         int extraMoney = (int)(TrekkerMath.randomInt(100,0) * player.luck);
-                        gui.printOnGameSide("From the mimic's corpse you manage to scavange an extra " + extraMoney + " shmeckles!");
+                        gui.printOnGameSide("From the mimic's corpse you manage to scavenge an extra " + extraMoney + " shmeckles!");
                         player.BankBalance += extraMoney;
                         
                     break;
@@ -58,5 +60,9 @@ public class chestRoom extends roomFactory {
                 }
             
             }
+    }
+    @Override
+    public int getRoomID() {
+        return roomID;
     }
 }

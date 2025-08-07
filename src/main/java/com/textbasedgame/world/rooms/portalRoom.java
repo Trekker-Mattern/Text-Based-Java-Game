@@ -5,6 +5,7 @@ import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;
 
 public class portalRoom extends roomFactory{
+    private final int roomID = 5;
     public void openRoom(){
         int i = TrekkerMath.randomInt(1, 0);
             System.out.println(i);
@@ -20,10 +21,10 @@ public class portalRoom extends roomFactory{
                     i = i - 3;
                     world.stageNum+=i;
                     if(i > 0){
-                        gui.printOnGameSide("The room seems unfamilair but you get the sense that you've made progress.");
+                        gui.printOnGameSide("The room seems unfamiliar but you get the sense that you've made progress.");
                     }
                     else if(i < 0){
-                        gui.printOnGameSide("This room feels brutally familiar, reminding you of recent battles faught.");
+                        gui.printOnGameSide("This room feels brutally familiar, reminding you of recent battles fought.");
                         gui.printOnGameSide( "You sigh knowing you have a longer way to go to progress now.");
                     }
                     else{
@@ -61,5 +62,9 @@ public class portalRoom extends roomFactory{
                     }
                 }
             }
+    }
+    @Override
+    public int getRoomID() {
+        return roomID;
     }
 }

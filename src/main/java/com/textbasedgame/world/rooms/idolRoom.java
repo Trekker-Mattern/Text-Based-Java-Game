@@ -8,6 +8,7 @@ import com.textbasedgame.world.roomFactory;
 
 
 public class idolRoom extends roomFactory {
+    private final int roomID = 3;
     public void openRoom(){
         gui.printOnGameSide("You walk into a large empty cobblestoned room with a idol");
             buffTypes buffType = null;
@@ -36,5 +37,9 @@ public class idolRoom extends roomFactory {
                 player.applyBuff(buffType, 3, 5);
                 gui.printOnGameSide("You feel blessed! The animal has improved you!");
             }
+    }
+    @Override
+    public int getRoomID() {
+        return roomID;
     }
 }

@@ -4,9 +4,11 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;
 import com.textbasedgame.items.item;
 import com.textbasedgame.playerFiles.*;
+
+
+//Heals the player for maxHealth / 5
 public class fish extends consumables {
-    int healthIncrease =  player.getMaxHealth()  / 5;
-    public fish(){
+    public fish(){ 
         setPrice(5);
         setName("Fish");
 
@@ -21,8 +23,8 @@ public class fish extends consumables {
     }
     public void Use(){
         removeFromInv();
-        gui.printOnGameSide("You heal for " + healthIncrease);
-        player.addHealth(healthIncrease);
+        gui.printOnGameSide("You heal for " + player.getMaxHealth()  / 5);
+        player.addHealth(player.getMaxHealth()  / 5);
     }
     @Override
     protected void setClass(Class<? extends item> clazz){
@@ -30,6 +32,6 @@ public class fish extends consumables {
     } 
     @Override
     public void printInfo(){
-        gui.printOnGameSide("Heal Value: " + healthIncrease);
+        gui.printOnGameSide("Heal Value: " + player.getMaxHealth()  / 5);
     }
 }
