@@ -36,6 +36,7 @@
 - Added clear function to GUI to fully clear top section
 - Add comments on which set each item is from in inventories or shops - Which Set Part is done!
 - - java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 : Generic Potion.java:21
+- Announce when buffs wear off
 
 ---
 
@@ -57,7 +58,6 @@
 - - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
 - Make bosses a little weaker or randomize them less
-- Announce when buffs wear off
 
 ## TO FIX URGENTLY
 

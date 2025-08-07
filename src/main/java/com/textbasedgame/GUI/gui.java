@@ -123,7 +123,7 @@ public class gui {
                     gui.class.wait();
                 }
                 catch(InterruptedException e){
-                    e.printStackTrace();
+                    System.out.println(e);
                 }
             }
             String input = latestInput;
@@ -251,7 +251,7 @@ public class gui {
         for(triple<player.buffTypes, Integer, Integer> buff : player.buffs){
             printOnGameSide(buff.first.toString() + " buff of strength " + buff.second + " for " + buff.third + " encounters");
         }
-        var aSB = player.getArmorSetBuff();
+        pair<player.buffTypes, Integer> aSB = player.getArmorSetBuff();
         if(aSB != null){
             printOnGameSide("-Armor Set Buff-");
             printOnGameSide(aSB.first.toString() + " buff of " + aSB.second);
