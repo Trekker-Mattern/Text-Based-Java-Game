@@ -44,6 +44,10 @@
 - Spell fought (I spelt it faught **WRONG**)
 - Fixed freezes when Updating the picture in the GUI
 - Added another case to Library Room
+- Added Spartan Spear
+- Added keyItems
+- Added chestKey keyItem
+- Added opening of the chest in the chest room using chest key
 
 ---
 
@@ -63,6 +67,7 @@
 - - This will allow for interesting interactions with chests or other rooms.
 - - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
+- Write menu to look at key items
 
 ## TO FIX URGENTLY
 

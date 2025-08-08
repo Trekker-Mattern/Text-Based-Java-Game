@@ -9,6 +9,7 @@ import com.textbasedgame.items.genericItems.chestArmor;
 import com.textbasedgame.items.genericItems.headArmor;
 import com.textbasedgame.items.genericItems.holdables;
 import com.textbasedgame.items.genericItems.holdables.damageTypes;
+import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.items.genericItems.legsArmor;
 import com.textbasedgame.items.item;
 import com.textbasedgame.monsters.monster;
@@ -31,6 +32,8 @@ public abstract class player {
     //equipped and unequipped inventory
     public static ArrayList<item> equipableItems = new ArrayList<>(); 
     public static ArrayList<equipables> equippedItems = new ArrayList<>();
+    // Key Item Inventory
+    public static ArrayList<keyItem> keyItemInventory = new ArrayList<>();
 
 
     ///////////////////////

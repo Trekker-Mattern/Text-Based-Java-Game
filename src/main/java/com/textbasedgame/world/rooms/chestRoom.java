@@ -1,11 +1,16 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.items.genericItems.keyItem;
+import com.textbasedgame.items.handItems.spartanSpear;
 import com.textbasedgame.items.item;
+import com.textbasedgame.items.keyItems.chestKey;
 import com.textbasedgame.monsters.mimic;
-import com.textbasedgame.playerFiles.*;
+import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.*;
+import com.textbasedgame.world.roomFactory;
+import com.textbasedgame.world.shopitems;
+import com.textbasedgame.world.world;
 public class chestRoom extends roomFactory {
     private final int roomID = 1;
     public void openRoom(){
@@ -48,6 +53,15 @@ public class chestRoom extends roomFactory {
                     break;
                     case 3:
                         gui.printOnGameSide("The chest is locked");
+                        for(keyItem itm : player.keyItemInventory){
+                            if(itm instanceof chestKey){
+                                itm.Use();
+                                gui.printOnGameSide("You open the chest revealing a new piece of equipment!");
+                                player.addItemToPlayer(new spartanSpear(5));
+                                return;
+                            }
+
+                        }
                         gui.printOnGameSide("You try and try but cant open it");
                         
                     break;
