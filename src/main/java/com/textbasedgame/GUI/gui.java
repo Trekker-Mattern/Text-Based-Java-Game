@@ -7,11 +7,22 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.*;
+import com.textbasedgame.util.pair;
+import com.textbasedgame.util.saveFiles;
+import com.textbasedgame.util.triple;
 import com.textbasedgame.world.world;
 
 public class gui {
@@ -29,7 +40,7 @@ public class gui {
     private static JScrollPane scrollPane;
     private static JScrollPane secondScrollPane;
     
-    private static pictureLoader pLoader = new pictureLoader();
+    private static final pictureLoader pLoader = new pictureLoader();
 
     public static void runGui(){
         //set up the container
@@ -56,6 +67,7 @@ public class gui {
         Dimension minSizeinv = new Dimension(600,800);
         invPanel = new JPanel();
         invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS));
+        invPanel.setMinimumSize(minSizeinv);
         invPanel.setBackground(Color.gray);
         invPanel.setMinimumSize(minSizeinv);
         invPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));

@@ -42,6 +42,8 @@
 - Added a Action Listener for resizing the window to also resize my images. We will see how performance is effected.
 - Changed back to Java 1.8 for compilation in order for others to be able to run the program.
 - Spell fought (I spelt it faught **WRONG**)
+- Fixed freezes when Updating the picture in the GUI
+- Added another case to Library Room
 
 ---
 

@@ -12,7 +12,7 @@ public class libraryRoom extends roomFactory {
         gui.printOnGameSide("Pick a book off a shelf and read it?");
         if(response.respondYes(gui.getInput())){
             gui.pushOldText();
-            int i = TrekkerMath.randomInt(3, 0);
+            int i = TrekkerMath.randomInt(4, 0);
             switch(i){
                 case 0:{
                     gui.printOnGameSide("You grab a book titled \"Bodybuilding for Dummies\" ");
@@ -38,6 +38,21 @@ public class libraryRoom extends roomFactory {
                     player.gainXP((player.getXpToLevelUp() - player.getXP())+1);
                     gui.printOnGameSide("You feel like you have a better grasp on the world around you!");
                     break;
+                }
+                case 4:{
+                    if(player.getIntelligence() < player.getPlayerLevel() / 4){
+                        gui.printOnGameSide("You pick up a book and look at the title");
+                        gui.printOnGameSide("You cant quite read what it says");
+                        gui.printOnGameSide("In frustration you launch the book across the room");
+                    }
+                    else{
+                        gui.printOnGameSide("The book is in an old language that you remember learning in your free time");
+                        gui.printOnGameSide("The translated title reads 'Knowlege Is Power - By: Ol Geezer'");
+                        gui.printOnGameSide("It contains advanced knowlege on the world!");
+                        player.gainXP((player.getXpToLevelUp() - player.getXP())+1);
+                        player.gainXP((player.getXpToLevelUp() - player.getXP())+1);
+                        player.intelligence++;
+                    }
                 }
             }
         }
