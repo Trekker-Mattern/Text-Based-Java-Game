@@ -1,46 +1,23 @@
 package com.textbasedgame.world;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import com.textbasedgame.GUI.gui;
-import com.textbasedgame.items.chestArmorItems.chestplate;
-import com.textbasedgame.items.chestArmorItems.spartanBreastplate;
-import com.textbasedgame.items.chestArmorItems.wizardCloak;
-import com.textbasedgame.items.consumableItems.agilityPot;
-import com.textbasedgame.items.consumableItems.beefsteak;
-import com.textbasedgame.items.consumableItems.bread;
-import com.textbasedgame.items.consumableItems.fish;
-import com.textbasedgame.items.consumableItems.genericPotion;
-import com.textbasedgame.items.consumableItems.intelligencePot;
-import com.textbasedgame.items.consumableItems.strengthPot;
-import com.textbasedgame.items.consumableItems.threeCourseMeal;
-import com.textbasedgame.items.consumableItems.throwingKnife;
-import com.textbasedgame.items.consumables;
-import com.textbasedgame.items.equipables;
-import com.textbasedgame.items.footArmorItems.clogs;
-import com.textbasedgame.items.footArmorItems.spartanBoots;
-import com.textbasedgame.items.footArmorItems.wizardShoes;
-import com.textbasedgame.items.handItems.club;
-import com.textbasedgame.items.handItems.dagger;
-import com.textbasedgame.items.handItems.escalibur;
-import com.textbasedgame.items.handItems.hydraHead;
-import com.textbasedgame.items.handItems.sword;
-import com.textbasedgame.items.handItems.wand;
-import com.textbasedgame.items.headArmorItems.helmet;
-import com.textbasedgame.items.headArmorItems.spartanHelmet;
-import com.textbasedgame.items.headArmorItems.wizardHat;
-import com.textbasedgame.items.item;
-import com.textbasedgame.items.legsArmorItems.leatherPants;
-import com.textbasedgame.items.legsArmorItems.spartanSkirt;
+import com.textbasedgame.items.*;
+import com.textbasedgame.items.genericItems.*;
+import com.textbasedgame.items.headArmorItems.*;
+import com.textbasedgame.items.chestArmorItems.*;
+import com.textbasedgame.items.consumableItems.*;
+import com.textbasedgame.items.footArmorItems.*;
+import com.textbasedgame.items.legsArmorItems.*;
+import com.textbasedgame.items.handItems.*;
 import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.TrekkerMath;
 
 public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // precondition: all shops are 4 items
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    public static HashSet<Class<? extends item>> allItemsList = new HashSet<>();
+    public static ArrayList<Class<? extends item>> allItemsList = new ArrayList<>();
 
     public static ArrayList<Class<? extends consumables>> consumableShopItems = new ArrayList<>();
     public static ArrayList<Class<? extends equipables>> equipableShopItems = new ArrayList<>();
@@ -58,6 +35,7 @@ public abstract class shopitems {
         consumableShopItems.add(strengthPot.class);
         consumableShopItems.add(agilityPot.class);
         consumableShopItems.add(throwingKnife.class);
+        
         equipableShopItems.add(sword.class);
         equipableShopItems.add(club.class);
         equipableShopItems.add(dagger.class);
@@ -101,6 +79,7 @@ public abstract class shopitems {
         allItemsList.add(genericPotion.class);
         allItemsList.add(beefsteak.class);
         allItemsList.add(escalibur.class);
+        allItemsList.add(spartanSpear.class);
 
     }
 
@@ -116,10 +95,11 @@ public abstract class shopitems {
     }
 
     public static void createShop(){
-        item[] randomItems = new item[4];
+        item[] randomItems = new item[6];
 
-        for(int i = 0; i < randomItems.length-2; i++){
-            Class<? extends consumables> itemType = consumableShopItems.get((int)(Math.random() * consumableShopItems.size()));
+        ArrayList<Class<? extends consumables>> foodItemClassList = shopItemsAllocater.getFoodItemArray(world.AREANUM);
+        for(int i = 0; i < randomItems.length-4; i++){
+            Class<? extends consumables> itemType = foodItemClassList.get((int)(Math.random() * foodItemClassList.size()));
             try {
                 Constructor<? extends consumables> ctor = itemType.getDeclaredConstructor();
                 item a = ctor.newInstance();
@@ -131,8 +111,10 @@ public abstract class shopitems {
                 e.printStackTrace();
             }
         }
-        for(int i =2; i < randomItems.length; i++){
-            Class<? extends equipables> itemType = equipableShopItems.get((int)(Math.random() * equipableShopItems.size()));
+
+        ArrayList<Class<? extends equipables>> equipableShopClasses = shopItemsAllocater.getEquipablesShopArray(world.AREANUM);
+        for(int i =2; i < randomItems.length-2; i++){
+            Class<? extends equipables> itemType = equipableShopClasses.get((int)(Math.random() * equipableShopClasses.size()));
                 try {
                     Constructor<? extends equipables> ctor = itemType.getDeclaredConstructor();
                     item a = ctor.newInstance();
@@ -143,7 +125,22 @@ public abstract class shopitems {
                     // Handle the case where the default constructor is not found
                     e.printStackTrace();
                 }
-            }
+        }
+
+        ArrayList<Class<? extends consumables>> consumableClassList = shopItemsAllocater.getConsumableItemArray(world.AREANUM);
+        for(int i =4; i < randomItems.length; i++){
+            Class<? extends consumables> itemType = consumableClassList.get((int)(Math.random() * consumableClassList.size()));
+                try {
+                    Constructor<? extends consumables> ctor = itemType.getDeclaredConstructor();
+                    item a = ctor.newInstance();
+                    randomItems[i] = a;
+
+
+                } catch (Exception e) {
+                    // Handle the case where the default constructor is not found
+                    e.printStackTrace();
+                }
+        }
         itemsInShop = randomItems;
     }
 
@@ -182,33 +179,14 @@ public abstract class shopitems {
     }
 
     public static item getRandomItem(){
-        int h = TrekkerMath.randomInt(0,1);
-        if(h == 0){
-            Class<? extends equipables> itemType = equipableShopItems.get((int)(Math.random() * equipableShopItems.size()));
-                try {
-                    Constructor<? extends equipables> ctor = itemType.getDeclaredConstructor();
-                    item a = ctor.newInstance();
-                    return a;
 
-
-                } catch (Exception e) {
-                    // Handle the case where the default constructor is not found
-                    e.printStackTrace();
-                } 
+        try{
+            return (allItemsList.get((int)Math.random() * allItemsList.size())).getDeclaredConstructor().newInstance();
         }
-        else{
-            Class<? extends consumables> itemType = consumableShopItems.get((int)(Math.random() * consumableShopItems.size()));
-                try {
-                    Constructor<? extends consumables> ctor = itemType.getDeclaredConstructor();
-                    item a = ctor.newInstance();
-                    return a;
-
-
-                } catch (Exception e) {
-                    // Handle the case where the default constructor is not found
-                    System.out.println(e);
-                } 
+        catch(Exception e){
+            System.out.println(e);
         }
+
         return null;
     }
 

@@ -47,6 +47,7 @@ public class gui {
         frame = new JFrame("Trekker RPG");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 800);
+        frame.addComponentListener(new resizeActionListener());
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
 
@@ -254,8 +255,6 @@ public class gui {
         invPanel.repaint();
         topofInvPanel.revalidate();
         topofInvPanel.repaint();
-
-        frame.addComponentListener(new resizeActionListener());
 
         updateImage(4);
 
