@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Arrays;
 
 import com.textbasedgame.items.equipables;
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.items.chestArmorItems.wizardCloak;
 import com.textbasedgame.items.footArmorItems.wizardShoes;
 import com.textbasedgame.items.genericItems.headArmor;

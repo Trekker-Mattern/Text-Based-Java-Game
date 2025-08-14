@@ -8,7 +8,7 @@ import com.textbasedgame.items.chestArmorItems.wizardCloak;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.items.genericItems.boots;
 import com.textbasedgame.items.headArmorItems.wizardHat;
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
 

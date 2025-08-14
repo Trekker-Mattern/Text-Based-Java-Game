@@ -46,7 +46,7 @@ public class monster {
     public void setHealth(int x){
         mHealth = x;
     }
-    protected int getDamageAfterWeaknessCheck(int originalDmg){
+    private int getDamageAfterWeaknessCheck(int originalDmg){
         Set<String> weaknesses = getMonsterWeakness();
         if(weaknesses == null){return originalDmg;}
         int weaknessCount = 0;

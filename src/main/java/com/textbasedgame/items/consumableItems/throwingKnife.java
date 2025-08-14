@@ -1,6 +1,6 @@
 package com.textbasedgame.items.consumableItems;
 import com.textbasedgame.GUI.gui;
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.items.genericItems.attackingConsumable;
 import com.textbasedgame.playerFiles.player;
 

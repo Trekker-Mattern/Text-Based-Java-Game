@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.textbasedgame.items.genericItems.boots;
-import com.textbasedgame.items.item;
+
 
 public class clogs extends boots {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Clogs", "Wood", "Shoes", "Boots", "Heavy", "Heavy Armor"));

@@ -38,7 +38,7 @@
 - - java.lang.ArrayIndexOutOfBoundsException: Index 4 out of bounds for length 4 : Generic Potion.java:21
 - Announce when buffs wear off
 - Added Picture Support!! - Thank you Lizzy I love you <3
-- Fixed a bug with food items that made it possible that they heal for 0. 
+- Fixed a bug with food items that made it possible that they heal for 0.
 - Added a Action Listener for resizing the window to also resize my images. We will see how performance is effected.
 - Changed back to Java 1.8 for compilation in order for others to be able to run the program.
 - Spell fought (I spelt it faught **WRONG**)

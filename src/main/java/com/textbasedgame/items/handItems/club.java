@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.textbasedgame.items.genericItems.holdables;
-import com.textbasedgame.items.item;
+
 
 public class club extends holdables {
     private final int damage;

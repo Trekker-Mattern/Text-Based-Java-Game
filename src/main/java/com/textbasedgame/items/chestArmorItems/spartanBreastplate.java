@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.textbasedgame.items.equipables;
-import com.textbasedgame.items.item;
 import com.textbasedgame.items.footArmorItems.spartanBoots;
 import com.textbasedgame.items.genericItems.chestArmor;
 import com.textbasedgame.items.headArmorItems.spartanHelmet;

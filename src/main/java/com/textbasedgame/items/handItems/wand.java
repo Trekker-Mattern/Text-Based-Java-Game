@@ -2,7 +2,7 @@ package com.textbasedgame.items.handItems;
 
 import java.util.Set;
 
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.items.genericItems.holdables;
 
 import java.util.HashSet;

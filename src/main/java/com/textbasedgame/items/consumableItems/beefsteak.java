@@ -1,7 +1,7 @@
 package com.textbasedgame.items.consumableItems;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.playerFiles.*;
 //Heals the player for maxHealth / 2.15
 public class beefsteak extends consumables{

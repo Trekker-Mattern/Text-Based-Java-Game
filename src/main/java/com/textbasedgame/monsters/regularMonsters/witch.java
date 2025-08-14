@@ -1,4 +1,8 @@
 package com.textbasedgame.monsters.regularMonsters;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumableItems.genericPotion;
 import com.textbasedgame.monsters.monster;
@@ -14,6 +18,10 @@ public class witch extends monster{
     @Override
     public String attackString(){
         return "casts a spell on you";
+    }
+    @Override
+    public Set<String> getMonsterWeakness() {
+        return new HashSet<String>(Arrays.asList("Holy", "Water"));
     }
     @Override
     public void onMonsterDeath(){

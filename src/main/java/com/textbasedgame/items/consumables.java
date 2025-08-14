@@ -12,4 +12,10 @@ public abstract class consumables extends item {
         player.inventory.remove(this);
         player.consumableInv.remove(this);
     }
+    @Override
+    public boolean equals(Object obj) {
+        
+        if(obj.getClass() == this.getClass()){return true;}
+        return false;
+    }
 }

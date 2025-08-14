@@ -3,7 +3,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
 
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.items.genericItems.headArmor;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;

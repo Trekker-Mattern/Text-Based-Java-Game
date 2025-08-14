@@ -1,7 +1,7 @@
 package com.textbasedgame.items.consumableItems;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.playerFiles.*;
 // Heals the player for 0.75 * maxHealth
 public class threeCourseMeal extends consumables {

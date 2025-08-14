@@ -2,7 +2,6 @@ package com.textbasedgame.monsters;
 
 import java.lang.reflect.*;
 import com.textbasedgame.util.*;
-import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.world.*;
 
 public class monsterCreator {
@@ -27,7 +26,6 @@ public class monsterCreator {
     public static boss createBoss(){
 
         //Get monster type
-        //Class<?> monsterType = 
 
         Class<? extends boss> mType = monsterArrayList.getBossMonsterType();
         try {

@@ -1,4 +1,8 @@
 package com.textbasedgame.monsters.regularMonsters;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.textbasedgame.items.consumableItems.genericPotion;
 import com.textbasedgame.monsters.monster;
 import com.textbasedgame.monsters.monsterCreator;
@@ -26,5 +30,9 @@ public class turtle extends monster{
             a.addBuff(buffTypes.AGILITY, player.getAgility() * -1, 5);
         }
         player.addItemToPlayer(a);
+    }
+    @Override
+    public Set<String> getMonsterWeakness() {
+        return new HashSet<String>(Arrays.asList("Agility"));
     }
 }

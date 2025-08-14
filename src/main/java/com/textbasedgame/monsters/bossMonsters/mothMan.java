@@ -1,4 +1,8 @@
 package com.textbasedgame.monsters.bossMonsters;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.monsters.boss;
 import com.textbasedgame.monsters.monsterCreator;
@@ -24,6 +28,12 @@ public class mothMan extends boss {
                 player.equippedItems.remove(i);
             }
         }
+    }
+
+
+    @Override
+    public Set<String> getMonsterWeakness() {
+        return new HashSet<String>(Arrays.asList("Fire", "Heat"));
     }
 
     @Override

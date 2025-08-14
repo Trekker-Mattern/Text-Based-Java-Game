@@ -3,7 +3,6 @@ package com.textbasedgame.items;
 public abstract class item {
     private int itemPrice;
     private String name;
-    private boolean isConsumable;
     protected String classofItem;
     
     public item(){

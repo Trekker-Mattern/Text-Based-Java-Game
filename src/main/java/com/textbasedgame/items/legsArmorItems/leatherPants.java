@@ -2,7 +2,7 @@ package com.textbasedgame.items.legsArmorItems;
 
 import java.util.Set;
 
-import com.textbasedgame.items.item;
+
 import com.textbasedgame.items.genericItems.legsArmor;
 
 import java.util.HashSet;
