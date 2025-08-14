@@ -3,9 +3,7 @@ import com.textbasedgame.playerFiles.player;
 
 public abstract class consumables extends item {
     protected boolean isAttackingConsumable = false;
-    public consumables(){
-        setIsConsumable(true);
-    }
+    public consumables(){}
     @Override
     public void Use(){
         removeFromInv();

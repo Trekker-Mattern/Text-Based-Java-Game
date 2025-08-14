@@ -8,6 +8,5 @@ public abstract class attackingConsumable extends consumables{
     }
 
     public abstract int getDamageInt();
-    @Override
     public abstract String getAttackString();
 }

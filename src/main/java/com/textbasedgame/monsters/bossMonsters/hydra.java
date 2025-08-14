@@ -1,7 +1,9 @@
-package com.textbasedgame.monsters;
+package com.textbasedgame.monsters.bossMonsters;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.handItems.hydraHead;
+import com.textbasedgame.monsters.boss;
+import com.textbasedgame.monsters.monsterCreator;
 import com.textbasedgame.playerFiles.*;
 import com.textbasedgame.util.response;
 
@@ -9,7 +11,7 @@ public class hydra extends boss {
     public hydra(){
         setName("Hydra");
         setStrength(monsterCreator.strongMonsterStr(mLevel) + player.getIntelligence());
-        setOrigionalHealth(monsterCreator.strongMonsterHealth(mLevel) + player.playerLevel);
+        setOriginalHealth(monsterCreator.strongMonsterHealth(mLevel) + player.playerLevel);
         setSpeed(monsterCreator.slowMonsterSpeed(mLevel));
     }
     public void attackEffects(int damageDoneToPlayer){

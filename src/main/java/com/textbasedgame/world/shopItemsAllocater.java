@@ -15,18 +15,22 @@ import com.textbasedgame.items.handItems.*;
 
 public class shopItemsAllocater {
 
-    public static ArrayList<Class<? extends consumables>> getFoodItemArray(int i){
-        String gameStage;
-        
+    private static String changeIntToMappedString(int i){
         if(i < 2){
-            gameStage = "upToOuterGates";
+            return "upToOuterGates";
         }
         else if(i < 4){
-            gameStage = "upToCaves";
+            return "upToCaves";
         }
         else{
-            gameStage = "default";
+            return "default";
         }
+    }
+
+    public static ArrayList<Class<? extends consumables>> getFoodItemArray(int i){
+        String gameStage = changeIntToMappedString(i);
+        
+        
 
         
         
@@ -66,17 +70,7 @@ public class shopItemsAllocater {
     }
 
     public static ArrayList<Class<? extends equipables>> getEquipablesShopArray(int i){
-        String gameStage;
-        
-        if(i < 2){
-            gameStage = "upToOuterGates";
-        }
-        else if(i < 4){
-            gameStage = "upToCaves";
-        }
-        else{
-            gameStage = "default";
-        }
+        String gameStage = changeIntToMappedString(i);
 
         
         
@@ -143,21 +137,8 @@ public class shopItemsAllocater {
 
 
     public static ArrayList<Class<? extends consumables>> getConsumableItemArray(int i){
-        String gameStage;
-        
-        if(i < 2){
-            gameStage = "upToOuterGates";
-        }
-        else if(i < 4){
-            gameStage = "upToCaves";
-        }
-        else{
-            gameStage = "default";
-        }
+        String gameStage = changeIntToMappedString(i);
 
-        
-        
-        
         switch (gameStage){
             case "upToOuterGates":{
                 return new ArrayList<>(

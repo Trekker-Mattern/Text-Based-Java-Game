@@ -2,6 +2,8 @@ package com.textbasedgame.monsters;
 
 import java.lang.reflect.*;
 import com.textbasedgame.util.*;
+import com.textbasedgame.playerFiles.player;
+import com.textbasedgame.world.*;
 
 public class monsterCreator {
     private static final int monsterLevelDivider = 3;
@@ -84,5 +86,26 @@ public class monsterCreator {
         else{
             return (int)(TrekkerMath.randomDouble(1.5, .75) * (monsterLevel / monsterLevelDivider) + 1);
         }
+    }
+
+    public static int getBossArmor(int monsterLevel){
+        int monsterArmor;
+        if(monsterLevel < 50){
+            monsterArmor = 0;
+        }
+        else{
+            monsterArmor = TrekkerMath.randomInt((int)(monsterLevel / 50), 0);
+        }
+        return monsterArmor;
+    }
+
+    public static int createMonsterLevel(){
+        int baseCalc = (int)(world.stageNum * TrekkerMath.randomDouble(2, .5));
+
+        if(baseCalc < 2){
+            baseCalc++;
+        }
+        return baseCalc;
+        
     }
 }

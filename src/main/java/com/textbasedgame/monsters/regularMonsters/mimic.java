@@ -1,9 +1,13 @@
-package com.textbasedgame.monsters;
+package com.textbasedgame.monsters.regularMonsters;
+
+import com.textbasedgame.monsters.monster;
+import com.textbasedgame.monsters.monsterCreator;
+
 public class mimic extends monster{
     public mimic(){
         super.setName("Mimic");
         super.setStrength(monsterCreator.strongMonsterStr(mLevel));
-        super.setOrigionalHealth(monsterCreator.medMonsterHealth(mLevel));
+        super.setOriginalHealth(monsterCreator.medMonsterHealth(mLevel));
         super.setSpeed(monsterCreator.fastMonsterSpeed(mLevel));
     }
     @Override

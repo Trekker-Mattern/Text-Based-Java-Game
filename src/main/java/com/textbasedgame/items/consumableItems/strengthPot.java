@@ -16,10 +16,6 @@ public class strengthPot extends consumables {
         player.applyBuff(buffTypes.STRENGTH, 3, 4);
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = strengthPot.class.getName();
-    }
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Buff Strength - 3");
         gui.printOnGameSide("Buff Length - 4");

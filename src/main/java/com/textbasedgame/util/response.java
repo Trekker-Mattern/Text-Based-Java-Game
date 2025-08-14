@@ -15,6 +15,8 @@ public class response{
 
     }
 
+
+
     public static boolean respondRun(String response){
         response = response.toLowerCase();
         if (response.contains("run") || response.equals("r"))
@@ -71,8 +73,17 @@ public class response{
         if(response.contains("items")  || response.contains("Items") || response.contains("Item") || response.contains("item") || response.equals("i")){
             return true;
         }
-        else return false;
+        return false;
     }
+
+    public static boolean keyItems(String response){
+        response = response.toLowerCase();
+        if(response.contains("key item") || response.contains("key")){
+            return true;
+        }
+        return false;
+    }
+
     public static boolean respondFight(String response){
         response = response.toLowerCase();
         if(response.contains("fight")  || response.contains("attack") || response.contains("brawl") || response.contains("kill") || response.equals("f")){

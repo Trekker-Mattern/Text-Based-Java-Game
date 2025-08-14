@@ -15,10 +15,6 @@ public class beefsteak extends consumables{
         player.addHealth((int)(player.getMaxHealth()  / 2.15));
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = bread.class.getName();
-    } 
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Heal Value: " + (int)(player.getMaxHealth()  / 2.15));
     }

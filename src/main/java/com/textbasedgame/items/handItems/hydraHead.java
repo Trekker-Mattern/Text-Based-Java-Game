@@ -13,7 +13,6 @@ public class hydraHead extends holdables {
     private int damage;
 
     public hydraHead(){
-        setIsAttackingItem(true);
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 3));
         setDMGType(damageTypes.INTELLIGENCE);
         setName("Hydra Head");
@@ -34,10 +33,6 @@ public class hydraHead extends holdables {
     protected Set<String> getTagsSet() {
         return tags;
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = hydraHead.class.getName();
-    } 
     @Override
     public void printInfo() {}
 }

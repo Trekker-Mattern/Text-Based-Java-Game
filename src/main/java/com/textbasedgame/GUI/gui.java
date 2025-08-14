@@ -262,7 +262,7 @@ public class gui {
 
     private static JLabel createInventoryLabel(String s, equipables equip){
         if(equip != null){
-            return new JLabel(s + ": " + equip.toString());
+            return new JLabel(s + ": " + equip.getItemName() + " - " + equip.getQuality());
         }
         else{
             return new JLabel(s + ": ");

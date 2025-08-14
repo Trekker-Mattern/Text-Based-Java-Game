@@ -1,10 +1,11 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.items.consumables;
 import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.items.handItems.spartanSpear;
 import com.textbasedgame.items.item;
 import com.textbasedgame.items.keyItems.chestKey;
-import com.textbasedgame.monsters.mimic;
+import com.textbasedgame.monsters.regularMonsters.mimic;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
@@ -27,7 +28,7 @@ public class chestRoom extends roomFactory {
                         item a = shopitems.getRandomItem();
                         gui.printOnGameSide("You obtain " + a);
                         player.inventory.add(a);
-                        if(a.isConsumable()){
+                        if(a instanceof consumables){
                             player.consumableInv.add(a);
                         }
                         else{

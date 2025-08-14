@@ -15,10 +15,6 @@ public class bread extends consumables{
         player.addHealth(player.getMaxHealth()  / 3);
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = bread.class.getName();
-    } 
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Heal Value: " + (player.getMaxHealth()  / 3));
     }

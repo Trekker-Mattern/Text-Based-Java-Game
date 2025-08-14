@@ -8,7 +8,7 @@ public class throwingKnife extends attackingConsumable {
     int amountInSet = 3;
     public throwingKnife(){
         setPrice(3);
-        setName("Throwing Knife");
+        setName("Throwing Knives");
     }
     @Override
     public void Use(){
@@ -26,12 +26,12 @@ public class throwingKnife extends attackingConsumable {
         return "You throw the small knife with considerable force";
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = throwingKnife.class.getName();
-    } 
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Throwing knives left: " + amountInSet);
         gui.printOnGameSide("Damage: " + getDamageInt());
+    }
+    @Override
+    public String toString(){
+        return getItemName() + " - " + amountInSet;
     }
 }

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.items.consumables;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.items.genericItems.boots;
 import com.textbasedgame.items.genericItems.chestArmor;
@@ -284,7 +285,7 @@ public abstract class player {
     /// ////////////////
     public static void addItemToPlayer(item i){
         inventory.add(i);
-        if(i.isConsumable()){
+        if(i instanceof consumables){
             consumableInv.add(i);
         }
         else{
@@ -300,6 +301,10 @@ public abstract class player {
             i.onEquip();
             i.setEquipped(true);
         }
+    }
+
+    public static void addKeyItemToPlayer(keyItem itm){
+        keyItemInventory.add(itm);
     }
 
     public static void askWhichHandToEquipTo(holdables itemToSwap){
@@ -322,17 +327,14 @@ public abstract class player {
         int printingNum = 1;
         for(item e : inventory){
             String s = printingNum + ": " + e.toString();
-            if(e.getQuality() != null){
-                if(((equipables)e).isEquipped() == true){
-                    s += " - " + e.getQuality() + " - Equipped";
-                }
-                else s += " - " + e.getQuality();
-                gui.printOnGameSide(s);
-            }
-            else{
-                gui.printOnGameSide(s);
-            }
+            gui.printOnGameSide(s);
             printingNum++;
+        }
+    }
+
+    public static void printKeyItems(){
+        for(keyItem i : keyItemInventory){
+            gui.printOnGameSide(i.toString());
         }
     }
 
@@ -494,7 +496,7 @@ public abstract class player {
         if(m.getSpeed() > agility){
             int damageDoneToMonster = damageDone();
             health -= damageTaken(m);
-            m.subtractHealth(damageDoneToMonster);
+            damageDoneToMonster = m.subtractHealth(damageDoneToMonster);
             gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
                 
         }
@@ -536,9 +538,14 @@ public abstract class player {
         }
 
         //////
-        /// Umm trekker tf were you doing here?
+        /// This is to account for monster misses
+        /// 
         monsterDamage = (int)(m.getStrength() * monsterMultiplyer);
 
+
+        ///////////
+        /// After armor damage on player
+        /// //////////
 
         monsterDamage =(int)(monsterDamage / ((((double)getArmor() + 10) / 10)  * 1.25));
 
@@ -561,8 +568,8 @@ public abstract class player {
             playerMiss = true;
             multiplier = TrekkerMath.randomDouble(.9, .2);
         }
-        else if(TrekkerMath.randomInt(playerLevel, (playerLevel / getIntelligence())) > playerLevel*.8){
-            multiplier = TrekkerMath.randomDouble(2, 1);
+        else if( getIntelligence() != 0 && TrekkerMath.randomInt(playerLevel, (playerLevel / getIntelligence())) > playerLevel*.8){
+            multiplier = TrekkerMath.randomDouble(2, 1.3);
             playerCrit = true;
         }
         else {
@@ -577,7 +584,8 @@ public abstract class player {
             }
         }
         else if(playerCrit == true){
-            gui.printOnGameSide("You hit the monster on the weak spot dealing " + multiplier + "times damage");
+            String strMultiplier = String.format("%.3f", multiplier); 
+            gui.printOnGameSide("You hit the monster on the weak spot dealing " + strMultiplier + "times damage");
         }
         
 

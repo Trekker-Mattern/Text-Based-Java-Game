@@ -1,10 +1,13 @@
 package com.textbasedgame.util;
 public class TrekkerMath {
     
+    //Inclusive random integer generator
     public static int randomInt(int toVal, int fromVal){
         int ret = (int)(Math.random() * (toVal + 1)) + fromVal;
+        System.out.println("Number " + ret + " fromVal-" + fromVal + " toVal(+1)-"+toVal);
         return ret;
     }
+    //Exclusive double generator
     public static double randomDouble(double toVal, double fromVal){
         double ret = (Math.random() * toVal) + fromVal;
         return ret;

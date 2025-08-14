@@ -43,9 +43,5 @@ public class spartanHelmet extends headArmor {
         return setItems;
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = spartanHelmet.class.getName();
-    }
-    @Override
     public void printInfo() {}
 }

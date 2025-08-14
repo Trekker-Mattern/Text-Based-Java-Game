@@ -35,9 +35,5 @@ public class helmet extends headArmor{
         return new pair<>(null, null);
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = helmet.class.getName();
-    } 
-    @Override
     public void printInfo() {}
 }

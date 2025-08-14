@@ -41,9 +41,5 @@ public class wizardShoes extends boots{
         return new pair<>(buffTypes.INTELLIGENCE, 5);
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = wizardShoes.class.getName();
-    }
-    @Override
     public void printInfo() {} 
 }

@@ -1,7 +1,7 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.handItems.sword;
-import com.textbasedgame.monsters.goblin;
+import com.textbasedgame.monsters.regularMonsters.goblin;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;

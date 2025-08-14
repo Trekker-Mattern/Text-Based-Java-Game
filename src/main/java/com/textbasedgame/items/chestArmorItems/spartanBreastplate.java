@@ -30,13 +30,8 @@ public class spartanBreastplate extends chestArmor {
     } 
     @Override
     protected Set<String> getTagsSet() {
-
         return tags;
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = spartanBreastplate.class.getName();
-    } 
     @Override
     public pair<buffTypes, Integer> getSetBuff() {
         return new pair<>(buffTypes.STRENGTH, 5);

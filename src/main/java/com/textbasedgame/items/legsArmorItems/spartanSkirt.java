@@ -42,9 +42,5 @@ public class spartanSkirt extends legsArmor {
         return setItems;
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = spartanSkirt.class.getName();
-    }
-    @Override
     public void printInfo() {}
 }

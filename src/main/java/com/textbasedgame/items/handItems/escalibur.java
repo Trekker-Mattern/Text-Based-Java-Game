@@ -16,7 +16,6 @@ public class escalibur extends holdables {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Sword", "Strength", "Sharp", "Slicing", "Holy", "Magical"));
 
     public escalibur(){
-        setIsAttackingItem(true);
         damage = (int)(2.2*7);
         setPrice(60);
         setName("Escalibur");
@@ -36,10 +35,6 @@ public class escalibur extends holdables {
 
         return tags;
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = sword.class.getName();
-    } 
     @Override
     public void printInfo() {}
 }

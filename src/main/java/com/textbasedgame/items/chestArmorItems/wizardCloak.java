@@ -36,10 +36,6 @@ public class wizardCloak extends chestArmor {
         return tags;
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = wizardCloak.class.getName();
-    } 
-    @Override
     public Set<Class<? extends equipables>> getSetItems() {
         return setItems;
     }

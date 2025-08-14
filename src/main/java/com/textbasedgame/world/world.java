@@ -49,18 +49,21 @@ public abstract class world {
             if(response.Shop(Ans)){
                 openShop();
             }
-            if(response.Dungeon(Ans)){
+            else if(response.Dungeon(Ans)){
                 openDungeon();
             }
-            if(response.Items(Ans)){
+            else if(response.keyItems(Ans)) {
+                player.printKeyItems();
+            }
+            else if(response.Items(Ans)){
                 itemMenu();
             }
-            if(response.Save(Ans)){
+            else if(response.Save(Ans)){
                 //// SAVE
                 saveFiles.save();
             }
-            if(Ans.equals("info")){
-
+            else if(Ans.equals("info")){
+                infoMenu();
             }
         }
         else{
@@ -253,7 +256,8 @@ public abstract class world {
                     int number = Integer.parseInt(newInput);
                     try {
                         if(player.inventory.get(number-1) instanceof attackingConsumable){
-                            gui.printOnGameSide(player.inventory.get(number-1).getAttackString());
+                            attackingConsumable atkCons = (attackingConsumable)player.inventory.get(number-1);
+                            gui.printOnGameSide(atkCons.getAttackString());
                             gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(number-1)).getDamageInt()) + " to " + m.getName());
                             m.subtractHealth(((attackingConsumable)player.inventory.get(number-1)).getDamageInt());
 
@@ -291,7 +295,8 @@ public abstract class world {
                     int temp = Integer.parseInt(gui.getInput());
                     try {
                         if(player.inventory.get(temp-1) instanceof attackingConsumable){
-                            gui.printOnGameSide(player.inventory.get(temp-1).getAttackString());
+                            attackingConsumable atkCons = (attackingConsumable)player.inventory.get(temp-1);
+                            gui.printOnGameSide(atkCons.getAttackString());
                             gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt()) + " to " + m.getName());
                             m.subtractHealth(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt());
 
@@ -347,6 +352,7 @@ public abstract class world {
         try{
             int number = Integer.parseInt(h);
             try {
+                
                 player.inventory.get(number-1).Use();
             } 
             catch (IndexOutOfBoundsException e) {

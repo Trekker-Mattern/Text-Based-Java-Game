@@ -14,7 +14,6 @@ public class sword extends holdables {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Sword", "Strength", "Sharp", "Slicing"));
 
     public sword(){
-        setIsAttackingItem(true);
         damage = 2*quality;
         setPrice(30);
         setName("Sword");
@@ -23,7 +22,6 @@ public class sword extends holdables {
     }
     public sword(int qual){
         setQuality(qual);
-        setIsAttackingItem(true);
         damage = 2*quality;
         setPrice(30);
         setName("Sword");
@@ -41,10 +39,6 @@ public class sword extends holdables {
     @Override
     protected Set<String> getTagsSet() {
         return tags;
-    }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = sword.class.getName();
     } 
     @Override
     public void printInfo() {}

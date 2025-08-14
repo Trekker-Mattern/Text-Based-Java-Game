@@ -8,4 +8,6 @@ public class chestKey extends keyItem{
     public void Use(){
         player.keyItemInventory.remove(this);
     }
+    @Override
+    public void printInfo(){}
 }

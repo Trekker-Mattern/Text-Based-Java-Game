@@ -1,5 +1,7 @@
-package com.textbasedgame.monsters;
+package com.textbasedgame.monsters.bossMonsters;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.monsters.boss;
+import com.textbasedgame.monsters.monsterCreator;
 import com.textbasedgame.playerFiles.*;
 import com.textbasedgame.util.TrekkerMath;
 
@@ -7,7 +9,7 @@ public class cthulhu extends boss {
     public cthulhu(){
         setName("Cthulhu");
         setStrength(monsterCreator.strongMonsterHealth(mLevel) + player.getStrength());
-        setOrigionalHealth(monsterCreator.strongMonsterHealth(mLevel) + player.playerLevel);
+        setOriginalHealth(monsterCreator.strongMonsterHealth(mLevel) + player.playerLevel);
         setSpeed(monsterCreator.medMonsterSpeed(mLevel));
         setArmour((int)(TrekkerMath.randomDouble(2, 1.5)));
     }

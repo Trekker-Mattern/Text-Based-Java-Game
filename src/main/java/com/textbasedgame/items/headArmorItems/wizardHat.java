@@ -44,9 +44,5 @@ public class wizardHat extends headArmor {
         return setItems;
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = wizardHat.class.getName();
-    }
-    @Override
     public void printInfo() {}
 }

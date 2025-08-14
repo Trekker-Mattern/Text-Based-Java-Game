@@ -21,10 +21,6 @@ public class chestplate extends chestArmor{
         setPrice(45);
         setName("Chestplate");
         
-    }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = chestplate.class.getName();
     } 
     public void onEquip(){
         

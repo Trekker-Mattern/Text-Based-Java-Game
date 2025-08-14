@@ -1,10 +1,13 @@
-package com.textbasedgame.monsters;
+package com.textbasedgame.monsters.regularMonsters;
+
+import com.textbasedgame.monsters.monster;
+import com.textbasedgame.monsters.monsterCreator;
 
 public  class troll extends monster {
     public troll(){
         super.setName("Troll");
         super.setStrength(monsterCreator.strongMonsterStr(mLevel));
-        super.setOrigionalHealth(monsterCreator.strongMonsterHealth(mLevel));
+        super.setOriginalHealth(monsterCreator.strongMonsterHealth(mLevel));
         super.setSpeed(monsterCreator.slowMonsterSpeed(mLevel));
     }
     @Override

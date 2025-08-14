@@ -28,9 +28,5 @@ public class clogs extends boots {
         return tags;
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = clogs.class.getName();
-    } 
-    @Override
     public void printInfo() {}
 }

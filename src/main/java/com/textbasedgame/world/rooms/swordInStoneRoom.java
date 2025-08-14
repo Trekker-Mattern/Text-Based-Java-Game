@@ -2,9 +2,11 @@ package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.handItems.escalibur;
+import com.textbasedgame.monsters.regularMonsters.demon;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
 import com.textbasedgame.world.roomFactory;
+import com.textbasedgame.world.world;
 
 public class swordInStoneRoom extends roomFactory {
     private final int roomID = 6;
@@ -19,6 +21,10 @@ public class swordInStoneRoom extends roomFactory {
         if(response.respondYes(resp)){
             gui.printOnGameSide("You pull the sword from the stone and a cheer of angels surrounds you");
             player.addItemToPlayer(new escalibur());
+
+            gui.printOnGameSide("The balance between light and dark has been broken");
+            gui.printOnGameSide("The floor opens in front of you and a demon emerges from the crevice");
+            world.monsterMenu(new demon());
         }
     }
     @Override

@@ -11,7 +11,6 @@ public class club extends holdables {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Strength", "Blunt", "Club", "Wood"));
 
     public club(){
-        setIsAttackingItem(true);
         damage = (int)(1.7*quality);
         setPrice(30);
         setName("Club");
@@ -20,7 +19,6 @@ public class club extends holdables {
     }
     public club(int qual){
         setQuality(qual);
-        setIsAttackingItem(true);
         damage = (int)(1.7*quality);
         setPrice(30);
         setName("Club");
@@ -39,10 +37,6 @@ public class club extends holdables {
     protected Set<String> getTagsSet() {
         return tags;
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = club.class.getName();
-    } 
     @Override
     public void printInfo() {}
 }

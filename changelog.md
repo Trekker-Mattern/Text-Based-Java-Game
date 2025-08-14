@@ -27,7 +27,7 @@
 - Fixed Library Room *DO NOT FORGET BREAKS IN SWITCH STATEMENT*
 - Some improved GUI with a new box that seperates new text from old text and it pushes the old text into the top scrolling section and new text is kept seperate.
 - Escalibur and new Sword in stone Room added.
-- Refactored the get armor set buff method so that it doesnt use weird bullshit and just pulls directly from the item. Im not sure why I had coded it that way origionally but it seems much better now.
+- Refactored the get armor set buff method so that it doesnt use weird bullshit and just pulls directly from the item. Im not sure why I had coded it that way originally but it seems much better now.
 - Potion OOB error fix
 - Create arrayList during initialization in order to prevent nulls in buffs
 - Fixed bug in fighting where buffTypes.INTELLIGENCE was twice instead of buffTypes.STRENGTH
@@ -48,6 +48,8 @@
 - Added keyItems
 - Added chestKey keyItem
 - Added opening of the chest in the chest room using chest key
+- Impliment jailer enemy for obtaining keys
+- Updated shop to include 6 items that are based on the area that you are in
 
 ---
 
@@ -65,9 +67,14 @@
 - New Category of Item, Key Items?? -- I could keep this as a consumable item but I think if we make it a new subcategory of item it will work better.
 - Enchantments that you can use on an Item to add buffs or special tags. *Be Careful When Overriding Tags its static right now*
 - - This will allow for interesting interactions with chests or other rooms.
-- - Impliment jailer enemy for obtaining keys
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
 - Write menu to look at key items
+- Soul Weighing room - Gives you a bonus if all your stats are equal, gives smaller bonus if they are close to each other but not equal
+- Spike dodging trap that checks agility to give chest rewards
+- Breakable wall that you can only bust down with strength to get rewards
+- three pronged room that you get to choose your next room.
+- make items a pair that contains the amount of items that you have if they are consumables - reduces size of inventory List
+- write a toString for the items
 
 ## TO FIX URGENTLY
 

@@ -27,10 +27,6 @@ public class fish extends consumables {
         player.addHealth(player.getMaxHealth()  / 5);
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = fish.class.getName();
-    } 
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Heal Value: " + player.getMaxHealth()  / 5);
     }

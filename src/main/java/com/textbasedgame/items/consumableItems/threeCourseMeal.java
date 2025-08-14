@@ -15,10 +15,6 @@ public class threeCourseMeal extends consumables {
         player.addHealth((int)(player.getMaxHealth() * .75));
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = threeCourseMeal.class.getName();
-    } 
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Heal Value: " + (int)(player.getMaxHealth() * .75));
     }

@@ -41,9 +41,5 @@ public class spartanBoots extends boots {
         return setItems;
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = spartanBoots.class.getName();
-    } 
-    @Override
     public void printInfo() {}
 }

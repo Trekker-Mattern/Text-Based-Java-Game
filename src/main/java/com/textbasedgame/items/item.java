@@ -5,9 +5,10 @@ public abstract class item {
     private String name;
     private boolean isConsumable;
     protected String classofItem;
-
-    private boolean isAttackingItem;
-
+    
+    public item(){
+        classofItem = this.getClass().getName();
+    }
     public void setName(String name){
         this.name = name;
     }
@@ -24,34 +25,12 @@ public abstract class item {
     public String toString() {
         return name;
     }
-    public boolean isConsumable(){
-        return isConsumable;
-    }
-    public void setIsConsumable(boolean x){
-        isConsumable = x;
-    }
-    public void Use(){
-        
-    }
-    public item(){
-        setClass(item.class);
-    }
-    protected abstract void setClass(Class<? extends item> clazz);
-    public int getStatIncrease(){return 0;}
-    public void setIsAttackingItem(boolean x){
-        isAttackingItem = x;
-    }
-    public boolean attackingItem(){
-        return isAttackingItem;
-    }
-    public String getAttackString(){
-        return "";
-    }
-    public String getQuality(){
-        return null;
-    }
+    //protected abstract void setClass(Class<? extends item> clazz);
     public String getClassofItem(){
         return classofItem;
     }
+
+    //Be careful with this use
+    public void Use(){}
     public abstract void printInfo();
 }

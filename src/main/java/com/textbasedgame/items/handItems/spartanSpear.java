@@ -18,7 +18,6 @@ public class spartanSpear extends holdables{
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Spartan Spear", "Strength", "Sharp", "Stabbing", "Impaling", "Long"));
 
     public spartanSpear(){
-        setIsAttackingItem(true);
         damage =(int)(2.4*quality);
         setPrice(50);
         setName("Spartan Spear");
@@ -28,7 +27,6 @@ public class spartanSpear extends holdables{
     }
     public spartanSpear(int qual){
         setQuality(qual);
-        setIsAttackingItem(true);
         damage =(int)(2.4*quality);
         setPrice(50);
         setName("Spartan Spear");
@@ -48,10 +46,6 @@ public class spartanSpear extends holdables{
     protected Set<String> getTagsSet() {
         return tags;
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = spartanSpear.class.getName();
-    } 
     @Override
     public void printInfo() {
         gui.printOnGameSide("This item is not part of the Spartan Set");

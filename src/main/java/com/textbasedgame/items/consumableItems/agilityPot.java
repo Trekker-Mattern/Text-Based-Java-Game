@@ -16,10 +16,6 @@ public class agilityPot extends consumables{
         player.applyBuff(buffTypes.AGILITY, 4, 7);
     }
     @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = agilityPot.class.getName();
-    } 
-    @Override
     public void printInfo(){
         gui.printOnGameSide("Buff Strength - 3");
         gui.printOnGameSide("Buff Length - 4");

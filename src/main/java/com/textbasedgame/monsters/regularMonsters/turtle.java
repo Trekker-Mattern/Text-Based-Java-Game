@@ -1,5 +1,7 @@
-package com.textbasedgame.monsters;
+package com.textbasedgame.monsters.regularMonsters;
 import com.textbasedgame.items.consumableItems.genericPotion;
+import com.textbasedgame.monsters.monster;
+import com.textbasedgame.monsters.monsterCreator;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 
@@ -7,7 +9,7 @@ public class turtle extends monster{
     public turtle(){
         super.setName("Turtle");
         super.setStrength(monsterCreator.weakMonsterStr(mLevel));
-        super.setOrigionalHealth(monsterCreator.strongMonsterHealth(mLevel));
+        super.setOriginalHealth(monsterCreator.strongMonsterHealth(mLevel));
         super.setSpeed(1);
     }
     @Override

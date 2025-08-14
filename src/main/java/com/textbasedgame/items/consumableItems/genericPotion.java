@@ -37,10 +37,6 @@ public class genericPotion extends consumables {
         setPrice(15);
         setName(name);
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = genericPotion.class.getName();
-    } 
     public void addBuff(buffTypes bType, int bStr, int bduration){
         buffs.add(new triple<>(bType, bStr, bduration));
     }

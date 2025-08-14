@@ -15,7 +15,6 @@ public class dagger extends holdables{
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Dagger", "Strength", "Agility", "Sharp", "Slicing", "Stabbing"));
 
     public dagger(){
-        setIsAttackingItem(true);
         damage = (int)(quality * 1.3);
         buffs.add(new pair<>(buffTypes.AGILITY, 2*quality));
         setPrice(15);
@@ -24,28 +23,24 @@ public class dagger extends holdables{
     }
     public dagger(int qual){
         setQuality(qual);
-        setIsAttackingItem(true);
         damage = (int)(quality * 1.3);
         buffs.add(new pair<>(buffTypes.AGILITY, 2*qual));
         setPrice(15);
         setName("Dagger");
         setDMGType(damageTypes.STRENGTH);
     }
-
+    @Override
     public int getItemDamage(){
         return damage;
     }
-
+    @Override
     public String getAttackString() {
         return "stab";
     }
+    @Override    
     protected Set<String> getTagsSet() {
         return tags;
     }
-    @Override
-    protected void setClass(Class<? extends item> clazz){
-        classofItem = dagger.class.getName();
-    } 
     @Override
     public void printInfo() {}
 }

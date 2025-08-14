@@ -20,7 +20,6 @@ public abstract class equipables extends item {
     
     
     public equipables(){
-        setIsConsumable(false);
         quality = (int)((Math.random() * 6) +1);
         setQuality(quality);
         buffs = new ArrayList<>();
@@ -62,13 +61,21 @@ public abstract class equipables extends item {
     public void setEquipped(boolean setEq){
         equipped = setEq;
     }
-    @Override
     public String getQuality(){
         return qualityString;
     }
     public int getQualityInt(){
         return quality;
     }
+    @Override
+    public String toString(){
+        if(isEquipped() == false){
+            return getItemName() + " - " + getQuality();
+        }
+        return getItemName() + " - " + getQuality() + " - Equipped"; 
+    }
+
+    public String getAttackString(){return "";}
     public String getEquipmentSetName(){return equipmentSetName;}
     public abstract void equipToSlot();
     protected void unequipFromSlot(){}

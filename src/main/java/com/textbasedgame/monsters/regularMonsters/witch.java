@@ -1,12 +1,14 @@
-package com.textbasedgame.monsters;
+package com.textbasedgame.monsters.regularMonsters;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumableItems.genericPotion;
+import com.textbasedgame.monsters.monster;
+import com.textbasedgame.monsters.monsterCreator;
 import com.textbasedgame.playerFiles.player;
 public class witch extends monster{
     public witch(){
         super.setName("Witch");
         super.setStrength(monsterCreator.medMonsterStr(mLevel));
-        super.setOrigionalHealth(monsterCreator.medMonsterStr(mLevel));
+        super.setOriginalHealth(monsterCreator.medMonsterStr(mLevel));
         super.setSpeed(monsterCreator.medMonsterSpeed(mLevel));
     }
     @Override

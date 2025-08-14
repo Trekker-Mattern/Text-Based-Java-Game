@@ -1,8 +1,8 @@
 package com.textbasedgame.monsters;
+import java.util.Set;
+
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.TrekkerMath;
-import com.textbasedgame.world.world;
 
 public class monster {
 
@@ -18,6 +18,8 @@ public class monster {
     protected int mArmour;
     protected int mLevel;
 
+
+
     /* 
     private static String[] fastMonsters = {"Goblin", "Snake", "Witch", "Vampire", "Banshee", "Kelpie", "Chupacabra", "Jersey Devil", "Kitsune", "Selkie", "Jackalope", "Qilin"};
     private static String[] armouredMonsters = {"Goblin", "Agressive Walrus", "Orc", "Troll", "Dragon", "Basilisk", "Boggart", "Naga", "Hodag"};
@@ -25,7 +27,8 @@ public class monster {
     */
     
     public monster(){
-        mLevel = (int)((player.playerLevel + world.AREANUM) * TrekkerMath.randomDouble(2, .1));
+
+        mLevel = monsterCreator.createMonsterLevel();
         mArmour = 0;
     }
     public void setName(String name){
@@ -34,7 +37,7 @@ public class monster {
     public String getName(){
         return mName;
     }
-    public void setOrigionalHealth(int hVal){
+    public void setOriginalHealth(int hVal){
         mHealth = hVal;
     }
     public int getHealth(){
@@ -43,16 +46,47 @@ public class monster {
     public void setHealth(int x){
         mHealth = x;
     }
+    protected int getDamageAfterWeaknessCheck(int originalDmg){
+        Set<String> weaknesses = getMonsterWeakness();
+        if(weaknesses == null){return originalDmg;}
+        int weaknessCount = 0;
+        if(player.LHand != null){
+            for(String weaponAttribute : player.LHand.getItemTags()){
+                if(weaknesses.contains(weaponAttribute)){
+                    gui.printOnGameSide("Your " + weaponAttribute + " weapon is strong against this monster!");
+                    weaknessCount++;
+                }
+            }
+        }
+        if(player.RHand != null){
+            for(String weaponAttribute : player.RHand.getItemTags()){
+                if(weaknesses.contains(weaponAttribute)){
+                    gui.printOnGameSide("Your " + weaponAttribute + " weapon is strong against this monster!");
+                    weaknessCount++;
+                }
+            }
+        }
+        if(weaknessCount == 0){return 0;}
+        if(weaknessCount > 2){
+            return originalDmg * weaknessCount;
+        }
+        else{
+            return (int)(originalDmg * 1.4 * weaknessCount);
+        }
+    }
     public int subtractHealth(int x){
+
+        int damageTaken = getDamageAfterWeaknessCheck(x);
+
         if(mArmour != 0){
             double armMultiplyer = 1.0 / mArmour;
-            double subtractor = ((double)x * armMultiplyer);
+            double subtractor = ((double)damageTaken * armMultiplyer);
             mHealth -= (int)subtractor;
             return (int)subtractor;
         }
         else{
-            mHealth -= x;
-            return x;
+            mHealth -= damageTaken;
+            return damageTaken;
         }
     }
     public void setArmour(int armour){
@@ -81,6 +115,7 @@ public class monster {
     }
     public void attackEffects(int x){}
     public void onMonsterDeath(){}
+    public Set<String> getMonsterWeakness(){return null;}
 
     public void printMonster(){
         gui.printOnGameSide(mName + " level " + mLevel + " has " + mHealth + " HP.");
