@@ -19,6 +19,7 @@ import com.textbasedgame.util.pair;
 import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
 import com.textbasedgame.util.triple;
+import com.textbasedgame.world.world;
 
 
 
@@ -28,10 +29,8 @@ public abstract class player {
 
     //Overall inventory
     public static ArrayList<item> inventory = new ArrayList<>();
-    //Consumables
-    public static ArrayList<item> consumableInv = new ArrayList<>();
-    //equipped and unequipped inventory
-    public static ArrayList<item> equipableItems = new ArrayList<>(); 
+
+    //Keeping track of equipped items
     public static ArrayList<equipables> equippedItems = new ArrayList<>();
     // Key Item Inventory
     public static ArrayList<keyItem> keyItemInventory = new ArrayList<>();
@@ -284,17 +283,22 @@ public abstract class player {
     /// 
     /// ////////////////
     public static void addItemToPlayer(item i){
-        inventory.add(i);
         if(i instanceof consumables){
-            consumableInv.add(i);
+            consumables cons = (consumables)i;
+            for(item itm : inventory){
+                if(itm instanceof consumables && cons.equals((consumables)itm)){
+                    ((consumables)itm).increaseStackValue(cons.getStackValue());
+                    return;
+                }
+            }
+            inventory.add(i);
         }
         else{
-            equipableItems.add(i);
+            inventory.add(i);
         }
     }
     public static void addItemToPlayer(equipables i, boolean equipped){
         inventory.add(i);
-        equipableItems.add(i);
         if(equipped){
             equippedItems.add(i);
             i.equipToSlot();
@@ -326,7 +330,13 @@ public abstract class player {
     public static void printPlayerItems(){
         int printingNum = 1;
         for(item e : inventory){
-            String s = printingNum + ": " + e.toString();
+            String s;
+            if(e instanceof consumables && ((consumables)e).getStackValue() > 1){
+                s = printingNum + ": " + ((consumables)e).inventoryPrintingString();
+            }
+            else{
+                s = printingNum + ": " + e.toString();
+            }
             gui.printOnGameSide(s);
             printingNum++;
         }
@@ -658,7 +668,7 @@ public abstract class player {
     private static void levelPrompt(){
         if(xp > xpToLevelUp){
             gui.printOnGameSide("Which stat would you like to level up?");
-            gui.printOnGameSide("Your options are, strength, agility, intelligence, or health");
+            gui.printOnGameSide("Your options are, Strength, Agility, Intelligence, or Health");
             
             String temp = gui.getInput();
             try {
@@ -709,6 +719,19 @@ public abstract class player {
         gui.printOnGameSide("Here are your final stats");
         printPlayerItems();
         printStats();
+        gui.printOnGameSide("Would you like to continue playing?");
+        if(response.respondYes(gui.getInput())){
+            world.AREANUM =0;
+            world.stageNum = 0;
+            world.updateArea();
+            buffs.clear();
+            health = maxHealth;
+            gui.printOnGameSide("You collapse to the floor and feel your spirit float away");
+            gui.printOnGameSide("You awaken with a sudden rush back at the village, all your progress gone");
+            gui.printOnGameSide("At least you kept your equipment...");
+            gui.printOnGameSide("---- Enter Any Input to Continue ----");
+            gui.getInput();
+        }
         saveFiles.save();
     }
 }

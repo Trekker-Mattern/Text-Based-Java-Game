@@ -11,7 +11,7 @@ public class intelligencePot extends consumables {
     }
 
     public void Use(){
-        removeFromInv();
+        super.Use();
         player.applyBuff(buffTypes.INTELLIGENCE, 3, 4);
     }
     @Override

@@ -42,7 +42,7 @@ public class genericPotion extends consumables {
     }
     @Override
     public void Use(){
-        removeFromInv();
+        super.Use();
         for(triple<buffTypes, Integer, Integer> t : buffs){
             player.applyBuff(t.first, t.second, t.third);
             gui.printOnGameSide("You get " + t.second + " " + t.first.toString() + " for " + t.third + " turns");

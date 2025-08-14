@@ -12,7 +12,7 @@ public class agilityPot extends consumables{
     }
 
     public void Use(){
-        removeFromInv();
+        super.Use();
         player.applyBuff(buffTypes.AGILITY, 4, 7);
     }
     @Override

@@ -1,6 +1,5 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
-import com.textbasedgame.items.consumables;
 import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.items.handItems.spartanSpear;
 import com.textbasedgame.items.item;
@@ -28,13 +27,6 @@ public class chestRoom extends roomFactory {
                         item a = shopitems.getRandomItem();
                         gui.printOnGameSide("You obtain " + a);
                         player.inventory.add(a);
-                        if(a instanceof consumables){
-                            player.consumableInv.add(a);
-                        }
-                        else{
-                            player.equipableItems.add(a);
-                        } 
-                        
                     break;
                     case 1:
                         gui.printOnGameSide("You start to open the chest but a tongue wraps around your hand, its a mimic!");

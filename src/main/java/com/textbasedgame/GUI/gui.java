@@ -287,6 +287,7 @@ public class gui {
     }
     public static void listBuffs(){
         pushOldText();
+        gui.printOnGameSide("--- Showing Buffs ---");
         for(triple<player.buffTypes, Integer, Integer> buff : player.buffs){
             printOnGameSide(buff.first.toString() + " buff of strength " + buff.second + " for " + buff.third + " encounters");
         }

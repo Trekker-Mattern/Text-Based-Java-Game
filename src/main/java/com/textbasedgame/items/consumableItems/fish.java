@@ -22,7 +22,7 @@ public class fish extends consumables {
         }
     }
     public void Use(){
-        removeFromInv();
+        super.Use();
         gui.printOnGameSide("You heal for " + player.getMaxHealth()  / 5);
         player.addHealth(player.getMaxHealth()  / 5);
     }

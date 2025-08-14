@@ -10,7 +10,7 @@ public class threeCourseMeal extends consumables {
         setName("Three Course Meal");
     }
     public void Use(){
-        removeFromInv();
+        super.Use();
         gui.printOnGameSide("You heal for " + (int)(player.getMaxHealth() * .75));
         player.addHealth((int)(player.getMaxHealth() * .75));
     }

@@ -66,7 +66,7 @@ public class monster {
                 }
             }
         }
-        if(weaknessCount == 0){return 0;}
+        if(weaknessCount == 0){return originalDmg;}
         if(weaknessCount > 2){
             return originalDmg * weaknessCount;
         }

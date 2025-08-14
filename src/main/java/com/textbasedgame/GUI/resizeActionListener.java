@@ -17,6 +17,7 @@ public class resizeActionListener extends ComponentAdapter {
             @Override
             protected Void doInBackground(){
 
+
                 if(gui.imagePanel.getComponents().length > 0){
                     Icon i = ((JLabel)(gui.imagePanel.getComponents()[0])).getIcon();
                     ImageIcon imgIcn;

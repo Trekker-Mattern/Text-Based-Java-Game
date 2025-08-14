@@ -10,7 +10,7 @@ public class bread extends consumables{
         setName("Bread");
     }
     public void Use(){
-        removeFromInv();
+        super.Use();
         gui.printOnGameSide("You heal for " + (player.getMaxHealth()  / 3));
         player.addHealth(player.getMaxHealth()  / 3);
     }

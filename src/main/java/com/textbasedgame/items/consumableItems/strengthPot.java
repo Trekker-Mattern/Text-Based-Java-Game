@@ -12,7 +12,7 @@ public class strengthPot extends consumables {
     }
 
     public void Use(){
-        removeFromInv();
+        super.Use();
         player.applyBuff(buffTypes.STRENGTH, 3, 4);
     }
     @Override

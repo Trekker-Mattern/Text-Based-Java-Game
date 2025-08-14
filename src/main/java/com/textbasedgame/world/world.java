@@ -197,7 +197,6 @@ public abstract class world {
         //create monster
         if(stageNum % 10 == 9){
             boss b = monsterCreator.createBoss();
-            b.printMonster();
             monsterMenu(b);
         }
         else{
@@ -208,16 +207,17 @@ public abstract class world {
             else{
                 gui.pushOldText();
                 monster m = monsterCreator.createMonster();
-                m.printMonster();
                 monsterMenu(m);
             }
         }
+        stageNum++;
         player.update();
     }
 
     public static void monsterMenu(monster m){
         while(m.getHealth() > 0){
             gui.newlOnGameSide();
+            m.printMonster();
             gui.printOnGameSide("What would you like to do?");
             gui.printOnGameSide("Fight, Use an item, Run, or Quit");
             String h = gui.getInput(); 
@@ -238,10 +238,7 @@ public abstract class world {
                     player.BankBalance += coinGain;
                     player.gainXP(xpGain);
                     m.onMonsterDeath();
-                    stageNum++;
-                }
-                else{
-                    m.printMonster();
+                    
                 }
             }
             //////////////////////////////////////////
@@ -270,7 +267,7 @@ public abstract class world {
                                 player.BankBalance += coinGain;
                                 player.gainXP(xpGain);
                                 m.onMonsterDeath();
-                                stageNum++;
+                                
                             }
                             else{
                                 if(player.getAgility() < m.getSpeed()){
@@ -310,7 +307,7 @@ public abstract class world {
                                 player.BankBalance += coinGain;
                                 player.gainXP(xpGain);
                                 m.onMonsterDeath();
-                                stageNum++;
+                                
                             }
                             else{
                                 m.printMonster();
@@ -400,6 +397,13 @@ public abstract class world {
         gui.printOnGameSide("You notice the scenery changing. You step down into " + getArea());
         gui.updatePlayerSide();
         gui.pushOldText();
+    }
+
+    public static void updateArea(){
+        if(stageNum / 5 < areas.length - 1){
+            AREANUM = stageNum / 5;
+        }
+        monsterArrayList.updateMonsterArrayListOnAreaUpdate();
     }
 
 }

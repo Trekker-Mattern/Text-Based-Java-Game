@@ -47,6 +47,7 @@ public class portalRoom extends roomFactory{
                     i -= maxAreaDecrease;
 
                     world.AREANUM+=i;
+                    world.stageNum+= i*5;
                     if(i > 0){
                         gui.printOnGameSide("The scenery has changed considerably;");
                         gui.printOnGameSide("The light around you is significantly dimmer.");

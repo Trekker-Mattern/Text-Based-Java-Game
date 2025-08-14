@@ -5,18 +5,14 @@ import com.textbasedgame.items.genericItems.attackingConsumable;
 import com.textbasedgame.playerFiles.player;
 
 public class throwingKnife extends attackingConsumable {
-    int amountInSet = 3;
     public throwingKnife(){
+        setNumberInStack(3);
         setPrice(3);
         setName("Throwing Knives");
     }
     @Override
     public void Use(){
-        amountInSet--;
-        if(amountInSet <= 0){
-            removeFromInv();
-        }
-
+        super.Use();
     }
 
     public int getDamageInt(){
@@ -27,11 +23,11 @@ public class throwingKnife extends attackingConsumable {
     }
     @Override
     public void printInfo(){
-        gui.printOnGameSide("Throwing knives left: " + amountInSet);
+        gui.printOnGameSide("Throwing knives left: " + getStackValue());
         gui.printOnGameSide("Damage: " + getDamageInt());
     }
     @Override
     public String toString(){
-        return getItemName() + " - " + amountInSet;
+        return getItemName() + " - " + getStackValue();
     }
 }

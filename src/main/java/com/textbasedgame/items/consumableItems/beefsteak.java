@@ -10,7 +10,7 @@ public class beefsteak extends consumables{
         setName("BeefSteak Sandwich");
     }
     public void Use(){
-        removeFromInv();
+        super.Use();
         gui.printOnGameSide("You heal for " + (int)(player.getMaxHealth()  / 2.15));
         player.addHealth((int)(player.getMaxHealth()  / 2.15));
     }
