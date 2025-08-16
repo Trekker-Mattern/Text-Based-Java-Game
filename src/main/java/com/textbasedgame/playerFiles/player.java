@@ -730,7 +730,7 @@ public abstract class player {
     public static void onRespawn(){
             dead = false;
             world.AREANUM =0;
-            world.stageNum = 0;
+            world.stageNum = -1;
             world.updateArea();
             buffs.clear();
             setHealth(getMaxHealth());
