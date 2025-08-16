@@ -109,7 +109,7 @@ public abstract class world {
                 gui.printOnGameSide("You only have " + player.BankBalance + " shmeckles.");
             }
         }
-        catch(NumberFormatException ex){
+        catch(NumberFormatException | IndexOutOfBoundsException ex){
                     //do nothing ig
         }
         //yes buy shit
@@ -143,7 +143,10 @@ public abstract class world {
                         }
                     }
                 }
-            }            
+            }   
+            catch(IndexOutOfBoundsException e){
+                gui.printOnGameSide("There isnt that many items in the shop");
+            }         
         }
 
         //Selling menu
@@ -229,6 +232,15 @@ public abstract class world {
 
             if(response.respondFight(h)){
                 player.fightMonster(m);
+                if(player.dead){
+                    gui.printOnGameSide("You collapse to the floor and feel your spirit float away");
+                    gui.printOnGameSide("--Press enter or type yes to continue your journey--");
+                    if(response.respondNo(gui.getInput())){
+                        gui.quit();
+                    }
+                    player.onRespawn();
+                    return;
+                }
                 if(m.getHealth() <= 0){
                     gui.newlOnGameSide();
                     gui.printOnGameSide("You defeated " + m.getName() + "!");
@@ -245,103 +257,18 @@ public abstract class world {
             //Use an item during a fight
             /////////////////////////////////////////
             else if(response.Items(h)){
-
-                player.printPlayerItems();
-                gui.printOnGameSide("Which item would you like to use?");
-                String newInput = gui.getInput();
-                try{
-                    int number = Integer.parseInt(newInput);
-                    try {
-                        if(player.inventory.get(number-1) instanceof attackingConsumable){
-                            attackingConsumable atkCons = (attackingConsumable)player.inventory.get(number-1);
-                            gui.printOnGameSide(atkCons.getAttackString());
-                            gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(number-1)).getDamageInt()) + " to " + m.getName());
-                            m.subtractHealth(((attackingConsumable)player.inventory.get(number-1)).getDamageInt());
-
-                            if(m.getHealth() <= 0){
-                                gui.newlOnGameSide();
-                                gui.printOnGameSide("You defeated " + m.getName() + "!");
-                                int coinGain = (int)((player.luck * m.getLevel()) + 4);
-                                int xpGain = (int)((player.luck * m.getLevel())*4);
-                                gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
-                                player.BankBalance += coinGain;
-                                player.gainXP(xpGain);
-                                m.onMonsterDeath();
-                                
-                            }
-                            else{
-                                if(player.getAgility() < m.getSpeed()){
-                                    m.printMonster();
-                                    gui.printOnGameSide("While you use your item the monster attacks");
-                                    player.damageTaken(m);
-                                }
-                            }
-
-                        }
-                        player.inventory.get(number-1).Use();
-                    } 
-                    catch (IndexOutOfBoundsException e) {
-                        gui.printOnGameSide("You dont have that many items you goof!");
-                    }
-                }
-                catch(NumberFormatException ex){
-                    //do nothing
-                }
-                if(response.respondYes(newInput)){
-                    gui.printOnGameSide("What is the number of the item you would like to use");
-                    int temp = Integer.parseInt(gui.getInput());
-                    try {
-                        if(player.inventory.get(temp-1) instanceof attackingConsumable){
-                            attackingConsumable atkCons = (attackingConsumable)player.inventory.get(temp-1);
-                            gui.printOnGameSide(atkCons.getAttackString());
-                            gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt()) + " to " + m.getName());
-                            m.subtractHealth(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt());
-
-
-                            if(m.getHealth() <= 0){
-                                gui.newlOnGameSide();
-                                gui.printOnGameSide("You defeated " + m.getName() + "!");
-                                int coinGain = (int)((player.luck * m.getLevel()) + 4);
-                                int xpGain = (int)((player.luck * m.getLevel())*4);
-                                gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
-                                player.BankBalance += coinGain;
-                                player.gainXP(xpGain);
-                                m.onMonsterDeath();
-                                
-                            }
-                            else{
-                                m.printMonster();
-                                player.damageTaken(m);
-                            }
-
-                        }
-                        player.inventory.get(temp-1).Use();
-                    } catch (IndexOutOfBoundsException e) {
-                        gui.printOnGameSide("You dont have that many items you goof!");
-                    }
-                }
-                else if(newInput.toLowerCase().contains("info") ||newInput.toLowerCase().contains("help")){
-                    player.printPlayerItems();
-                    gui.printOnGameSide("Which item would you like more information on?");
-                    try{
-
-                        int itemNum = Integer.parseInt(gui.getInput()) - 1;
-
-                        itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
-                    }
-                    catch(NumberFormatException| IndexOutOfBoundsException e){
-            
-                    }
-                }
+                itemMenu(m);
             }
         }
     }
 
 
 
-    public static void itemMenu(){
+    public static boolean itemMenu(){
         gui.pushOldText();
         player.printPlayerItems();
+        gui.printOnGameSide("------KEY ITEMS-------");
+        player.printKeyItems();
         gui.printOnGameSide("Would you like to use an item?");
         gui.printOnGameSide("You can also type info to get info on a specific item");
         String h = gui.getInput();
@@ -349,11 +276,12 @@ public abstract class world {
         try{
             int number = Integer.parseInt(h);
             try {
-                
                 player.inventory.get(number-1).Use();
+                return true;
             } 
             catch (IndexOutOfBoundsException e) {
                 gui.printOnGameSide("You dont have that many items you goof!");
+                return false;
             }
         }
         catch(NumberFormatException ex){
@@ -365,8 +293,10 @@ public abstract class world {
             gui.pushOldText();
             try {
                 player.inventory.get(temp-1).Use();
+                return true;
             } catch (IndexOutOfBoundsException e) {
                 gui.printOnGameSide("You dont have that many items you goof!");
+                return false;
             }
         }
         else if(h.toLowerCase().contains("info") || h.toLowerCase().contains("help")){
@@ -379,13 +309,93 @@ public abstract class world {
                 itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
             }
             catch(NumberFormatException| IndexOutOfBoundsException e){
-    
+
             }
         }
+        return false;
         
+    }
+    private static void itemMenu(monster m){
+        player.printPlayerItems();
+        gui.printOnGameSide("Which item would you like to use?");
+        String newInput = gui.getInput();
+        try{
+            int number = Integer.parseInt(newInput);
+            try {
+                if(player.inventory.get(number-1) instanceof attackingConsumable){
+                    attackingConsumable atkCons = (attackingConsumable)player.inventory.get(number-1);
+                    gui.printOnGameSide(atkCons.getAttackString());
+                    gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(number-1)).getDamageInt()) + " to " + m.getName());
+                    m.subtractHealth(((attackingConsumable)player.inventory.get(number-1)).getDamageInt());
+
+                    if(m.getHealth() <= 0){
+                        gui.newlOnGameSide();
+                        gui.printOnGameSide("You defeated " + m.getName() + "!");
+                        int coinGain = (int)((player.luck * m.getLevel()) + 4);
+                        int xpGain = (int)((player.luck * m.getLevel())*4);
+                        gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
+                        player.BankBalance += coinGain;
+                        player.gainXP(xpGain);
+                        m.onMonsterDeath();
+                        
+                    }
+                    else{
+                        if(player.getAgility() < m.getSpeed()){
+                            m.printMonster();
+                            gui.printOnGameSide("While you use your item the monster attacks");
+                            player.damageTaken(m);
+                        }
+                    }
+                }
+                player.inventory.get(number-1).Use();
+            } 
+            catch (IndexOutOfBoundsException e) {
+                gui.printOnGameSide("You dont have that many items you goof!");
+            }
+        }
+        catch(NumberFormatException ex){
+            //do nothing
+        }
+        if(response.respondYes(newInput)){
+            gui.printOnGameSide("What is the number of the item you would like to use");
+            int temp = Integer.parseInt(gui.getInput());
+            try {
+                if(player.inventory.get(temp-1) instanceof attackingConsumable){
+                    attackingConsumable atkCons = (attackingConsumable)player.inventory.get(temp-1);
+                    gui.printOnGameSide(atkCons.getAttackString());
+                    gui.printOnGameSide("You deal " + Integer.toString(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt()) + " to " + m.getName());
+                    m.subtractHealth(((attackingConsumable)player.inventory.get(temp-1)).getDamageInt());
+
+
+                    if(m.getHealth() <= 0){
+                        gui.newlOnGameSide();
+                        gui.printOnGameSide("You defeated " + m.getName() + "!");
+                        int coinGain = (int)((player.luck * m.getLevel()) + 4);
+                        int xpGain = (int)((player.luck * m.getLevel())*4);
+                        gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
+                        player.BankBalance += coinGain;
+                        player.gainXP(xpGain);
+                        m.onMonsterDeath();
+                        
+                    }
+                    else{
+                        m.printMonster();
+                        player.damageTaken(m);
+                    }
+                }
+                player.inventory.get(temp-1).Use();
+            } 
+            catch (IndexOutOfBoundsException e) {
+                gui.printOnGameSide("You dont have that many items you goof!");
+            }
+        }
+        else if(newInput.toLowerCase().contains("info") ||newInput.toLowerCase().contains("help")){
+            infoMenu();
+        }
     }
     public static void run(){
         stageNum -= stageNum % 5;
+        stageNum--; // because the stage num gets incremented at the end of dungeon
         gui.printOnGameSide("You flee and return back to the last safe area that you remember");
     }
 

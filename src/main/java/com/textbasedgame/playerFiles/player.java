@@ -63,6 +63,7 @@ public abstract class player {
     private static int xp = 0;
     public static boolean isBuff = false;
     public static ArrayList<triple<buffTypes, Integer, Integer>> buffs = new ArrayList<>();
+    public static boolean dead = false;
 
     private static final int totalMaxStartingSkills = 5;
 
@@ -343,8 +344,8 @@ public abstract class player {
     }
 
     public static void printKeyItems(){
-        for(keyItem i : keyItemInventory){
-            gui.printOnGameSide(i.toString());
+        for(int i = 0; i < keyItemInventory.size(); i++){
+            gui.printOnGameSide((i+1) + ": " + keyItemInventory.get(i).toString());
         }
     }
 
@@ -506,16 +507,17 @@ public abstract class player {
         if(m.getSpeed() > agility){
             int damageDoneToMonster = damageDone();
             health -= damageTaken(m);
+            if(dead) return;
             damageDoneToMonster = m.subtractHealth(damageDoneToMonster);
             gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
-                
         }
         else{
             int damageDoneToMonster = damageDone();
-            m.subtractHealth(damageDoneToMonster);
+            damageDoneToMonster = m.subtractHealth(damageDoneToMonster);
             gui.printOnGameSide("You " + getPlayerAttackString()+ " " + m.getName() + " for "+ damageDoneToMonster);
             if(m.getHealth() > 0) {
                 health -= damageTaken(m);
+                if(dead) return;
             }
         }
         if(m.getHealth() > 0){
@@ -562,6 +564,8 @@ public abstract class player {
 
         if(monsterDamage >= health){
             death(m, monsterDamage);
+            dead = true;
+            return 0;
         }
         gui.printOnGameSide(m.getName() + " " + m.attackString() + " for " + monsterDamage);
         m.attackEffects(monsterDamage);
@@ -714,24 +718,27 @@ public abstract class player {
 
 
     public static void death(monster m, int monsterDamage){
+        dead = true;
         health = 0;
         gui.printOnGameSide("You have been killed by " + m.getName() + " after it " + m.attackString() + " for " + monsterDamage);
         gui.printOnGameSide("Here are your final stats");
         printPlayerItems();
         printStats();
-        gui.printOnGameSide("Would you like to continue playing?");
-        if(response.respondYes(gui.getInput())){
+        saveFiles.save();
+    }
+
+    public static void onRespawn(){
+            dead = false;
             world.AREANUM =0;
             world.stageNum = 0;
             world.updateArea();
             buffs.clear();
-            health = maxHealth;
-            gui.printOnGameSide("You collapse to the floor and feel your spirit float away");
+            setHealth(getMaxHealth());
+            
             gui.printOnGameSide("You awaken with a sudden rush back at the village, all your progress gone");
             gui.printOnGameSide("At least you kept your equipment...");
             gui.printOnGameSide("---- Enter Any Input to Continue ----");
+            gui.updatePlayerSide();
             gui.getInput();
-        }
-        saveFiles.save();
     }
 }

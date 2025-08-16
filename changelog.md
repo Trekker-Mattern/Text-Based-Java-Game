@@ -50,6 +50,14 @@
 - Added opening of the chest in the chest room using chest key
 - Impliment jailer enemy for obtaining keys
 - Updated shop to include 6 items that are based on the area that you are in
+- Compacted inventory menu for a more pleasurable user experience
+- Fixed bug with weakness damage calculation that caused player to do no damage
+- removed extra inventories that werent doing anything in player code
+- simplified monster printing and stage / area number movement
+- implimented weaknesses for monsters!! --- NEEDS BALANCING URGENTLY OMG I DID 448 DMG ON ONE SHOT AT LVL 17
+- Added a more proper death - Brings you back to the begining now - Maybe? - NEEDS TESTING IT SHOULD BE EVEN BETTER NOW
+- Added getting a starter weapon at the beginning of the game based on your original stats
+- Refactored death and wrote a onRespawn method
 
 ---
 

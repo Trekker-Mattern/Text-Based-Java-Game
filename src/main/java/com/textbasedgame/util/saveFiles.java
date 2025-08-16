@@ -12,10 +12,12 @@ import java.lang.reflect.Constructor;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.textbasedgame.runTime;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.consumableItems.bread;
+import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.playerFiles.*;
 import com.textbasedgame.world.*;
 
@@ -93,9 +95,14 @@ public abstract class saveFiles {
             saveFile = f;
 
             fWriter = new FileWriter(saveFile);
-            JSONWriter = new FileWriter(new File(runTime.SAVE_FILE_ROOT + "\\stuff.JSON"));
+            JSONWriter = new FileWriter(new File(runTime.SAVE_FILE_ROOT + "\\playerInventory.JSON"));
 
-            JSONWriter.write("[ \n");
+
+            //Begin JSON object
+            JSONWriter.write("{\n");
+            
+            // Save Main Inventory
+            JSONWriter.write("\"inventory\":[ \n");
             for(int i = 0; i < player.inventory.size(); i++){
 
                 gson.toJson(player.inventory.get(i), item.class, JSONWriter);
@@ -103,7 +110,22 @@ public abstract class saveFiles {
                     JSONWriter.write(",\n");
                 }
             }
-            JSONWriter.write("\n]");
+            JSONWriter.write("\n],\n");
+
+            // Save Key Item Inventory
+            JSONWriter.write("\"keyItems\":[ \n");
+            for(int i=0; i < player.keyItemInventory.size(); i++){
+                gson.toJson(player.keyItemInventory.get(i), item.class, JSONWriter);
+                if(i < player.keyItemInventory.size() - 1){
+                    JSONWriter.write(",\n");
+                }
+            }
+            JSONWriter.write("\n]\n");
+
+            JSONWriter.write("}\n");
+
+
+            //Save player Data to text file
             
             fWriter.write("Player-Name: " + player.getName() + "\n");
             fWriter.write("Player-Level: " + player.playerLevel + "\n");
@@ -185,7 +207,7 @@ public abstract class saveFiles {
 
                 /////////////////
                 /// 
-                /// WE SPLIT THIS SHIT INTO THREE POSSIBLE SEGMENTS 0- ITEM/CLASS KEY FOR LOOKUP IN HASHMAP   1- QUALITY AS AN INTEGER   2- IS EQUIPPED?  
+                /// Using GSON to read the json that is written to the saveFiles folder  
                 /// 
                 /////////////////      
                 GsonBuilder gsonBuilder = new GsonBuilder();
@@ -194,8 +216,11 @@ public abstract class saveFiles {
                 Gson jsonToInvGson = gsonBuilder.create();
 
                 Type listType = new TypeToken<List<item>>() {}.getType();
-                FileReader jsonFileReader = new FileReader(runTime.SAVE_FILE_ROOT + "\\stuff.JSON");
-                List<item> inv = jsonToInvGson.fromJson(jsonFileReader, listType);
+                FileReader jsonFileReader = new FileReader(runTime.SAVE_FILE_ROOT + "\\playerInventory.JSON");
+                JsonObject rootObject = JsonParser.parseReader(jsonFileReader).getAsJsonObject();
+
+                //Add items to inventory
+                List<item> inv = jsonToInvGson.fromJson(rootObject.get("inventory"), listType);
                 if(inv != null){
                     for(item invItem : inv){
                         if(invItem instanceof equipables){
@@ -207,6 +232,16 @@ public abstract class saveFiles {
                         }
                     }
                 }
+
+                //Add key items to inventory
+                List<item> keyItems = jsonToInvGson.fromJson(rootObject.get("keyItems"), listType);
+                if(keyItems != null){
+                    for(item invItem : keyItems){
+                        player.addKeyItemToPlayer((keyItem)invItem);
+                    }
+                }
+
+
                 jsonFileReader.close();
 
                 

@@ -2,6 +2,10 @@ package com.textbasedgame;
 import java.io.File;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.items.consumableItems.throwingKnife;
+import com.textbasedgame.items.handItems.club;
+import com.textbasedgame.items.handItems.dagger;
+import com.textbasedgame.items.handItems.wand;
 import com.textbasedgame.monsters.*;
 import com.textbasedgame.playerFiles.*;
 import com.textbasedgame.util.response;
@@ -20,31 +24,8 @@ public class runTime
 
 
         if(newSaveFolderBool){
-             //Startup
-            gui.printOnGameSide("What is your name young one?");
-            String Name = gui.getInput();
-
-            gui.printOnGameSide("Ah, yes, Good day " + Name + " its so good to see you.");
-            
-            //Create Player
-            player.setName(Name);
-
-            //Allocate poins
-            gui.printOnGameSide("Its time to allocate some skill points!");
-            gui.printOnGameSide("Would You like to allocate your own points? ");
-            String Response = gui.getInput();
-
-            gui.pushOldText();
-            if(response.respondYes(Response))
-            {
-                gui.printOnGameSide("You have 5 points to spend on 3 different attributes! Choose wisely.");
-                player.playerPointAllocation();
-
-            }
-            else{
-                player.allocateSkillPoints();
-
-            }
+            initalizePlayer();
+            givePlayerStartingItems();
         }
 
 
@@ -72,5 +53,49 @@ public class runTime
         }
         monsterArrayList.createMonsterList();
         gui.runGui();
+    }
+
+    private static void initalizePlayer(){
+         //Startup
+            gui.printOnGameSide("What is your name young one?");
+            String Name = gui.getInput();
+
+            gui.printOnGameSide("Ah, yes, Good day " + Name + " its so good to see you.");
+            
+            //Create Player
+            player.setName(Name);
+
+            //Allocate poins
+            gui.printOnGameSide("Its time to allocate some skill points!");
+            gui.printOnGameSide("Would You like to allocate your own points? ");
+            String Response = gui.getInput();
+
+            gui.pushOldText();
+            if(response.respondYes(Response))
+            {
+                gui.printOnGameSide("You have 5 points to spend on 3 different attributes! Choose wisely.");
+                player.playerPointAllocation();
+
+            }
+            else{
+                player.allocateSkillPoints();
+
+            }
+    }
+
+    private static void givePlayerStartingItems(){
+        if(player.strength > player.intelligence && player.strength > player.agility){
+            player.addItemToPlayer(new club(1), true);
+        }
+        else if(player.intelligence > player.strength && player.intelligence > player.agility){
+            player.addItemToPlayer(new wand(1), true);
+        }
+        else if(player.agility > player.strength && player.agility > player.intelligence){
+            player.addItemToPlayer(new dagger(1), true);
+            player.addItemToPlayer(new throwingKnife());
+        }
+        else{
+            player.addItemToPlayer(new club(1), true);
+        }
     }
 }
