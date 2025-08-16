@@ -58,6 +58,7 @@
 - Added a more proper death - Brings you back to the begining now - Maybe? - NEEDS TESTING IT SHOULD BE EVEN BETTER NOW
 - Added getting a starter weapon at the beginning of the game based on your original stats
 - Refactored death and wrote a onRespawn method
+- Added a weighting system to roomGeneration, makes it so better rooms appear less.
 
 ---
 
