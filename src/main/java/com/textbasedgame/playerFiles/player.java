@@ -726,6 +726,15 @@ public abstract class player {
         printStats();
         saveFiles.save();
     }
+    public static void death(){
+        dead = true;
+        health = 0;
+        gui.printOnGameSide("You have died...");
+        gui.printOnGameSide("Here are your final stats");
+        printPlayerItems();
+        printStats();
+        saveFiles.save();
+    }
 
     public static void onRespawn(){
             dead = false;
