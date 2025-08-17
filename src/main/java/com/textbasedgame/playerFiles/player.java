@@ -506,6 +506,7 @@ public abstract class player {
         
         if(m.getSpeed() > agility){
             int damageDoneToMonster = damageDone();
+            onPlayerHit(m);
             health -= damageTaken(m);
             if(dead) return;
             damageDoneToMonster = m.subtractHealth(damageDoneToMonster);
@@ -663,6 +664,11 @@ public abstract class player {
         else{
             return getStrength();
         }
+    }
+
+    public static void onPlayerHit(monster m){
+        LHand.attackEffects(m);
+        RHand.attackEffects(m);
     }
 
 

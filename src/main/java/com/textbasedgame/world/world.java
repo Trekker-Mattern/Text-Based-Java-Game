@@ -244,8 +244,8 @@ public abstract class world {
                 if(m.getHealth() <= 0){
                     gui.newlOnGameSide();
                     gui.printOnGameSide("You defeated " + m.getName() + "!");
-                    int coinGain = (int)((player.luck * m.getLevel()) + 4);
-                    int xpGain = (int)((player.luck * m.getLevel())*4);
+                    int coinGain = (int)((player.luck * m.getLevel() / 4) + 1);
+                    int xpGain = (int)((player.luck * m.getLevel())*2);
                     gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
                     player.BankBalance += coinGain;
                     player.gainXP(xpGain);

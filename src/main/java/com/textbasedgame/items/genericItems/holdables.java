@@ -1,5 +1,6 @@
 package com.textbasedgame.items.genericItems;
 import com.textbasedgame.items.equipables;
+import com.textbasedgame.monsters.monster;
 import com.textbasedgame.playerFiles.player;
 
 public abstract class holdables extends equipables{
@@ -31,6 +32,10 @@ public abstract class holdables extends equipables{
             player.LHand = null;
         }
         player.equippedItems.remove(this);
+        
+    }
+
+    public void attackEffects(monster m){
         
     }
 

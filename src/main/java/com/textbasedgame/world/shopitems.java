@@ -35,6 +35,7 @@ public abstract class shopitems {
         consumableShopItems.add(strengthPot.class);
         consumableShopItems.add(agilityPot.class);
         consumableShopItems.add(throwingKnife.class);
+        consumableShopItems.add(coffee.class);
         
         equipableShopItems.add(sword.class);
         equipableShopItems.add(club.class);
@@ -80,6 +81,8 @@ public abstract class shopitems {
         allItemsList.add(beefsteak.class);
         allItemsList.add(escalibur.class);
         allItemsList.add(spartanSpear.class);
+        allItemsList.add(coffee.class);
+        allItemsList.add(pen.class);
 
     }
 

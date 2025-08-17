@@ -51,6 +51,7 @@ public class shopItemsAllocater {
                         beefsteak.class,
                         bread.class,
                         fish.class,
+                        coffee.class,
                         threeCourseMeal.class
                     )
                 );
@@ -61,6 +62,7 @@ public class shopItemsAllocater {
                         beefsteak.class,
                         bread.class,
                         fish.class,
+                        coffee.class,
                         threeCourseMeal.class
                     )
                 );
@@ -128,7 +130,8 @@ public class shopItemsAllocater {
                         spartanBreastplate.class,
                         spartanBoots.class,
                         spartanHelmet.class,
-                        spartanSkirt.class
+                        spartanSkirt.class,
+                        pen.class
                     )
                 );
             }
@@ -145,7 +148,8 @@ public class shopItemsAllocater {
                     Arrays.asList(
                         beefsteak.class,
                         throwingKnife.class,
-                        agilityPot.class
+                        agilityPot.class,
+                        coffee.class
                     )
                 );
             }
@@ -156,7 +160,8 @@ public class shopItemsAllocater {
                         throwingKnife.class,
                         intelligencePot.class,
                         strengthPot.class,
-                        agilityPot.class
+                        agilityPot.class,
+                        coffee.class
                     )
                 );
             }
@@ -171,7 +176,8 @@ public class shopItemsAllocater {
                         intelligencePot.class,
                         strengthPot.class,
                         agilityPot.class,
-                        genericPotion.class
+                        genericPotion.class,
+                        coffee.class
                     )
                 );
             }
