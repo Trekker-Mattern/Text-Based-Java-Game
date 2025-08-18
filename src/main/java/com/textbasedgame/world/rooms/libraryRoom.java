@@ -3,9 +3,9 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.roomFactory;
-public class libraryRoom extends roomFactory {
-    private final int roomID = 4;
+
+public class libraryRoom extends Room {
+    private static final int roomID = 4;
     public void openRoom(){
         
         gui.printOnGameSide("You step into a brand new room and are surrounded by books");

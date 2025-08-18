@@ -3,8 +3,8 @@ public class TrekkerMath {
     
     //Inclusive random integer generator
     public static int randomInt(int toVal, int fromVal){
-        int ret = (int)(Math.random() * (toVal + 1)) + fromVal;
-        System.out.println("Number " + ret + " fromVal-" + fromVal + " toVal(+1)-"+toVal);
+        int ret = (int)(Math.random() * (toVal - fromVal + 1)) + fromVal;
+        //System.out.println("Number " + ret + " fromVal-" + fromVal + " toVal(+1)-"+toVal);
         return ret;
     }
     //Exclusive double generator

@@ -5,10 +5,9 @@ import com.textbasedgame.items.handItems.escalibur;
 import com.textbasedgame.monsters.regularMonsters.demon;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.roomFactory;
 import com.textbasedgame.world.world;
 
-public class swordInStoneRoom extends roomFactory {
+public class swordInStoneRoom extends Room {
     private final int roomID = 6;
     @Override
     public void openRoom() {

@@ -4,7 +4,7 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;
 
-public class portalRoom extends roomFactory{
+public class portalRoom extends Room{
     private final int roomID = 5;
     public void openRoom(){
         int i = TrekkerMath.randomInt(1, 0);

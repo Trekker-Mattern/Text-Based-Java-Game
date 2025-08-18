@@ -6,7 +6,7 @@ import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;
 
-public class fountainRoom extends roomFactory {
+public class fountainRoom extends Room {
     private final int roomID = 2;
     public void openRoom(){
         gui.printOnGameSide("You walk into a room with a fountain in the center.");

@@ -4,17 +4,15 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.items.genericItems.attackingConsumable;
 import com.textbasedgame.items.item;
-import com.textbasedgame.monsters.boss;
 import com.textbasedgame.monsters.monster;
 import com.textbasedgame.monsters.monsterArrayList;
-import com.textbasedgame.monsters.monsterCreator;
 import com.textbasedgame.playerFiles.player;
-import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.itemInfoPrinter;
 import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
+import com.textbasedgame.world.rooms.Room;
 
-
+// Singleton class: accessed statically throughout game
 public abstract class world { 
 
     public static int AREANUM = 0;
@@ -31,43 +29,45 @@ public abstract class world {
 
     public static void menu(){
         if(stageNum % 5 == 0){
-            gui.newlOnGameSide();
-            gui.printOnGameSide("You have some options of what to do:");
-            gui.newlOnGameSide();
-            gui.printOnGameSide("Shop");
-            gui.printOnGameSide("Dungeon");
-            gui.printOnGameSide("Items");
-            gui.printOnGameSide("Quit");
-            gui.printOnGameSide("Save");
-            gui.newlOnGameSide();
-
-            String Ans = gui.getInput();
-            gui.pushOldText();
-            if (response.quit(Ans)){gui.quit();}
-
-            //OPEN SHOP!!!
-            if(response.Shop(Ans)){
-                openShop();
-            }
-            else if(response.Dungeon(Ans)){
-                openDungeon();
-            }
-            else if(response.keyItems(Ans)) {
-                player.printKeyItems();
-            }
-            else if(response.Items(Ans)){
-                itemMenu();
-            }
-            else if(response.Save(Ans)){
-                //// SAVE
-                saveFiles.save();
-            }
-            else if(Ans.equals("info")){
-                infoMenu();
-            }
+            villageMenu();
         }
         else{
             openDungeon();
+        }
+    }
+
+    private static void villageMenu(){
+        gui.newlOnGameSide();
+        gui.printOnGameSide("You have some options of what to do:");
+        gui.newlOnGameSide();
+        gui.printOnGameSide("Shop");
+        gui.printOnGameSide("Dungeon");
+        gui.printOnGameSide("Items");
+        gui.printOnGameSide("Quit");
+        gui.printOnGameSide("Save");
+        gui.newlOnGameSide();
+        String Ans = gui.getInput();
+        gui.pushOldText();
+        if (response.quit(Ans)){gui.quit();}
+        //OPEN SHOP!!!
+        if(response.Shop(Ans)){
+            openShop();
+        }
+        else if(response.Dungeon(Ans)){
+            openDungeon();
+        }
+        else if(response.keyItems(Ans)) {
+            player.printKeyItems();
+        }
+        else if(response.Items(Ans)){
+            itemMenu();
+        }
+        else if(response.Save(Ans)){
+            //// SAVE
+            saveFiles.save();
+        }
+        else if(Ans.equals("info")){
+            infoMenu();
         }
     }
 
@@ -198,21 +198,9 @@ public abstract class world {
         }
 
         //create monster
-        if(stageNum % 10 == 9){
-            boss b = monsterCreator.createBoss();
-            monsterMenu(b);
-        }
-        else{
-            int randNum = TrekkerMath.randomInt(2, 0);
-            if(randNum == 2){
-                roomFactory.getRandomRoom().openRoom();
-            }
-            else{
-                gui.pushOldText();
-                monster m = monsterCreator.createMonster();
-                monsterMenu(m);
-            }
-        }
+        Room room = roomFactory.getRandomRoom();
+        room.openRoom();
+
         stageNum++;
         player.update();
     }

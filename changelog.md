@@ -59,6 +59,10 @@
 - Added getting a starter weapon at the beginning of the game based on your original stats
 - Refactored death and wrote a onRespawn method
 - Added a weighting system to roomGeneration, makes it so better rooms appear less.
+- Refactored monster fighting to put them in a "empty room" - this would make it so I clean up world.java -- ***IMPORTANT***
+- Added Stackable items!
+- Write menu to look at key items
+- Soul Weighing room - Gives you a bonus if all your stats are equal, gives smaller bonus if they are close to each other but not equal
 
 ---
 
@@ -77,13 +81,11 @@
 - Enchantments that you can use on an Item to add buffs or special tags. *Be Careful When Overriding Tags its static right now*
 - - This will allow for interesting interactions with chests or other rooms.
 - - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
-- Write menu to look at key items
-- Soul Weighing room - Gives you a bonus if all your stats are equal, gives smaller bonus if they are close to each other but not equal
 - Spike dodging trap that checks agility to give chest rewards
 - Breakable wall that you can only bust down with strength to get rewards
 - three pronged room that you get to choose your next room.
-- make items a pair that contains the amount of items that you have if they are consumables - reduces size of inventory List
 - write a toString for the items
+- potion brewing room! - put items in potion?
 
 ## TO FIX URGENTLY
 

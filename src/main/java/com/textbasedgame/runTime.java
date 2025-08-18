@@ -24,7 +24,7 @@ public class runTime
 
 
         if(newSaveFolderBool){
-            initalizePlayer();
+            initializePlayer();
             givePlayerStartingItems();
         }
 
@@ -55,7 +55,7 @@ public class runTime
         gui.runGui();
     }
 
-    private static void initalizePlayer(){
+    private static void initializePlayer(){
          //Startup
             gui.printOnGameSide("What is your name young one?");
             String Name = gui.getInput();

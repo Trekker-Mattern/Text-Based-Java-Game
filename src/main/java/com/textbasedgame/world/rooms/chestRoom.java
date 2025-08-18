@@ -8,10 +8,9 @@ import com.textbasedgame.monsters.regularMonsters.mimic;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.roomFactory;
 import com.textbasedgame.world.shopitems;
 import com.textbasedgame.world.world;
-public class chestRoom extends roomFactory {
+public class chestRoom extends Room {
     private final int roomID = 1;
     public void openRoom(){
 

@@ -4,9 +4,8 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.roomFactory;
 
-public class soulWeighingRoom extends roomFactory{
+public class soulWeighingRoom extends Room{
     private static final int roomID = 7;
     @Override
     public void openRoom(){

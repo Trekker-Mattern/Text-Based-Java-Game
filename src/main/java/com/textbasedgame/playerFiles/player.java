@@ -22,7 +22,7 @@ import com.textbasedgame.util.triple;
 import com.textbasedgame.world.world;
 
 
-
+// Singleton class: accessed statically throughout game
 public abstract class player {
 
     public enum buffTypes {STRENGTH, AGILITY, INTELLIGENCE, ARMOR};
@@ -667,8 +667,9 @@ public abstract class player {
     }
 
     public static void onPlayerHit(monster m){
-        LHand.attackEffects(m);
-        RHand.attackEffects(m);
+        if(LHand != null){LHand.attackEffects(m);}
+        if(RHand != null){RHand.attackEffects(m);}
+        
     }
 
 
