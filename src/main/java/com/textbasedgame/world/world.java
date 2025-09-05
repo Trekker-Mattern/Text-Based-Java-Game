@@ -7,6 +7,7 @@ import com.textbasedgame.items.item;
 import com.textbasedgame.monsters.monster;
 import com.textbasedgame.monsters.monsterArrayList;
 import com.textbasedgame.playerFiles.player;
+import com.textbasedgame.util.GameProgressWrapper;
 import com.textbasedgame.util.itemInfoPrinter;
 import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
@@ -41,12 +42,14 @@ public abstract class world {
         gui.printOnGameSide("You have some options of what to do:");
         gui.newlOnGameSide();
         gui.printOnGameSide("Shop");
+        if(GameProgressWrapper.gameProgress.potionBagUnlocked){gui.printOnGameSide("Potions Crafting");}
         gui.printOnGameSide("Dungeon");
         gui.printOnGameSide("Items");
         gui.printOnGameSide("Quit");
         gui.printOnGameSide("Save");
         gui.newlOnGameSide();
         String Ans = gui.getInput();
+        Ans = Ans.toLowerCase();
         gui.pushOldText();
         if (response.quit(Ans)){gui.quit();}
         //OPEN SHOP!!!
@@ -69,8 +72,14 @@ public abstract class world {
         else if(Ans.equals("info")){
             infoMenu();
         }
+        else if(Ans.contains("potions")){
+            potionsMenu();
+        }
     }
 
+    private static void potionsMenu(){
+        roomFactory.getCauldronRoom().openRoom();
+    }
     
     private static void infoMenu(){
         player.printPlayerItems();
@@ -87,6 +96,7 @@ public abstract class world {
     }
 
     private static void openShop(){
+        gui.setImage(0);
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
         gui.printOnGameSide("You can also sell items by typing sell!");

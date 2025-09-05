@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 import java.lang.reflect.Type;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -163,7 +164,34 @@ public abstract class saveFiles {
                 }
             }
         }
+        saveGameProgressJSON();
     }
+
+    private static void saveGameProgressJSON(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        FileWriter jsonWriter = null;
+        try{
+            jsonWriter = new FileWriter(new File(runTime.SAVE_FILE_ROOT + "\\GameProgress.JSON"));
+            if(GameProgressWrapper.gameProgress != null && jsonWriter != null){
+                jsonWriter.write(gson.toJson(GameProgressWrapper.gameProgress));
+            }
+            else{
+                jsonWriter.write("{\n\n}");
+            }
+        }
+        catch(Exception e){
+            System.out.println("Error During Saving Game Progress");
+        }
+        finally{
+            try{
+                if(jsonWriter != null){
+                    jsonWriter.close();
+                }
+            }
+            catch(IOException e){System.out.println("Error Closing jsonWriter");}
+        }
+    }
+
     private static void goToNextReadableText(Scanner reader){
         reader.nextLine();
         reader.next();
@@ -240,7 +268,21 @@ public abstract class saveFiles {
                         player.addKeyItemToPlayer((keyItem)invItem);
                     }
                 }
+                //Close JSONReader before using it on a different file.
+                jsonFileReader.close();
 
+
+                try{
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+                    jsonFileReader = new FileReader(runTime.SAVE_FILE_ROOT + "\\GameProgress.JSON");
+                    GameProgress gameProgress = gson.fromJson(JsonParser.parseReader(jsonFileReader).getAsJsonObject(), GameProgress.class);
+                    GameProgressWrapper.setGameProgress(gameProgress);
+                }
+                catch(FileNotFoundException e){
+                    System.out.println("Game Progress file does not exist");
+                    GameProgressWrapper.setGameProgress(new GameProgress());
+                }
 
                 jsonFileReader.close();
 

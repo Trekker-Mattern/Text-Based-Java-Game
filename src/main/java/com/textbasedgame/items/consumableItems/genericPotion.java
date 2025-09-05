@@ -37,6 +37,11 @@ public class genericPotion extends consumables {
         setPrice(15);
         setName(name);
     }
+    public genericPotion(String name){
+        setPrice(10);
+    }
+
+
     public void addBuff(buffTypes bType, int bStr, int bduration){
         buffs.add(new triple<>(bType, bStr, bduration));
     }
@@ -60,4 +65,8 @@ public class genericPotion extends consumables {
             gui.printOnGameSide("You cant quite tell what this potion will do");
         }
     }
+
+    public ArrayList<triple<buffTypes, Integer, Integer>> getBuffsAsList(){return buffs;}
+    public void setBuffsList(ArrayList<triple<buffTypes, Integer, Integer>> buffsList){this.buffs = buffsList;}
+    public boolean isBuffsEmpty(){return buffs.isEmpty();}
 }

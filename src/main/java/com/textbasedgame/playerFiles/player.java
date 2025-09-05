@@ -1,6 +1,7 @@
 package com.textbasedgame.playerFiles;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashSet;
 
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;
@@ -25,7 +26,7 @@ import com.textbasedgame.world.world;
 // Singleton class: accessed statically throughout game
 public abstract class player {
 
-    public enum buffTypes {STRENGTH, AGILITY, INTELLIGENCE, ARMOR};
+    public enum buffTypes {STRENGTH, AGILITY, INTELLIGENCE, ARMOR, HEALTH_REGENERATION};
 
     //Overall inventory
     public static ArrayList<item> inventory = new ArrayList<>();
@@ -392,6 +393,9 @@ public abstract class player {
                 gui.printOnGameSide("Your " + buffs.get(i).first + " buff with strength " + buffs.get(i).second + " has run out");
                 buffs.remove(i);
                 i--;
+            }
+            if(buffs.get(i).first == buffTypes.HEALTH_REGENERATION){
+                health += buffs.get(i).second;
             }
         }
         if(buffs.isEmpty()){

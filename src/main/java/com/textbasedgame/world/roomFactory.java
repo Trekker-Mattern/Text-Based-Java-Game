@@ -3,14 +3,15 @@ package com.textbasedgame.world;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.textbasedgame.GUI.gui;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.world.rooms.*;
 
 import java.lang.reflect.Constructor;
 
 public abstract class roomFactory {
-    private static ArrayList<Class<? extends Room>> t0Rooms = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class));
-    private static ArrayList<Class<?extends Room>> t1Rooms = new ArrayList<>(Arrays.asList(idolRoom.class, portalRoom.class));
+    private static ArrayList<Class<? extends Room>> t0Rooms = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class, cauldronRoom.class, trapRoom.class));
+    private static ArrayList<Class<?extends Room>> t1Rooms = new ArrayList<>(Arrays.asList(idolRoom.class, portalRoom.class, cauldronRoom.class, lizzyRoom.class));
     private static ArrayList<Class<? extends Room>> t2Rooms = new ArrayList<>(Arrays.asList(libraryRoom.class, soulWeighingRoom.class));
     private static ArrayList<Class<? extends Room>> t3Rooms = new ArrayList<>(Arrays.asList(swordInStoneRoom.class));
 
@@ -27,8 +28,9 @@ public abstract class roomFactory {
         if(randNum == 0){
             try{
                 Constructor<? extends Room> ctor = getWeightedRoomClass().getDeclaredConstructor();
-    
-                return ctor.newInstance();
+                Room r = ctor.newInstance();
+                gui.setImage(r.getRoomID());
+                return r;
             }
             catch(Exception e){
                 System.out.println(e + " In getting Room");
@@ -68,6 +70,10 @@ public abstract class roomFactory {
             roomSelector = TrekkerMath.randomInt(t0Rooms.size() -1, 0);
             return t0Rooms.get(roomSelector);
         }
+    }
+
+    public static cauldronRoom getCauldronRoom(){
+        return new cauldronRoom();
     }
 
     public abstract int getRoomID();

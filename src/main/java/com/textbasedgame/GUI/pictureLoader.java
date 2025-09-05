@@ -12,7 +12,8 @@ public class pictureLoader {
         URL imageUrl;
         switch(imageID){
             case 0:
-                return null;
+                imageUrl = getClass().getResource(IMAGES_PATH + "Shop.PNG");
+                return new ImageIcon(imageUrl);
             case 4:
                 imageUrl = getClass().getResource(IMAGES_PATH+"Library.PNG");
                 return new ImageIcon(imageUrl);

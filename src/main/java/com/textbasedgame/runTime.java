@@ -53,6 +53,8 @@ public class runTime
         }
         monsterArrayList.createMonsterList();
         gui.runGui();
+        gui.setImage(0);
+        
     }
 
     private static void initializePlayer(){

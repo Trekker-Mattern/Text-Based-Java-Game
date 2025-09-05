@@ -39,6 +39,7 @@ public class gui {
     public static String latestInput;
     private static JScrollPane scrollPane;
     private static JScrollPane secondScrollPane;
+    private static int currentImageID;
     
     private static final pictureLoader pLoader = new pictureLoader();
 
@@ -168,6 +169,11 @@ public class gui {
             return input;
         }
     }
+
+    public static String getInput(String printString){
+        gui.printOnGameSide(printString);
+        return getInput();
+    }
     public static void pushOldText(){
         for(Component text: recentTextPanel.getComponents()){
             txtPanel.add(text);
@@ -256,7 +262,7 @@ public class gui {
         topofInvPanel.revalidate();
         topofInvPanel.repaint();
 
-        updateImage(4);
+        updateImage();
 
     }
 
@@ -306,11 +312,12 @@ public class gui {
         txtPanel.removeAll();
     }
 
-    public static void updateImage(int imageID){
+    public static void updateImage(){
         
         imagePanel.removeAll();
 
-        ImageIcon img = pLoader.getImage(imageID);
+        ImageIcon img = pLoader.getImage(currentImageID);
+        if(img == null){img = pLoader.getImage(4);}
         ImageIcon imgIcon = new ImageIcon(img.getImage().getScaledInstance(imagePanel.getWidth(), imagePanel.getHeight(), Image.SCALE_DEFAULT));
 
         JLabel imageLabel = new JLabel();
@@ -318,6 +325,11 @@ public class gui {
         imagePanel.add(imageLabel);
         imagePanel.revalidate();
         imagePanel.repaint();
+    }
+
+    public static void setImage(int imageID){
+        currentImageID = imageID;
+        updateImage();
     }
 
 }
