@@ -1,10 +1,9 @@
 package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.monsters.*;
-import com.textbasedgame.world.world;
 import com.textbasedgame.GUI.*;
 
-public class bossMonsterRoom extends Room{
+public class bossMonsterRoom extends baseMonsterRoom{
     private static final int roomID = -1;
 
     private boss m;
@@ -16,7 +15,7 @@ public class bossMonsterRoom extends Room{
     @Override
     public void openRoom() {
         gui.pushOldText();
-        world.monsterMenu(m);
+        monsterMenu(m);
     }
 
     public monster getMonster(){

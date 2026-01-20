@@ -3,6 +3,7 @@ package com.textbasedgame.util;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.genericItems.holdables;
+import com.textbasedgame.playerFiles.*;
 import com.textbasedgame.playerFiles.player.buffTypes;
 
 import java.util.ArrayList;
@@ -92,6 +93,21 @@ public class itemInfoPrinter {
         }
         gui.printOnGameSide(tagsString);
         i.printInfo();
+    }
+
+
+    public static void infoMenu(){
+        player.printPlayerItems();
+        gui.printOnGameSide("Which item would you like more information on?");
+        try{
+
+            int itemNum = Integer.parseInt(gui.getInput()) - 1;
+
+            itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
+        }
+        catch(NumberFormatException| IndexOutOfBoundsException e){
+
+        }
     }
 }
 
