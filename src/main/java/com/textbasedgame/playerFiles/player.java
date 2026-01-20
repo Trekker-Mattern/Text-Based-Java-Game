@@ -346,7 +346,7 @@ public abstract class player {
 
     public static void printKeyItems(){
         for(int i = 0; i < keyItemInventory.size(); i++){
-            gui.printOnGameSide((i+1) + ": " + keyItemInventory.get(i).toString());
+            gui.printOnGameSide(" " + keyItemInventory.get(i).toString());
         }
     }
 
@@ -603,8 +603,8 @@ public abstract class player {
             }
         }
         else if(playerCrit == true){
-            String strMultiplier = String.format("%.3f", multiplier); 
-            gui.printOnGameSide("You hit the monster on the weak spot dealing " + strMultiplier + "times damage");
+            String strMultiplier = String.format("%.2f", multiplier); 
+            gui.printOnGameSide("You hit the monster on the weak spot dealing " + strMultiplier + " times damage");
         }
         
 
@@ -695,18 +695,21 @@ public abstract class player {
                 else{temp = "health";}
             } catch (NumberFormatException ex) {}
             if(temp.toLowerCase().contains("strength") || temp.toLowerCase().equals("s")){
+                temp = "Strength";
                 strength += 1;
             }
             else if(temp.toLowerCase().contains("agility") || temp.toLowerCase().equals("a")){
+                temp = "Agility";
                 agility += 1;
             }
             else if(temp.toLowerCase().contains("intelligence") || temp.toLowerCase().equals("i")){
+                temp = "Intelligence";
                 intelligence += 1;
             }
             else {
                 maxHealth += 10;
                 health += (int)(((double)health/maxHealth)*10);
-                temp = "health";
+                temp = "Health";
             }
             xp -= xpToLevelUp;
             xpToLevelUp *= 1.375;

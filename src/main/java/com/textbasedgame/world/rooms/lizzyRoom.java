@@ -35,6 +35,8 @@ public class lizzyRoom extends Room {
                 gui.printOnGameSide("Lizzy: Come back again when you have a bag to carry them in!");
                 gui.printOnGameSide("Lizzy: Since you couldnt take any plants, I will give you a small remedy that I have learned over the years.");
                 player.addItemToPlayer(new genericPotion("Lizzy's Healing Potion", buffTypes.HEALTH_REGENERATION, 2, 5));
+                gui.newlOnGameSide();
+                gui.getInput("Press Enter To Continue");
             }
             else{
                 potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(0, potionHerbs.values().length - 1)]; 
@@ -42,6 +44,8 @@ public class lizzyRoom extends Room {
                 gui.printOnGameSide("Lizzy: Here, take some with you!");
                 int potionsBagLocationInKeyItemInventory =player.keyItemInventory.indexOf(new potionsBag());
                 ((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);
+                gui.newlOnGameSide();
+                gui.getInput("Press Enter To Continue");
             }
         }
         else{

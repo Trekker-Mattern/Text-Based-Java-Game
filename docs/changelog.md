@@ -63,6 +63,8 @@
 - Added Stackable items!
 - Write menu to look at key items
 - Soul Weighing room - Gives you a bonus if all your stats are equal, gives smaller bonus if they are close to each other but not equal
+- Implimented potion creation with herbs
+- Implimented a room with npc "Lizzy" to give herbs on appearence.
 
 ---
 
@@ -86,6 +88,7 @@
 - three pronged room that you get to choose your next room.
 - write a toString for the items
 - potion brewing room! - put items in potion?
+- possibly make it so items can be in multiple sets at once - display might get messed up when doing the item info menu.
 
 ## TO FIX URGENTLY
 

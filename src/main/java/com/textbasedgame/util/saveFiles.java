@@ -279,7 +279,7 @@ public abstract class saveFiles {
                     GameProgress gameProgress = gson.fromJson(JsonParser.parseReader(jsonFileReader).getAsJsonObject(), GameProgress.class);
                     GameProgressWrapper.setGameProgress(gameProgress);
                 }
-                catch(FileNotFoundException e){
+                catch(Exception e){
                     System.out.println("Game Progress file does not exist");
                     GameProgressWrapper.setGameProgress(new GameProgress());
                 }

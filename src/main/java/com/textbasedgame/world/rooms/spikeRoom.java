@@ -6,7 +6,7 @@ import com.textbasedgame.util.response;
 import com.textbasedgame.world.shopitems;
 import com.textbasedgame.items.item;
 
-public class trapRoom extends Room{
+public class spikeRoom extends Room{
     public static final int roomID = 9;
 
     @Override
