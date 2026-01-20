@@ -15,6 +15,9 @@ public class cthulhu extends boss {
     }
     public void attackEffects(int damageDoneToPlayer){
         this.setHealth(this.getHealth() + damageDoneToPlayer/3);
+        if(this.getHealth() > this.getMaxHealth()){
+            this.setHealth(this.getMaxHealth());
+        }
         gui.printOnGameSide(getName() + " syphons " + damageDoneToPlayer/3 + " health from you!");
     }
     @Override

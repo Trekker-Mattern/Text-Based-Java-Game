@@ -17,6 +17,7 @@ public class monster {
     protected int mSpeed;
     protected int mArmour;
     protected int mLevel;
+    protected int maxHealth;
 
 
 
@@ -38,10 +39,14 @@ public class monster {
         return mName;
     }
     public void setOriginalHealth(int hVal){
+        maxHealth = hVal;
         mHealth = hVal;
     }
     public int getHealth(){
         return mHealth;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
     }
     public void setHealth(int x){
         mHealth = x;
