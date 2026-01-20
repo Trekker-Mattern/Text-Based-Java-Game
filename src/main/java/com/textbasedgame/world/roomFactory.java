@@ -10,7 +10,7 @@ import com.textbasedgame.world.rooms.*;
 import java.lang.reflect.Constructor;
 
 public abstract class roomFactory {
-    private static ArrayList<Class<? extends Room>> t0Rooms = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class, cauldronRoom.class, trapRoom.class));
+    private static ArrayList<Class<? extends Room>> t0Rooms = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class, cauldronRoom.class, spikeRoom.class));
     private static ArrayList<Class<?extends Room>> t1Rooms = new ArrayList<>(Arrays.asList(idolRoom.class, portalRoom.class, cauldronRoom.class, lizzyRoom.class));
     private static ArrayList<Class<? extends Room>> t2Rooms = new ArrayList<>(Arrays.asList(libraryRoom.class, soulWeighingRoom.class));
     private static ArrayList<Class<? extends Room>> t3Rooms = new ArrayList<>(Arrays.asList(swordInStoneRoom.class));
