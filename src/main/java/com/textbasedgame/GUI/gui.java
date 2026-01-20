@@ -169,9 +169,15 @@ public class gui {
         monsterHealthBar.setStringPainted(true);
 
         //set color of the health bar based on health percentage
-        monsterHealthBar.setForeground(new Color(255 - 255*(monsterCurrHealth / monsterMaxHealth),255*(monsterCurrHealth / monsterMaxHealth),0));
+        monsterHealthBar.setForeground(new Color((int)(255 - 255*((monsterCurrHealth * 1.0) / monsterMaxHealth)),(int)(255*(monsterCurrHealth * 1.0 / monsterMaxHealth)),0));
         monsterHealthBar.setBackground(null);
-        monsterHealthBar.setBorder(new BevelBorder(0, Color.black, null));
+        monsterHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
+
+
+
+        recentTextPanel.add(new JLabel("---- " + monsterName + " ----"));
+        recentTextPanel.add(monsterHealthBar);
+        recentTextPanel.revalidate();
 
     }
 

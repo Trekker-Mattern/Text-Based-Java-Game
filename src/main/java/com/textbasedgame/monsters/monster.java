@@ -123,6 +123,7 @@ public class monster {
     public Set<String> getMonsterWeakness(){return null;}
 
     public void printMonster(){
+        gui.setMonsterRoomUI(mName, mHealth, maxHealth);
         gui.printOnGameSide(mName + " level " + mLevel + " has " + mHealth + " HP.");
         if(player.getName().equals("debug")){
             gui.printOnGameSide(mName);
