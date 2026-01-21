@@ -1,15 +1,18 @@
 package com.textbasedgame.util;
+import java.util.Random;
 public class TrekkerMath {
+    
+    public static Random rand = new Random();
     
     //Inclusive random integer generator
     public static int randomInt(int toVal, int fromVal){
-        int ret = (int)(Math.random() * (toVal - fromVal + 1)) + fromVal;
+        int ret = (rand.nextInt(toVal)) + fromVal;
         //System.out.println("Number " + ret + " fromVal-" + fromVal + " toVal(+1)-"+toVal);
         return ret;
     }
     //Exclusive double generator
     public static double randomDouble(double toVal, double fromVal){
-        double ret = (Math.random() * toVal) + fromVal;
+        double ret = (rand.nextDouble(toVal)) + fromVal;
         return ret;
     }
 

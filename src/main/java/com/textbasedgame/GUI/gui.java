@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import javax.swing.plaf.ProgressBarUI;
 
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
@@ -167,7 +168,17 @@ public class gui {
         JProgressBar monsterHealthBar = new JProgressBar(0, monsterMaxHealth);
         monsterHealthBar.setValue(monsterCurrHealth);
         monsterHealthBar.setStringPainted(true);
+        monsterHealthBar.setString(monsterCurrHealth + " / " + monsterMaxHealth);
+        monsterHealthBar.setStringPainted(true);
+        
 
+        Dimension size = new Dimension(400, 20);
+        monsterHealthBar.setPreferredSize(size);
+        monsterHealthBar.setMaximumSize(size);
+        monsterHealthBar.setMinimumSize(size);
+        
+        monsterHealthBar.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
         //set color of the health bar based on health percentage
         monsterHealthBar.setForeground(new Color((int)(255 - 255*((monsterCurrHealth * 1.0) / monsterMaxHealth)),(int)(255*(monsterCurrHealth * 1.0 / monsterMaxHealth)),0));
         monsterHealthBar.setBackground(null);
@@ -220,6 +231,7 @@ public class gui {
 
     public static void printOnGameSide(String s){
         JLabel text = new JLabel();
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
         text.setText(s);
         recentTextPanel.add(text);
         textQueue.add(text);
@@ -231,6 +243,7 @@ public class gui {
     public static void newlOnGameSide(){
         JLabel text = new JLabel();
         text.setText(" ");
+        textQueue.add(text);
         recentTextPanel.add(text);
         recentTextPanel.revalidate();
 
