@@ -43,7 +43,7 @@ public class fountainRoom extends Room {
                             gui.printOnGameSide("A goblin grabs your arm! In your haste to recover he takes off three of your fingers!");
                             player.health -= 10;
                             goblin g = new goblin();
-                            world.monsterMenu(g);
+                            baseMonsterRoom.monsterMenu(g);
                             break;
                         }
                     }

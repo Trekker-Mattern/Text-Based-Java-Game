@@ -12,6 +12,7 @@ import com.textbasedgame.items.footArmorItems.*;
 import com.textbasedgame.items.legsArmorItems.*;
 import com.textbasedgame.items.handItems.*;
 import com.textbasedgame.playerFiles.player;
+import com.textbasedgame.util.TrekkerMath;
 
 public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,7 +103,7 @@ public abstract class shopitems {
 
         ArrayList<Class<? extends consumables>> foodItemClassList = shopItemsAllocater.getFoodItemArray(world.AREANUM);
         for(int i = 0; i < randomItems.length-4; i++){
-            Class<? extends consumables> itemType = foodItemClassList.get((int)(Math.random() * foodItemClassList.size()));
+            Class<? extends consumables> itemType = foodItemClassList.get(TrekkerMath.randomInt(foodItemClassList.size(),0));
             try {
                 Constructor<? extends consumables> ctor = itemType.getDeclaredConstructor();
                 item a = ctor.newInstance();
@@ -117,7 +118,7 @@ public abstract class shopitems {
 
         ArrayList<Class<? extends equipables>> equipableShopClasses = shopItemsAllocater.getEquipablesShopArray(world.AREANUM);
         for(int i =2; i < randomItems.length-2; i++){
-            Class<? extends equipables> itemType = equipableShopClasses.get((int)(Math.random() * equipableShopClasses.size()));
+            Class<? extends equipables> itemType = equipableShopClasses.get(TrekkerMath.randomInt(equipableShopClasses.size(),0));
                 try {
                     Constructor<? extends equipables> ctor = itemType.getDeclaredConstructor();
                     item a = ctor.newInstance();
@@ -132,7 +133,7 @@ public abstract class shopitems {
 
         ArrayList<Class<? extends consumables>> consumableClassList = shopItemsAllocater.getConsumableItemArray(world.AREANUM);
         for(int i =4; i < randomItems.length; i++){
-            Class<? extends consumables> itemType = consumableClassList.get((int)(Math.random() * consumableClassList.size()));
+            Class<? extends consumables> itemType = consumableClassList.get(TrekkerMath.randomInt(consumableClassList.size(),0));
                 try {
                     Constructor<? extends consumables> ctor = itemType.getDeclaredConstructor();
                     item a = ctor.newInstance();
@@ -184,7 +185,7 @@ public abstract class shopitems {
     public static item getRandomItem(){
 
         try{
-            return (allItemsList.get((int)Math.random() * allItemsList.size())).getDeclaredConstructor().newInstance();
+            return allItemsList.get(TrekkerMath.randomInt(allItemsList.size(),0)).getDeclaredConstructor().newInstance();
         }
         catch(Exception e){
             System.out.println(e);

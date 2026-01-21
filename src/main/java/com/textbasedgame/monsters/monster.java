@@ -17,6 +17,7 @@ public class monster {
     protected int mSpeed;
     protected int mArmour;
     protected int mLevel;
+    protected int maxHealth;
 
 
 
@@ -38,10 +39,14 @@ public class monster {
         return mName;
     }
     public void setOriginalHealth(int hVal){
+        maxHealth = hVal;
         mHealth = hVal;
     }
     public int getHealth(){
         return mHealth;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
     }
     public void setHealth(int x){
         mHealth = x;
@@ -118,6 +123,7 @@ public class monster {
     public Set<String> getMonsterWeakness(){return null;}
 
     public void printMonster(){
+        gui.setMonsterRoomUI(mName, mHealth, maxHealth);
         gui.printOnGameSide(mName + " level " + mLevel + " has " + mHealth + " HP.");
         if(player.getName().equals("debug")){
             gui.printOnGameSide(mName);

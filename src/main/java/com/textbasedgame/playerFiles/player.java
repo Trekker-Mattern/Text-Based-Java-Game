@@ -55,7 +55,7 @@ public abstract class player {
     public static int agility;
     public static int intelligence;
     public static int armor = 0;
-    public static double luck = Math.random() * 4;
+    public static double luck = TrekkerMath.randomDouble(4.0, 0.1);
     public static int BankBalance = (int)(5 * luck);
     public static int playerLevel = 5;
     private static int maxHealth;
@@ -88,10 +88,10 @@ public abstract class player {
         health = maxHealth;
     }
     public static void allocateSkillPoints(){
-        strength = (int)(Math.random() * totalMaxStartingSkills);
+        strength = (int)(TrekkerMath.randomInt(totalMaxStartingSkills,0));
         maxHealth = (int)((double)(strength + 1) * (luck+1)) + 10;
         health = maxHealth;
-        intelligence = (int)(Math.random() * (totalMaxStartingSkills - strength));
+        intelligence = (int)(TrekkerMath.randomInt(totalMaxStartingSkills - strength,0));
         agility = (totalMaxStartingSkills - (strength + agility));
 
     }

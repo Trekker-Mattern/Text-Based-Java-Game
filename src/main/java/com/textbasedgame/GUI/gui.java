@@ -1,4 +1,8 @@
 package com.textbasedgame.GUI;
+
+import java.util.Queue;
+import java.util.LinkedList;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,9 +18,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
+import javax.swing.plaf.ProgressBarUI;
 
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
@@ -40,6 +47,8 @@ public class gui {
     private static JScrollPane scrollPane;
     private static JScrollPane secondScrollPane;
     private static int currentImageID;
+
+    private static Queue<JLabel> textQueue = new LinkedList<JLabel>();
     
     private static final pictureLoader pLoader = new pictureLoader();
 
@@ -154,6 +163,35 @@ public class gui {
         }
     }
 
+    //Set Text For Text Panel To Be Monster Fighting UI
+    public static void setMonsterRoomUI(String monsterName, int monsterCurrHealth, int monsterMaxHealth){
+        JProgressBar monsterHealthBar = new JProgressBar(0, monsterMaxHealth);
+        monsterHealthBar.setValue(monsterCurrHealth);
+        monsterHealthBar.setStringPainted(true);
+        monsterHealthBar.setString(monsterCurrHealth + " / " + monsterMaxHealth);
+        monsterHealthBar.setStringPainted(true);
+        
+
+        Dimension size = new Dimension(400, 20);
+        monsterHealthBar.setPreferredSize(size);
+        monsterHealthBar.setMaximumSize(size);
+        monsterHealthBar.setMinimumSize(size);
+        
+        monsterHealthBar.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        //set color of the health bar based on health percentage
+        monsterHealthBar.setForeground(new Color((int)(255 - 255*((monsterCurrHealth * 1.0) / monsterMaxHealth)),(int)(255*(monsterCurrHealth * 1.0 / monsterMaxHealth)),0));
+        monsterHealthBar.setBackground(null);
+        monsterHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
+
+
+
+        recentTextPanel.add(new JLabel("---- " + monsterName + " ----"));
+        recentTextPanel.add(monsterHealthBar);
+        recentTextPanel.revalidate();
+
+    }
+
     public static String getInput(){
         synchronized(gui.class){
             while(latestInput == null){
@@ -174,10 +212,13 @@ public class gui {
         gui.printOnGameSide(printString);
         return getInput();
     }
+
+    
     public static void pushOldText(){
-        for(Component text: recentTextPanel.getComponents()){
+        for(JLabel text: textQueue){
             txtPanel.add(text);
         }
+        textQueue.clear();
         recentTextPanel.removeAll();
         SwingUtilities.invokeLater(() -> {
             txtPanel.scrollRectToVisible(txtPanel.getComponents()[txtPanel.getComponentCount()-1].getBounds());
@@ -190,8 +231,10 @@ public class gui {
 
     public static void printOnGameSide(String s){
         JLabel text = new JLabel();
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
         text.setText(s);
         recentTextPanel.add(text);
+        textQueue.add(text);
         recentTextPanel.revalidate();
         SwingUtilities.invokeLater(() -> {
             text.scrollRectToVisible(text.getBounds());
@@ -200,6 +243,7 @@ public class gui {
     public static void newlOnGameSide(){
         JLabel text = new JLabel();
         text.setText(" ");
+        textQueue.add(text);
         recentTextPanel.add(text);
         recentTextPanel.revalidate();
 

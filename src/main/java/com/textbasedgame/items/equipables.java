@@ -9,6 +9,7 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
+import com.textbasedgame.util.TrekkerMath;
 
 public abstract class equipables extends item {
     protected boolean equipped = false;
@@ -20,7 +21,7 @@ public abstract class equipables extends item {
     
     
     public equipables(){
-        quality = (int)((Math.random() * 6) +1);
+        quality = (int)(TrekkerMath.randomInt(6,1));
         setQuality(quality);
         buffs = new ArrayList<>();
     }

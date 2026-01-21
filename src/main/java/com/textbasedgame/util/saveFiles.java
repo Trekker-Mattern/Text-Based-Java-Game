@@ -167,7 +167,7 @@ public abstract class saveFiles {
         saveGameProgressJSON();
     }
 
-    private static void saveGameProgressJSON(){
+    public static void saveGameProgressJSON(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         FileWriter jsonWriter = null;
         try{
@@ -176,6 +176,7 @@ public abstract class saveFiles {
                 jsonWriter.write(gson.toJson(GameProgressWrapper.gameProgress));
             }
             else{
+                GameProgressWrapper.gameProgress = new GameProgress();
                 jsonWriter.write("{\n\n}");
             }
         }

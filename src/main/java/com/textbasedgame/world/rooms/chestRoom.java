@@ -9,7 +9,6 @@ import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 import com.textbasedgame.world.shopitems;
-import com.textbasedgame.world.world;
 public class chestRoom extends Room {
     private final int roomID = 1;
     public void openRoom(){
@@ -30,7 +29,7 @@ public class chestRoom extends Room {
                     case 1:
                         gui.printOnGameSide("You start to open the chest but a tongue wraps around your hand, its a mimic!");
                         mimic m = new mimic();
-                        world.monsterMenu(m);
+                        baseMonsterRoom.monsterMenu(m);
                         int extraMoney = (int)(TrekkerMath.randomInt(100,0) * player.luck);
                         gui.printOnGameSide("From the mimic's corpse you manage to scavenge an extra " + extraMoney + " shmeckles!");
                         player.BankBalance += extraMoney;

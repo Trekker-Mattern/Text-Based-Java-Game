@@ -18,8 +18,8 @@ public abstract class roomFactory {
 
 
     public static Room getRandomRoom(){
-        int randNum = TrekkerMath.randomInt(2, 0);
-        System.out.println("getRoom Random Number -- " + randNum);
+        int randNum = TrekkerMath.randomInt(3, 0);
+        //System.out.println("getRoom Random Number -- " + randNum);
 
         if(world.stageNum % 10 == 9){
             return new bossMonsterRoom();
@@ -43,25 +43,26 @@ public abstract class roomFactory {
     }
 
     private static Class<? extends Room> getWeightedRoomClass(){
-        //////// 20% first Room 30% second 40% third else fourth
+        //////// 40% T0 - 30% T1 - 20% T2 - 10% T3
         
         int roomSelector;
+        int weight = TrekkerMath.randomInt(100, 0);
         ///T3 Rooms 
-        if(TrekkerMath.randomInt(100, 1) >= 85){
+        if(weight >= 60){
             System.out.println("T3");
-            roomSelector = TrekkerMath.randomInt(t3Rooms.size() -1, 0);
+            roomSelector = TrekkerMath.randomInt(t3Rooms.size(), 0);
             return t3Rooms.get(roomSelector);
         }
         /// T2 Rooms
-        else if (TrekkerMath.randomInt(100, 1) >= 70){
+        else if (weight >= 30){
             System.out.println("T2");
-            roomSelector = TrekkerMath.randomInt(t2Rooms.size() -1, 0);
+            roomSelector = TrekkerMath.randomInt(t2Rooms.size(), 0);
             return t2Rooms.get(roomSelector);
         }
         /// T1 Rooms
-        else if (TrekkerMath.randomInt(100, 1) >= 60){
+        else if (weight >= 10){
             System.out.println("T1");
-            roomSelector = TrekkerMath.randomInt(t1Rooms.size() -1, 0);
+            roomSelector = TrekkerMath.randomInt(t1Rooms.size(), 0);
             return t1Rooms.get(roomSelector);
         }
         /// T0 Rooms

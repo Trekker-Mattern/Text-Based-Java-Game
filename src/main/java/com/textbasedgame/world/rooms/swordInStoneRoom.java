@@ -5,7 +5,6 @@ import com.textbasedgame.items.handItems.escalibur;
 import com.textbasedgame.monsters.regularMonsters.demon;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
-import com.textbasedgame.world.world;
 
 public class swordInStoneRoom extends Room {
     private final int roomID = 6;
@@ -23,7 +22,7 @@ public class swordInStoneRoom extends Room {
 
             gui.printOnGameSide("The balance between light and dark has been broken");
             gui.printOnGameSide("The floor opens in front of you and a demon emerges from the crevice");
-            world.monsterMenu(new demon());
+            baseMonsterRoom.monsterMenu(new demon());
         }
     }
     @Override

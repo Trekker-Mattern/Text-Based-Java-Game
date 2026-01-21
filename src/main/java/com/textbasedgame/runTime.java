@@ -83,6 +83,8 @@ public class runTime
                 player.allocateSkillPoints();
 
             }
+
+            saveFiles.saveGameProgressJSON();
     }
 
     private static void givePlayerStartingItems(){
