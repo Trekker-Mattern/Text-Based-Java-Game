@@ -87,6 +87,7 @@ public abstract class equipables extends item {
     public boolean tagsContains(String tag){
         return getTagsSet().contains(tag);
     }
+    public abstract String getEquipSlot();
     public Set<String> getItemTags(){
         return getTagsSet();
     }

@@ -79,16 +79,15 @@
 - Add Monster Strengths & Weaknesses
 - Add Rogue set where it translates agility to strength and increases crit maybe. Should be cool and have a new set
 - New Stuff on each types of rooms
-- New Category of Item, Key Items?? -- I could keep this as a consumable item but I think if we make it a new subcategory of item it will work better.
 - Enchantments that you can use on an Item to add buffs or special tags. *Be Careful When Overriding Tags its static right now*
 - - This will allow for interesting interactions with chests or other rooms.
-- - Add more to the shop, 1 key item? and guarenteed Food items. increase to 6 items probably
-- Spike dodging trap that checks agility to give chest rewards
 - Breakable wall that you can only bust down with strength to get rewards
 - three pronged room that you get to choose your next room.
 - write a toString for the items
-- potion brewing room! - put items in potion?
 - possibly make it so items can be in multiple sets at once - display might get messed up when doing the item info menu.
+- MAKE PURCHASE MENU THAT DESCRIBES ITEMS BEFORE YOU BUY
+- add description to all items
+- 
 
 ## TO FIX URGENTLY
 

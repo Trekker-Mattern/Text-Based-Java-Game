@@ -23,7 +23,8 @@ public class itemInfoPrinter {
         gui.getInput();
     }
     
-    private static void printConsumableInfo(consumables i){
+    public static void printConsumableInfo(consumables i){
+        gui.printOnGameSide("---Consumable---");
         String name = i.getItemName();
         int price = i.getPrice(); 
 
@@ -32,19 +33,20 @@ public class itemInfoPrinter {
         i.printInfo();
     }
 
-    private static void printEquipablesInfo(equipables i){
+    public static void printEquipablesInfo(equipables i){
+        gui.printOnGameSide("---Equipable---");
         String name = i.getItemName();
         int price = i.getPrice(); 
         int qualityInt = i.getQualityInt();
         String qualityString = i.getQuality();
-
+        String equipSlot = i.getEquipSlot();
         String setName = i.getEquipmentSetName();
         Set<Class<? extends equipables>> otherItemsInSet = i.getSetItems();
 
         Set<String> tags = i.getItemTags();
 
         gui.printOnGameSide("--- " + name + " ---");
-
+        gui.printOnGameSide("Equip Slot : " + equipSlot);
         if(setName != null){
             gui.newlOnGameSide();
             gui.printOnGameSide("Set: " + setName);

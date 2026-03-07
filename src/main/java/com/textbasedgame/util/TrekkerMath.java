@@ -6,13 +6,12 @@ public class TrekkerMath {
     
     //random integer generator [fromval, toVal)
     public static int randomInt(int toVal, int fromVal){
-        int ret = (rand.nextInt(toVal)) + fromVal;
-        //System.out.println("Number " + ret + " fromVal-" + fromVal + " toVal(+1)-"+toVal);
+        int ret = (rand.nextInt(toVal-fromVal)) + fromVal;
         return ret;
     }
     //Exclusive double generator
     public static double randomDouble(double toVal, double fromVal){
-        double ret = (rand.nextDouble(toVal)) + fromVal;
+        double ret = fromVal + (toVal - fromVal) * rand.nextDouble();
         return ret;
     }
 

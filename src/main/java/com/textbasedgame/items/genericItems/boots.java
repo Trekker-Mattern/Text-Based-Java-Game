@@ -20,4 +20,8 @@ public abstract class boots extends equipables {
     public int getArmorVal(){
         return armorAdd;
     }
+    @Override
+    public String getEquipSlot(){
+        return "Shoes";
+    }
 }

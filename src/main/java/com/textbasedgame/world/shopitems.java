@@ -13,6 +13,8 @@ import com.textbasedgame.items.legsArmorItems.*;
 import com.textbasedgame.items.handItems.*;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
+import com.textbasedgame.util.itemInfoPrinter;
+import com.textbasedgame.util.response;
 
 public abstract class shopitems {
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,6 +163,9 @@ public abstract class shopitems {
 
         item toAdd = itemsInShop[shopItemNum - 1];
     
+        buyConfirmationMenu(toAdd);
+
+
         player.addItemToPlayer(toAdd);
         
 
@@ -192,6 +197,31 @@ public abstract class shopitems {
         }
 
         return null;
+    }
+
+    private static boolean buyConfirmationMenu(item i){
+
+        if(i instanceof consumables){
+            itemInfoPrinter.printConsumableInfo((consumables)i);
+        }
+        else if(i instanceof equipables){
+            itemInfoPrinter.printEquipablesInfo((equipables) i);
+        }
+
+        gui.printOnGameSide("-------------------------------------");
+        gui.newlOnGameSide();
+        gui.printOnGameSide("Are you sure you want to buy " + i.getItemName() + " for " + i.getPrice() + " shmeckles?");
+        gui.printOnGameSide("1: Yes");
+        gui.printOnGameSide("2: No");
+
+        String input = gui.getInput();
+
+        if(input.equals("1") || response.respondYes(input)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 

@@ -46,6 +46,10 @@ public abstract class holdables extends equipables{
     public damageTypes getDMGType(){
         return DMGtype;
     }
+    @Override
+    public String getEquipSlot(){
+        return "Hands";
+    }
 
 
 }

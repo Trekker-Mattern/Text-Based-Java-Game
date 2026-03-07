@@ -20,4 +20,8 @@ public abstract class legsArmor extends equipables {
     public int getArmorVal(){
         return armorAdd;
     }
+    @Override
+    public String getEquipSlot(){
+        return "Pants";
+    }
 }
