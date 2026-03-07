@@ -21,7 +21,7 @@ public abstract class equipables extends item {
     
     
     public equipables(){
-        quality = (int)(TrekkerMath.randomInt(6,1));
+        quality = (int)(TrekkerMath.randomInt(7,1));
         setQuality(quality);
         buffs = new ArrayList<>();
     }

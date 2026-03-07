@@ -34,5 +34,11 @@ public class thor extends boss {
 
         return "strikes you with lightning";
     }
-
+    public void bossIntro(){
+        gui.printOnGameSide("Upon entering a massive thunderclap rings your ears");
+        gui.printOnGameSide("A lightning bolt strikes the ground in front of you");
+        gui.printOnGameSide("After blinking away the bright light a man stands in the singe mark");
+        gui.printOnGameSide("He holds a massive hammer in his right hand");
+        gui.printOnGameSide("He bellows something in a language you dont understand then charges");
+    }
 }

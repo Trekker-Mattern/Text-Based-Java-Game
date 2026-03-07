@@ -47,4 +47,13 @@ public class hydra extends boss {
             gui.printOnGameSide("You dont have anything to properly slice the head off so you leave the corpse.");
         }
     }
+
+    @Override
+    public void bossIntro(){
+        gui.printOnGameSide("A dragon rests on the ground in front of you");
+        gui.printOnGameSide("Its head rises up when you approach bearing its teeth");
+        gui.printOnGameSide("A second head rises into sight");
+        gui.printOnGameSide("Then a third and fourth appear");
+        gui.printOnGameSide("You stare down the hydra which is now on its feet with its 6 heads at the ready");
+    }
 }

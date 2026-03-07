@@ -22,7 +22,19 @@ public class cthulhu extends boss {
     }
     @Override
     public String attackString() {
-
         return "wraps you with its tenticles";
+    }
+
+    @Override
+    public void bossIntro() {
+        gui.printOnGameSide("You enter a room and the air feels heavy. A droplet lands on your head. \n You brush it off and notice its too thick to be water.");
+        if(player.getIntelligence() / (double)player.getPlayerLevel() > 0.25){
+            gui.printOnGameSide("You notice tenticles creeping up the walls around you.");
+            gui.printOnGameSide("From your extensive knowlege of monsters in the world you identify them as belonging to Cthulu");
+            gui.printOnGameSide("With a great sigh you raise your" + player.LHand.toString() + "and ready yourself to fight the eater of worlds");
+            this.setArmour((int)(getArmour() - getArmour()*.25));
+        }
+        gui.printOnGameSide("The beast rises from the floor and its many tenticles float in the air.");
+        gui.printOnGameSide("It roars and readies itself for attack");
     }
 }

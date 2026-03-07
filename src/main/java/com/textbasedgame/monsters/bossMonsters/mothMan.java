@@ -41,4 +41,13 @@ public class mothMan extends boss {
         return "bites you with many moths";
     }
 
+    @Override
+    public void bossIntro(){
+        gui.printOnGameSide("A man sits in the center of the room waiting patiently");
+        gui.printOnGameSide("His many many eyes stare you down as he stands up");
+        gui.printOnGameSide("Massive wings unfold from his back");
+        gui.printOnGameSide("The wings are thin and have a pattern that looks like massive eyes");
+        gui.printOnGameSide("He says nothing but gets ready to attack");
+        gui.printOnGameSide("Clear that he is not a friend you do the same");
+    }
 }
