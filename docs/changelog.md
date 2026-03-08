@@ -85,8 +85,8 @@
 - three pronged room that you get to choose your next room.
 - write a toString for the items
 - possibly make it so items can be in multiple sets at once - display might get messed up when doing the item info menu.
-- MAKE PURCHASE MENU THAT DESCRIBES ITEMS BEFORE YOU BUY
-- add description to all items
+- MAKE PURCHASE MENU THAT DESCRIBES ITEMS BEFORE YOU BUY *IN PROGRESS*
+- add description to all items *IN PROGRESS*
 - 
 
 ## TO FIX URGENTLY

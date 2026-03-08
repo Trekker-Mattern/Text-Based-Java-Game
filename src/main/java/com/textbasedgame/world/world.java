@@ -1,8 +1,6 @@
 package com.textbasedgame.world;
 
 import com.textbasedgame.GUI.gui;
-import com.textbasedgame.items.equipables;
-import com.textbasedgame.items.item;
 import com.textbasedgame.monsters.monsterArrayList;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.GameProgressWrapper;
@@ -10,7 +8,6 @@ import com.textbasedgame.util.itemInfoPrinter;
 import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
 import com.textbasedgame.world.rooms.Room;
-import com.textbasedgame.GUI.pictureLoader.imageIDs;
 
 // Singleton class: accessed statically throughout game
 public abstract class world { 
@@ -53,7 +50,7 @@ public abstract class world {
         if (response.quit(Ans)){gui.quit();}
         //OPEN SHOP!!!
         if(response.Shop(Ans)){
-            openShop();
+            shop.openShop();
         }
         else if(response.Dungeon(Ans)){
             openDungeon();
@@ -82,112 +79,7 @@ public abstract class world {
     
     
 
-    private static void openShop(){
-        gui.setImage(imageIDs.SHOP);
-        shopitems.printShop();
-        gui.printOnGameSide("Would you like to purchase one of these items?");
-        gui.printOnGameSide("You can also sell items by typing sell!");
-        String userInput = gui.getInput();
-
-        gui.pushOldText();
-        
-        try{
-            int UserResp = Integer.parseInt(userInput);
-            //int numUserIsBuying = input.nextInt();
-            item[] shop = shopitems.getShopArray();
-            
-            if(player.BankBalance >= shopitems.getShopArray()[UserResp-1].getPrice()){
-                shopitems.buyItem(UserResp);
-                gui.newlOnGameSide();
-                gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
-            }
-            else{
-                gui.printOnGameSide("You dont have enough money to buy that!");
-                gui.printOnGameSide("You only have " + player.BankBalance + " shmeckles.");
-            }
-        }
-        catch(NumberFormatException | IndexOutOfBoundsException ex){
-                    //do nothing ig
-        }
-        //yes buy shit
-        if(response.respondYes(userInput)){
-            item[] shop = shopitems.getShopArray();
-            gui.printOnGameSide("What Item Would you like to buy?");
-            gui.printOnGameSide("Number ___");
-            try{
-                int numUserIsBuying = Integer.parseInt(gui.getInput());
-                
-
-                if(player.BankBalance >= shop[numUserIsBuying - 1].getPrice()){
-                    shopitems.buyItem(numUserIsBuying);
-                    gui.newlOnGameSide();
-                    gui.printOnGameSide("You successfully bought " + shop[numUserIsBuying - 1] + " for " + shop[numUserIsBuying - 1].getPrice() + " shmeckles.");
-                }
-                else{
-                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
-                }
-            }
-            catch(NumberFormatException e){
-                for(item i : shopitems.getShopArray()){
-                    if(i.getItemName().toLowerCase().equals(userInput.toLowerCase())){
-                        if(player.BankBalance >= i.getPrice()){
-                            shopitems.buyItem(i);
-                            gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
-                            break;
-                        }
-                        else{
-                            gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
-                        }
-                    }
-                }
-            }   
-            catch(IndexOutOfBoundsException e){
-                gui.printOnGameSide("There isnt that many items in the shop");
-            }         
-        }
-
-        //Selling menu
-        if(response.respondSell(userInput)){
-            player.printPlayerItems();
-            gui.printOnGameSide("Which item would you like to sell?");
-            try{
-                int itemSell = Integer.parseInt(gui.getInput());
-                itemSell--; //adjust for 0 index
-                if(player.inventory.get(itemSell) instanceof equipables && ((equipables)player.inventory.get(itemSell)).isEquipped()){
-                    player.inventory.get(itemSell).Use();
-                }
-                int sellPrice = (int)(player.inventory.get(itemSell).getPrice() * .75);
-                player.BankBalance += sellPrice;
-                gui.printOnGameSide("You sell " + player.inventory.get(itemSell).getItemName() + " for " + sellPrice + " shmeckles");
-                player.inventory.remove(player.inventory.get(itemSell));
-                return;
-            }
-            catch(IndexOutOfBoundsException e){
-                gui.printOnGameSide("You dont have that many items you goof!");
-                return;
-            }
-            catch(NumberFormatException e){return;}
-            
-        }
-
-        //////////////////////////////////////////////////////////////
-        /// Check to see if user put name of item and buy accordingly
-        //////////////////////////////////////////////////////////////
-        for(item i : shopitems.getShopArray()){
-            if(i.getItemName().toLowerCase().equals(userInput.toLowerCase())){
-                if(player.BankBalance >= i.getPrice()){
-                    shopitems.buyItem(i);
-                    gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
-                    break;
-                }
-                else{
-                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
-                }
-            }
-        }
-        //no dont buy shit recurse back to display
-        if(response.respondNo(userInput)){gui.pushOldText();}
-    }
+    
 
     private static void openDungeon(){
         if(stageNum % 5 == 0 && AREANUM < areas.length - 1){
