@@ -7,15 +7,21 @@ import javax.swing.ImageIcon;
 public class pictureLoader {
 
     private final String IMAGES_PATH = "/images/";
+    public enum imageIDs{
+        SHOP, LIBRARY, CAVE
+    };
 
-    public ImageIcon getImage(int imageID){
+    public ImageIcon getImage(imageIDs imageID){
         URL imageUrl;
         switch(imageID){
-            case 0:
+            case SHOP:
                 imageUrl = getClass().getResource(IMAGES_PATH + "Shop.PNG");
                 return new ImageIcon(imageUrl);
-            case 4:
+            case LIBRARY:
                 imageUrl = getClass().getResource(IMAGES_PATH+"Library.PNG");
+                return new ImageIcon(imageUrl);
+            case CAVE:
+                imageUrl = getClass().getResource(IMAGES_PATH+"Cave_1.png");
                 return new ImageIcon(imageUrl);
         }
         return null;

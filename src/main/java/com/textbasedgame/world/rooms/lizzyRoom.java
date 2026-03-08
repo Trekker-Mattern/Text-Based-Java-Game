@@ -1,6 +1,7 @@
 package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.consumableItems.genericPotion;
 import com.textbasedgame.items.keyItems.potionsBag;
 import com.textbasedgame.items.keyItems.potionsBag.potionHerbs;
@@ -11,7 +12,7 @@ import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 
 public class lizzyRoom extends Room {
-    private static final int roomID = 10;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     public void openRoom() {
         gui.printOnGameSide("You enter a warmly lit room with candles and plants all over.");
         
@@ -53,7 +54,7 @@ public class lizzyRoom extends Room {
         }
     }
 
-    public int getRoomID(){
+    public imageIDs getRoomID(){
         return roomID;
     }
 

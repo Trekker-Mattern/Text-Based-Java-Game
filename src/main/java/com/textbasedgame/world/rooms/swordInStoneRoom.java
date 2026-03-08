@@ -1,13 +1,14 @@
 package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.handItems.escalibur;
 import com.textbasedgame.monsters.regularMonsters.demon;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
 
 public class swordInStoneRoom extends Room {
-    private final int roomID = 6;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     @Override
     public void openRoom() {
         gui.printOnGameSide("A massive stone sits in the center of the room");
@@ -26,7 +27,7 @@ public class swordInStoneRoom extends Room {
         }
     }
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }

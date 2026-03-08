@@ -1,12 +1,13 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 
 public class idolRoom extends Room {
-    private final int roomID = 3;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     public void openRoom(){
         gui.printOnGameSide("You walk into a large empty cobblestoned room with a idol");
             buffTypes buffType = null;
@@ -37,7 +38,7 @@ public class idolRoom extends Room {
             }
     }
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }

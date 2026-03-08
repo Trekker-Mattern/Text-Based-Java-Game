@@ -2,9 +2,10 @@ package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.monsters.*;
 import com.textbasedgame.GUI.*;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 
 public class bossMonsterRoom extends baseMonsterRoom{
-    private static final int roomID = -1;
+    private static final imageIDs roomID = imageIDs.CAVE;
 
     private boss m;
 
@@ -25,7 +26,7 @@ public class bossMonsterRoom extends baseMonsterRoom{
     };
 
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }

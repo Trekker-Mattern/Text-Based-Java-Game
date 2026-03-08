@@ -1,16 +1,16 @@
 package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
 import com.textbasedgame.world.shopitems;
 import com.textbasedgame.items.item;
 
 public class spikeRoom extends Room{
-    public static final int roomID = 9;
-
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     @Override
-    public int getRoomID(){
+    public imageIDs getRoomID(){
         return roomID;
     }
 

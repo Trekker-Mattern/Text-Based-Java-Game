@@ -1,5 +1,6 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.handItems.sword;
 import com.textbasedgame.monsters.regularMonsters.goblin;
 import com.textbasedgame.playerFiles.player;
@@ -7,7 +8,7 @@ import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;
 
 public class fountainRoom extends Room {
-    private final int roomID = 2;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     public void openRoom(){
         gui.printOnGameSide("You walk into a room with a fountain in the center.");
         gui.printOnGameSide("The room is too dark to see what color the water is");
@@ -57,7 +58,7 @@ public class fountainRoom extends Room {
         }
     }
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }

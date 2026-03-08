@@ -1,11 +1,12 @@
 package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.util.*;
 import com.textbasedgame.world.*;
 
 public class portalRoom extends Room{
-    private final int roomID = 5;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     public void openRoom(){
         int i = TrekkerMath.randomInt(1, 0);
             System.out.println(i);
@@ -65,7 +66,7 @@ public class portalRoom extends Room{
             }
     }
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }

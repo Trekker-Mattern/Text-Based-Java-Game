@@ -10,6 +10,7 @@ import com.textbasedgame.util.itemInfoPrinter;
 import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
 import com.textbasedgame.world.rooms.Room;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 
 // Singleton class: accessed statically throughout game
 public abstract class world { 
@@ -82,7 +83,7 @@ public abstract class world {
     
 
     private static void openShop(){
-        gui.setImage(0);
+        gui.setImage(imageIDs.SHOP);
         shopitems.printShop();
         gui.printOnGameSide("Would you like to purchase one of these items?");
         gui.printOnGameSide("You can also sell items by typing sell!");

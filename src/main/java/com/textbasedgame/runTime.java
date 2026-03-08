@@ -2,6 +2,7 @@ package com.textbasedgame;
 import java.io.File;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.consumableItems.throwingKnife;
 import com.textbasedgame.items.handItems.club;
 import com.textbasedgame.items.handItems.dagger;
@@ -53,7 +54,7 @@ public class runTime
         }
         monsterArrayList.createMonsterList();
         gui.runGui();
-        gui.setImage(0);
+        gui.setImage(imageIDs.SHOP);
         
     }
 

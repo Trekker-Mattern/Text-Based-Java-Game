@@ -3,6 +3,7 @@ package com.textbasedgame.world.rooms;
 import java.util.ArrayList;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.consumableItems.genericPotion;
 import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.items.keyItems.potionsBag;
@@ -14,9 +15,9 @@ import com.textbasedgame.util.response;
 import com.textbasedgame.util.triple;
 
 public class cauldronRoom extends Room {
-    public static final int roomID = 8;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
     @Override

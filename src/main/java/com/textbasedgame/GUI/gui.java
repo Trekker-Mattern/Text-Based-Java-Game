@@ -25,6 +25,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.plaf.ProgressBarUI;
 
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.pair;
@@ -46,7 +47,7 @@ public class gui {
     public static String latestInput;
     private static JScrollPane scrollPane;
     private static JScrollPane secondScrollPane;
-    private static int currentImageID;
+    private static imageIDs currentImageID;
 
     private static Queue<JLabel> textQueue = new LinkedList<JLabel>();
     
@@ -361,7 +362,7 @@ public class gui {
         imagePanel.removeAll();
 
         ImageIcon img = pLoader.getImage(currentImageID);
-        if(img == null){img = pLoader.getImage(4);}
+        if(img == null){img = pLoader.getImage(imageIDs.LIBRARY);}
         ImageIcon imgIcon = new ImageIcon(img.getImage().getScaledInstance(imagePanel.getWidth(), imagePanel.getHeight(), Image.SCALE_DEFAULT));
 
         JLabel imageLabel = new JLabel();
@@ -371,7 +372,7 @@ public class gui {
         imagePanel.repaint();
     }
 
-    public static void setImage(int imageID){
+    public static void setImage(imageIDs imageID){
         currentImageID = imageID;
         updateImage();
     }

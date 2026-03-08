@@ -1,5 +1,6 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.items.handItems.spartanSpear;
 import com.textbasedgame.items.item;
@@ -10,7 +11,7 @@ import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 import com.textbasedgame.world.shopitems;
 public class chestRoom extends Room {
-    private final int roomID = 1;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     public void openRoom(){
 
         gui.printOnGameSide("You walk into a room and theres a chest sitting on the floor");
@@ -67,7 +68,7 @@ public class chestRoom extends Room {
             }
     }
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }

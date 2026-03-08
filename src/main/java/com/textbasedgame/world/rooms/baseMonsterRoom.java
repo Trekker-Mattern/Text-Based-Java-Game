@@ -1,6 +1,7 @@
 package com.textbasedgame.world.rooms;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.genericItems.attackingConsumable;
 import com.textbasedgame.monsters.*;
 import com.textbasedgame.world.world;
@@ -10,7 +11,7 @@ import com.textbasedgame.util.response;
 
 
 public class baseMonsterRoom extends Room{
-    private static final int roomID = -1;
+    private static final imageIDs roomID = imageIDs.CAVE;
 
     private monster m;
 
@@ -29,7 +30,7 @@ public class baseMonsterRoom extends Room{
     };
 
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 

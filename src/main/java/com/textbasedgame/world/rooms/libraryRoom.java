@@ -1,11 +1,12 @@
 package com.textbasedgame.world.rooms;
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 
 public class libraryRoom extends Room {
-    private static final int roomID = 4;
+    private static final imageIDs roomID = imageIDs.LIBRARY;
     public void openRoom(){
         
         gui.printOnGameSide("You step into a brand new room and are surrounded by books");
@@ -59,7 +60,7 @@ public class libraryRoom extends Room {
         
     }
     @Override
-    public int getRoomID() {
+    public imageIDs getRoomID() {
         return roomID;
     }
 }
