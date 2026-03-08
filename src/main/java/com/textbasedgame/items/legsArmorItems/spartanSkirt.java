@@ -21,6 +21,7 @@ public class spartanSkirt extends legsArmor {
         setName("Periskelis");
         equipmentSetName = "Spartan Set";
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("A skirt dating back to ancient greek times. The bronze seal on the right side seems to hold a little extra power. When looking at the seal you cant help but feel that the rest of the Spartan Armor would make you feel extra strong in your journey.");
     }
     public spartanSkirt(int qual){
         setQuality(qual);
@@ -28,6 +29,7 @@ public class spartanSkirt extends legsArmor {
         setPrice(30);
         setName("Periskelis");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("A skirt dating back to ancient greek times. The bronze seal on the right side seems to hold a little extra power. When looking at the seal you cant help but feel that the rest of the Spartan Armor would make you feel extra strong in your journey.");
     } 
     @Override
     protected Set<String> getTagsSet() {

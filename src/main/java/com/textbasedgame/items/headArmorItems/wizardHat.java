@@ -22,6 +22,7 @@ public class wizardHat extends headArmor {
         setName("Wizard Hat");
         equipmentSetName = "Wizard Set";
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
+        setDescription("A silky and smooth pointy hat. Fairly unremarkable but renowned for its ability to channel magic through the wearer. Its powers could certainly be amplified with a full cloak and shoes.");
     }
     public wizardHat(int qual){
         setQuality(qual);
@@ -30,6 +31,7 @@ public class wizardHat extends headArmor {
         setPrice(25);
         setName("Wizard Hat");
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
+        setDescription("A silky and smooth pointy hat. Fairly unremarkable but renowned for its ability to channel magic through the wearer. Its powers could certainly be amplified with a full cloak and shoes.");
     } 
     @Override
     protected Set<String> getTagsSet() {

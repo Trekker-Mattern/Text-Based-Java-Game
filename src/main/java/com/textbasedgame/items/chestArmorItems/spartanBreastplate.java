@@ -14,18 +14,20 @@ public class spartanBreastplate extends chestArmor {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Heavy Armor", "Chestplate", "Legs Armor", "Bronze", "Strength", "Metal"));
     private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(spartanBoots.class, spartanHelmet.class, spartanBreastplate.class));
     public spartanBreastplate(){
-        armorAdd = (int)(quality * 2.2);
+        armorAdd = (int)(quality * 2.0);
         setPrice(52);
         setName("Spartan Breastplate");
         equipmentSetName = "Spartan Set";
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("A bronze chestplate that was worn originally by ancient greek soldiers. Though the metal seems outdated by current standards, there seems to be some deeper power that can be gained through wearing a full set of this armor.");
     }
     public spartanBreastplate(int qual){
         setQuality(qual);
-        armorAdd = (int)(quality * 2.2);
+        armorAdd = (int)(quality * 2.0);
         setPrice(52);
         setName("Spartan Breastplate");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("A bronze chestplate that was worn originally by ancient greek soldiers. Though the metal seems outdated by current standards, there seems to be some deeper power that can be gained through wearing a full set of this armor.");
     } 
     @Override
     protected Set<String> getTagsSet() {

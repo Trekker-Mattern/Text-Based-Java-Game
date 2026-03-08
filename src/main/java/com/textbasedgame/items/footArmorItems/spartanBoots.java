@@ -15,18 +15,20 @@ public class spartanBoots extends boots {
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Heavy Armor", "Boots", "Shoes" ,"Legs Armor", "Bronze", "Strength", "Metal"));
     private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(spartanBoots.class, spartanHelmet.class, spartanBreastplate.class));
     public spartanBoots(){
-        armorAdd = (int)(quality * 1.2);
+        armorAdd = (int)(quality * 0.8);
         setPrice(12);
         setName("Sandals");
         equipmentSetName = "Spartan Set";
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("How the ancient greeks wore these shoes may forever be a mystery to you. They seem to provide very little in terms of protection, but you seem to feel a sense of power that could definately be amplified by wearing a full set of Spartan Armor");
     }
     public spartanBoots(int qual){
         setQuality(qual);
-        armorAdd = (int)(quality * 1.2);
+        armorAdd = (int)(quality * 0.8);
         setPrice(12);
         setName("Sandals");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("How the ancient greeks wore these shoes may forever be a mystery to you. They seem to provide very little in terms of protection, but you seem to feel a sense of power that could definately be amplified by wearing a full set of Spartan Armor");
     } 
     @Override
     protected Set<String> getTagsSet() {

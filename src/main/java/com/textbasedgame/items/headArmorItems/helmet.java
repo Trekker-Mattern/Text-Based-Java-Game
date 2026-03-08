@@ -17,13 +17,15 @@ public class helmet extends headArmor{
         armorAdd = (int)(quality * 1.3);
         setPrice(20);
         setName("Helmet");
-
+        setDescription("A metal face and head covering. Provides quality protection but you dont feel any special power or energy when you place the helmet on your head. Good enough you say.");
+        
     }
     public helmet(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 1.3);
         setPrice(20);
         setName("Helmet");
+        setDescription("A metal face and head covering. Provides quality protection but you dont feel any special power or energy when you place the helmet on your head. Good enough you say.");
 
     }
     @Override

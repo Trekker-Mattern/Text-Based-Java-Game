@@ -38,7 +38,9 @@ public abstract class roomFactory {
             }
         }
         else{
-            return new baseMonsterRoom();
+            Room r = new baseMonsterRoom();
+            gui.setImage(r.getRoomID());
+            return r;
         }
     }
 

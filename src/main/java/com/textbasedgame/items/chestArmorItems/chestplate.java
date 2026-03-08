@@ -9,16 +9,17 @@ import java.util.Arrays;
 public class chestplate extends chestArmor{
     private static final Set<String> tags = new HashSet<>(Arrays.asList("Chestplate", "Metal", "Heavy Armor", "Heavy"));
     public chestplate(){
-        armorAdd = quality * 2;
+        armorAdd = (int)(quality * 2.4);
         setPrice(45);
         setName("Chestplate");
-
+        setDescription("Your everyday run-of-the-mill chestplate. It provides substancial protection due to its heavy metal makeup, but it doesnt seem to have any special properties.");
     }
     public chestplate(int qual){
         setQuality(qual);
-        armorAdd = quality * 2;
+        armorAdd = (int)(quality * 2.4);
         setPrice(45);
         setName("Chestplate");
+        setDescription("Your everyday run-of-the-mill chestplate. It provides substancial protection due to its heavy metal makeup, but it doesnt seem to have any special properties.");
         
     } 
     public void onEquip(){

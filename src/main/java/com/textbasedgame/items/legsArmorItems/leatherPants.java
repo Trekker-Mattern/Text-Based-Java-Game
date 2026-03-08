@@ -15,13 +15,15 @@ public class leatherPants extends legsArmor {
         armorAdd = (int)(quality * 1.275);
         setPrice(13);
         setName("Leather Pants");
-
+        setDescription("Some truly disgusting looking pants. Thick enough only to ward off the weakest attacks. Certainly better than nothing though.");
+        
     }
     public leatherPants(int qual){
         setQuality(qual);
         armorAdd = (int)(quality * 1.275);
         setPrice(13);
         setName("Leather Pants");
+        setDescription("Some truly disgusting looking pants. Thick enough only to ward off the weakest attacks. Certainly better than nothing though.");
 
     }
     @Override

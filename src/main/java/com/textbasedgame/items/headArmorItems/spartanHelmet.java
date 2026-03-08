@@ -21,6 +21,7 @@ public class spartanHelmet extends headArmor {
         setName("Spartan Helmet");
         equipmentSetName = "Spartan Set";
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("A bronze helmet with a bright red and black headress. You feel power course through you as you place the helmet on your head. After a look in the mirror you decide you look fairly intimidating, but you could be so much stronger if you found the rest of ancient greek set.");
     }
     public spartanHelmet(int qual){
         setQuality(qual);
@@ -29,6 +30,7 @@ public class spartanHelmet extends headArmor {
         setPrice(25);
         setName("Spartan Helmet");
         buffs.add(new pair<>(buffTypes.STRENGTH, 1));
+        setDescription("A bronze helmet with a bright red and black headress. You feel power course through you as you place the helmet on your head. After a look in the mirror you decide you look fairly intimidating, but you could be so much stronger if you found the rest of ancient greek set.");
     } 
     @Override
     protected Set<String> getTagsSet() {

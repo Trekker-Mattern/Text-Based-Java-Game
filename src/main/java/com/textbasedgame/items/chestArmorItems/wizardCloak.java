@@ -21,8 +21,9 @@ public class wizardCloak extends chestArmor {
         setName("Wizard Cloak");
         equipmentSetName = "Wizard Set";
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
+        setDescription("A light cloak that adds minimal protection but embues the user with some extra unseen powers. When running your hands over the fabric you feel the urge to collect and wear the full set of clothes.");
     }
-
+    
     public wizardCloak(int qual) {
         setQuality(qual);
         armorAdd = (int)(quality * 1.2);
@@ -30,6 +31,7 @@ public class wizardCloak extends chestArmor {
         setPrice(15);
         setName("Wizard Cloak");
         buffs.add(new pair<>(buffTypes.INTELLIGENCE, 1));
+        setDescription("A light cloak that adds minimal protection but embues the user with some extra unseen powers. When running your hands over the fabric you feel the urge to collect and wear the full set of clothes.");
     }
     @Override
     protected Set<String> getTagsSet() {

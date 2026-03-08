@@ -4,6 +4,7 @@ public abstract class item {
     private int itemPrice;
     private String name;
     protected String classofItem;
+    private String description;
     
     public item(){
         classofItem = this.getClass().getName();
@@ -27,6 +28,12 @@ public abstract class item {
     //protected abstract void setClass(Class<? extends item> clazz);
     public String getClassofItem(){
         return classofItem;
+    }
+    public String getDescription(){
+        return description;
+    }
+    public void setDescription(String desc){
+        description = desc;
     }
 
     //Be careful with this use
