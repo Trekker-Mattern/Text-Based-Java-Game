@@ -65,6 +65,7 @@
 - Soul Weighing room - Gives you a bonus if all your stats are equal, gives smaller bonus if they are close to each other but not equal
 - Implimented potion creation with herbs
 - Implimented a room with npc "Lizzy" to give herbs on appearence.
+- MAKE PURCHASE MENU THAT DESCRIBES ITEMS BEFORE YOU BUY *IN PROGRESS*
 
 ---
 
@@ -85,9 +86,9 @@
 - three pronged room that you get to choose your next room.
 - write a toString for the items
 - possibly make it so items can be in multiple sets at once - display might get messed up when doing the item info menu.
-- MAKE PURCHASE MENU THAT DESCRIBES ITEMS BEFORE YOU BUY *IN PROGRESS*
 - add description to all items *IN PROGRESS*
-- 
+- RE-REFACTOR SHOP CLASS - Its kind of gross right now 
+- Make it so some monsters carry herbs + other ways to get herbs
 
 ## TO FIX URGENTLY
 

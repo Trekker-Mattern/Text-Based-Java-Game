@@ -38,9 +38,9 @@ public abstract class world {
         gui.printOnGameSide("You have some options of what to do:");
         gui.newlOnGameSide();
         gui.printOnGameSide("Shop");
-        if(GameProgressWrapper.gameProgress.potionBagUnlocked){gui.printOnGameSide("Potions Crafting");}
         gui.printOnGameSide("Dungeon");
-        gui.printOnGameSide("Items");
+        gui.printOnGameSide("Items - Info for item information");
+        if(GameProgressWrapper.gameProgress.potionBagUnlocked){gui.printOnGameSide("Potions Crafting");}
         gui.printOnGameSide("Quit");
         gui.printOnGameSide("Save");
         gui.newlOnGameSide();
@@ -68,7 +68,7 @@ public abstract class world {
         else if(Ans.equals("info")){
             itemInfoPrinter.infoMenu();
         }
-        else if(Ans.contains("potions")){
+        else if(Ans.contains("potions") && GameProgressWrapper.gameProgress.potionBagUnlocked){
             potionsMenu();
         }
     }

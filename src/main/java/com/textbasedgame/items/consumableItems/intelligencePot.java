@@ -8,6 +8,7 @@ public class intelligencePot extends consumables {
     public intelligencePot(){
         setPrice(20);
         setName("Intelligence Potion");
+        setDescription("A vial that shines brightly and sparkles similarly to the stars in the sky. Drinking this will surely make you smarter, as do most glowing mysterious liquids.");
     }
 
     public void Use(){

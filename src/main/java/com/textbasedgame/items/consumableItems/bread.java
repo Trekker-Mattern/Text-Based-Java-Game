@@ -8,6 +8,7 @@ public class bread extends consumables{
     public bread(){
         setPrice(7);
         setName("Bread");
+        setDescription("A loaf of bread. Some call it prison rations, but it is good nourisment on the go.");
     }
     public void Use(){
         super.Use();

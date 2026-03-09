@@ -9,6 +9,7 @@ public class agilityPot extends consumables{
     public agilityPot(){
         setPrice(15);
         setName("Agility Potion");
+        setDescription("A potion that increases your agility for a short time. The bottle vibrates softly as if the energy from the potion has imbued the bottle itself.");
     }
 
     public void Use(){

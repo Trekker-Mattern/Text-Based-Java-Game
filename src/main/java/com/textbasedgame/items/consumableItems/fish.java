@@ -11,6 +11,7 @@ public class fish extends consumables {
     public fish(){ 
         setPrice(5);
         setName("Fish");
+        setDescription("Fresh fish caught recently by a fisherman. A good source of protien but honestly kind of gross. (You dont like fish)");
 
         try{
             if(player.getName().equals("Jesus")){

@@ -22,6 +22,7 @@ public class genericPotion extends consumables {
         int bStr = (int)player.luck + TrekkerMath.randomInt(6, 1) - 6;
         int bduration = (int)player.luck + TrekkerMath.randomInt(13, 1);
         buffs.add(new triple<>(bType, bStr, bduration));
+        setDescription("A round vial containing some colorful liquid. Drinking will have some effect but its difficult to tell what. Learning more about the world may help you decipher what these concoctions really do.");
     }
     public genericPotion(buffTypes bType, int bStr, int bduration){
         

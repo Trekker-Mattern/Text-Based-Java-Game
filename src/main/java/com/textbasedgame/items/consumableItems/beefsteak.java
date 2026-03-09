@@ -8,6 +8,7 @@ public class beefsteak extends consumables{
     public beefsteak(){
         setPrice(7);
         setName("BeefSteak Sandwich");
+        setDescription("A classic Fyladelphia Sandwitch, the steak brings a heafty meal and considerable nourishment.");
     }
     public void Use(){
         super.Use();

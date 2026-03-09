@@ -8,6 +8,7 @@ public class threeCourseMeal extends consumables {
     public threeCourseMeal(){
         setPrice(25);
         setName("Three Course Meal");
+        setDescription("Three whole rounds of home cooked meals. Its what every first time adventurer dreams of while on the road. This will saciate your hunger for days to come and rejuvinate you!");
     }
     public void Use(){
         super.Use();

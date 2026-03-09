@@ -9,6 +9,7 @@ public class coffee extends consumables{
     public coffee(){
         setPrice(10);
         setName("Coffee");
+        setDescription("Only discovered recently, what you can only assume are magic beans are run through water giving the water extra speed and energy. It also tastes nice and satiates your hunger slightly. This stuff is truly magical.");
     }
     public void Use(){
         super.Use();

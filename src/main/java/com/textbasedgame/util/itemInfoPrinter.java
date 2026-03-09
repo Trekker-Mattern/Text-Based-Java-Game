@@ -29,6 +29,7 @@ public class itemInfoPrinter {
         int price = i.getPrice(); 
 
         gui.printOnGameSide("-- " + name + " --");
+        gui.printOnGameSide(i.getDescription());
         gui.printOnGameSide("Price: " + price);
         i.printInfo();
     }
@@ -46,6 +47,7 @@ public class itemInfoPrinter {
         Set<String> tags = i.getItemTags();
 
         gui.printOnGameSide("--- " + name + " ---");
+        gui.printOnGameSide(i.getDescription());
         gui.printOnGameSide("Equip Slot : " + equipSlot);
         if(setName != null){
             gui.newlOnGameSide();
