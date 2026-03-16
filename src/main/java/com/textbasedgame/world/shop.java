@@ -26,7 +26,12 @@ public class shop {
             int UserResp = Integer.parseInt(userInput);
             item[] shop = shopitems.getShopArray();
             
+            boolean buyConfirm = buyConfirmationMenu(shopitems.getShopArray()[UserResp-1]);
 
+            if (buyConfirm == false){
+                gui.printOnGameSide("You decided not to buy " + shop[UserResp-1].getItemName() + ".");
+                return;
+            }
             //BUY FROM NUMBER
             if(player.BankBalance >= shopitems.getShopArray()[UserResp-1].getPrice()){
                 shopitems.buyItem(UserResp);

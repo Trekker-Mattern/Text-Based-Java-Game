@@ -17,6 +17,7 @@ public class pictureLoader {
         switch(imageID){
             case BLANK:
                 imageUrl = getClass().getResource(IMAGES_PATH + "Blank.png");
+                return new ImageIcon(imageUrl);
             case SHOP:
                 imageUrl = getClass().getResource(IMAGES_PATH + "Shop.PNG");
                 return new ImageIcon(imageUrl);
