@@ -5,15 +5,18 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 
 public class pictureLoader {
+    //IMAGES ARE 2266 x 1488 
 
     private final String IMAGES_PATH = "/images/";
     public enum imageIDs{
-        SHOP, LIBRARY, CAVE
+        SHOP, LIBRARY, CAVE, BLANK
     };
 
     public ImageIcon getImage(imageIDs imageID){
         URL imageUrl;
         switch(imageID){
+            case BLANK:
+                imageUrl = getClass().getResource(IMAGES_PATH + "Blank.png");
             case SHOP:
                 imageUrl = getClass().getResource(IMAGES_PATH + "Shop.PNG");
                 return new ImageIcon(imageUrl);

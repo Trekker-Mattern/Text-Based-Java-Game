@@ -1,6 +1,7 @@
 package com.textbasedgame;
 import java.io.File;
 
+import com.textbasedgame.GUI.TitleScreen;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.consumableItems.throwingKnife;
@@ -23,6 +24,7 @@ public class runTime
         
         startup();
 
+        gui.setImage(imageIDs.SHOP);
 
         if(newSaveFolderBool){
             initializePlayer();
@@ -53,8 +55,18 @@ public class runTime
             saveFiles.readSave();
         }
         monsterArrayList.createMonsterList();
-        gui.runGui();
-        gui.setImage(imageIDs.SHOP);
+        gui.setupGui();
+        TitleScreen.openTitleScreen();
+        synchronized(TitleScreen.class){
+            while(TitleScreen.gameOpened == false){
+                try{
+                    TitleScreen.class.wait();
+                }
+                catch(Exception e){
+                    
+                }
+            }
+        }
         
     }
 
