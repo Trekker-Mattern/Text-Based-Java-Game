@@ -1,7 +1,6 @@
 package com.textbasedgame.playerFiles;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.HashSet;
 
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;

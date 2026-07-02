@@ -42,24 +42,36 @@ public class monsterCreator {
 
 
     public static int fastMonsterSpeed(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel / monsterLevelDivider));
+        int ret = (int)(TrekkerMath.randomDouble(2, .5) * (monsterLevel / monsterLevelDivider));
+        ret = ret < 1 ? 1 : ret;
+        return ret;
     }
     public static int medMonsterSpeed(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * (monsterLevel / monsterLevelDivider));
+        int ret = (int)(TrekkerMath.randomDouble(1.5, .75) * (monsterLevel / monsterLevelDivider));
+        ret = ret < 1 ? 1 : ret;
+        return ret;
     }
 
     public static int slowMonsterSpeed(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(.5, .001) * monsterLevel / monsterLevelDivider);
+        int ret = (int)(TrekkerMath.randomDouble(.5, .001) * monsterLevel / monsterLevelDivider);
+        ret = ret < 1 ? 1 : ret;
+        return ret;
     }
 
     public static int strongMonsterStr(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel / monsterLevelDivider);
+        int ret = (int)(TrekkerMath.randomDouble(2, .5) * monsterLevel / monsterLevelDivider);
+        ret = ret < 1 ? 1 : ret;
+        return ret;
     }
     public static int weakMonsterStr(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel / monsterLevelDivider);
+        int ret = (int)(TrekkerMath.randomDouble(1, .2) * monsterLevel / monsterLevelDivider);
+        ret = ret < 1 ? 1 : ret;
+        return ret;
     }
     public static int medMonsterStr(int monsterLevel){
-        return (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
+        int ret = (int)(TrekkerMath.randomDouble(1.5, .75) * monsterLevel / monsterLevelDivider);
+        ret = ret < 1 ? 1 : ret;
+        return ret;
     }
     public static int strongMonsterHealth(int monsterLevel){
         if (monsterLevel  < 5) {
