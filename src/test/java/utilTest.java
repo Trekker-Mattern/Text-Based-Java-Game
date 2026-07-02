@@ -21,9 +21,9 @@ public class utilTest {
 
     @Test
     public void testTrekkerMathRandomInt() {
-        int min = 1;
-        int max = 10;
-        int iterations = 1000;
+        int min = 0;
+        int max = 100;
+        int iterations = 10000;
 
         for (int i = 0; i < iterations; i++) {
             int randomValue = TrekkerMath.randomInt(max, min);
@@ -46,6 +46,15 @@ public class utilTest {
             double expectedRatio = 1.0 / countMap.size();
 
             assertTrue(ratio >= expectedRatio - .12 && ratio <= expectedRatio + .12, "Integer " + intNumber + " spawn ratio is out of expected range" + ratio + " expected ratio: " + expectedRatio);
+        }
+    }
+
+    @Test
+    public void testTrekkerMathRandomIntExtensively(){
+        int endVal = 100;
+
+        for(int i = 0; i < endVal; i++){
+            testTrekkerMathRandomInt();
         }
     }
 }
