@@ -23,8 +23,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
-import javax.swing.plaf.ProgressBarUI;
 
+import com.sun.org.apache.bcel.internal.generic.FREM;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
@@ -53,14 +53,22 @@ public class gui {
     
     private static final pictureLoader pLoader = new pictureLoader();
 
-    public static void runGui(){
+    public static void setupGui(){
+
         //set up the container
         frame = new JFrame("Trekker RPG");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setSize(1000, 800);
         frame.addComponentListener(new resizeActionListener());
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
+        //make the frame visible
+        frame.setVisible(true);
+    }
+
+
+    public static void runGui(){
 
 
         //////////////////////////////////////////////////////////////////
@@ -153,8 +161,7 @@ public class gui {
         frame.add(mainPanel);
         frame.getRootPane().setDefaultButton(enterButton);
 
-        //make the frame visible
-        frame.setVisible(true);
+        
     }
 
     public static void setInput(String input){
@@ -162,6 +169,10 @@ public class gui {
         synchronized(gui.class){
             gui.class.notify();
         }
+    }
+
+    public static void openTitleScreen(){
+        TitleScreen.openTitleScreen();
     }
 
     //Set Text For Text Panel To Be Monster Fighting UI
@@ -362,8 +373,15 @@ public class gui {
         imagePanel.removeAll();
 
         ImageIcon img = pLoader.getImage(currentImageID);
-        if(img == null){img = pLoader.getImage(imageIDs.LIBRARY);}
-        ImageIcon imgIcon = new ImageIcon(img.getImage().getScaledInstance(imagePanel.getWidth(), imagePanel.getHeight(), Image.SCALE_DEFAULT));
+        if(img == null || img.getIconHeight() == 0 || img.getIconHeight() == 0){img = pLoader.getImage(imageIDs.LIBRARY);}
+        ImageIcon imgIcon;
+        try{
+            imgIcon = new ImageIcon(img.getImage().getScaledInstance(imagePanel.getWidth(), imagePanel.getHeight(), Image.SCALE_DEFAULT));
+        }
+        catch (Exception e){
+            System.out.println(e);
+            imgIcon = new ImageIcon(img.getImage().getScaledInstance(400, 400, Image.SCALE_DEFAULT));
+        }
 
         JLabel imageLabel = new JLabel();
         imageLabel.setIcon(imgIcon);

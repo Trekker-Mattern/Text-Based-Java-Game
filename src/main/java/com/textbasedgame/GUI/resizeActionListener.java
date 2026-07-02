@@ -16,9 +16,7 @@ public class resizeActionListener extends ComponentAdapter {
             ImageIcon imgIcon;
             @Override
             protected Void doInBackground(){
-
-
-                if(gui.imagePanel.getComponents().length > 0){
+                if(gui.imagePanel != null && gui.imagePanel.getComponents().length > 0){
                     Icon i = ((JLabel)(gui.imagePanel.getComponents()[0])).getIcon();
                     ImageIcon imgIcn;
                     if(i instanceof ImageIcon){
@@ -36,6 +34,7 @@ public class resizeActionListener extends ComponentAdapter {
             }
             @Override
             protected void done(){
+                if(gui.imagePanel != null){
                     gui.imagePanel.removeAll();
             
                     JLabel imageLabel = new JLabel();
@@ -45,6 +44,7 @@ public class resizeActionListener extends ComponentAdapter {
                     gui.imagePanel.repaint();
                     gui.frame.revalidate();
                     gui.frame.repaint();
+                }
             }
         }.execute();
         
