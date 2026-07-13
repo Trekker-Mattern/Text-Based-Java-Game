@@ -8,7 +8,7 @@ import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
 
 public class swordInStoneRoom extends Room {
-    private static final imageIDs roomID = imageIDs.LIBRARY;
+    private static final imageIDs roomID = imageIDs.SWORDROOM;
     @Override
     public void openRoom() {
         gui.printOnGameSide("A massive stone sits in the center of the room");

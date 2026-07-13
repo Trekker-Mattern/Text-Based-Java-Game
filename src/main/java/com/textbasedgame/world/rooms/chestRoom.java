@@ -33,13 +33,13 @@ public class chestRoom extends Room {
                         baseMonsterRoom.monsterMenu(m);
                         int extraMoney = (int)(TrekkerMath.randomInt(100,0) * player.luck);
                         gui.printOnGameSide("From the mimic's corpse you manage to scavenge an extra " + extraMoney + " shmeckles!");
-                        player.BankBalance += extraMoney;
+                        player.gold += extraMoney;
                         
                     break;
                     case 2:
                         gui.printOnGameSide("You open the chest and there is money inside!");
                         extraMoney = (int)(TrekkerMath.randomInt(300,0) * player.luck);
-                        player.BankBalance += extraMoney;
+                        player.gold += extraMoney;
                         gui.printOnGameSide("You gain " + extraMoney + " shmeckles!");
                         
                     break;

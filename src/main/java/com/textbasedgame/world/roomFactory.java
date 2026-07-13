@@ -11,7 +11,7 @@ import java.lang.reflect.Constructor;
 
 public abstract class roomFactory {
     private static ArrayList<Class<? extends Room>> t0Rooms = new ArrayList<>(Arrays.asList(chestRoom.class, fountainRoom.class, cauldronRoom.class, spikeRoom.class));
-    private static ArrayList<Class<?extends Room>> t1Rooms = new ArrayList<>(Arrays.asList(idolRoom.class, portalRoom.class, cauldronRoom.class, lizzyRoom.class));
+    private static ArrayList<Class<?extends Room>> t1Rooms = new ArrayList<>(Arrays.asList(idolRoom.class, portalRoom.class, cauldronRoom.class, lizzyRoom.class, gambleRoom.class));
     private static ArrayList<Class<? extends Room>> t2Rooms = new ArrayList<>(Arrays.asList(libraryRoom.class, soulWeighingRoom.class));
     private static ArrayList<Class<? extends Room>> t3Rooms = new ArrayList<>(Arrays.asList(swordInStoneRoom.class));
 
@@ -45,7 +45,7 @@ public abstract class roomFactory {
     }
 
     private static Class<? extends Room> getWeightedRoomClass(){
-        //////// 40% T0 - 30% T1 - 20% T2 - 10% T3
+        //////// 45% T0 - 30% T1 - 20% T2 - 5% T3
         
         int roomSelector;
         int weight = TrekkerMath.randomInt(100, 0);
@@ -62,7 +62,7 @@ public abstract class roomFactory {
             return t2Rooms.get(roomSelector);
         }
         /// T1 Rooms
-        else if (weight >= 10){
+        else if (weight >= 5){
             System.out.println("T1");
             roomSelector = TrekkerMath.randomInt(t1Rooms.size(), 0);
             return t1Rooms.get(roomSelector);
@@ -70,7 +70,7 @@ public abstract class roomFactory {
         /// T0 Rooms
         else{
             System.out.println("T0");
-            roomSelector = TrekkerMath.randomInt(t0Rooms.size() -1, 0);
+            roomSelector = TrekkerMath.randomInt(t0Rooms.size(), 0);
             return t0Rooms.get(roomSelector);
         }
     }

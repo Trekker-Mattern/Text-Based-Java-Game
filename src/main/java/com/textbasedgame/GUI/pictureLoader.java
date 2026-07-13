@@ -9,7 +9,7 @@ public class pictureLoader {
 
     private final String IMAGES_PATH = "/images/";
     public enum imageIDs{
-        SHOP, LIBRARY, CAVE, BLANK
+        SHOP, LIBRARY, CAVE, BLANK, SWORDROOM
     };
 
     public ImageIcon getImage(imageIDs imageID){
@@ -26,6 +26,9 @@ public class pictureLoader {
                 return new ImageIcon(imageUrl);
             case CAVE:
                 imageUrl = getClass().getResource(IMAGES_PATH+"Cave_1.png");
+                return new ImageIcon(imageUrl);
+            case SWORDROOM:
+                imageUrl = getClass().getResource(IMAGES_PATH+"SwordRoom.png");
                 return new ImageIcon(imageUrl);
         }
         return null;

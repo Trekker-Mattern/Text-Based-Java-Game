@@ -33,14 +33,14 @@ public class shop {
                 return;
             }
             //BUY FROM NUMBER
-            if(player.BankBalance >= shopitems.getShopArray()[UserResp-1].getPrice()){
+            if(player.gold >= shopitems.getShopArray()[UserResp-1].getPrice()){
                 shopitems.buyItem(UserResp);
                 gui.newlOnGameSide();
                 gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
             }
             else{
                 gui.printOnGameSide("You dont have enough money to buy that!");
-                gui.printOnGameSide("You only have " + player.BankBalance + " shmeckles.");
+                gui.printOnGameSide("You only have " + player.gold + " shmeckles.");
             }
         }
         catch(NumberFormatException | IndexOutOfBoundsException ex){
@@ -62,13 +62,13 @@ public class shop {
                 }
 
 
-                if(player.BankBalance >= shop[numUserIsBuying - 1].getPrice()){
+                if(player.gold >= shop[numUserIsBuying - 1].getPrice()){
                     shopitems.buyItem(numUserIsBuying);
                     gui.newlOnGameSide();
                     gui.printOnGameSide("You successfully bought " + shop[numUserIsBuying - 1] + " for " + shop[numUserIsBuying - 1].getPrice() + " shmeckles.");
                 }
                 else{
-                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
+                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.gold + " shmeckles.");
                     return;
                 }
             }
@@ -83,13 +83,13 @@ public class shop {
                             return;
                         }
 
-                        if(player.BankBalance >= i.getPrice()){
+                        if(player.gold >= i.getPrice()){
                             shopitems.buyItem(i);
                             gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
                             return;
                         }
                         else{
-                            gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
+                            gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.gold + " shmeckles.");
                             return;
                         }
                     }
@@ -112,7 +112,7 @@ public class shop {
                     player.inventory.get(itemSell).Use();
                 }
                 int sellPrice = (int)(player.inventory.get(itemSell).getPrice() * .75);
-                player.BankBalance += sellPrice;
+                player.gold += sellPrice;
                 gui.printOnGameSide("You sell " + player.inventory.get(itemSell).getItemName() + " for " + sellPrice + " shmeckles");
                 player.inventory.remove(player.inventory.get(itemSell));
                 return;
@@ -138,13 +138,13 @@ public class shop {
                     return;
                 }
 
-                if(player.BankBalance >= i.getPrice()){
+                if(player.gold >= i.getPrice()){
                     shopitems.buyItem(i);
                     gui.printOnGameSide("You successfully bought " + i + " for " + i.getPrice() + " shmeckles.");
                     return;
                 }
                 else{
-                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.BankBalance + " shmeckles.");
+                    gui.printOnGameSide("You dont have enough money to buy that!  You only have " + player.gold + " shmeckles.");
                 }
             }
         }

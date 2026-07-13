@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 
-import com.sun.org.apache.bcel.internal.generic.FREM;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
@@ -266,7 +265,7 @@ public class gui {
 
         topofInvPanel.add(new JLabel("Name: " + player.getName() + "                     "));
         topofInvPanel.add(new JLabel("Level: " + player.getPlayerLevel() + "                     "));
-        topofInvPanel.add(new JLabel("Shmeckles: " + Integer.toString(player.BankBalance) + "                     "));
+        topofInvPanel.add(new JLabel("Shmeckles: " + Integer.toString(player.gold) + "                     "));
         topofInvPanel.add(new JLabel("XP: " + player.getXP() + "/" + player.getXpToLevelUp()));
 
 

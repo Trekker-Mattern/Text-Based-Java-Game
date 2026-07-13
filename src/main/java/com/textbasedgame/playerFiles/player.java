@@ -55,7 +55,7 @@ public abstract class player {
     public static int intelligence;
     public static int armor = 0;
     public static double luck = TrekkerMath.randomDouble(4.0, 0.1);
-    public static int BankBalance = (int)(5 * luck);
+    public static int gold = (int)(5 * luck);
     public static int playerLevel = 5;
     private static int maxHealth;
     public static int health;
@@ -103,7 +103,18 @@ public abstract class player {
         gui.printOnGameSide("Agility: " + agility); 
         gui.printOnGameSide("Intelligence: " + intelligence);
     }
-
+    public static boolean isMajorityStat(buffTypes stat){
+        if(stat == buffTypes.STRENGTH){
+            return (strength >= agility && strength >= intelligence);
+        }
+        else if(stat == buffTypes.AGILITY){
+            return (agility >= strength && agility >= intelligence);
+        }
+        else if(stat == buffTypes.INTELLIGENCE){
+            return (intelligence >= strength && intelligence >= agility);
+        }
+        return false;
+    }
     
     
     // BUFFS ARE (BUFFTYPE, BUFF STRENGTH, BUFF DURATION)
@@ -264,8 +275,8 @@ public abstract class player {
     public static void setXP(int x){
         xp = x;
     }
-    public int getBankBalance(){
-        return BankBalance;
+    public int getgold(){
+        return gold;
     }
     public static void setName(String name) {
         player.name = name;
@@ -307,6 +318,18 @@ public abstract class player {
             i.setEquipped(true);
         }
     }
+    public static void removeItemFromPlayer(item itemToRemove){
+        for(item i : inventory){
+            if(itemToRemove.equals(i)){
+                if(i instanceof equipables && ((equipables)i).isEquipped()){
+                    ((equipables)i).Use();
+                }
+                inventory.remove(i);
+                return;
+            }
+        }
+    }
+
 
     public static void addKeyItemToPlayer(keyItem itm){
         keyItemInventory.add(itm);

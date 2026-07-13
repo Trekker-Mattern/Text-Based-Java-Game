@@ -4,7 +4,9 @@ public class TrekkerMath {
     
     public static Random rand = new Random();
     
-    //random integer generator [fromval, toVal)
+    /**
+    * random integer generator [fromval, toVal) 
+    */
     public static int randomInt(int toVal, int fromVal){
         int ret = (rand.nextInt(toVal-fromVal)) + fromVal;
         return ret;

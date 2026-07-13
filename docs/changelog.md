@@ -89,6 +89,9 @@
 - add description to all items *IN PROGRESS*
 - RE-REFACTOR SHOP CLASS - Its kind of gross right now 
 - Make it so some monsters carry herbs + other ways to get herbs
+- Blacksmithing :
+  - Improve weapons + Armor
+  - Rename weapons
 
 ## TO FIX URGENTLY
 

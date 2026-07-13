@@ -64,7 +64,7 @@ public class baseMonsterRoom extends Room{
                     int coinGain = (int)((player.luck * m.getLevel() / 4) + 1);
                     int xpGain = (int)((player.luck * m.getLevel())*2);
                     gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
-                    player.BankBalance += coinGain;
+                    player.gold += coinGain;
                     player.gainXP(xpGain);
                     m.onMonsterDeath();
                     
@@ -99,7 +99,7 @@ public class baseMonsterRoom extends Room{
                         int coinGain = (int)((player.luck * m.getLevel()) + 4);
                         int xpGain = (int)((player.luck * m.getLevel())*4);
                         gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
-                        player.BankBalance += coinGain;
+                        player.gold += coinGain;
                         player.gainXP(xpGain);
                         m.onMonsterDeath();
                         
@@ -138,7 +138,7 @@ public class baseMonsterRoom extends Room{
                         int coinGain = (int)((player.luck * m.getLevel()) + 4);
                         int xpGain = (int)((player.luck * m.getLevel())*4);
                         gui.printOnGameSide("You obtained " + coinGain + " shmeckles and " + xpGain + " XP!");
-                        player.BankBalance += coinGain;
+                        player.gold += coinGain;
                         player.gainXP(xpGain);
                         m.onMonsterDeath();
                         

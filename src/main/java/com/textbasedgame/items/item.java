@@ -39,4 +39,15 @@ public abstract class item {
     //Be careful with this use
     public void Use(){}
     public abstract void printInfo();
+
+    /*
+    * @returns true if the two items are approximately equal, false otherwise
+    * names, prices, and class of item must be equal for this to return true
+    */
+    public boolean equals(item i){
+        if(i.itemPrice == this.itemPrice && this.name.equals(i.name) && this.classofItem.equals(i.classofItem)){
+            return true;
+        }
+        return false;
+    }
 }
