@@ -57,4 +57,13 @@ public class utilTest {
             testTrekkerMathRandomInt();
         }
     }
+
+    @Test
+    public void testTrekkerMathRandomIntSecondTest(){
+        for(int i = 0; i < 100; i++){
+            int randomValue = TrekkerMath.randomInt(100, 0);
+            System.out.println("Random value: " + randomValue);
+            assertTrue(randomValue >= 0 && randomValue <= 100, "Random value out of bounds: " + randomValue);
+        }
+    }
 }

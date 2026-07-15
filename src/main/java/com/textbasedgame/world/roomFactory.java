@@ -45,33 +45,34 @@ public abstract class roomFactory {
     }
 
     private static Class<? extends Room> getWeightedRoomClass(){
-        //////// 45% T0 - 30% T1 - 20% T2 - 5% T3
+        //////// 40% T0 - 30% T1 - 20% T2 - 10% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the teir.
         
         int roomSelector;
         int weight = TrekkerMath.randomInt(100, 0);
-        ///T3 Rooms 
+        System.out.println("Weight: " + weight);
+        ///T0 Rooms 
         if(weight >= 60){
-            System.out.println("T3");
-            roomSelector = TrekkerMath.randomInt(t3Rooms.size(), 0);
-            return t3Rooms.get(roomSelector);
-        }
-        /// T2 Rooms
-        else if (weight >= 30){
-            System.out.println("T2");
-            roomSelector = TrekkerMath.randomInt(t2Rooms.size(), 0);
-            return t2Rooms.get(roomSelector);
+            System.out.println("T0");
+            roomSelector = TrekkerMath.randomInt(t0Rooms.size(), 0);
+            return t0Rooms.get(roomSelector);
         }
         /// T1 Rooms
-        else if (weight >= 5){
+        else if (weight >= 30){
             System.out.println("T1");
             roomSelector = TrekkerMath.randomInt(t1Rooms.size(), 0);
             return t1Rooms.get(roomSelector);
         }
-        /// T0 Rooms
+        /// T2 Rooms
+        else if (weight >= 10){
+            System.out.println("T2");
+            roomSelector = TrekkerMath.randomInt(t2Rooms.size(), 0);
+            return t2Rooms.get(roomSelector);
+        }
+        /// T3 Rooms
         else{
-            System.out.println("T0");
-            roomSelector = TrekkerMath.randomInt(t0Rooms.size(), 0);
-            return t0Rooms.get(roomSelector);
+            System.out.println("T3");
+            roomSelector = TrekkerMath.randomInt(t3Rooms.size(), 0);
+            return t3Rooms.get(roomSelector);
         }
     }
 

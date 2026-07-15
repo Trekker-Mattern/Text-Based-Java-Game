@@ -103,6 +103,7 @@ public abstract class player {
         gui.printOnGameSide("Agility: " + agility); 
         gui.printOnGameSide("Intelligence: " + intelligence);
     }
+    /**Using a buffstat enum return true if the stat is the highest stat of the three main stats**/
     public static boolean isMajorityStat(buffTypes stat){
         if(stat == buffTypes.STRENGTH){
             return (strength >= agility && strength >= intelligence);
