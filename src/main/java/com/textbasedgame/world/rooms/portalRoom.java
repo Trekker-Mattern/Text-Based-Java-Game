@@ -67,6 +67,7 @@ public class portalRoom extends Room{
                     }
                 }
             }
+            gui.getInput("-- Press Enter to continue --");
     }
     @Override
     public imageIDs getRoomID() {

@@ -26,6 +26,7 @@ public class lizzyRoom extends Room {
         else{
             gui.printOnGameSide("Lizzy: Welcome back! Would you like some of my excess plants?");
         }
+        gui.newlOnGameSide();
         talkToLizzy();
     }
 

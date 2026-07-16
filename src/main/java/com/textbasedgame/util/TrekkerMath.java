@@ -11,6 +11,19 @@ public class TrekkerMath {
         int ret = (rand.nextInt(toVal-fromVal)) + fromVal;
         return ret;
     }
+
+    /**
+    * Seeded random integer generator [fromval, toVal) 
+    * @param toVal The upper bound (exclusive) for the random integer.
+    * @param fromVal The lower bound (inclusive) for the random integer.
+    * @param seededRand The Random object to use for generating the random integer.
+    * @return A random integer between fromVal (inclusive) and toVal (exclusive).
+    */
+    public static int seededRandomInt(int toVal, int fromVal, Random seededRand){
+        int ret = (seededRand.nextInt(toVal-fromVal)) + fromVal;
+        return ret;
+    }
+
     //Exclusive double generator
     public static double randomDouble(double toVal, double fromVal){
         double ret = fromVal + (toVal - fromVal) * rand.nextDouble();

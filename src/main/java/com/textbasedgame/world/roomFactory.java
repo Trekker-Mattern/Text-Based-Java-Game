@@ -1,7 +1,10 @@
 package com.textbasedgame.world;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Queue;
+
 
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.util.TrekkerMath;
@@ -15,7 +18,7 @@ public abstract class roomFactory {
     private static ArrayList<Class<? extends Room>> t2Rooms = new ArrayList<>(Arrays.asList(libraryRoom.class, soulWeighingRoom.class));
     private static ArrayList<Class<? extends Room>> t3Rooms = new ArrayList<>(Arrays.asList(swordInStoneRoom.class));
 
-
+    private static Queue<Room> roomQueue = new ArrayDeque<>();
 
     public static Room getRandomRoom(){
         int randNum = TrekkerMath.randomInt(3, 0);
@@ -43,6 +46,13 @@ public abstract class roomFactory {
             return r;
         }
     }
+
+    private static void createRoomQueue(int seed){
+        for(int i = 0; i < 10; i++){
+            
+        }
+    }
+
 
     private static Class<? extends Room> getWeightedRoomClass(){
         //////// 40% T0 - 30% T1 - 20% T2 - 10% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the teir.
