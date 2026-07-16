@@ -7,8 +7,10 @@ import com.textbasedgame.util.response;
 
 public class libraryRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
+    @Override
     public void openRoom(){
-        
+        super.openRoom();
+
         gui.printOnGameSide("You step into a brand new room and are surrounded by books");
         gui.printOnGameSide("Pick a book off a shelf and read it?");
         

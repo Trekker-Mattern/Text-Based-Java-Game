@@ -12,7 +12,10 @@ public class gambleRoom extends Room{
     public static final imageIDs roomID = imageIDs.LIBRARY;
     private int gambleAmount;
     private enum gambleSlots { CLUB, SPADE, DIAMOND, COIN}
+    
+    @Override
     public void openRoom(){
+        super.openRoom();
         gui.printOnGameSide("A stone machine lays dorment in the center of a dimly lit room");
         gui.printOnGameSide("It looks like it takes a coin as a startup mechanism.");
         if(response.respondYes(gui.getInput("Insert Coin?"))){

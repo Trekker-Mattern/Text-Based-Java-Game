@@ -13,7 +13,9 @@ import com.textbasedgame.util.response;
 
 public class lizzyRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
+    @Override
     public void openRoom() {
+        super.openRoom();
         gui.printOnGameSide("You enter a warmly lit room with candles and plants all over.");
         
 

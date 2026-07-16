@@ -15,6 +15,7 @@ public class bossMonsterRoom extends baseMonsterRoom{
 
     @Override
     public void openRoom() {
+        super.openRoom();
         gui.pushOldText();
         m.bossIntro();
         gui.getInput("--Enter To Continue--");

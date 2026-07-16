@@ -9,7 +9,10 @@ import com.textbasedgame.world.*;
 
 public class fountainRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
+    
+    @Override
     public void openRoom(){
+        super.openRoom();
         gui.printOnGameSide("You walk into a room with a fountain in the center.");
         gui.printOnGameSide("The room is too dark to see what color the water is");
 
