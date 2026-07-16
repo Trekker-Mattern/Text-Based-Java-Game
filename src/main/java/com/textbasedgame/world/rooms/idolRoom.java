@@ -8,7 +8,9 @@ import com.textbasedgame.util.response;
 
 public class idolRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
+    @Override
     public void openRoom(){
+        super.openRoom();
         gui.printOnGameSide("You walk into a large empty cobblestoned room with a idol");
             buffTypes buffType = null;
             int i = TrekkerMath.randomInt(3, 0);

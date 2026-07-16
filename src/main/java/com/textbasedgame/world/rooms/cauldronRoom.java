@@ -22,6 +22,7 @@ public class cauldronRoom extends Room {
     }
     @Override
     public void openRoom(){
+        super.openRoom();
         if(playerHasPotionBag()){
             
             gui.printOnGameSide("You walk into a room with a cauldron in the center!");

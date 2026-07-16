@@ -10,7 +10,9 @@ public class portalRoom extends Room{
     private int portalType;
     private int stageShift;
 
+    @Override
     public void openRoom(){
+        super.openRoom();
         portalType = TrekkerMath.randomInt(2, 0);
             System.out.println(portalType);
             if(portalType == 0){

@@ -87,7 +87,7 @@ public abstract class world {
         }
 
         //create monster
-        Room room = roomFactory.getRandomRoom();
+        Room room = roomFactory.getNextRoom();
         room.openRoom();
 
         stageNum++;

@@ -4,9 +4,8 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Queue;
+import java.util.Random;
 
-
-import com.textbasedgame.GUI.gui;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.world.rooms.*;
 
@@ -20,8 +19,11 @@ public abstract class roomFactory {
 
     private static Queue<Room> roomQueue = new ArrayDeque<>();
 
-    public static Room getRandomRoom(){
-        int randNum = TrekkerMath.randomInt(3, 0);
+    public static int seed;
+    private static Random seededRand;
+
+    public static Room getRandomRoom(Random seededRand){
+        int randNum = TrekkerMath.seededRandomInt(3, 0, seededRand);
         //System.out.println("getRoom Random Number -- " + randNum);
 
         if(world.stageNum % 10 == 9){
@@ -30,9 +32,8 @@ public abstract class roomFactory {
 
         if(randNum == 0){
             try{
-                Constructor<? extends Room> ctor = getWeightedRoomClass().getDeclaredConstructor();
+                Constructor<? extends Room> ctor = getWeightedRoomClass(seededRand).getDeclaredConstructor();
                 Room r = ctor.newInstance();
-                gui.setImage(r.getRoomID());
                 return r;
             }
             catch(Exception e){
@@ -42,46 +43,46 @@ public abstract class roomFactory {
         }
         else{
             Room r = new baseMonsterRoom();
-            gui.setImage(r.getRoomID());
             return r;
         }
     }
 
     private static void createRoomQueue(int seed){
+        seededRand = new Random(seed);
         for(int i = 0; i < 10; i++){
-            
+            roomQueue.add(getRandomRoom(seededRand));
         }
     }
 
 
-    private static Class<? extends Room> getWeightedRoomClass(){
+    private static Class<? extends Room> getWeightedRoomClass(Random seededRand){
         //////// 40% T0 - 30% T1 - 20% T2 - 10% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the teir.
         
         int roomSelector;
-        int weight = TrekkerMath.randomInt(100, 0);
+        int weight = TrekkerMath.seededRandomInt(100, 0, seededRand);
         System.out.println("Weight: " + weight);
         ///T0 Rooms 
         if(weight >= 60){
             System.out.println("T0");
-            roomSelector = TrekkerMath.randomInt(t0Rooms.size(), 0);
+            roomSelector = TrekkerMath.seededRandomInt(t0Rooms.size(), 0, seededRand);
             return t0Rooms.get(roomSelector);
         }
         /// T1 Rooms
         else if (weight >= 30){
             System.out.println("T1");
-            roomSelector = TrekkerMath.randomInt(t1Rooms.size(), 0);
+            roomSelector = TrekkerMath.seededRandomInt(t1Rooms.size(), 0, seededRand);
             return t1Rooms.get(roomSelector);
         }
         /// T2 Rooms
         else if (weight >= 10){
             System.out.println("T2");
-            roomSelector = TrekkerMath.randomInt(t2Rooms.size(), 0);
+            roomSelector = TrekkerMath.seededRandomInt(t2Rooms.size(), 0, seededRand);
             return t2Rooms.get(roomSelector);
         }
         /// T3 Rooms
         else{
             System.out.println("T3");
-            roomSelector = TrekkerMath.randomInt(t3Rooms.size(), 0);
+            roomSelector = TrekkerMath.seededRandomInt(t3Rooms.size(), 0, seededRand);
             return t3Rooms.get(roomSelector);
         }
     }
@@ -90,7 +91,20 @@ public abstract class roomFactory {
         return new cauldronRoom();
     }
 
+    public static Room getNextRoom(){
+        if(roomQueue.isEmpty()){
+            throw new IllegalStateException("Room queue is empty. Please RESTART the game with a new seed to generate a new room queue.");
+        }
+        roomQueue.add(getRandomRoom(seededRand));
+        return roomQueue.poll();
+    }
+
     public abstract int getRoomID();
 
     public abstract void openRoom();
+
+    public static void setSeed(int seedValToSet){
+        seed = seedValToSet;
+        createRoomQueue(seed);
+    }
 }

@@ -12,7 +12,9 @@ import com.textbasedgame.util.response;
 import com.textbasedgame.world.shopitems;
 public class chestRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
+    @Override
     public void openRoom(){
+        super.openRoom();
 
         gui.printOnGameSide("You walk into a room and theres a chest sitting on the floor");
             gui.printOnGameSide("Would you like to open it?");
