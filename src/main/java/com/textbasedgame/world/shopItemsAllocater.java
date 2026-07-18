@@ -15,20 +15,26 @@ import com.textbasedgame.items.handItems.*;
 
 public class shopItemsAllocater {
 
-    private static String changeIntToMappedString(int i){
+    private static enum gameStage{
+        upToOuterGates,
+        upToCaves,
+        defaultStage
+    }
+
+    private static gameStage changeIntToMappedString(int i){
         if(i < 2){
-            return "upToOuterGates";
+            return gameStage.upToOuterGates;
         }
         else if(i < 4){
-            return "upToCaves";
+            return gameStage.upToCaves;
         }
         else{
-            return "default";
+            return gameStage.defaultStage;
         }
     }
 
     public static ArrayList<Class<? extends consumables>> getFoodItemArray(int i){
-        String gameStage = changeIntToMappedString(i);
+        gameStage gameStage = changeIntToMappedString(i);
         
         
 
@@ -36,7 +42,7 @@ public class shopItemsAllocater {
         
         
         switch (gameStage){
-            case "upToOuterGates":{
+            case upToOuterGates:{
                 return new ArrayList<>(
                     Arrays.asList(
                         beefsteak.class,
@@ -45,7 +51,7 @@ public class shopItemsAllocater {
                     )
                 );
             }
-            case "upToCaves":{
+            case upToCaves:{
                 return new ArrayList<>(
                     Arrays.asList(
                         beefsteak.class,
@@ -72,13 +78,13 @@ public class shopItemsAllocater {
     }
 
     public static ArrayList<Class<? extends equipables>> getEquipablesShopArray(int i){
-        String gameStage = changeIntToMappedString(i);
+        gameStage gameStage = changeIntToMappedString(i);
 
         
         
         
         switch (gameStage){
-            case "upToOuterGates":{
+            case upToOuterGates:{
                 return new ArrayList<>(
                     Arrays.asList(
                         chestplate.class,
@@ -92,7 +98,7 @@ public class shopItemsAllocater {
                     )
                 );
             }
-            case "upToCaves":{
+            case upToCaves:{
                 return new ArrayList<>(
                     Arrays.asList(
                         chestplate.class,
@@ -140,10 +146,10 @@ public class shopItemsAllocater {
 
 
     public static ArrayList<Class<? extends consumables>> getConsumableItemArray(int i){
-        String gameStage = changeIntToMappedString(i);
+        gameStage gameStage = changeIntToMappedString(i);
 
         switch (gameStage){
-            case "upToOuterGates":{
+            case upToOuterGates:{
                 return new ArrayList<>(
                     Arrays.asList(
                         beefsteak.class,
@@ -153,7 +159,7 @@ public class shopItemsAllocater {
                     )
                 );
             }
-            case "upToCaves":{
+            case upToCaves:{
                 return new ArrayList<>(
                     Arrays.asList(
                         threeCourseMeal.class,

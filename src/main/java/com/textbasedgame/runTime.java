@@ -1,5 +1,6 @@
 package com.textbasedgame;
 import java.io.File;
+import java.util.Random;
 
 import com.textbasedgame.GUI.TitleScreen;
 import com.textbasedgame.GUI.gui;
@@ -67,6 +68,7 @@ public class runTime
                 }
             }
         }
+        roomFactory.setSeed((new Random()).nextInt());
         
     }
 
