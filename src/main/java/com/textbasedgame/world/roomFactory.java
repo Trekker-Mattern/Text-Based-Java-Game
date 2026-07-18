@@ -54,6 +54,9 @@ public abstract class roomFactory {
         }
     }
 
+    public static void popRoom(){
+        getNextRoom();
+    }
 
     private static Class<? extends Room> getWeightedRoomClass(Random seededRand){
         //////// 40% T0 - 30% T1 - 20% T2 - 10% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the teir.

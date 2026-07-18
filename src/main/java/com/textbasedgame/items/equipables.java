@@ -76,6 +76,10 @@ public abstract class equipables extends item {
         return getItemName() + " - " + getQuality() + " - Equipped"; 
     }
 
+    public void enchant(String enchantment){
+        getTagsSet().add(enchantment);
+    }
+
     public String getAttackString(){return "";}
     public String getEquipmentSetName(){return equipmentSetName;}
     public abstract void equipToSlot();

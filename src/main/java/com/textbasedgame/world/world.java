@@ -48,7 +48,6 @@ public abstract class world {
         Ans = Ans.toLowerCase();
         gui.pushOldText();
         if (response.quit(Ans)){gui.quit();}
-        //OPEN SHOP!!!
         if(response.Shop(Ans)){
             shop.openShop();
         }
