@@ -411,14 +411,16 @@ public abstract class player {
     public static void updateBuffs(){
 
         for(int i = 0; i < buffs.size(); i++){
+            
+            if(buffs.get(i).first == buffTypes.HEALTH_REGENERATION){
+                health += buffs.get(i).second;
+            }
+
             buffs.get(i).third--;
             if(buffs.get(i).third <= 0){
                 gui.printOnGameSide("Your " + buffs.get(i).first + " buff with strength " + buffs.get(i).second + " has run out");
                 buffs.remove(i);
                 i--;
-            }
-            if(buffs.get(i).first == buffTypes.HEALTH_REGENERATION){
-                health += buffs.get(i).second;
             }
         }
         if(buffs.isEmpty()){

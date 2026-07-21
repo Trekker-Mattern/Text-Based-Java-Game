@@ -40,6 +40,7 @@ public class cauldronRoom extends Room {
 
                 genericPotion creationPotion = new genericPotion("Created Potion");
                 while(response.respondYes("Would you like to put an herb from your bag into the cauldron?")){
+                    
                     potionHerbs herbToPutInPotion = potBag.getHerbFromBag();
 
                     if(herbToPutInPotion != null){
