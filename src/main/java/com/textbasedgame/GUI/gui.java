@@ -48,6 +48,12 @@ public class gui {
     private static JScrollPane secondScrollPane;
     private static imageIDs currentImageID;
 
+    public enum styles{
+        BOLD,
+        ITALICS,
+        UNDERLINE
+    }
+
     private static Queue<JLabel> textQueue = new LinkedList<JLabel>();
     
     private static final pictureLoader pLoader = new pictureLoader();
@@ -394,4 +400,29 @@ public class gui {
         updateImage();
     }
 
+    public static void printOnGameSide(String s, styles style){
+        JLabel text = new JLabel();
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
+        text.setText(s);
+
+        switch(style){
+            case BOLD:
+                text.setFont(text.getFont().deriveFont(Font.BOLD));
+                break;
+            case ITALICS:
+                text.setFont(text.getFont().deriveFont(Font.ITALIC));
+                break;
+            case UNDERLINE:
+                text.setFont(text.getFont().deriveFont(Font.PLAIN));
+                text.setText("<html><u>" + s + "</u></html>");
+                break;
+        }
+
+        recentTextPanel.add(text);
+        textQueue.add(text);
+        recentTextPanel.revalidate();
+        SwingUtilities.invokeLater(() -> {
+            text.scrollRectToVisible(text.getBounds());
+        });
+    }
 }

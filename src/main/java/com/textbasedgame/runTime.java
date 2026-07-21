@@ -64,7 +64,7 @@ public class runTime
                     TitleScreen.class.wait();
                 }
                 catch(Exception e){
-                    
+                    System.out.println("Error waiting for title screen to open: " + e.getMessage());
                 }
             }
         }

@@ -16,6 +16,7 @@ public class monsterCreator {
             return m;
         } catch (Exception e) {
             // Handle the case where the default constructor is not found
+            System.out.println("Error creating monster: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -34,6 +35,7 @@ public class monsterCreator {
             return b;
         } catch (Exception e) {
             // Handle the case where the default constructor is not found
+            System.out.println("Error creating boss monster: " + e.getMessage());
             e.printStackTrace();
         } 
 
