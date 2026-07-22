@@ -23,10 +23,10 @@ public class cauldronRoom extends Room {
     @Override
     public void openRoom(){
         if(playerHasPotionBag()){
-
+            
             gui.printOnGameSide("You walk into a room with a cauldron in the center!");
             gui.printOnGameSide("Would you like to create a potion with herbs from your bag?");
-
+            
             potionsBag potBag = null;
             for(keyItem i : player.keyItemInventory){
                 if(i instanceof potionsBag){
@@ -34,27 +34,32 @@ public class cauldronRoom extends Room {
                     break;
                 }
             }
-
+            
             if(response.respondYes(gui.getInput())){
+                boolean ingredientAdded = false;
 
                 genericPotion creationPotion = new genericPotion("Created Potion");
-                while(response.respondYes("Would you like to put an herb from your bag into the cauldron?")){
+                while(response.respondYes(gui.getInput("Would you like to put an herb from your bag into the cauldron?"))){
                     potionHerbs herbToPutInPotion = potBag.getHerbFromBag();
 
                     if(herbToPutInPotion != null){
                         putHerbIntoPotion(creationPotion, herbToPutInPotion);
                         gui.printOnGameSide("You add your ingredient to the bubbling concoction, the vat sizzles");
+                        ingredientAdded = true;
                     }
 
                 }
+
+                if(!ingredientAdded){
+                    gui.printOnGameSide("After deciding to not throw any materials in the cauldron you collect yourself and turn around to head out the door.");
+                    return;
+                }
+
                 gui.printOnGameSide("Satisfied with your work you take an empty bottle out of your bag and gather as much of the liquid as you can");
                 creationPotion.setName(gui.getInput("What would you like to name your potion?"));
                 player.addItemToPlayer(creationPotion);
                 return;
             }
-
-
-
         }
         else{
             gui.printOnGameSide("You step into the room and pause as your foot hits a soft object");
