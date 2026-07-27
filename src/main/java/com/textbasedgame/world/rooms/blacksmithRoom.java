@@ -17,10 +17,19 @@ public class blacksmithRoom extends Room{
         gui.printOnGameSide("Wooden doors to the right of you burst open and a massive troll jumps out.");
         gui.printOnGameSide("You ready your weapon preparing for the worst.");
         gui.newlOnGameSide();
+
+		if(player.RHand == null && player.LHand == null){
+			gui.printOnGameSide("Troll: You dont have any stick for Iggy make good...");
+			gui.printOnGameSide("The troll looks at you sadly, unable to do his job.");
+			gui.printOnGameSide("You turn and walk away quickly to avoid any conflict with the creature.");
+			return;
+		}
+
         gui.printOnGameSide("Troll: Give attack stick at Iggy. Iggy make good. ");
         gui.newlOnGameSide();
         if(response.respondYes(gui.getInput("Give Iggy your weapon?"))){
-            gui.printOnGameSide("Iggy jumps around happily shaking the stone floor that you stand on.");
+            
+			gui.printOnGameSide("Iggy jumps around happily shaking the stone floor that you stand on.");
             gui.printOnGameSide("Iggy grabs your weapon and shuffles off to the anvil. He grabs the hammer and takes a hot coal from a nearby fire.");
             gui.printOnGameSide("He smashes the coal into the weapon. The weapon glows red and Iggy throws it back at your feet.");
             gui.printOnGameSide("Iggy: Iggy make hot." + player.getName() + " make bad guys ouch.");
@@ -29,8 +38,14 @@ public class blacksmithRoom extends Room{
             gui.printOnGameSide("The weapon feels warm to the touch");
             gui.printOnGameSide("Iggy made the weapon so that it burns enemies. Hes not too bad of a guy after all.", gui.styles.ITALICS);
 
-        }
 
+        }
+		else{
+			gui.printOnGameSide("You decide you couldnt possibly trust such an unpredictable creature.");
+			gui.printOnGameSide("The troll looks at you sadly and sets down the pair of pliers that he was holding.");
+			gui.printOnGameSide("He doesnt seem poised to attack so you follow the wall to the next door without breaking eye contact with the creature");
+		}
+        
     }
 
     @Override

@@ -68,6 +68,9 @@ public class gui {
         frame.addComponentListener(new resizeActionListener());
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
+        
+        frame.setIconImage(pLoader.getAppIcon().getImage());
+        
         //make the frame visible
         frame.setVisible(true);
     }

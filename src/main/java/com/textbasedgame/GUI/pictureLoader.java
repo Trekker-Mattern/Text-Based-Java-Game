@@ -36,4 +36,9 @@ public class pictureLoader {
         }
         return null;
     }
+
+    public ImageIcon getAppIcon(){
+        URL imageUrl = getClass().getResource(IMAGES_PATH + "AppIcon.png");
+        return new ImageIcon(imageUrl);
+    }
 }

@@ -28,6 +28,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import javax.swing.JLayeredPane;
 
 import com.textbasedgame.runTime;
+import com.textbasedgame.GUI.Styles.*;
 
 public class TitleScreen {
     public static boolean gameOpened = false;
@@ -51,6 +52,10 @@ public class TitleScreen {
         JButton startButton = new JButton("Start");
         JButton howToPlayButton = new JButton("How To Play");
         JButton quitButton = new JButton("Quit");
+
+        buttonStyler.styleButton(startButton);
+        buttonStyler.styleButton(howToPlayButton);
+        buttonStyler.styleButton(quitButton);
 
         startButton.addActionListener(new ActionListener() {
             @Override

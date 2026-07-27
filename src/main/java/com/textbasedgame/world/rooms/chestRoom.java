@@ -49,6 +49,7 @@ public class chestRoom extends Room {
                         gui.printOnGameSide("The chest is locked");
                         for(keyItem itm : player.keyItemInventory){
                             if(itm instanceof chestKey){
+                                gui.printOnGameSide("You use one of your keys to open the chest.");
                                 itm.Use();
                                 gui.printOnGameSide("You open the chest revealing a new piece of equipment!");
                                 player.addItemToPlayer(new spartanSpear(5));

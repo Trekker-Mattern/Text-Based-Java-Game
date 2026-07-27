@@ -43,12 +43,16 @@ public class lizzyRoom extends Room {
                 gui.getInput("Press Enter To Continue");
             }
             else{
-                potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(0, potionHerbs.values().length - 1)]; 
+                potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(potionHerbs.values().length - 1, 0)]; 
+                
+                int potionsBagLocationInKeyItemInventory = player.keyItemInventory.indexOf(new potionsBag());
+                ((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);
+                
                 gui.printOnGameSide("Lizzy: I have an abundance of " + herbToGive.toString() + " today!");
                 gui.printOnGameSide("Lizzy: Here, take some with you!");
-                int potionsBagLocationInKeyItemInventory =player.keyItemInventory.indexOf(new potionsBag());
-                ((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);
                 gui.newlOnGameSide();
+                
+                
                 gui.getInput("Press Enter To Continue");
             }
         }
