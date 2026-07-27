@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import javax.swing.JLayeredPane;
 
@@ -47,15 +48,22 @@ public class TitleScreen {
 
         // Button container (transparent)
         JPanel buttonContainer = new JPanel(new GridLayout(1, 3, 20, 20));
+        buttonContainer.setBorder(new EmptyBorder(10, 20, 10, 20));
         buttonContainer.setOpaque(false);
 
         JButton startButton = new JButton("Start");
         JButton howToPlayButton = new JButton("How To Play");
         JButton quitButton = new JButton("Quit");
 
-        buttonStyler.styleButton(startButton);
-        buttonStyler.styleButton(howToPlayButton);
-        buttonStyler.styleButton(quitButton);
+        buttonStyler.setDefaultButtonSize(startButton);
+        buttonStyler.setDefaultButtonSize(howToPlayButton);
+        buttonStyler.setDefaultButtonSize(quitButton);
+
+        buttonStyler.styleTitleScreenButton(startButton, true);
+        buttonStyler.styleTitleScreenButton(howToPlayButton, true);
+        buttonStyler.styleTitleScreenButton(quitButton, true);
+
+
 
         startButton.addActionListener(new ActionListener() {
             @Override

@@ -25,6 +25,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
+import com.textbasedgame.GUI.Styles.buttonStyler;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.pair;
@@ -150,11 +151,18 @@ public class gui {
         //Create the text input panel
         JPanel inputPanel = new JPanel();
         JButton enterButton = new JButton("Enter");
+        
+        //Button Styling
         enterButton.setFocusable(false);
         enterButtonListener buttonListener = new enterButtonListener();
         enterButton.addActionListener(buttonListener);
+        buttonStyler.styleEnterButton(enterButton);
 
+        //TextField Styling
         textField = new JTextField(45);
+        textField.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        textField.setSize(new Dimension(110, 40));
+
         inputPanel.add(textField);
         inputPanel.add(enterButton);
 
