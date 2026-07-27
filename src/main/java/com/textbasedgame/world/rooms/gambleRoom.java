@@ -32,9 +32,9 @@ public class gambleRoom extends Room{
                 gui.printOnGameSide("The machine stops spinning one segment at a time from left to right.");
                 gui.newlOnGameSide();
                 
-                int slotOne = TrekkerMath.randomInt(0, 4);
-                int slotTwo = TrekkerMath.randomInt(0, 4);
-                int slotThree = TrekkerMath.randomInt(0, 4);
+                int slotOne = TrekkerMath.randomInt(4, 0);
+                int slotTwo = TrekkerMath.randomInt(4, 0);
+                int slotThree = TrekkerMath.randomInt(4, 0);
 
                 gui.printOnGameSide("The first slot lands on " + gambleSlots.values()[slotOne]);
                 gui.getInput("-- Press Enter to see the next result -- ");

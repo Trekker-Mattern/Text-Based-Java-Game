@@ -4,9 +4,14 @@ import com.textbasedgame.GUI.gui;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.response;
+import com.textbasedgame.world.world.CharacterNames;
 
 public class blacksmithRoom extends Room{
     private static final imageIDs roomID = imageIDs.LIBRARY; 
+
+    private void dialogue(String dialogue){
+        gui.printDialogue(dialogue, CharacterNames.IGGY);
+    }
     
     @Override
     public void openRoom(){
@@ -30,13 +35,13 @@ public class blacksmithRoom extends Room{
         if(response.respondYes(gui.getInput("Give Iggy your weapon?"))){
             
 			gui.printOnGameSide("Iggy jumps around happily shaking the stone floor that you stand on.");
-            gui.printOnGameSide("Iggy grabs your weapon and shuffles off to the anvil. He grabs the hammer and takes a hot coal from a nearby fire.");
+            gui.printOnGameSide("He grabs your weapon and shuffles off to the anvil. He grabs the hammer and takes a hot coal from a nearby fire.");
             gui.printOnGameSide("He smashes the coal into the weapon. The weapon glows red and Iggy throws it back at your feet.");
-            gui.printOnGameSide("Iggy: Iggy make hot." + player.getName() + " make bad guys ouch.");
+            dialogue("Iggy make hot." + player.getName() + " make bad guys ouch.");
             gui.newlOnGameSide();
 
             gui.printOnGameSide("The weapon feels warm to the touch");
-            gui.printOnGameSide("Iggy made the weapon so that it burns enemies. Hes not too bad of a guy after all.", gui.styles.ITALICS);
+            gui.printDialogue("Iggy made the weapon so that it burns enemies. He's not too bad of a guy after all.", CharacterNames.PLAYER);
 
 
         }

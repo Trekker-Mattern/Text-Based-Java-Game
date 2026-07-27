@@ -14,6 +14,7 @@ public class cthulhu extends boss {
         setArmour((int)(TrekkerMath.randomDouble(2, 1.5)));
     }
     public void attackEffects(int damageDoneToPlayer){
+        if(this.mHealth < 0) return;
         this.setHealth(this.getHealth() + damageDoneToPlayer/3);
         if(this.getHealth() > this.getMaxHealth()){
             this.setHealth(this.getMaxHealth());
@@ -35,8 +36,11 @@ public class cthulhu extends boss {
             String str = player.RHand == null ? "fists" : player.RHand.getItemName(); 
             gui.printOnGameSide("With a great sigh you raise your " + str + " and ready yourself to fight the eater of worlds");
             this.setArmour((int)(getArmour() - getArmour()*.25));
+            gui.printOnGameSide("The beast rises from the floor and its many tenticles float in the air.");
         }
-        gui.printOnGameSide("The beast rises from the floor and its many tenticles float in the air.");
-        gui.printOnGameSide("It roars and readies itself for attack");
+        else{
+            gui.printOnGameSide("A beast rises from the floor, its many tenticles float in the air.");
+        }
+        gui.printOnGameSide("It roars and starts to rush at you. You prepare your weapon ready for the fight of your life.");
     }
 }

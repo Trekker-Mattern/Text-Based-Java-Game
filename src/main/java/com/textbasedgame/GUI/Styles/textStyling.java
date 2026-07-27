@@ -21,9 +21,9 @@ public class textStyling {
      * MUST BE CALLED BEFORE ANY DIALOGUE IS DISPLAYED, OTHERWISE THE CHARACTER WILL NOT HAVE STYLING.
      */
     public static void createCharacterStylingMap(){
-        characterToStyling.put(CharacterNames.LIZZY, new DialogueInfo(Color.green, Font.getFont("TeXGyreChorus") , "Lizzy"));
-        characterToStyling.put(CharacterNames.IGGY, new DialogueInfo(Color.RED, Font.getFont("DejaVu Serif") , "Iggy"));
-        characterToStyling.put(CharacterNames.PLAYER, new DialogueInfo(Color.gray, Font.getFont("Arial").deriveFont(Font.ITALIC), ""));
+        characterToStyling.put(CharacterNames.LIZZY, new DialogueInfo(Color.green, new Font("TeXGyreChorus", Font.PLAIN, standardFontSize), "Lizzy"));
+        characterToStyling.put(CharacterNames.IGGY, new DialogueInfo(Color.RED, new Font("DejaVu Serif", Font.PLAIN, standardFontSize), "Iggy"));
+        characterToStyling.put(CharacterNames.PLAYER, new DialogueInfo(Color.gray, new Font("Arial", Font.ITALIC, standardFontSize), ""));
     } 
 
     public static void styleText(JLabel text, gui.styles style){

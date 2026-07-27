@@ -331,7 +331,7 @@ public class gui {
         });
     }
 
-    public static void writeDialogue(String dialogue, world.CharacterNames character){
+    public static void printDialogue(String dialogue, world.CharacterNames character){
         JLabel text = new JLabel();
         text.setAlignmentX(Component.LEFT_ALIGNMENT);
         text.setText(dialogue);

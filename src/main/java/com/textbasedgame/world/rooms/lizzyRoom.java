@@ -7,12 +7,23 @@ import com.textbasedgame.items.keyItems.potionsBag;
 import com.textbasedgame.items.keyItems.potionsBag.potionHerbs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
+import com.textbasedgame.world.world.CharacterNames;
 import com.textbasedgame.util.GameProgressWrapper;
 import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 
 public class lizzyRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
+
+    /**
+     * Prints dialogue from Lizzy with her character styling
+     * wrapper because im lazy
+     * @param dialogue
+     */
+    private void dialogue(String dialogue){
+        gui.printDialogue(dialogue, CharacterNames.LIZZY);
+    }
+
     @Override
     public void openRoom() {
         super.openRoom();
@@ -26,7 +37,7 @@ public class lizzyRoom extends Room {
             GameProgressWrapper.gameProgress.lizzyMet = true;
         }
         else{
-            gui.printOnGameSide("Lizzy: Welcome back! Would you like some of my excess plants?");
+            dialogue("Welcome back! Would you like some of my excess plants?");
         }
         gui.newlOnGameSide();
         talkToLizzy();
@@ -35,12 +46,12 @@ public class lizzyRoom extends Room {
     private void talkToLizzy(){
         if(response.respondYes(gui.getInput())){
             if(GameProgressWrapper.gameProgress.potionBagUnlocked == false){
-                gui.printOnGameSide("Lizzy: Unfortunately you dont have any way to safely carry these plants on your adventure.");
-                gui.printOnGameSide("Lizzy: Come back again when you have a bag to carry them in!");
-                gui.printOnGameSide("Lizzy: Since you couldnt take any plants, I will give you a small remedy that I have learned over the years.");
+                dialogue("Unfortunately you dont have any way to safely carry these plants on your adventure.");
+                dialogue("Come back again when you have a bag to carry them in!");
+                dialogue("Since you couldnt take any plants, I will give you a small remedy that I have learned over the years.");
                 player.addItemToPlayer(new genericPotion("Lizzy's Healing Potion", buffTypes.HEALTH_REGENERATION, 2, 5));
                 gui.newlOnGameSide();
-                gui.getInput("Press Enter To Continue");
+                gui.getInput("--Press Enter To Continue--");
             }
             else{
                 potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(potionHerbs.values().length - 1, 0)]; 
@@ -48,17 +59,17 @@ public class lizzyRoom extends Room {
                 int potionsBagLocationInKeyItemInventory = player.keyItemInventory.indexOf(new potionsBag());
                 ((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);
                 
-                gui.printOnGameSide("Lizzy: I have an abundance of " + herbToGive.toString() + " today!");
-                gui.printOnGameSide("Lizzy: Here, take some with you!");
+                dialogue("I have an abundance of " + herbToGive.toString() + " today!");
+                dialogue("Here, take some with you!");
                 gui.newlOnGameSide();
                 
                 
-                gui.getInput("Press Enter To Continue");
             }
         }
         else{
-            gui.printOnGameSide("Lizzy: Thats okay! Return soon!");
+            dialogue("Thats okay! Return soon!");
         }
+        gui.getInput("--Press Enter To Continue--");
     }
 
     public imageIDs getRoomID(){
