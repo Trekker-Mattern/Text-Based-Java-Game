@@ -15,6 +15,11 @@ public abstract class world {
     public static int AREANUM = 0;
     private static final String areas[] = {"Village", "Outer Gates", "Grassland", "Graveyard", "Tunnels!", "Cave", "A second Cave", "A THIRD CAVE??", "Hell", "Why is there two hells?", "Are you actually still playing???", "Bored Yet?", "How bout now?", "Get some sleep please", "Touch Grass?"}; 
     public static int stageNum = 0;
+    public enum CharacterNames {
+        LIZZY,
+        IGGY,
+        PLAYER
+    };
 
     public world(){}
     public static String getArea(){

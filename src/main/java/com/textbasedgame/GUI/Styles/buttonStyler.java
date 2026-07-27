@@ -101,15 +101,10 @@ public class buttonStyler {
 		private int radius;
 		private Color color;
 
-		RoundedBorder(int radius) {
-			this.radius = radius;
-			color = Color.BLACK;
-		}
 		RoundedBorder(Color color, int radius) {
 			this.radius = radius;
 			this.color = color;
 		}
-
 
 		public Insets getBorderInsets(Component c) {
 			return new Insets(8, 16, 8, 16);

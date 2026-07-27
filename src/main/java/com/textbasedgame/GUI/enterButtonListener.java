@@ -27,5 +27,4 @@ public class enterButtonListener implements ActionListener {
         gui.setInput(input); // Send input to backend
     }
 
-
 }
