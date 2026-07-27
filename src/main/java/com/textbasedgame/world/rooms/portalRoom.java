@@ -65,7 +65,9 @@ public class portalRoom extends Room{
                     gui.printOnGameSide("The scenery has changed considerably;");
                     gui.printOnGameSide("The flooring and walls look too familiar, closely resembling areas from the past.");
                     gui.printOnGameSide("The sickening sensation of lost progress sets in");
-                    //TODO: Add a way to add a few rooms to the queue to make up for lost progress.
+                    for(int stageCounter = 0; stageCounter < stageShift*-1; stageCounter++){
+                        roomFactory.popRoom();
+                    }
                 }
                 else{
                     gui.printOnGameSide("Nothing major changed. Actually nothing changed at all. You shrug and continue on.");

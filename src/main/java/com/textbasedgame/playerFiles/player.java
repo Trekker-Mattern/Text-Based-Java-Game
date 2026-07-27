@@ -20,6 +20,7 @@ import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
 import com.textbasedgame.util.triple;
 import com.textbasedgame.world.world;
+import com.textbasedgame.world.roomFactory;
 
 
 // Singleton class: accessed statically throughout game
@@ -773,6 +774,7 @@ public abstract class player {
         printPlayerItems();
         printStats();
         saveFiles.save();
+        roomFactory.regenerateRoomQueue();
     }
 
     public static void onRespawn(){

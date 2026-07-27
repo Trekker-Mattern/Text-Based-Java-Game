@@ -53,7 +53,13 @@ public abstract class roomFactory {
             roomQueue.add(getRandomRoom(seededRand));
         }
     }
-
+    
+    public static void regenerateRoomQueue(){
+        roomQueue.clear();
+        for(int i = 0; i < 10; i++){
+            roomQueue.add(getRandomRoom(seededRand));
+        }
+    }
     public static void popRoom(){
         getNextRoom();
     }
