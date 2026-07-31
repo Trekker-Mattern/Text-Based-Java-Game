@@ -16,7 +16,6 @@ public abstract class Room {
     @ForOverride
     public void openRoom(){
         gui.setImage(this.getRoomID());
-        gui.setImage(this.getRoomID());
     };
     
 }

@@ -6,7 +6,6 @@ import com.textbasedgame.playerFiles.player;
 public class chestKey extends keyItem{
     @Override
     public void Use(){
-        player.keyItemInventory.remove(this);
     }
     @Override
     public void printInfo(){}

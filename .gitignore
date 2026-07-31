@@ -4,4 +4,7 @@
 /build/*.jar
 /target
 /.vscode
+.classpath
+.project
+.settings
 # Ignore the output directory and saveFile.txt

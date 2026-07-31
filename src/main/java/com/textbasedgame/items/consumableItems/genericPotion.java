@@ -1,7 +1,7 @@
 package com.textbasedgame.items.consumableItems;
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.consumables;
-
+import com.textbasedgame.items.keyItems.potionsBag.potionHerbs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.TrekkerMath;
@@ -13,7 +13,8 @@ public class genericPotion extends consumables {
     private static String[] nameStrArr = {"Arcane", "Enchanted", "Ethereal", "Valiant", "Cursed", "Radiant", "Shadowy", "Ancient", "Mystic", "Legendary", "Spectral", "Draconic", "Sacred", "Eldritch", "Bewitched", "Heroic", "Infernal", "Celestial", "Primal", "Noble", "Fabled", "Ghostly", "Runic", "Gleaming", "Whispering","Runed", "Shimmering", "Dire", "Savage", "Obsidian", "Rugged", "Divine", "Corrupted", "Lunar", "Molten", "Astral", "Frostbound", "Venomous", "Gilded", "Ancient-Blooded", "Serpentine", "Phantom", "Thorned", "Blighted", "Sunforged", "Hallowed", "Glowing", "Verdant", "Crystalline", "Vengeful"};
     private static String[] nameArrPt2 = {"Blade", "Tome", "Crown", "Gauntlet", "Runestone", "Chalice", "Grimoire", "Warden", "Phantom", "Knight", "Dragon", "Wraith", "Portal", "Scepter", "Amulet", "Basilisk", "Golem", "Sigil", "Wand", "Crypt", "Sanctum", "Titan", "Shade", "Oracle", "Champion","Beast", "Aegis", "Bard", "Relic", "Glyph", "Throne", "Ember", "Fang", "Seer", "Oath", "Dagger", "Vessel", "Covenant", "Fury", "Guardian", "Scourge", "Maelstrom", "Ruin", "Sentinel", "Scroll", "Spire", "Serpent", "Obelisk", "Chasm", "Enclave"};
     private ArrayList<triple<buffTypes, Integer, Integer>> buffs = new ArrayList<>();
-    
+  	private ArrayList<potionHerbs> herbsAdded = new ArrayList<>(); 
+
     public genericPotion(){
         setPrice(TrekkerMath.randomInt(30, 3));
         String nameStr = nameStrArr[TrekkerMath.randomInt(nameStrArr.length-1, 0)] + " Potion of the " + nameArrPt2[TrekkerMath.randomInt(nameArrPt2.length-1, 0)]; 
@@ -46,6 +47,12 @@ public class genericPotion extends consumables {
     public void addBuff(buffTypes bType, int bStr, int bduration){
         buffs.add(new triple<>(bType, bStr, bduration));
     }
+	public void addHerb(potionHerbs herb){
+		herbsAdded.add(herb);	
+	}
+	public ArrayList<potionHerbs> getHerbList(){
+		return herbsAdded;
+	}
     @Override
     public void Use(){
         super.Use();

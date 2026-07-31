@@ -83,6 +83,7 @@ public class cauldronRoom extends Room {
     }
 
     private void putHerbIntoPotion(genericPotion potion, potionHerbs herb){
+		potion.addHerb(herb);
         switch (herb){
             case Peppermint:
                 if(!potion.isBuffsEmpty()){changePotionBuffTime(potion, -3);}

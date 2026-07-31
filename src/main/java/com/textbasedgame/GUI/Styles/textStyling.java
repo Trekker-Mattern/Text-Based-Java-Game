@@ -14,7 +14,7 @@ import com.textbasedgame.world.world.CharacterNames;
 public class textStyling {
 
     private static final HashMap<CharacterNames, DialogueInfo> characterToStyling = new HashMap<>();
-    private static final int standardFontSize = 18;
+    private static final int standardFontSize = 12;
 
     /**
      * Initializes the characterToStyling map with character-specific styling information.

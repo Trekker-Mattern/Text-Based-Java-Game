@@ -1,16 +1,23 @@
 package com.textbasedgame.world.rooms;
 
+import java.util.ArrayList;
+
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
+import com.textbasedgame.items.item;
+import com.textbasedgame.items.consumableItems.agilityPot;
 import com.textbasedgame.items.consumableItems.genericPotion;
+import com.textbasedgame.items.consumableItems.intelligencePot;
+import com.textbasedgame.items.consumableItems.strengthPot;
 import com.textbasedgame.items.keyItems.potionsBag;
 import com.textbasedgame.items.keyItems.potionsBag.potionHerbs;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.world.world.CharacterNames;
 import com.textbasedgame.util.GameProgressWrapper;
-import com.textbasedgame.util.TrekkerMath;
+import com.textbasedgame.util.*;
 import com.textbasedgame.util.response;
+import com.textbasedgame.util.selectionMenu;
 
 public class lizzyRoom extends Room {
     private static final imageIDs roomID = imageIDs.LIBRARY;
@@ -67,10 +74,39 @@ public class lizzyRoom extends Room {
             }
         }
         else{
-            dialogue("Thats okay! Return soon!");
+            dialogue("That's okay! Return soon!");
         }
         gui.getInput("--Press Enter To Continue--");
     }
+	
+	private void checkoutPotions(){
+		ArrayList<item> potList = new ArrayList<>();
+		int count = 1;
+		for (item obj : player.inventory) {
+			if(obj instanceof genericPotion){
+				potList.add(obj);
+				count++;
+				gui.printOnGameSide(count + ": " + obj.toString());
+			} 	
+		}
+		dialogue("Which potion would you like to get more information about?");
+		String response = gui.getInput();	
+		Integer selectionVal = selectionMenu.selectScreenToInteger(potList, response);
+		genericPotion p = (genericPotion)(potList.get(selectionVal));
+		ArrayList<triple<buffTypes, Integer, Integer>> list = p.getBuffsAsList();
+		
+		dialogue("This potion seems to give");
+		for(triple<buffTypes, Integer, Integer> b: list){
+                gui.printOnGameSide(b.second + " " + b.first.toString() + " for " + b.third + " turns");
+		}
+		if(!p.getHerbList().isEmpty()){
+			dialogue("The herbs used to make the potion are:");
+			for (potionHerbs herb : p.getHerbList()) {
+				gui.printOnGameSide(herb.toString());
+			}
+		}
+	}
+
 
     public imageIDs getRoomID(){
         return roomID;
