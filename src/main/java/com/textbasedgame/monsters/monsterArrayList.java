@@ -27,10 +27,15 @@ public abstract class monsterArrayList {
     public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<>(Arrays.asList(skeleton.class, slime.class, witch.class, goblin.class, snake.class, mimic.class, giant.class, turtle.class, rat.class, jailer.class, demon.class));
     public static ArrayList<Class<? extends boss>> bossSubclasses = new ArrayList<>(Arrays.asList(cthulhu.class, hydra.class, thor.class, mothMan.class));
     
+    public static ArrayList<Class<? extends monster>> t0monsterSubclasses = new ArrayList<>(Arrays.asList(skeleton.class, slime.class, goblin.class, snake.class, rat.class));
+    public static ArrayList<Class<? extends monster>> t1monsterSubclasses = new ArrayList<>(Arrays.asList(mimic.class, troll.class, giant.class, demon.class));
+    public static ArrayList<Class<? extends monster>> t2monsterSubclasses = new ArrayList<>(Arrays.asList( witch.class, turtle.class));
+    public static ArrayList<Class<? extends monster>> t3monsterSubclasses = new ArrayList<>(Arrays.asList( jailer.class));
+
     public static void createMonsterList(){
     }
 
-
+    @Deprecated
     public static void updateMonsterArrayListOnAreaUpdate(){
         if(world.AREANUM == 2){
             monsterSubclasses.remove(slime.class);
@@ -39,9 +44,42 @@ public abstract class monsterArrayList {
     }
     
     public static Class<? extends monster> getMonsterType(){
-        return monsterSubclasses.get(TrekkerMath.randomInt( monsterSubclasses.size()-1, 0));
+        
+        //////// 40% T0 - 30% T1 - 20% T2 - 10% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the teir.
+        
+        int roomSelector;
+        int weight = TrekkerMath.randomInt(100, 0);
+        System.out.println("Weight: " + weight);
+        ///T0 Rooms 
+        if(weight >= 60){
+            System.out.println("T0");
+            roomSelector = TrekkerMath.randomInt(t0monsterSubclasses.size(), 0);
+            return t0monsterSubclasses.get(roomSelector);
+        }
+        /// T1 Rooms
+        else if (weight >= 20){
+            System.out.println("T1");
+            roomSelector = TrekkerMath.randomInt(t1monsterSubclasses.size(), 0);
+            return t1monsterSubclasses.get(roomSelector);
+        }
+        /// T2 Rooms
+        else if (weight >= 5){
+            System.out.println("T2");
+            roomSelector = TrekkerMath.randomInt(t2monsterSubclasses.size(), 0);
+            return t2monsterSubclasses.get(roomSelector);
+        }
+        /// T3 Rooms
+        else{
+            System.out.println("T3");
+            roomSelector = TrekkerMath.randomInt(t3monsterSubclasses.size(), 0);
+            return t3monsterSubclasses.get(roomSelector);
+        }
+        
+        
+        
+        
     }
     public static Class<? extends boss> getBossMonsterType(){
-        return bossSubclasses.get(TrekkerMath.randomInt( bossSubclasses.size()-1, 0));
+        return bossSubclasses.get(TrekkerMath.randomInt( bossSubclasses.size(), 0));
     }
 }

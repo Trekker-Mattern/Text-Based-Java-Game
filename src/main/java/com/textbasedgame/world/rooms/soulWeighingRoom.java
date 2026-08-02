@@ -20,23 +20,25 @@ public class soulWeighingRoom extends Room{
             gui.printOnGameSide("You approach the scale and step on.");
             if(player.strength == player.agility && player.agility == player.intelligence){
                 gui.printOnGameSide("Your soul has been proven pure and you feel weight lifted off your shoulders");
-                player.strength++;
-                player.agility++;
-                player.intelligence++;
+                player.strength += 3;
+                player.agility += 3;
+                player.intelligence += 3;
                 player.health += 3;
+                player.setMaxHealth(player.getMaxHealth() + player.getPlayerLevel());
             }
             else if(player.getStrength() == player.getAgility() && player.getAgility() == player.getIntelligence()){
                 gui.printOnGameSide("Your soul may not have been truly pure but the scale was unable to detect it");
                 gui.printOnGameSide("You feel slightly lighter as you step off the scale, but it is not without guilt");
+                player.setMaxHealth(player.getMaxHealth() + player.getPlayerLevel());
                 player.health += 10;
             }
-            else if(Math.abs(player.strength - player.agility) < 2 && Math.abs(player.agility - player.intelligence) < 2 && Math.abs(player.strength - player.intelligence) < 2){
+            else if(Math.abs(player.strength - player.agility) <= 2 && Math.abs(player.agility - player.intelligence) <= 2 && Math.abs(player.strength - player.intelligence) <= 2){
                 gui.printOnGameSide("Your soul was dirty but only slightly");
                 gui.printOnGameSide("The golden scales decide to throw you a bone");
                 player.health += 3;
-                player.applyBuff(buffTypes.AGILITY, 1, 5);
-                player.applyBuff(buffTypes.STRENGTH, 1, 5);
-                player.applyBuff(buffTypes.INTELLIGENCE, 1, 5);
+                player.applyBuff(buffTypes.AGILITY, 1, 10);
+                player.applyBuff(buffTypes.STRENGTH, 1, 10);
+                player.applyBuff(buffTypes.INTELLIGENCE, 1, 10);
             }
             else{
                 gui.printOnGameSide("The scales pause for a moment");

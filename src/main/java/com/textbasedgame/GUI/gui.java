@@ -30,6 +30,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.border.BevelBorder;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.GUI.Styles.*;
@@ -362,6 +363,33 @@ public class gui {
         topofInvPanel.add(new JLabel("XP: " + player.getXP() + "/" + player.getXpToLevelUp()));
 
 
+        JProgressBar playerHealthBar = new JProgressBar(0, player.getMaxHealth());
+        playerHealthBar.setValue(player.getHealth());
+        playerHealthBar.setStringPainted(true);
+        playerHealthBar.setString(player.getHealth() + " / " + player.getMaxHealth());
+        playerHealthBar.setStringPainted(true);
+        playerHealthBar.setUI(new BasicProgressBarUI() {
+            protected Color getSelectionBackground() { return Color.BLACK; }
+            protected Color getSelectionForeground() { return Color.BLACK; }
+        });
+        
+
+        Dimension size = new Dimension(400, 20);
+        playerHealthBar.setPreferredSize(size);
+        playerHealthBar.setMaximumSize(size);
+        playerHealthBar.setMinimumSize(size);
+        
+        playerHealthBar.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        //set color of the health bar based on health percentage
+        playerHealthBar.setForeground(new Color((int)(255 - 255*((player.getHealth() * 1.0) / player.getMaxHealth())),(int)(255*(player.getHealth() * 1.0 / player.getMaxHealth())),0));
+        playerHealthBar.setBackground(null);
+        playerHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
+
+
+
+
+
         invPanel.removeAll();
         JLabel health = new JLabel("Health: " + player.getHealth() + "/" + player.getMaxHealth());
         JLabel strength = new JLabel("Strength: " + player.getStrength());
@@ -387,6 +415,7 @@ public class gui {
 
 
         invPanel.add(health);
+        invPanel.add(playerHealthBar);
         invPanel.add(strength);
         invPanel.add(agility);
         invPanel.add(intelligence);

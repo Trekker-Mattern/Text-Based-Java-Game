@@ -27,6 +27,7 @@ public class pen extends holdables{
         }
         else{
             damage = 1;
+            isPen = true;
         }
         
     }
@@ -53,6 +54,7 @@ public class pen extends holdables{
         else{
             if(!isPen){gui.printOnGameSide("Your sword rapidly shrinks back into its natural pen state...");}
             damage = 1;
+            isPen = true;
         }
 
     }

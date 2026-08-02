@@ -4,10 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import java.awt.Image;
 
 import com.textbasedgame.GUI.Styles.*;
 
@@ -21,7 +25,10 @@ public class TitleScreen {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Background image in the center
-        JLabel bgLabel = new JLabel(titleScreenPictureLoader.getImage(pictureLoader.imageIDs.BLANK));
+        
+        JLabel bgLabel = new JLabel();
+        bgLabel.setBorder(new EmptyBorder(100, 100, 0, 100));
+        
         bgLabel.setHorizontalAlignment(JLabel.CENTER);
         bgLabel.setVerticalAlignment(JLabel.CENTER);
         mainPanel.add(bgLabel, BorderLayout.CENTER);
@@ -76,6 +83,16 @@ public class TitleScreen {
         buttonContainer.add(quitButton);
         mainPanel.add(buttonContainer, BorderLayout.SOUTH);
 
+        Image titleScreenImage = titleScreenPictureLoader.getImage(pictureLoader.imageIDs.TITLESCREEN).getImage();
+        int bgWidth = gui.frame.getWidth();
+        int bgHeight = gui.frame.getHeight();
+        if (bgWidth <= 0 || bgHeight <= 0) {
+            bgWidth = 750;
+            bgHeight = 550;
+        }
+        ImageIcon img = new ImageIcon(titleScreenImage.getScaledInstance(bgWidth, bgHeight, Image.SCALE_SMOOTH));
+        bgLabel.setIcon(img);
+        
         gui.frame.getContentPane().removeAll();
         gui.frame.setLayout(new BorderLayout());
         gui.frame.add(mainPanel, BorderLayout.CENTER);
