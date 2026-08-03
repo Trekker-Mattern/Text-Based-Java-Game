@@ -14,6 +14,9 @@ public class selectionMenu{
 	
 		try{
 			Integer retVal = Integer.parseInt(response);
+			if(retVal < 0 || retVal >= list.size()){
+				return -1;
+			}
 			return retVal;
 		}
 		catch(NumberFormatException e){

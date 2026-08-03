@@ -61,7 +61,7 @@ public class lizzyRoom extends Room {
                 gui.getInput("--Press Enter To Continue--");
             }
             else{
-                potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(potionHerbs.values().length - 1, 0)]; 
+                potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(potionHerbs.values().length, 0)]; 
                 
                 int potionsBagLocationInKeyItemInventory = player.keyItemInventory.indexOf(new potionsBag());
                 ((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);

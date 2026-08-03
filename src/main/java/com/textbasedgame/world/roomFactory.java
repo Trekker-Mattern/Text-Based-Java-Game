@@ -49,6 +49,7 @@ public abstract class roomFactory {
 
     private static void createRoomQueue(int seed){
         seededRand = new Random(seed);
+        roomQueue.clear();
         for(int i = 0; i < 10; i++){
             roomQueue.add(getRandomRoom(seededRand));
         }

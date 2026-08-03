@@ -327,7 +327,7 @@ public class gui {
         JLabel text = new JLabel();
         text.setAlignmentX(Component.LEFT_ALIGNMENT);
         text.setText(s);
-
+        textStyling.styleText(text, style);
         recentTextPanel.add(text);
         textQueue.add(text);
         recentTextPanel.revalidate();
