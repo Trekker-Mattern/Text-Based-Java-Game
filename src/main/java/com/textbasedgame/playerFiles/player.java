@@ -20,6 +20,7 @@ import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
 import com.textbasedgame.util.triple;
 import com.textbasedgame.world.world;
+import com.textbasedgame.world.roomFactory;
 
 
 // Singleton class: accessed statically throughout game
@@ -294,7 +295,7 @@ public abstract class player {
     /// 
     /// ADD Items To Player!!
     /// 
-    /// ////////////////
+    ///////////////////////////
     public static void addItemToPlayer(item i){
         if(i instanceof consumables){
             consumables cons = (consumables)i;
@@ -411,14 +412,16 @@ public abstract class player {
     public static void updateBuffs(){
 
         for(int i = 0; i < buffs.size(); i++){
+            
+            if(buffs.get(i).first == buffTypes.HEALTH_REGENERATION){
+                health += buffs.get(i).second;
+            }
+
             buffs.get(i).third--;
             if(buffs.get(i).third <= 0){
                 gui.printOnGameSide("Your " + buffs.get(i).first + " buff with strength " + buffs.get(i).second + " has run out");
                 buffs.remove(i);
                 i--;
-            }
-            if(buffs.get(i).first == buffTypes.HEALTH_REGENERATION){
-                health += buffs.get(i).second;
             }
         }
         if(buffs.isEmpty()){
@@ -771,6 +774,7 @@ public abstract class player {
         printPlayerItems();
         printStats();
         saveFiles.save();
+        roomFactory.regenerateRoomQueue();
     }
 
     public static void onRespawn(){

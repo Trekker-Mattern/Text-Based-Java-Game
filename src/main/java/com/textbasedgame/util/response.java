@@ -4,7 +4,7 @@ public class response{
     public static boolean respondYes(String response){
 
         response = response.toLowerCase();
-        if (response.contains("Ye") || response.contains("Sure") || response.contains("ye") || response.contains("sure"))
+        if (response.contains("Ye") || response.contains("Sure") || response.contains("ye") || response.contains("sure") || response.strip().equals("y"))
         {
             return true;
         }

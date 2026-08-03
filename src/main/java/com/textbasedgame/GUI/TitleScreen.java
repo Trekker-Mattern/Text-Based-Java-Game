@@ -1,33 +1,19 @@
 package com.textbasedgame.GUI;
-import java.util.Queue;
-import java.util.LinkedList;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-import javax.swing.JLayeredPane;
+import javax.swing.border.EmptyBorder;
 
-import com.textbasedgame.runTime;
+import java.awt.Image;
+
+import com.textbasedgame.GUI.Styles.*;
 
 public class TitleScreen {
     public static boolean gameOpened = false;
@@ -39,18 +25,32 @@ public class TitleScreen {
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Background image in the center
-        JLabel bgLabel = new JLabel(titleScreenPictureLoader.getImage(pictureLoader.imageIDs.BLANK));
+        
+        JLabel bgLabel = new JLabel();
+        bgLabel.setBorder(new EmptyBorder(100, 100, 0, 100));
+        
         bgLabel.setHorizontalAlignment(JLabel.CENTER);
         bgLabel.setVerticalAlignment(JLabel.CENTER);
         mainPanel.add(bgLabel, BorderLayout.CENTER);
 
         // Button container (transparent)
         JPanel buttonContainer = new JPanel(new GridLayout(1, 3, 20, 20));
+        buttonContainer.setBorder(new EmptyBorder(10, 20, 10, 20));
         buttonContainer.setOpaque(false);
 
         JButton startButton = new JButton("Start");
         JButton howToPlayButton = new JButton("How To Play");
         JButton quitButton = new JButton("Quit");
+
+        buttonStyler.setDefaultButtonSize(startButton);
+        buttonStyler.setDefaultButtonSize(howToPlayButton);
+        buttonStyler.setDefaultButtonSize(quitButton);
+
+        buttonStyler.styleTitleScreenButton(startButton, true);
+        buttonStyler.styleTitleScreenButton(howToPlayButton, true);
+        buttonStyler.styleTitleScreenButton(quitButton, true);
+
+
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -67,6 +67,7 @@ public class TitleScreen {
         howToPlayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 HowToPlayScreen.openScreen();
             }
         });
@@ -83,6 +84,16 @@ public class TitleScreen {
         buttonContainer.add(quitButton);
         mainPanel.add(buttonContainer, BorderLayout.SOUTH);
 
+        Image titleScreenImage = titleScreenPictureLoader.getImage(pictureLoader.imageIDs.TITLESCREEN).getImage();
+        int bgWidth = gui.frame.getWidth();
+        int bgHeight = gui.frame.getHeight();
+        if (bgWidth <= 0 || bgHeight <= 0) {
+            bgWidth = 750;
+            bgHeight = 550;
+        }
+        ImageIcon img = new ImageIcon(titleScreenImage.getScaledInstance(bgWidth, bgHeight, Image.SCALE_SMOOTH));
+        bgLabel.setIcon(img);
+        
         gui.frame.getContentPane().removeAll();
         gui.frame.setLayout(new BorderLayout());
         gui.frame.add(mainPanel, BorderLayout.CENTER);

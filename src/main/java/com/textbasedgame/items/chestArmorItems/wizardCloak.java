@@ -12,7 +12,7 @@ import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.pair;
 public class wizardCloak extends chestArmor {
 
-    private static final Set<String> tags = new HashSet<>(Arrays.asList("Light Armor", "Boots", "Shoes" , "Cloth", "Intelligence"));
+    private static final Set<String> tags = new HashSet<>(Arrays.asList("Light Armor", "Chest", "Cloak", "Long" , "Cloth", "Intelligence"));
     private static final Set<Class<? extends equipables>> setItems = new HashSet<>(Arrays.asList(wizardShoes.class, wizardHat.class, wizardCloak.class));
 
     public wizardCloak() {

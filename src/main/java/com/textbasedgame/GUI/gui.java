@@ -10,9 +10,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,10 +25,15 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.border.BevelBorder;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
+import com.textbasedgame.GUI.Styles.*;
 import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.pair;
@@ -43,17 +52,35 @@ public class gui {
     public static JPanel txtPanel;
     public static JPanel recentTextPanel;
     public static JTextField textField;
+    public static JButton enterButton;
     public static String latestInput;
     private static JScrollPane scrollPane;
     private static JScrollPane secondScrollPane;
     private static imageIDs currentImageID;
 
+    public enum styles{
+        BOLD,
+        ITALICS,
+        UNDERLINE
+    }
+
     private static Queue<JLabel> textQueue = new LinkedList<JLabel>();
     
     private static final pictureLoader pLoader = new pictureLoader();
 
-    public static void setupGui(){
 
+    //For fullscreen toggles
+    private static boolean fullscreen;
+    private static Rectangle windowedBounds;
+    private static int windowedExtendedState;
+   
+
+    /**
+    * Initialize GUI and Required GUI aspects
+    */
+    public static void setupGui(){
+        textStyling.createCharacterStylingMap();
+        fullscreen = false;
         //set up the container
         frame = new JFrame("Trekker RPG");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +89,40 @@ public class gui {
         frame.addComponentListener(new resizeActionListener());
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
+
+        frame.setIconImage(pLoader.getAppIcon().getImage());
+
+        //Fullscreen toggle with F11
+        InputMap inputMap = frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = frame.getRootPane().getActionMap();
+        inputMap.put(KeyStroke.getKeyStroke("F11"), "toggleFullscreen");
+        actionMap.put("toggleFullscreen", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!fullscreen) {
+                    windowedBounds = frame.getBounds();
+                    windowedExtendedState = frame.getExtendedState();
+                    frame.dispose();
+                    frame.setUndecorated(true);
+                    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                } else {
+                    frame.dispose();
+                    frame.setUndecorated(false);
+                    if (windowedBounds != null) {
+                        frame.setBounds(windowedBounds);
+                    }
+                    frame.setExtendedState(windowedExtendedState);
+                }
+                frame.setLocationRelativeTo(null);
+                frame.setResizable(true);
+                frame.setVisible(true);
+                if (enterButton != null) {
+                    frame.getRootPane().setDefaultButton(enterButton);
+                }
+                fullscreen = !fullscreen;
+            }
+        });
+        
         //make the frame visible
         frame.setVisible(true);
     }
@@ -140,14 +201,24 @@ public class gui {
 
         //Create the text input panel
         JPanel inputPanel = new JPanel();
-        JButton enterButton = new JButton("Enter");
+        enterButton = new JButton("Enter");
+        
+        //Button Styling
         enterButton.setFocusable(false);
         enterButtonListener buttonListener = new enterButtonListener();
         enterButton.addActionListener(buttonListener);
+        buttonStyler.styleEnterButton(enterButton);
+        
 
+        //TextField Styling
         textField = new JTextField(45);
+        textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        textField.setForeground(Color.BLACK);
+        textField.setSize(new Dimension(110, 90));
+
         inputPanel.add(textField);
         inputPanel.add(enterButton);
+        inputPanel.setBackground(Color.gray);
 
 
         //Create a main panel to hold the split pane and the input panel
@@ -170,10 +241,6 @@ public class gui {
         }
     }
 
-    public static void openTitleScreen(){
-        TitleScreen.openTitleScreen();
-    }
-
     //Set Text For Text Panel To Be Monster Fighting UI
     public static void setMonsterRoomUI(String monsterName, int monsterCurrHealth, int monsterMaxHealth){
         JProgressBar monsterHealthBar = new JProgressBar(0, monsterMaxHealth);
@@ -194,6 +261,10 @@ public class gui {
         monsterHealthBar.setForeground(new Color((int)(255 - 255*((monsterCurrHealth * 1.0) / monsterMaxHealth)),(int)(255*(monsterCurrHealth * 1.0 / monsterMaxHealth)),0));
         monsterHealthBar.setBackground(null);
         monsterHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
+        monsterHealthBar.setUI(new BasicProgressBarUI() {
+            protected Color getSelectionBackground() { return Color.BLACK; }
+            protected Color getSelectionForeground() { return Color.BLACK; }
+        });
 
 
 
@@ -251,6 +322,33 @@ public class gui {
             text.scrollRectToVisible(text.getBounds());
         });
     }
+
+    public static void printOnGameSide(String s, styles style){
+        JLabel text = new JLabel();
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
+        text.setText(s);
+
+        recentTextPanel.add(text);
+        textQueue.add(text);
+        recentTextPanel.revalidate();
+        SwingUtilities.invokeLater(() -> {
+            text.scrollRectToVisible(text.getBounds());
+        });
+    }
+
+    public static void printDialogue(String dialogue, world.CharacterNames character){
+        JLabel text = new JLabel();
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
+        text.setText(dialogue);
+        textStyling.styleDialogue(text, character);
+        recentTextPanel.add(text);
+        textQueue.add(text);
+        recentTextPanel.revalidate();
+        SwingUtilities.invokeLater(() -> {
+            text.scrollRectToVisible(text.getBounds());
+        });
+    }    
+
     public static void newlOnGameSide(){
         JLabel text = new JLabel();
         text.setText(" ");
@@ -267,6 +365,33 @@ public class gui {
         topofInvPanel.add(new JLabel("Level: " + player.getPlayerLevel() + "                     "));
         topofInvPanel.add(new JLabel("Shmeckles: " + Integer.toString(player.gold) + "                     "));
         topofInvPanel.add(new JLabel("XP: " + player.getXP() + "/" + player.getXpToLevelUp()));
+
+
+        JProgressBar playerHealthBar = new JProgressBar(0, player.getMaxHealth());
+        playerHealthBar.setValue(player.getHealth());
+        playerHealthBar.setStringPainted(true);
+        playerHealthBar.setString(player.getHealth() + " / " + player.getMaxHealth());
+        playerHealthBar.setStringPainted(true);
+        playerHealthBar.setUI(new BasicProgressBarUI() {
+            protected Color getSelectionBackground() { return Color.BLACK; }
+            protected Color getSelectionForeground() { return Color.BLACK; }
+        });
+        
+
+        Dimension size = new Dimension(400, 20);
+        playerHealthBar.setPreferredSize(size);
+        playerHealthBar.setMaximumSize(size);
+        playerHealthBar.setMinimumSize(size);
+        
+        playerHealthBar.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        //set color of the health bar based on health percentage
+        playerHealthBar.setForeground(new Color((int)(255 - 255*((player.getHealth() * 1.0) / player.getMaxHealth())),(int)(255*(player.getHealth() * 1.0 / player.getMaxHealth())),0));
+        playerHealthBar.setBackground(null);
+        playerHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
+
+
+
 
 
         invPanel.removeAll();
@@ -294,6 +419,7 @@ public class gui {
 
 
         invPanel.add(health);
+        invPanel.add(playerHealthBar);
         invPanel.add(strength);
         invPanel.add(agility);
         invPanel.add(intelligence);
@@ -310,7 +436,7 @@ public class gui {
         invPanel.add(WorldName);
         invPanel.add(StageNum);
 
-        giveLabelsColorAndShape(invPanel, 18, Color.WHITE);
+        textStyling.giveLabelsColorAndShape(invPanel, 18, Color.WHITE);
 
         invPanel.revalidate();
         invPanel.repaint();
@@ -331,16 +457,7 @@ public class gui {
 
     }
 
-    private static void giveLabelsColorAndShape(JPanel panel, int fontSize, Color color){
-        for(java.awt.Component comp : panel.getComponents()){
-            if(comp instanceof JLabel){
-                JLabel l = (JLabel)comp;
-                java.awt.Font oldFont = l.getFont();
-                l.setFont(new Font(oldFont.getName(), oldFont.getStyle(), fontSize ));
-                l.setForeground(color);
-            }
-        }
-    }
+    
 
     public static void quit(){
         saveFiles.save();
@@ -388,10 +505,10 @@ public class gui {
         imagePanel.revalidate();
         imagePanel.repaint();
     }
-
     public static void setImage(imageIDs imageID){
         currentImageID = imageID;
         updateImage();
     }
+
 
 }

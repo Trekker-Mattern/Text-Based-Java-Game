@@ -1,0 +1,30 @@
+package com.textbasedgame.util;
+
+import java.util.ArrayList;
+
+public class selectionMenu{
+	/**
+	 * @param ArrayList<objects> list - list of items 
+	 * @param String response - user input
+	 * @return Integer > 0 iff value is found or word matches items .toString | 
+	 * @return -1 if nothing is found
+	 */
+	public static Integer selectScreenToInteger(ArrayList<?> list, String response)  {
+	
+	
+		try{
+			Integer retVal = Integer.parseInt(response);
+			return retVal;
+		}
+		catch(NumberFormatException e){
+			int count = 0;
+			for (Object object : list) {
+				if (object.toString().toLowerCase().equals(response.strip().toLowerCase())) {
+					return Integer.valueOf(count);	
+				}
+				count++;
+			}
+		}
+		return -1;	
+	}
+}

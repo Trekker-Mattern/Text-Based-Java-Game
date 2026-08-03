@@ -16,6 +16,7 @@ public class spikeRoom extends Room{
 
     @Override
     public void openRoom(){
+        super.openRoom();
         gui.printOnGameSide("You enter a room with spikes lining the floor.");
         if(response.respondYes(gui.getInput("Would you like to attempt to traverse the spikes?"))){
             if(player.getAgility() >= player.getPlayerLevel()/ 3){

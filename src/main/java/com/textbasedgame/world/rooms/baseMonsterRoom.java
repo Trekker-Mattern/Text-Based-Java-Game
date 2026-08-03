@@ -21,6 +21,7 @@ public class baseMonsterRoom extends Room{
 
     @Override
     public void openRoom() {
+        super.openRoom();
         gui.pushOldText();
         monsterMenu(m);
     }

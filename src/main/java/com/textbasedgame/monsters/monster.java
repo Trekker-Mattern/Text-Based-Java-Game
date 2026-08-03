@@ -119,7 +119,7 @@ public class monster {
         return "slashes you for";
     }
     public void attackEffects(int x){}
-    public void onMonsterDeath(){}
+    public void onMonsterDeath(){return;}
     public Set<String> getMonsterWeakness(){return null;}
 
     public void printMonster(){

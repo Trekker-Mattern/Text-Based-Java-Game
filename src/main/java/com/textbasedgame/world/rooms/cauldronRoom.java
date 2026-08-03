@@ -22,6 +22,7 @@ public class cauldronRoom extends Room {
     }
     @Override
     public void openRoom(){
+        super.openRoom();
         if(playerHasPotionBag()){
             
             gui.printOnGameSide("You walk into a room with a cauldron in the center!");
@@ -82,6 +83,7 @@ public class cauldronRoom extends Room {
     }
 
     private void putHerbIntoPotion(genericPotion potion, potionHerbs herb){
+		potion.addHerb(herb);
         switch (herb){
             case Peppermint:
                 if(!potion.isBuffsEmpty()){changePotionBuffTime(potion, -3);}

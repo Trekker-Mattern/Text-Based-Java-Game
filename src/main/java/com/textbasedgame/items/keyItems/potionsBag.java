@@ -35,7 +35,7 @@ public class potionsBag extends keyItem{
             gui.printOnGameSide("Which ingredient would you like to pick?");
             try{
                 int ingredientNum = Integer.parseInt(gui.getInput());
-                return bagContents.get(ingredientNum);
+                return bagContents.get(ingredientNum - 1);
             }
             catch(NumberFormatException | IndexOutOfBoundsException e){
                 gui.printOnGameSide("Select a valid Number!");
@@ -54,6 +54,13 @@ public class potionsBag extends keyItem{
         }
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof potionsBag){
+            return this.getItemName().equals(((potionsBag) obj).getItemName());
+        }
+        return false;
+    }
 
     public enum potionHerbs {Peppermint, Sage, ToadsFoot, Mushroom, Honeysuckle, Dogwood, EntBranch, LemonGrass, Ivy}
 

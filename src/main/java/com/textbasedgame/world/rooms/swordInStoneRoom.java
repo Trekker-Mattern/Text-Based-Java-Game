@@ -11,6 +11,7 @@ public class swordInStoneRoom extends Room {
     private static final imageIDs roomID = imageIDs.SWORDROOM;
     @Override
     public void openRoom() {
+        super.openRoom();
         gui.printOnGameSide("A massive stone sits in the center of the room");
         gui.printOnGameSide("You walk up to it and see a sword with its hilt to the ceiling");
         gui.printOnGameSide("The handle glows with a white light");
