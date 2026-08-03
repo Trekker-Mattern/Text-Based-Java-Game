@@ -85,7 +85,7 @@ public class worldSystemTest {
     }
     
 
-    @AfterEach
+@Test
     public void savePreparationReplacesAFilePathWithADirectorySafely() throws Exception {
         Path filePath = saveRoot.resolve("not-a-directory.txt");
         Files.write(filePath, "test".getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
