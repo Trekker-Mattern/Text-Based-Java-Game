@@ -18,8 +18,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import java.awt.Graphics2D;
-
 
 import com.textbasedgame.GUI.Styles.*;
 
