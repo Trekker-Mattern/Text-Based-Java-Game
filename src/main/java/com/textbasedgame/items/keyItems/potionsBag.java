@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.items.genericItems.keyItem;
+import com.textbasedgame.util.pair;
 
 public class potionsBag extends keyItem{
     
-    private ArrayList<potionHerbs> bagContents;
+    private ArrayList<pair<potionHerbs, Integer>> bagContents;
 
     public potionsBag(){
-        bagContents = new ArrayList<>();
+        bagContents = new ArrayList<pair<potionHerbs, Integer>>();
         this.setName("Potions Bag");
         this.setDescription("A bag filled with various potion ingredients (mostly herbs).");
     }
@@ -25,7 +26,14 @@ public class potionsBag extends keyItem{
     }
 
     public void addHerbToBag(potionHerbs potHerb){
-        bagContents.add(potHerb);
+		for (pair<potionHerbs, Integer> pair : bagContents) {
+				if (pair.first == potHerb) {
+					pair.second++;
+					return;
+				}
+			}
+
+		bagContents.add(new pair<potionHerbs, Integer>(potHerb, 1));
     }
 
     public potionHerbs getHerbFromBag(){
@@ -35,7 +43,9 @@ public class potionsBag extends keyItem{
             gui.printOnGameSide("Which ingredient would you like to pick?");
             try{
                 int ingredientNum = Integer.parseInt(gui.getInput());
-                return bagContents.get(ingredientNum - 1);
+				pair<potionHerbs, Integer> ret = bagContents.get(ingredientNum - 1); 
+				bagContents.remove(ingredientNum);
+                return ret.first; 
             }
             catch(NumberFormatException | IndexOutOfBoundsException e){
                 gui.printOnGameSide("Select a valid Number!");
@@ -50,7 +60,7 @@ public class potionsBag extends keyItem{
 
     public void listHerbsInBag(){
         for(int i = 0; i < bagContents.size(); i++){
-            gui.printOnGameSide((i+1) + ": " + bagContents.get(i).toString());
+            gui.printOnGameSide((i+1) + ": " + bagContents.get(i).first.toString() +  " x" + bagContents.get(i).second );
         }
     }
 

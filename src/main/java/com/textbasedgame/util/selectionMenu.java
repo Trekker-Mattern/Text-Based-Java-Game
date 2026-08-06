@@ -23,7 +23,7 @@ public class selectionMenu{
 			int count = 0;
 			for (Object object : list) {
 				if (object.toString().toLowerCase().equals(response.strip().toLowerCase())) {
-					return Integer.valueOf(count);	
+					return count;
 				}
 				count++;
 			}

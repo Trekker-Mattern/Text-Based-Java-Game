@@ -11,6 +11,7 @@ import com.textbasedgame.items.consumableItems.intelligencePot;
 import com.textbasedgame.items.consumableItems.strengthPot;
 import com.textbasedgame.items.keyItems.potionsBag;
 import com.textbasedgame.items.keyItems.potionsBag.potionHerbs;
+import com.textbasedgame.items.genericItems.keyItem;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.world.world.CharacterNames;
@@ -46,40 +47,37 @@ public class lizzyRoom extends Room {
         else{
             dialogue("Welcome back! Would you like some of my excess plants?");
         }
-        gui.newlOnGameSide();
-        talkToLizzy();
+       	lizzyMenu(); 
     }
 
     private void talkToLizzy(){
-        if(response.respondYes(gui.getInput())){
-            if(GameProgressWrapper.gameProgress.potionBagUnlocked == false){
-                dialogue("Unfortunately you dont have any way to safely carry these plants on your adventure.");
-                dialogue("Come back again when you have a bag to carry them in!");
-                dialogue("Since you couldnt take any plants, I will give you a small remedy that I have learned over the years.");
-                player.addItemToPlayer(new genericPotion("Lizzy's Healing Potion", buffTypes.HEALTH_REGENERATION, 2, 5));
-                gui.newlOnGameSide();
-                gui.getInput("--Press Enter To Continue--");
-            }
-            else{
-                potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(potionHerbs.values().length, 0)]; 
-                
-                int potionsBagLocationInKeyItemInventory = player.keyItemInventory.indexOf(new potionsBag());
-                ((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);
-                
-                dialogue("I have an abundance of " + herbToGive.toString() + " today!");
-                dialogue("Here, take some with you!");
-                gui.newlOnGameSide();
-                
-                
-            }
-        }
-        else{
-            dialogue("That's okay! Return soon!");
-        }
-        gui.getInput("--Press Enter To Continue--");
+
+		if(GameProgressWrapper.gameProgress.potionBagUnlocked == false){
+
+			dialogue("Unfortunately you dont have any way to safely carry these plants on your adventure.");
+			dialogue("Come back again when you have a bag to carry them in!");
+			dialogue("Since you couldn't take any plants, I will give you a small remedy that I have learned over the years.");
+
+			player.addItemToPlayer(new genericPotion("Lizzy's Healing Potion", buffTypes.HEALTH_REGENERATION, 2, 5));
+			gui.newlOnGameSide();
+			gui.getInput("--Press Enter To Continue--");
+		}
+		else{
+			potionHerbs herbToGive = potionHerbs.values()[TrekkerMath.randomInt(potionHerbs.values().length, 0)]; 
+			
+			int potionsBagLocationInKeyItemInventory = player.keyItemInventory.indexOf(new potionsBag());
+			((potionsBag)player.keyItemInventory.get(potionsBagLocationInKeyItemInventory)).addHerbToBag(herbToGive);
+			
+			dialogue("I have an abundance of " + herbToGive.toString() + " today!");
+			dialogue("Here, take some with you!");
+			gui.newlOnGameSide();
+		}
+
+		gui.getInput("--Press Enter To Continue--");
     }
 	
 	private void checkoutPotions(){
+
 		ArrayList<item> potList = new ArrayList<>();
 		int count = 1;
 		for (item obj : player.inventory) {
@@ -89,6 +87,7 @@ public class lizzyRoom extends Room {
 				gui.printOnGameSide(count + ": " + obj.toString());
 			} 	
 		}
+
 		dialogue("Which potion would you like to get more information about?");
 		String response = gui.getInput();	
 		Integer selectionVal = selectionMenu.selectScreenToInteger(potList, response);
@@ -111,5 +110,69 @@ public class lizzyRoom extends Room {
     public imageIDs getRoomID(){
         return roomID;
     }
+	
 
+	private void lizzyMenu(){
+
+		gui.printOnGameSide("Hello traveler! What can I do for you today?");
+		gui.printOnGameSide("-----------");
+		gui.printOnGameSide("Explore Herbs");
+		gui.printOnGameSide("Purchase Herbs");
+		gui.printOnGameSide("Research Potions");
+
+		String resp = gui.getInput();
+		resp = resp.toLowerCase();
+		resp = resp.strip();
+
+		if(resp.contains("potion") || resp.contains("research") || resp.equals("r")){
+			checkoutPotions();
+		}
+		else if(resp.contains("purchase") || resp.contains("buy") || resp.contains("shop")){
+			lizzyShop();
+		}
+		else{
+			talkToLizzy();
+		}
+	}
+
+	private void lizzyShop(){
+		ArrayList<pair<potionHerbs, Integer>> shopArr = generateShop();
+		dialogue("Here is what I have for sale!");	
+		gui.printOnGameSide("---------");
+		for (int i = 0; i < shopArr.size(); i++) {
+			gui.printOnGameSide((i+1) + shopArr.get(i).toString());	
+		}
+
+		int purchaseNum = selectionMenu.selectScreenToInteger(shopArr, gui.getInput());
+
+		if(player.gold > shopArr.get(purchaseNum).second){
+			gui.printOnGameSide("You buy a " + shopArr.get(purchaseNum).first.toString() + " for " + shopArr.get(purchaseNum).second + " shmeckles");
+			for( keyItem item : player.keyItemInventory) {
+				if(item instanceof potionsBag){
+					((potionsBag)item).addHerbToBag(shopArr.get(purchaseNum).first);	
+					return;
+				}	
+			}
+
+		}
+		else{
+			dialogue("You don't have enough money to purchase that!");
+		}
+
+	}
+
+
+
+	private ArrayList<pair<potionHerbs, Integer>> generateShop(){
+		potionHerbs[] potHerbs = potionHerbs.values();
+		ArrayList<pair<potionHerbs, Integer>> ret = new ArrayList<>(4);
+		
+		for(int i = 0; i < 4; i++){
+			TrekkerMath.randomInt(potHerbs.length, 0);
+			ret.add(new pair<potionHerbs, Integer>(potHerbs[i], TrekkerMath.randomInt(45, 3)));
+		}
+
+		return ret;
+
+	}
 }

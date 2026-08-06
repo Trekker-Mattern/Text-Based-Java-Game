@@ -46,9 +46,9 @@ public class blacksmithRoom extends Room{
 
         }
 		else{
-			gui.printOnGameSide("You decide you couldnt possibly trust such an unpredictable creature.");
+			gui.printOnGameSide("You decide you couldn't possibly trust such an unpredictable creature.");
 			gui.printOnGameSide("The troll looks at you sadly and sets down the pair of pliers that he was holding.");
-			gui.printOnGameSide("He doesnt seem poised to attack so you follow the wall to the next door without breaking eye contact with the creature");
+			gui.printOnGameSide("He doesn't seem poised to attack so you follow the wall to the next door without breaking eye contact with the creature");
 		}
         
     }
