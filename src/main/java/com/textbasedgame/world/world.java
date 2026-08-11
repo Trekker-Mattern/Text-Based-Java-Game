@@ -66,7 +66,6 @@ public abstract class world {
             itemMenu();
         }
         else if(response.Save(Ans)){
-            //// SAVE
             saveFiles.save();
         }
         else if(Ans.equals("info")){

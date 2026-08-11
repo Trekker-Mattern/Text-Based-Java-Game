@@ -43,12 +43,22 @@ public class lizzyRoom extends Room {
             gui.printOnGameSide("Strange Lady: Hello there, traveler! Its been a long time since I've had a visitor.");
             gui.printOnGameSide("Strange Lady: You can call me Lizzy! Would you like to try some of my plants?");
             GameProgressWrapper.gameProgress.lizzyMet = true;
+			if(response.respondYes(gui.getInput()))talkToLizzy();
+			
         }
         else{
+
             dialogue("Welcome back! Would you like some of my excess plants?");
+
+			do {
+				lizzyMenu();
+				dialogue("Anything else you need?");
+			} while (response.respondYes(gui.getInput()));
+
+			dialogue("Come back again soon! I look forward to your return.");
+
         }
-       	lizzyMenu(); 
-    }
+	}
 
     private void talkToLizzy(){
 
@@ -114,8 +124,6 @@ public class lizzyRoom extends Room {
 
 	private void lizzyMenu(){
 
-		gui.printOnGameSide("Hello traveler! What can I do for you today?");
-		gui.printOnGameSide("-----------");
 		gui.printOnGameSide("Explore Herbs");
 		gui.printOnGameSide("Purchase Herbs");
 		gui.printOnGameSide("Research Potions");
