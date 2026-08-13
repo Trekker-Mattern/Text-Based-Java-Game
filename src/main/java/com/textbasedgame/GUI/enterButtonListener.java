@@ -7,7 +7,7 @@ import com.textbasedgame.util.response;
 public class enterButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        String input = gui.textField.getText();
+        String input = gui.inputPanel.textField.getText();
 
         if(response.quit(input)){
             gui.quit();
@@ -23,7 +23,7 @@ public class enterButtonListener implements ActionListener {
             gui.clearTopTextBox();
         }
 
-        gui.textField.setText("");
+        gui.inputPanel.textField.setText("");
         gui.setInput(input); // Send input to backend
     }
 

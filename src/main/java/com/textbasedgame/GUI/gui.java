@@ -1,70 +1,44 @@
 package com.textbasedgame.GUI;
 
-import java.util.Queue;
-import java.util.LinkedList;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.AbstractAction;
-import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
-import javax.swing.border.BevelBorder;
-import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
+import com.textbasedgame.GUI.GUISegments.InputPanel;
+import com.textbasedgame.GUI.GUISegments.InventoryPanel;
+import com.textbasedgame.GUI.GUISegments.TextPanel;
 import com.textbasedgame.GUI.Styles.*;
-import com.textbasedgame.items.equipables;
 import com.textbasedgame.playerFiles.player;
 import com.textbasedgame.util.pair;
 import com.textbasedgame.util.saveFiles;
 import com.textbasedgame.util.triple;
 import com.textbasedgame.world.world;
 
+
 public class gui {
 
     public static JFrame frame;
-    public static JPanel invPanel;
-    private static JPanel outsideInvPanel;
-    private static JPanel invPanelContainer;
-    private static JPanel topofInvPanel;
+	public static InputPanel inputPanel;
+    public static InventoryPanel invPanel;
+	public static TextPanel textPanel;
+    private static JPanel leftPanelContainer;
     public static JPanel imagePanel;
-    public static JPanel txtPanel;
-    public static JPanel recentTextPanel;
-    public static JTextField textField;
-    public static JButton enterButton;
     public static String latestInput;
-    private static JScrollPane scrollPane;
-    private static JScrollPane secondScrollPane;
     private static imageIDs currentImageID;
 
-    public enum styles{
-        BOLD,
-        ITALICS,
-        UNDERLINE
-    }
-
-    private static Queue<JLabel> textQueue = new LinkedList<JLabel>();
     
     private static final pictureLoader pLoader = new pictureLoader();
 
@@ -116,8 +90,8 @@ public class gui {
                 frame.setLocationRelativeTo(null);
                 frame.setResizable(true);
                 frame.setVisible(true);
-                if (enterButton != null) {
-                    frame.getRootPane().setDefaultButton(enterButton);
+                if (inputPanel != null && inputPanel.getInputButton() != null) {
+                    frame.getRootPane().setDefaultButton(inputPanel.getInputButton());
                 }
                 fullscreen = !fullscreen;
             }
@@ -130,97 +104,26 @@ public class gui {
 
     public static void runGui(){
 
-
-        //////////////////////////////////////////////////////////////////
-        ///      INVENTORY PANEL
-        //////////////////////////////////////////////////////////////////
-
         //setup first JPanel
-        invPanelContainer = new JPanel(new GridLayout(2, 1, 10, 10));
-        outsideInvPanel = new JPanel();
-        outsideInvPanel.setLayout(new BorderLayout());
-
-        
-
-        topofInvPanel = new JPanel();
-
-        Dimension minSizeinv = new Dimension(600,800);
-        invPanel = new JPanel();
-        invPanel.setLayout(new BoxLayout(invPanel, BoxLayout.Y_AXIS));
-        invPanel.setMinimumSize(minSizeinv);
-        invPanel.setBackground(Color.gray);
-        invPanel.setMinimumSize(minSizeinv);
-        invPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        outsideInvPanel.add(invPanel, BorderLayout.CENTER);
-        outsideInvPanel.add(topofInvPanel, BorderLayout.NORTH);
-        
-        //Image Panel
+        leftPanelContainer = new JPanel(new GridLayout(2, 1, 10, 10));
+		invPanel = new InventoryPanel();
         imagePanel = new JPanel();
+		textPanel = new TextPanel(); 
+		inputPanel = new InputPanel();
 
-        invPanelContainer.add(outsideInvPanel);
-        invPanelContainer.add(imagePanel);
+        leftPanelContainer.add(invPanel);
+        leftPanelContainer.add(imagePanel);
 
         
-        ///////////////////////////////////////////////////////////////////////////
-        ///        TEXT PANEL
-        ///////////////////////////////////////////////////////////////////////////
 
-        //setup second JPanel for text
-        Dimension minSizeTxt = new Dimension(600,800);
-        txtPanel = new JPanel();
-        txtPanel.setLayout(new BoxLayout(txtPanel, BoxLayout.Y_AXIS));
-        txtPanel.setMinimumSize(minSizeTxt);
-        txtPanel.setBackground(new Color(215, 215, 215));
-        txtPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        //JPanel for New Important text before stuff gets pushed to the main box
-        recentTextPanel = new JPanel();
-        recentTextPanel.setLayout(new BoxLayout(recentTextPanel, BoxLayout.Y_AXIS));
-        recentTextPanel.setMinimumSize(minSizeTxt);
-        recentTextPanel.setBackground(Color.white);
-        recentTextPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        scrollPane = new JScrollPane(txtPanel);
-        secondScrollPane = new JScrollPane(recentTextPanel);
-        //Split the text panel into a section for new important information and old news
-        JPanel txtPanelSplit = new JPanel(new GridLayout(2,1, 10, 10));
-        txtPanelSplit.add(scrollPane);
-        txtPanelSplit.add(secondScrollPane);
 
         //create a gridlayout container to hold the side by side panels
         JPanel gridLayoutPanel = new JPanel(new GridLayout(1,2,10,10));
-        gridLayoutPanel.add(invPanelContainer);
-        gridLayoutPanel.add(txtPanelSplit);
+        gridLayoutPanel.add(leftPanelContainer);
+        gridLayoutPanel.add(textPanel);
 
 
-        /////////////////////////////////////////////////////////////
-        ///        TEXT INPUT PANEL
-        ////////////////////////////////////////////////////////////
         
-
-        //Create the text input panel
-        JPanel inputPanel = new JPanel();
-        enterButton = new JButton("Enter");
-        
-        //Button Styling
-        enterButton.setFocusable(false);
-        enterButtonListener buttonListener = new enterButtonListener();
-        enterButton.addActionListener(buttonListener);
-        buttonStyler.styleEnterButton(enterButton);
-        
-
-        //TextField Styling
-        textField = new JTextField(45);
-        textField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        textField.setForeground(Color.BLACK);
-        textField.setSize(new Dimension(110, 90));
-
-        inputPanel.add(textField);
-        inputPanel.add(enterButton);
-        inputPanel.setBackground(Color.gray);
-
-
         //Create a main panel to hold the split pane and the input panel
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -229,7 +132,7 @@ public class gui {
 
         //add the main panel to the frame
         frame.add(mainPanel);
-        frame.getRootPane().setDefaultButton(enterButton);
+        frame.getRootPane().setDefaultButton(inputPanel.getInputButton());
 
         
     }
@@ -241,40 +144,8 @@ public class gui {
         }
     }
 
-    //Set Text For Text Panel To Be Monster Fighting UI
-    public static void setMonsterRoomUI(String monsterName, int monsterCurrHealth, int monsterMaxHealth){
-        JProgressBar monsterHealthBar = new JProgressBar(0, monsterMaxHealth);
-        monsterHealthBar.setValue(monsterCurrHealth);
-        monsterHealthBar.setStringPainted(true);
-        monsterHealthBar.setString(monsterCurrHealth + " / " + monsterMaxHealth);
-        monsterHealthBar.setStringPainted(true);
-        
-
-        Dimension size = new Dimension(400, 20);
-        monsterHealthBar.setPreferredSize(size);
-        monsterHealthBar.setMaximumSize(size);
-        monsterHealthBar.setMinimumSize(size);
-        
-        monsterHealthBar.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        //set color of the health bar based on health percentage
-        monsterHealthBar.setForeground(new Color((int)(255 - 255*((monsterCurrHealth * 1.0) / monsterMaxHealth)),(int)(255*(monsterCurrHealth * 1.0 / monsterMaxHealth)),0));
-        monsterHealthBar.setBackground(null);
-        monsterHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
-        monsterHealthBar.setUI(new BasicProgressBarUI() {
-            protected Color getSelectionBackground() { return Color.BLACK; }
-            protected Color getSelectionForeground() { return Color.BLACK; }
-        });
-
-
-
-        recentTextPanel.add(new JLabel("---- " + monsterName + " ----"));
-        recentTextPanel.add(monsterHealthBar);
-        recentTextPanel.revalidate();
-
-    }
-
-    public static String getInput(){
+    
+	public static String getInput(){
         synchronized(gui.class){
             while(latestInput == null){
                 try{
@@ -295,169 +166,15 @@ public class gui {
         return getInput();
     }
 
-    
-    public static void pushOldText(){
-        for(JLabel text: textQueue){
-            txtPanel.add(text);
-        }
-        textQueue.clear();
-        recentTextPanel.removeAll();
-        SwingUtilities.invokeLater(() -> {
-            txtPanel.scrollRectToVisible(txtPanel.getComponents()[txtPanel.getComponentCount()-1].getBounds());
-        });
-        recentTextPanel.revalidate();
-        recentTextPanel.repaint();
-        txtPanel.revalidate();
-        txtPanel.repaint();
-    }
 
-    public static void printOnGameSide(String s){
-        JLabel text = new JLabel();
-        text.setAlignmentX(Component.LEFT_ALIGNMENT);
-        text.setText(s);
-        recentTextPanel.add(text);
-        textQueue.add(text);
-        recentTextPanel.revalidate();
-        SwingUtilities.invokeLater(() -> {
-            text.scrollRectToVisible(text.getBounds());
-        });
-    }
-
-    public static void printOnGameSide(String s, styles style){
-        JLabel text = new JLabel();
-        text.setAlignmentX(Component.LEFT_ALIGNMENT);
-        text.setText(s);
-        textStyling.styleText(text, style);
-        recentTextPanel.add(text);
-        textQueue.add(text);
-        recentTextPanel.revalidate();
-        SwingUtilities.invokeLater(() -> {
-            text.scrollRectToVisible(text.getBounds());
-        });
-    }
-
-    public static void printDialogue(String dialogue, world.CharacterNames character){
-        JLabel text = new JLabel();
-        text.setAlignmentX(Component.LEFT_ALIGNMENT);
-        text.setText(dialogue);
-        textStyling.styleDialogue(text, character);
-        recentTextPanel.add(text);
-        textQueue.add(text);
-        recentTextPanel.revalidate();
-        SwingUtilities.invokeLater(() -> {
-            text.scrollRectToVisible(text.getBounds());
-        });
-    }    
-
-    public static void newlOnGameSide(){
-        JLabel text = new JLabel();
-        text.setText(" ");
-        textQueue.add(text);
-        recentTextPanel.add(text);
-        recentTextPanel.revalidate();
-
-    }
-
-    public static void updatePlayerSide(){
-        topofInvPanel.removeAll();
-
-        topofInvPanel.add(new JLabel("Name: " + player.getName() + "                     "));
-        topofInvPanel.add(new JLabel("Level: " + player.getPlayerLevel() + "                     "));
-        topofInvPanel.add(new JLabel("Shmeckles: " + Integer.toString(player.gold) + "                     "));
-        topofInvPanel.add(new JLabel("XP: " + player.getXP() + "/" + player.getXpToLevelUp()));
-
-
-        JProgressBar playerHealthBar = new JProgressBar(0, player.getMaxHealth());
-        playerHealthBar.setValue(player.getHealth());
-        playerHealthBar.setStringPainted(true);
-        playerHealthBar.setString(player.getHealth() + " / " + player.getMaxHealth());
-        playerHealthBar.setStringPainted(true);
-        playerHealthBar.setUI(new BasicProgressBarUI() {
-            protected Color getSelectionBackground() { return Color.BLACK; }
-            protected Color getSelectionForeground() { return Color.BLACK; }
-        });
-        
-
-        Dimension size = new Dimension(400, 20);
-        playerHealthBar.setPreferredSize(size);
-        playerHealthBar.setMaximumSize(size);
-        playerHealthBar.setMinimumSize(size);
-        
-        playerHealthBar.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        //set color of the health bar based on health percentage
-        playerHealthBar.setForeground(new Color((int)(255 - 255*((player.getHealth() * 1.0) / player.getMaxHealth())),(int)(255*(player.getHealth() * 1.0 / player.getMaxHealth())),0));
-        playerHealthBar.setBackground(null);
-        playerHealthBar.setBorder(new BevelBorder(0, Color.black, Color.black));
-
-
-
-
-
-        invPanel.removeAll();
-        JLabel health = new JLabel("Health: " + player.getHealth() + "/" + player.getMaxHealth());
-        JLabel strength = new JLabel("Strength: " + player.getStrength());
-        JLabel agility = new JLabel("Agility: " + player.getAgility());
-        JLabel intelligence = new JLabel("Intelligence: " + player.getIntelligence());
-        JLabel emptyJLabel = new JLabel(" ");
-        JLabel helmet; 
-        JLabel chestplate; 
-        JLabel pants; 
-        JLabel boots; 
-        JLabel LeftHand; 
-        JLabel RightHand; 
-        JLabel Armor = new JLabel("Total Armor Value: " + player.getArmor());
-        JLabel WorldName = new JLabel("Area: " + world.getArea());
-        JLabel StageNum = new JLabel("Room Number: " + world.stageNum);
-
-        helmet = createInventoryLabel("Helmet", player.helm); 
-        chestplate = createInventoryLabel("Chestplate", player.chestplate);
-        pants = createInventoryLabel("Pants", player.pants);
-        boots = createInventoryLabel("Boots", player.shoes);
-        LeftHand = createInventoryLabel("Left Hand", player.LHand);
-        RightHand = createInventoryLabel("Right Hand", player.RHand);
-
-
-        invPanel.add(health);
-        invPanel.add(playerHealthBar);
-        invPanel.add(strength);
-        invPanel.add(agility);
-        invPanel.add(intelligence);
-        invPanel.add(emptyJLabel);
-        invPanel.add(helmet);
-        invPanel.add(chestplate);
-        invPanel.add(pants);
-        invPanel.add(boots);
-        invPanel.add(LeftHand);
-        invPanel.add(RightHand);
-        invPanel.add(new JLabel(" "));
-        invPanel.add(Armor);
-        invPanel.add(new JLabel(" "));
-        invPanel.add(WorldName);
-        invPanel.add(StageNum);
-
-        textStyling.giveLabelsColorAndShape(invPanel, 18, Color.WHITE);
-
-        invPanel.revalidate();
-        invPanel.repaint();
-        topofInvPanel.revalidate();
-        topofInvPanel.repaint();
-
-        updateImage();
-
-    }
-
-    private static JLabel createInventoryLabel(String s, equipables equip){
-        if(equip != null){
-            return new JLabel(s + ": " + equip.getItemName() + " - " + equip.getQuality());
-        }
-        else{
-            return new JLabel(s + ": ");
-        }
-
-    }
-
-    
+	public static void setMonsterRoomUI(String monsterName, int monsterCurrHealth, int monsterMaxHealth){textPanel.setMonsterRoomUI(monsterName, monsterCurrHealth, monsterMaxHealth);}
+    public static void pushOldText(){textPanel.pushOldText();}
+    public static void printOnGameSide(String s){textPanel.printOnGameSide(s);}
+    public static void printOnGameSide(String s, textStyling.styles style){textPanel.printOnGameSide(s, style);}
+    public static void printDialogue(String dialogue, world.CharacterNames character){textPanel.printDialogue(dialogue, character);}
+    public static void newlOnGameSide(){textPanel.newlOnGameSide();}
+	public static void updatePlayerSide(){ invPanel.updatePlayerSide();} 
+	public static void clearTopTextBox(){textPanel.removeAll();}
 
     public static void quit(){
         saveFiles.save();
@@ -479,9 +196,6 @@ public class gui {
         gui.printOnGameSide(Integer.toString(player.strength));
         gui.printOnGameSide(Integer.toString(player.agility));
         gui.printOnGameSide(Integer.toString(player.intelligence));
-    }
-    public static void clearTopTextBox(){
-        txtPanel.removeAll();
     }
 
     public static void updateImage(){

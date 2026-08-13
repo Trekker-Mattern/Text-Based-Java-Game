@@ -8,10 +8,19 @@ import java.awt.Color;
 
 import java.awt.Font;
 
-import com.textbasedgame.GUI.gui;
 import com.textbasedgame.world.world.CharacterNames;
 
+
+
+
+
 public class textStyling {
+
+    public enum styles{
+        BOLD,
+        ITALICS,
+        UNDERLINE
+    }
 
     private static final HashMap<CharacterNames, DialogueInfo> characterToStyling = new HashMap<>();
     private static final int standardFontSize = 12;
@@ -26,7 +35,7 @@ public class textStyling {
         characterToStyling.put(CharacterNames.PLAYER, new DialogueInfo(Color.gray, new Font("Arial", Font.ITALIC, standardFontSize), ""));
     } 
 
-    public static void styleText(JLabel text, gui.styles style){
+    public static void styleText(JLabel text, styles style){
         
         if(style == null) return;
         switch(style){
