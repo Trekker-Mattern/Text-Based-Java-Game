@@ -29,14 +29,15 @@ public abstract class equipables extends item {
     public pair<buffTypes,Integer> getSetBuff(){return new pair<>(null, null);}
 
     public final void setQuality(int x){
+		assert(x > 0 && x < 7);
         quality = x;
-        //1.bad 2.mediocre 3.fine 4.good 5.excelent 6.perfect
+        //1.bad 2.mediocre 3.fine 4.good 5.excellent 6.perfect
         switch(x){
             case 1 : qualityString = "Bad"; break;
             case 2 : qualityString = "Mediocre"; break;
             case 3 : qualityString = "Fine"; break;
             case 4 : qualityString = "Good"; break;
-            case 5 : qualityString = "Excelent"; break;
+            case 5 : qualityString = "Excellent"; break;
             case 6 : qualityString = "Perfect"; break;
         }
     }

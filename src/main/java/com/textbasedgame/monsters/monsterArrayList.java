@@ -11,10 +11,12 @@ import com.textbasedgame.monsters.regularMonsters.demon;
 import com.textbasedgame.monsters.regularMonsters.giant;
 import com.textbasedgame.monsters.regularMonsters.goblin;
 import com.textbasedgame.monsters.regularMonsters.jailer;
+import com.textbasedgame.monsters.regularMonsters.knight;
 import com.textbasedgame.monsters.regularMonsters.mimic;
 import com.textbasedgame.monsters.regularMonsters.rat;
 import com.textbasedgame.monsters.regularMonsters.skeleton;
 import com.textbasedgame.monsters.regularMonsters.slime;
+import com.textbasedgame.monsters.regularMonsters.sloth;
 import com.textbasedgame.monsters.regularMonsters.snake;
 import com.textbasedgame.monsters.regularMonsters.troll;
 import com.textbasedgame.monsters.regularMonsters.turtle;
@@ -27,9 +29,9 @@ public abstract class monsterArrayList {
     public static ArrayList<Class<? extends monster>> monsterSubclasses = new ArrayList<>(Arrays.asList(skeleton.class, slime.class, witch.class, goblin.class, snake.class, mimic.class, giant.class, turtle.class, rat.class, jailer.class, demon.class));
     public static ArrayList<Class<? extends boss>> bossSubclasses = new ArrayList<>(Arrays.asList(cthulhu.class, hydra.class, thor.class, mothMan.class));
     
-    public static ArrayList<Class<? extends monster>> t0monsterSubclasses = new ArrayList<>(Arrays.asList(skeleton.class, slime.class, goblin.class, snake.class, rat.class));
+    public static ArrayList<Class<? extends monster>> t0monsterSubclasses = new ArrayList<>(Arrays.asList(skeleton.class, slime.class, goblin.class, snake.class, sloth.class, rat.class));
     public static ArrayList<Class<? extends monster>> t1monsterSubclasses = new ArrayList<>(Arrays.asList(troll.class, giant.class, demon.class));
-    public static ArrayList<Class<? extends monster>> t2monsterSubclasses = new ArrayList<>(Arrays.asList( witch.class, turtle.class, mimic.class));
+    public static ArrayList<Class<? extends monster>> t2monsterSubclasses = new ArrayList<>(Arrays.asList( witch.class, knight.class, turtle.class, mimic.class));
     public static ArrayList<Class<? extends monster>> t3monsterSubclasses = new ArrayList<>(Arrays.asList( jailer.class));
 
     public static void createMonsterList(){
