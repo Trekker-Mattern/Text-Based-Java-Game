@@ -1,6 +1,7 @@
 package com.textbasedgame.world.rooms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.textbasedgame.GUI.gui;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
@@ -103,9 +104,13 @@ public class blacksmithRoom extends Room{
 		ArrayList<holdables> enchantList = listWeapons();
 
 		int selection = selectionMenu.selectScreenToInteger(enchantList, gui.getInput("Which item would you like to enchant?"));
+
+		ArrayList<String> availableEnchants = new ArrayList<>(Arrays.asList("Fire", "Holy", "Water", "Evil", "Lightning", "Metal", "Magic", "Overgrown"));
+
+
 		//TODO: ADD ENCHANTS
 		enchantList.get(selection).enchant("TODO ADD ENCHANTS");
-		
+			
 
 
 

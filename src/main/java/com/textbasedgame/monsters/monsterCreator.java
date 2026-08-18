@@ -102,7 +102,7 @@ public class monsterCreator {
 
     public static int getBossArmor(int monsterLevel){
         int monsterArmor;
-        if(monsterLevel < 50){
+        if(monsterLevel < 25){
             monsterArmor = 0;
         }
         else{
@@ -114,8 +114,8 @@ public class monsterCreator {
     public static int createMonsterLevel(){
         int baseCalc = (int)(world.stageNum * TrekkerMath.randomDouble(2, .5));
 
-        if(baseCalc < 2){
-            baseCalc++;
+        if(baseCalc < 6){
+            baseCalc = 5;
         }
         return baseCalc;
         

@@ -9,7 +9,7 @@ public class pictureLoader {
 
     private final String IMAGES_PATH = "/images/";
     public enum imageIDs{
-        TITLESCREEN, SHOP, LIBRARY, CAVE, BLANK, SWORDROOM, PORTALROOM
+        TITLESCREEN, SHOP, LIBRARY, CAVE, BLANK, SWORDROOM, PORTALROOM, SCALES, CAULDRON, CHESTROOM
     };
 
     public ImageIcon getImage(imageIDs imageID){
@@ -36,6 +36,18 @@ public class pictureLoader {
             case TITLESCREEN:
                 imageUrl = getClass().getResource(IMAGES_PATH+"TitleScreen.png");
                 return new ImageIcon(imageUrl);
+			case SCALES:
+				imageUrl = getClass().getResource(IMAGES_PATH+"Mirror_Scales.png");
+               	return new ImageIcon(imageUrl);
+			case CAULDRON:
+				imageUrl = getClass().getResource(IMAGES_PATH+"Fire_Cauldron.png");
+               	return new ImageIcon(imageUrl);
+			case CHESTROOM:
+				imageUrl = getClass().getResource(IMAGES_PATH+"Chest_Room.png");
+               	return new ImageIcon(imageUrl);
+
+
+
         }
         return null;
     }

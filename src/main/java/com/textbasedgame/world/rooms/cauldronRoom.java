@@ -15,7 +15,7 @@ import com.textbasedgame.util.response;
 import com.textbasedgame.util.triple;
 
 public class cauldronRoom extends Room {
-    private static final imageIDs roomID = imageIDs.LIBRARY;
+    private static final imageIDs roomID = imageIDs.CAULDRON;
     @Override
     public imageIDs getRoomID() {
         return roomID;

@@ -11,7 +11,7 @@ import com.textbasedgame.util.TrekkerMath;
 import com.textbasedgame.util.response;
 import com.textbasedgame.world.shopitems;
 public class chestRoom extends Room {
-    private static final imageIDs roomID = imageIDs.LIBRARY;
+    private static final imageIDs roomID = imageIDs.CHESTROOM;
     @Override
     public void openRoom(){
         super.openRoom();

@@ -25,7 +25,9 @@ public class shop {
 
             int UserResp = Integer.parseInt(userInput);
             item[] shop = shopitems.getShopArray();
-            
+
+			if (shop[UserResp-1] == null) return;
+
             boolean buyConfirm = buyConfirmationMenu(shopitems.getShopArray()[UserResp-1]);
 
             if (buyConfirm == false){
@@ -155,7 +157,8 @@ public class shop {
 
 
     private static boolean buyConfirmationMenu(item i){
-
+		if(i == null)
+			return false;
         if(i instanceof consumables){
             itemInfoPrinter.printConsumableInfo((consumables)i);
         }

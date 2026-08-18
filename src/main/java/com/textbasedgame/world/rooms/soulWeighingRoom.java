@@ -7,13 +7,13 @@ import com.textbasedgame.playerFiles.player.buffTypes;
 import com.textbasedgame.util.response;
 
 public class soulWeighingRoom extends Room{
-    private static final imageIDs roomID = imageIDs.LIBRARY;
+    private static final imageIDs roomID = imageIDs.SCALES;
     
     @Override
     public void openRoom(){
         super.openRoom();
         gui.printOnGameSide("You walk into a room containing large golden scales");
-        gui.printOnGameSide("A mirror seperates the two sides");
+        gui.printOnGameSide("A mirror separates the two sides");
         gui.printOnGameSide("Would you like to step onto the scales to weigh your soul?");
 
         if(response.respondYes(gui.getInput())){

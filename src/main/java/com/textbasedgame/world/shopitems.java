@@ -3,6 +3,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.Styles.textStyling.styles;
 import com.textbasedgame.items.*;
 import com.textbasedgame.items.genericItems.*;
 import com.textbasedgame.items.headArmorItems.*;
@@ -90,7 +91,8 @@ public abstract class shopitems {
         int index = 1;
         for(item e:itemsInShop){
             
-            gui.printOnGameSide(index + ": " + e.getItemName() + "   | costs " + e.getPrice() + " gold");
+            if(e != null) gui.printOnGameSide(index + ": " + e.getItemName() + "   | costs " + e.getPrice() + " gold");
+			else gui.printOnGameSide("---- SOLD OUT ----", styles.ITALICS);
             index++;
         }
 
@@ -161,10 +163,11 @@ public abstract class shopitems {
     
         player.addItemToPlayer(toAdd);
         
-
         player.gold -= toAdd.getPrice();
-
-        createShop();
+		
+		itemsInShop[shopItemNum -1] = null;
+		System.out.print("removed from shop");
+        //createShop();
     }
     public static void buyItem(item i){
 
@@ -172,8 +175,16 @@ public abstract class shopitems {
         
 
         player.gold -= i.getPrice();
+		
+		for (int j = 0; j < itemsInShop.length; j++){
+			if(itemsInShop[j].equals(i)){
+				itemsInShop[j] = null;
+				System.out.print("removed from shop");
+				return;
+			}
+		}	
 
-        createShop();
+        //createShop();
     }
     
     public static item[] getShopArray(){
