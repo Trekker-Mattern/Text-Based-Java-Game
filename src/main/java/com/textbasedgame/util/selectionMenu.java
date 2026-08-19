@@ -6,7 +6,8 @@ public class selectionMenu{
 	/**
 	 * @param ArrayList<objects> list - list of items 
 	 * @param String response - user input
-	 * @return Integer > 0 iff value is found or word matches items .toString | 
+	 * @return Integer > 0 iff value is found or word matches items .toString() | 
+	 * integer correlates to 1+index
 	 * @return -1 if nothing is found
 	 */
 	public static Integer selectScreenToInteger(ArrayList<?> list, String response)  {
@@ -20,7 +21,7 @@ public class selectionMenu{
 			return retVal;
 		}
 		catch(NumberFormatException e){
-			int count = 0;
+			int count = 1;
 			for (Object object : list) {
 				if (object.toString().toLowerCase().equals(response.strip().toLowerCase())) {
 					return count;

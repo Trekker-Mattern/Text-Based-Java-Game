@@ -159,13 +159,15 @@ public abstract class shopitems {
     }
     public static void buyItem(int shopItemNum){
 
-        item toAdd = itemsInShop[shopItemNum - 1];
+        item toAdd = shopitems.getShopArray()[shopItemNum - 1];
     
         player.addItemToPlayer(toAdd);
         
         player.gold -= toAdd.getPrice();
+
+        gui.printOnGameSide("You successfully bought " + shopitems.getShopArray()[shopItemNum - 1].getItemName() + " for " + shopitems.getShopArray()[shopItemNum - 1].getPrice() + " shmeckles.");
 		
-		itemsInShop[shopItemNum -1] = null;
+		shopitems.getShopArray()[shopItemNum -1] = null;
 		System.out.print("removed from shop");
         //createShop();
     }
@@ -175,10 +177,11 @@ public abstract class shopitems {
         
 
         player.gold -= i.getPrice();
+        gui.printOnGameSide("You successfully bought " + i.getItemName() + " for " + i.getPrice() + " shmeckles.");
 		
-		for (int j = 0; j < itemsInShop.length; j++){
-			if(itemsInShop[j].equals(i)){
-				itemsInShop[j] = null;
+		for (int j = 0; j < shopitems.getShopArray().length; j++){
+			if(shopitems.getShopArray()[j].equals(i)){
+				shopitems.getShopArray()[j] = null;
 				System.out.print("removed from shop");
 				return;
 			}
@@ -188,6 +191,9 @@ public abstract class shopitems {
     }
     
     public static item[] getShopArray(){
+        if(itemsInShop == null){
+            createShop();
+        }
         return itemsInShop;
     }
 

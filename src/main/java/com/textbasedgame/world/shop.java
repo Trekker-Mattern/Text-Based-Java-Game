@@ -38,7 +38,7 @@ public class shop {
             if(player.gold >= shopitems.getShopArray()[UserResp-1].getPrice()){
                 shopitems.buyItem(UserResp);
                 gui.newlOnGameSide();
-                gui.printOnGameSide("You successfully bought " + shop[UserResp - 1] + " for " + shop[UserResp - 1].getPrice() + " shmeckles.");
+                
             }
             else{
                 gui.printOnGameSide("You dont have enough money to buy that!");
@@ -131,6 +131,7 @@ public class shop {
         /// Check to see if user put name of item and buy accordingly
         //////////////////////////////////////////////////////////////
         for(item i : shopitems.getShopArray()){
+            if(i == null) continue;
             if(i.getItemName().toLowerCase().equals(userInput.toLowerCase())){
 
                 boolean buyConfirm = buyConfirmationMenu(i);

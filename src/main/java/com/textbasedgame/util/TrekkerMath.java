@@ -8,6 +8,9 @@ public class TrekkerMath {
     * random integer generator [fromval, toVal) 
     */
     public static int randomInt(int toVal, int fromVal){
+        if(toVal == fromVal){
+            return fromVal;
+        }
         int ret = (rand.nextInt(toVal-fromVal)) + fromVal;
         return ret;
     }
@@ -20,12 +23,18 @@ public class TrekkerMath {
     * @return A random integer between fromVal (inclusive) and toVal (exclusive).
     */
     public static int seededRandomInt(int toVal, int fromVal, Random seededRand){
+        if(toVal == fromVal){
+            return fromVal;
+        }
         int ret = (seededRand.nextInt(toVal-fromVal)) + fromVal;
         return ret;
     }
 
     //Exclusive double generator
     public static double randomDouble(double toVal, double fromVal){
+        if(toVal == fromVal){
+            return fromVal;
+        }
         double ret = fromVal + (toVal - fromVal) * rand.nextDouble();
         return ret;
     }

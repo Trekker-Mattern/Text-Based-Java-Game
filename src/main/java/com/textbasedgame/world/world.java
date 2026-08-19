@@ -160,6 +160,7 @@ public abstract class world {
     }
 
     private static void changeArea(){
+        shopitems.createShop();
         if(stageNum / 5 < areas.length - 1){
             AREANUM = stageNum / 5;
         }
@@ -170,6 +171,7 @@ public abstract class world {
     }
 
     public static void updateArea(){
+        shopitems.createShop();
         if(stageNum / 5 < areas.length - 1){
             AREANUM = stageNum / 5;
         }
