@@ -5,13 +5,8 @@ public class response{
 
         response = response.toLowerCase();
         if (response.contains("Ye") || response.contains("Sure") || response.contains("ye") || response.contains("sure") || response.strip().equals("y"))
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        }
+    	return false;
 
     }
 
@@ -20,53 +15,44 @@ public class response{
     public static boolean respondRun(String response){
         response = response.toLowerCase();
         if (response.contains("run") || response.equals("r"))
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        }
+		return false;
     }
+	
     public static boolean respondNo(String response){
         response = response.toLowerCase();
-
         if (response.contains("No") || response.contains("Na") || response.contains("no") || response.contains("na"))
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        }
+		return false;
     }
+
     public static boolean quit(String response){
         response = response.toLowerCase();
         if(response.contains("exit")  || response.contains("Exit") || response.contains("Leave") || response.contains("leave") || response.contains("quit") || response.contains("Quit")){
             return true;
         }
-        else return false;
+        return false;
     }
     public static boolean Shop(String response){
         response = response.toLowerCase();
         if(response.contains("Shop")  || response.contains("shop") || response.equals("s")){
             return true;
         }
-        else return false;
+        return false;
     }
     public static boolean Save(String response){
         response = response.toLowerCase();
         if(response.contains("Save")  || response.contains("save")){
             return true;
         }
-        else return false;
+        return false;
     }
     public static boolean Dungeon(String response){
         response = response.toLowerCase();
         if(response.contains("dungeon")  || response.contains("Dungeon") || response.equals("d")){
             return true;
         }
-        else return false;
+        return false;
     }
     public static boolean Items(String response){
         response = response.toLowerCase();

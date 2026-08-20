@@ -118,7 +118,7 @@ public abstract class player {
         return false;
     }
     
-    
+    //TODO: REFACTOR (use the enum as a variable for which thing to look for) 
     // BUFFS ARE (BUFFTYPE, BUFF STRENGTH, BUFF DURATION)
     //Strength Getter
     public static int getStrength(){

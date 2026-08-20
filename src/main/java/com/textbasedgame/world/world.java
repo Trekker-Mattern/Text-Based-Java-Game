@@ -7,6 +7,7 @@ import com.textbasedgame.util.GameProgressWrapper;
 import com.textbasedgame.util.itemInfoPrinter;
 import com.textbasedgame.util.response;
 import com.textbasedgame.util.saveFiles;
+import com.textbasedgame.util.selectionMenu;
 import com.textbasedgame.world.rooms.Room;
 
 // Singleton class: accessed statically throughout game
@@ -108,48 +109,24 @@ public abstract class world {
         player.printKeyItems();
         gui.printOnGameSide("Would you like to use an item?");
         gui.printOnGameSide("You can also type info to get info on a specific item");
-        String h = gui.getInput();
+        String userInput = gui.getInput();
         gui.pushOldText();
-        try{
-            int number = Integer.parseInt(h);
-            try {
-                player.inventory.get(number-1).Use();
-                return true;
-            } 
-            catch (IndexOutOfBoundsException e) {
-                gui.printOnGameSide("You dont have that many items you goof!");
-                return false;
-            }
-        }
-        catch(NumberFormatException ex){
-            //do nothing
-        }
-        if(response.respondYes(h)){
-            gui.printOnGameSide("What is the number of the item you would like to use");
-            int temp = Integer.parseInt(gui.getInput());
-            gui.pushOldText();
-            try {
-                player.inventory.get(temp-1).Use();
-                return true;
-            } catch (IndexOutOfBoundsException e) {
-                gui.printOnGameSide("You dont have that many items you goof!");
-                return false;
-            }
-        }
-        else if(h.toLowerCase().contains("info") || h.toLowerCase().contains("help")){
+
+		
+		int selectionValue = selectionMenu.selectScreenToInteger(player.inventory, userInput);
+		if(selectionValue == -2){gui.printOnGameSide("You dont have that many items you goof!");return false;}
+		if(selectionValue != -1){player.inventory.get(selectionValue-1).Use();return true;}
+
+                
+        if(userInput.toLowerCase().contains("info") || userInput.toLowerCase().contains("help")){
             player.printPlayerItems();
             gui.printOnGameSide("Which item would you like more information on?");
-            try{
-
-                int itemNum = Integer.parseInt(gui.getInput()) - 1;
-
-                itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
-            }
-            catch(NumberFormatException| IndexOutOfBoundsException e){
-
-            }
-        }
-        return false;
+			userInput = gui.getInput();
+			selectionValue = selectionMenu.selectScreenToInteger(player.inventory, userInput); 
+			int itemNum = Integer.parseInt(gui.getInput()) - 1;
+			itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
+		}
+		return false;
         
     }
     

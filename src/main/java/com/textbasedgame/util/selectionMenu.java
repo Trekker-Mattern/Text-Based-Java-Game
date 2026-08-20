@@ -1,13 +1,12 @@
 package com.textbasedgame.util;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class selectionMenu{
 	/**
 	 * @param ArrayList<objects> list - list of items 
 	 * @param String response - user input
-	 * @return Integer > 0 iff value is found or word matches items .toString() | 
+	 * @return Integer greater than 0 iff value is found or word matches items .toString() | 
 	 * integer correlates to 1+index
 	 * @return -1 if nothing is found
 	 */
@@ -17,7 +16,7 @@ public class selectionMenu{
 		try{
 			Integer retVal = Integer.parseInt(response);
 			if(retVal < 0 || retVal >= list.size()){
-				return -1;
+				return -2;
 			}
 			return retVal;
 		}
@@ -39,7 +38,7 @@ public class selectionMenu{
 		try{
 			Integer retVal = Integer.parseInt(response);
 			if(retVal < 0 || retVal >= list.length){
-				return -1;
+				return -2;
 			}
 			return retVal;
 		}
