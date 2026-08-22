@@ -82,7 +82,7 @@ public class shop {
 
 	private static void interactWithShop(item[] shop, String userInput){
 
-		int selectionValue = selectionMenu.selectScreenToInteger(shop, userInput);
+		int selectionValue = selectionMenu.selectScreenToInteger(shop, userInput)-1;
 		if (selectionValue == -1 || shop[selectionValue-1] == null) return;
 		item purchasedItem = shop[selectionValue - 1];
 		boolean buyConfirm = buyConfirmationMenu(purchasedItem);

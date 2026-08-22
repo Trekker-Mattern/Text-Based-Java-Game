@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.GUISegments.InventoryPanel;
+import com.textbasedgame.GUI.GUISegments.TextPanel;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.items.item;
 import com.textbasedgame.items.consumableItems.bread;
@@ -66,6 +68,7 @@ public class playerSystemTest {
 
     @Test
     public void majorityStatDetectionMatchesHighestAttribute() {
+        System.out.println("Testing majority stat detection...");
         player.allocateSkillPoints(4, 2, 1);
 
         assertTrue(player.isMajorityStat(player.buffTypes.STRENGTH));
@@ -75,6 +78,7 @@ public class playerSystemTest {
 
     @Test
     public void addHealthCapsAtMaximumHealth() {
+        System.out.println("Testing health cap...");
         player.allocateSkillPoints(3, 1, 0);
         player.setHealth(5);
 
@@ -85,6 +89,7 @@ public class playerSystemTest {
 
     @Test
     public void addingConsumablesStacksItemsInsteadOfDuplicating() {
+        System.out.println("Testing consumable stacking...");
         bread firstBread = new bread();
         bread secondBread = new bread();
 
@@ -98,6 +103,7 @@ public class playerSystemTest {
 
     @Test
     public void getItemToAddToInvCreatesExpectedInstance() {
+        System.out.println("Testing item creation...");
         item createdItem = saveFiles.getItemToAddToInv(bread.class);
 
         assertNotNull(createdItem);
@@ -106,6 +112,7 @@ public class playerSystemTest {
 
     @Test
     public void equippingAHandItemAssignsItToAnAvailableSlot() {
+        System.out.println("Testing equipping a hand item...");
         club clubItem = new club();
 
         player.addItemToPlayer(clubItem, true);
@@ -116,6 +123,7 @@ public class playerSystemTest {
 
     @Test
     public void equippingSecondHandItemUsesTheOtherHandWhenFirstIsOccupied() {
+        System.out.println("Testing equipped hand swapping...");
         club firstClub = new club();
         dagger secondDagger = new dagger();
 
@@ -130,6 +138,7 @@ public class playerSystemTest {
 
     @Test
     public void removingEquippedItemCleansUpItsSlotAndInventoryEntry() {
+        System.out.println("Testing removal of equipped item...");
         club clubItem = new club();
         player.addItemToPlayer(clubItem, true);
 
@@ -142,10 +151,9 @@ public class playerSystemTest {
 
     private void initializeGuiState() {
         try {
-            setStaticField("recentTextPanel", new JPanel());
-            setStaticField("txtPanel", new JPanel());
-            setStaticField("invPanel", new JPanel());
-            setStaticField("topofInvPanel", new JPanel());
+            setStaticField("textPanel", new TextPanel());
+            setStaticField("invPanel", new InventoryPanel());
+            //setStaticField("topofInvPanel", new JPanel());
             setStaticField("imagePanel", new JPanel());
             setStaticField("currentImageID", imageIDs.BLANK);
         } catch (ReflectiveOperationException e) {

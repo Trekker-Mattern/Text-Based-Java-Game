@@ -32,13 +32,13 @@ public abstract class monsterArrayList {
     
     public static Class<? extends monster> getMonsterType(){
         
-        //////// 45% T0 - 40% T1 - 10% T2 - 5% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the tier.
+        //////// 47% T0 - 38% T1 - 10% T2 - 5% T3 ---- This was really fucked up. Diff between prev weight and next weight is the weight for the tier.
         
         int roomSelector;
         int weight = TrekkerMath.randomInt(100, 0);
         System.out.println("Weight: " + weight);
         ///T0 Rooms 
-        if(weight >= 55){
+        if(weight >= 53){
             System.out.println("T0");
             roomSelector = TrekkerMath.randomInt(t0monsterSubclasses.size(), 0);
             return t0monsterSubclasses.get(roomSelector);

@@ -103,7 +103,7 @@ public class blacksmithRoom extends Room{
 		gui.printOnGameSide("Which item would you like to enchant?");
 		ArrayList<holdables> enchantList = listWeapons();
 
-		int selection = selectionMenu.selectScreenToInteger(enchantList, gui.getInput("Which item would you like to enchant?"));
+		int selection = selectionMenu.selectScreenToInteger(enchantList, gui.getInput("Which item would you like to enchant?"))-1;
 
 		ArrayList<String> availableEnchants = new ArrayList<>(Arrays.asList("Fire", "Holy", "Water", "Evil", "Lightning", "Metal", "Magic", "Overgrown"));
 
@@ -119,7 +119,7 @@ public class blacksmithRoom extends Room{
 	private void renameWeaponMenu(){
 		ArrayList<holdables> enchantList = listWeapons();	
 		
-		int selection = selectionMenu.selectScreenToInteger(enchantList, gui.getInput("Which item would you like to rename?"));
+		int selection = selectionMenu.selectScreenToInteger(enchantList, gui.getInput("Which item would you like to rename?"))-1;
 		gui.printOnGameSide("What would you like to rename" + enchantList.get(selection).toString() + "to?");
 		String renameStr = gui.getInput();
 		enchantList.get(selection).setName(renameStr);

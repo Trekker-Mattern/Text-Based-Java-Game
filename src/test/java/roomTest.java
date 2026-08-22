@@ -7,6 +7,7 @@ import com.textbasedgame.world.rooms.Room;
 public class roomTest {
     @Test
     public void testRoomCreation() {
+        System.out.println("Testing room creation...");
         roomFactory.setSeed(12345); // Set a seed for reproducibility (Also creates seeded random)
         Room testRoom = roomFactory.getNextRoom();
         assertNotNull(testRoom, "Room should not be null");

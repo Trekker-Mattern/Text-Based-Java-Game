@@ -100,7 +100,7 @@ public class lizzyRoom extends Room {
 
 		dialogue("Which potion would you like to get more information about?");
 		String response = gui.getInput();	
-		Integer selectionVal = selectionMenu.selectScreenToInteger(potList, response);
+		Integer selectionVal = selectionMenu.selectScreenToInteger(potList, response)-1;
 		genericPotion p = (genericPotion)(potList.get(selectionVal));
 		ArrayList<triple<buffTypes, Integer, Integer>> list = p.getBuffsAsList();
 		
@@ -151,7 +151,7 @@ public class lizzyRoom extends Room {
 			gui.printOnGameSide((i+1) + shopArr.get(i).toString());	
 		}
 
-		int purchaseNum = selectionMenu.selectScreenToInteger(shopArr, gui.getInput());
+		int purchaseNum = selectionMenu.selectScreenToInteger(shopArr, gui.getInput())-1;
 
 		if(player.gold > shopArr.get(purchaseNum).second){
 			gui.printOnGameSide("You buy a " + shopArr.get(purchaseNum).first.toString() + " for " + shopArr.get(purchaseNum).second + " shmeckles");

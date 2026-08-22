@@ -15,7 +15,7 @@ public class selectionMenu{
 	
 		try{
 			Integer retVal = Integer.parseInt(response);
-			if(retVal < 0 || retVal >= list.size()){
+			if(retVal <= 0 || retVal > list.size()){
 				return -2;
 			}
 			return retVal;

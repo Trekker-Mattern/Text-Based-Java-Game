@@ -113,7 +113,7 @@ public abstract class world {
         gui.pushOldText();
 
 		
-		int selectionValue = selectionMenu.selectScreenToInteger(player.inventory, userInput);
+		int selectionValue = selectionMenu.selectScreenToInteger(player.inventory, userInput)-1;
 		if(selectionValue == -2){gui.printOnGameSide("You dont have that many items you goof!");return false;}
 		if(selectionValue != -1){player.inventory.get(selectionValue-1).Use();return true;}
 
@@ -122,9 +122,8 @@ public abstract class world {
             player.printPlayerItems();
             gui.printOnGameSide("Which item would you like more information on?");
 			userInput = gui.getInput();
-			selectionValue = selectionMenu.selectScreenToInteger(player.inventory, userInput); 
-			int itemNum = Integer.parseInt(gui.getInput()) - 1;
-			itemInfoPrinter.printItemInfo(player.inventory.get(itemNum));
+			selectionValue = selectionMenu.selectScreenToInteger(player.inventory, userInput)-1; 
+			itemInfoPrinter.printItemInfo(player.inventory.get(selectionValue));
 		}
 		return false;
         

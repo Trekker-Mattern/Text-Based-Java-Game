@@ -14,6 +14,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 import com.textbasedgame.GUI.gui;
+import com.textbasedgame.GUI.GUISegments.InventoryPanel;
+import com.textbasedgame.GUI.GUISegments.TextPanel;
 import com.textbasedgame.GUI.pictureLoader.imageIDs;
 import com.textbasedgame.playerFiles.GameProgress;
 import com.textbasedgame.playerFiles.player;
@@ -101,6 +103,7 @@ public class worldSystemTest {
 
     @Test
     public void roomFactoryProducesNonNullRoomsWithDeterministicSeed() {
+        System.out.println("Testing room factory...");
         roomFactory.setSeed(12345);
         Room room = roomFactory.getNextRoom();
 
@@ -110,6 +113,7 @@ public class worldSystemTest {
 
     @Test
     public void roomFactoryRegeneratesQueuesWithoutThrowing() {
+        System.out.println("Testing room factory regeneration...");
         roomFactory.setSeed(7);
 
         assertDoesNotThrow(() -> roomFactory.regenerateRoomQueue());
@@ -117,6 +121,7 @@ public class worldSystemTest {
 
     @Test
     public void gameProgressWrapperStoresAndReturnsProgress() {
+        System.out.println("Testing game progress wrapper...");
         GameProgress progress = new GameProgress();
         progress.potionBagUnlocked = true;
         progress.lizzyMet = true;
@@ -130,10 +135,8 @@ public class worldSystemTest {
     }
 
     private void initializeGuiState() throws ReflectiveOperationException {
-        setStaticField("recentTextPanel", new JPanel());
-        setStaticField("txtPanel", new JPanel());
-        setStaticField("invPanel", new JPanel());
-        setStaticField("topofInvPanel", new JPanel());
+        setStaticField("textPanel", new TextPanel());
+        setStaticField("invPanel", new InventoryPanel());
         setStaticField("imagePanel", new JPanel());
         setStaticField("currentImageID", imageIDs.BLANK);
     }

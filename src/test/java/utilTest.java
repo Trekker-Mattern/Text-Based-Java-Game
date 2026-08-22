@@ -3,6 +3,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.textbasedgame.util.TrekkerMath;
+import com.textbasedgame.util.selectionMenu;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class utilTest {
@@ -52,10 +56,12 @@ public class utilTest {
     @Test
     public void testTrekkerMathRandomIntExtensively(){
         int endVal = 100;
+        System.out.println("Testing random integer generation extensively...");
 
         for(int i = 0; i < endVal; i++){
             testTrekkerMathRandomInt();
         }
+        System.out.println("Extensive testing completed successfully!");
     }
 
     @Test
@@ -66,4 +72,22 @@ public class utilTest {
             assertTrue(randomValue >= 0 && randomValue <= 100, "Random value out of bounds: " + randomValue);
         }
     }
+	@Test 
+	public void testUISelector(){
+		ArrayList<String> list = new ArrayList<>(Arrays.asList("esoteric", "cab", "aab", "con", "contains"));
+		System.out.println("Testing UI Selector...");
+		assertTrue(selectionMenu.selectScreenToInteger(list, "contains") == list.indexOf("contains")+1);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "esoteric") == list.indexOf("esoteric")+1);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "2") == 2);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "John Cena") == -1);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "-5") == -2);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "15") == -2);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "5") == 5);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "0") == -2);
+		assertTrue(selectionMenu.selectScreenToInteger(list, "1") == 1);
+
+
+        System.out.println("All tests passed successfully!");
+
+	}
 }

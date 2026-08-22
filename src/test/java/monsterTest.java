@@ -20,6 +20,7 @@ public class monsterTest {
     
     @Test
     public void testMonsterLevel() {
+        System.out.println("Testing monster level...");
 
         monster testMonster = monsterCreator.createMonster();
 
@@ -27,6 +28,7 @@ public class monsterTest {
     }
     @Test
     public void testMonsterStartingHealth() {
+        System.out.println("Testing monster starting health...");
 
         monster testMonster = monsterCreator.createMonster();
 
@@ -34,6 +36,7 @@ public class monsterTest {
     }
     @Test
     public void testBasicMonsterStats() {
+        System.out.println("Testing basic monster stats...");
 
         monster testMonster = monsterCreator.createMonster();
         System.out.println(testMonster.getSpeed());
@@ -53,6 +56,7 @@ public class monsterTest {
 
     @Test
     public void testMonsterSpawnDistribution() {
+        System.out.println("Testing monster spawn distribution...");
         HashMap<Class<? extends monster>, Integer> monsterCount = new HashMap<>();
         monsterCount.put(skeleton.class, 0);
         monsterCount.put(slime.class, 0);
